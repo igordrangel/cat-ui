@@ -5,6 +5,7 @@ import {
   DatatableTypeDataList
 } from "./cat-datatable.interface";
 import { Observable } from "rxjs";
+import { CatDynamicComponent } from "@cat-ui/dynamic-component";
 
 export class DatatableFactory<DataType> {
   private config: DatatableConfig<DataType> = {
@@ -36,6 +37,16 @@ export class DatatableFactory<DataType> {
   setItemLine(options: DatatableData<DataType>) {
     if (!this.config.data) this.config.data = [];
     this.config.data.push(options);
+    return this;
+  }
+
+  setCustomEmptyComponent(component: CatDynamicComponent) {
+    this.config.customEmptyComponent = component;
+    return this;
+  }
+
+  setCustomLoaderComponent(component: CatDynamicComponent) {
+    this.config.customLoaderComponent = component;
     return this;
   }
 

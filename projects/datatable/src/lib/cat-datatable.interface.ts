@@ -4,7 +4,6 @@ import { CatIconButtonColor } from "@cat-ui/icon-button";
 
 export interface DatatableConfig<DataType> {
   filter$?: Observable<any|string>;
-  customFilter?: boolean;
   hasSelection?: boolean;
   hasAction?: boolean;
   columns: string[];
@@ -22,8 +21,8 @@ export interface DatatableConfig<DataType> {
   getCurrentFilter?: (currentFilter: any) => void;
   getSelection?: (selection: DatatableSelection<DataType>) => void;
   disableSelectionItem?: (item: DataType) => boolean;
-  hideCheckAll?: boolean;
-  autoSearch?: boolean;
+  customEmptyComponent?: CatDynamicComponent;
+  customLoaderComponent?: CatDynamicComponent;
 }
 
 export interface DatatableFilterResponse {

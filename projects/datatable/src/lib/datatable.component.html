@@ -1,14 +1,22 @@
 <div class="table-responsive table-container">
 
-  <div *ngIf="!(loadedList$ | async)" class="datatable-loader">
-    <mat-spinner diameter="30" color="primary"></mat-spinner>
-  </div>
+  <ng-container *ngIf="!(loadedList$ | async)">
+    <ng-container *ngIf="config?.customLoaderComponent else defaultLoader">
+      <cat-dynamic-component [component]="config?.customLoaderComponent"></cat-dynamic-component>
+    </ng-container>
+
+    <ng-template #defaultLoader>
+      <div class="datatable-loader">
+        <mat-spinner diameter="30" color="primary"></mat-spinner>
+      </div>
+    </ng-template>
+  </ng-container>
 
   <table class="table table-hover">
     <thead>
       <tr>
         <th scope="col" class="selection" *ngIf="config?.hasSelection">
-          <div *ngIf="!config?.hideCheckAll" class="checkbox">
+          <div class="checkbox">
             <input
               #checkboxAll
               [checked]="isAllChecked()"
@@ -67,7 +75,7 @@
             <td *ngFor="let column of config?.columns; let columnIndex = index" [ngClass]="{sorted: columnIndex === columnIndexSort}">
               <cat-dynamic-component
                 *ngIf="getItemLineComponent(columnIndex) as dynamicComponent else tableCellDateText"
-                [dynamicComponent]="dynamicComponent">
+                [component]="dynamicComponent">
               </cat-dynamic-component>
               <ng-template #tableCellDateText>
                 {{this.getItemLineText(columnIndex, rowData)}}
@@ -109,8 +117,14 @@
 </div>
 
 <ng-template #emptyList>
-  <div *ngIf="loadedList$ | async" class="empty-list-container">
-    <i class="fa-solid fa-inbox"></i>
-    Nenhum registro encontrado
-  </div>
+  <ng-container *ngIf="config?.customEmptyComponent else defaultEmptyList">
+    <cat-dynamic-component [component]="config?.customEmptyComponent"></cat-dynamic-component>
+  </ng-container>
+
+  <ng-template #defaultEmptyList>
+    <div *ngIf="loadedList$ | async" class="empty-list-container">
+      <i class="fa-solid fa-inbox"></i>
+      Nenhum registro encontrado
+    </div>
+  </ng-template>
 </ng-template>

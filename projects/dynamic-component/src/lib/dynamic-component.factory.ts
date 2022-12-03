@@ -8,7 +8,7 @@ import { CatDynamicComponentDataInterface } from './cat-dynamic-component-data.i
   template: `<ng-template catDynamicComponent></ng-template>`
 })
 export class DynamicComponentFactory implements OnInit {
-  @Input() dynamicComponent?: CatDynamicComponent;
+  @Input() component?: CatDynamicComponent;
 
   @ViewChild(DynamicComponentDirective, {static: true}) dynamicComponentDirective?: DynamicComponentDirective;
 
@@ -17,7 +17,7 @@ export class DynamicComponentFactory implements OnInit {
   }
 
   loadComponent() {
-    const dynamicComponent = this.dynamicComponent;
+    const dynamicComponent = this.component;
     if (dynamicComponent) {
       const viewContainerRef = this.dynamicComponentDirective?.viewContainerRef;
       viewContainerRef?.clear();

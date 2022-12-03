@@ -5,7 +5,7 @@ import {
   DatatableFilterResponse,
   DatatableSelection
 } from "./cat-datatable.interface";
-import { BehaviorSubject, first, Observable, Subject, takeUntil } from "rxjs";
+import { BehaviorSubject, first, Subject, takeUntil } from "rxjs";
 import { koala } from "@koalarx/utils";
 import { clone } from "@koalarx/utils/operators";
 
@@ -39,9 +39,6 @@ export class DatatableComponent implements OnInit, OnDestroy {
   public columnIndexSort = -1;
   public orderBy = '';
   public reverse = false;
-
-  constructor() {
-  }
 
   ngOnDestroy() {
     this.destroySubscriptions$.next(true);
@@ -135,6 +132,7 @@ export class DatatableComponent implements OnInit, OnDestroy {
 
     return filter;
   }
+
   //#endregion
 
   //#region [Order List Control]
@@ -182,7 +180,7 @@ export class DatatableComponent implements OnInit, OnDestroy {
     this.selection$.next(selection);
   }
 
-  public checkAll(checked: boolean, clear = true) {
+  public checkAll(checked: boolean) {
     const selection = this.selection$.getValue();
 
     if (checked) {
@@ -193,10 +191,6 @@ export class DatatableComponent implements OnInit, OnDestroy {
 
     selection.emit = true;
     selection.checkAll = checked;
-    // if (clear) {
-    //   selection.lastSelected = null;
-    //   selection.selected = [];
-    // }
     this.selection$.next(selection);
   }
 
@@ -294,5 +288,6 @@ export class DatatableComponent implements OnInit, OnDestroy {
       this.checkAll(false);
     }
   }
+
   //#endregion
 }

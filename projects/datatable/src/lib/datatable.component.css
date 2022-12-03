@@ -20,10 +20,10 @@ table tr td.option .options-content {display: flex;justify-content: space-betwee
 table tr .checkbox {margin: 0;}
 table tr .checkbox label::before {margin-left: -19px!important;}
 .page-size-content {display: flex;justify-content: flex-start;align-items: center;padding: 0 15px;box-sizing: border-box;}
-.page-size-content label {white-space: nowrap;font-size: 9pt;text-transform: uppercase;color: #616161;}
+.page-size-content label {white-space: nowrap;font-size: 8pt;text-transform: uppercase;color: var(--font-color);}
 .page-size-content select {margin-left: 8px;width: fit-content;}
 .pagination-content {display: flex;align-items: center;justify-content: flex-end;padding-right: 10px;}
-.pagination-content span.page-info {font-size: 9pt;line-height: 10pt;color: var(--disable-color);border-radius: 50px;padding: 5px 10px;margin-right: 10px;box-sizing: border-box;}
+.pagination-content span.page-info {font-size: 9pt;line-height: 10pt;color: var(--font-color);border-radius: 50px;padding: 5px 10px;margin-right: 10px;box-sizing: border-box;}
 
 .datatable-loader {position: absolute;display: flex;justify-content: center;align-items: center;width: 100%;height: 516px;background-color: rgba(0,0,0,.2);z-index: 1;}
 

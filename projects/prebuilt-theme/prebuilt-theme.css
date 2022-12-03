@@ -3,6 +3,7 @@
 @import "@angular/material/prebuilt-themes/indigo-pink.css";
 
 :root {
+  --font-color: #616161;
   --primary-color: #212121;
   --primary-color-alpha: rgba(33,33,33,.3);
   --light-font-color: #f1f1f1;
