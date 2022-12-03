@@ -1,25 +1,31 @@
-.table-container {overflow: auto;height: auto;max-height: 550px;}
+.table-container {overflow: auto;height: 550px;}
 table {position: relative;border-collapse: collapse;margin-bottom: 0;}
+table tbody {height: 475px;}
 table thead,
 table tfoot {position: relative;z-index: 1;}
 table .sorted {background: var(--light-font-color);}
-table th {position: sticky;top: 0;background: var(--light-font-color);color: var(--disable-color);font-weight: normal;}
+table th {position: sticky;top: 0;background: var(--light-font-color);color: var(--disable-color);font-weight: normal;box-shadow: inset 0 1px 0 #ddd, inset 0 -1px 0 #ddd;border: none;}
 table th.sorted {color: var(--primary-color);font-weight: bold;}
 table th i {margin-left: 8px;}
 table th .content-header {display: flex;justify-content: flex-start;align-items: center;}
 table th:not(.selection) {font-size: 9pt;line-height: 9px;}
 table th.sortable {cursor: pointer;}
-table tfoot td {position: sticky;bottom: 0;background: #FFFFFF;padding: 0;}
+table tfoot {position: sticky;bottom: 0;border: none;}
+table tfoot td {background: #FFFFFF;padding: 0;box-shadow: inset 0 1px 0 #ddd, inset 0 -1px 0 #ddd;border: none;}
 table tr th,
 table tr td {padding: 5px 8px;vertical-align: middle;}
 table tr th.selection,
 table tr td.selection {width: 40px;text-align: center;}
-table tr th.option,
-table tr td.option {width: calc(42px * 3);}
+table tr td.option .options-content {display: flex;justify-content: space-between;align-items: center;}
 table tr .checkbox {margin: 0;}
 table tr .checkbox label::before {margin-left: -19px!important;}
 .page-size-content {display: flex;justify-content: flex-start;align-items: center;padding: 0 15px;box-sizing: border-box;}
 .page-size-content label {white-space: nowrap;font-size: 9pt;text-transform: uppercase;color: #616161;}
 .page-size-content select {margin-left: 8px;width: fit-content;}
 .pagination-content {display: flex;align-items: center;justify-content: flex-end;padding-right: 10px;}
-.pagination-content span.page-info {font-size: 9pt;line-height: 9pt;color: var(--disable-color);border-radius: 50px;padding: 5px 10px;margin-right: 10px;box-sizing: border-box;}
+.pagination-content span.page-info {font-size: 9pt;line-height: 10pt;color: var(--disable-color);border-radius: 50px;padding: 5px 10px;margin-right: 10px;box-sizing: border-box;}
+
+.datatable-loader {position: absolute;display: flex;justify-content: center;align-items: center;width: 100%;height: 516px;background-color: rgba(0,0,0,.2);z-index: 1;}
+
+.empty-list-container {position: absolute;display: flex;flex-direction: column;justify-content: center;align-items: center;width: 100%;height: 516px;font-weight: bold;}
+.empty-list-container i {font-size: 40px;opacity: .8;}

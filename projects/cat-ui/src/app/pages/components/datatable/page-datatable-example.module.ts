@@ -1,7 +1,7 @@
 import { NgModule } from "@angular/core";
 import { PageDatatableExampleRoutingModule } from "./page-datatable-example.routing.module";
-import { CatDatatableModule } from "../../../../../../datatable/src/lib/cat-datatable.module";
 import { PageDatatableExampleComponent } from "./page-datatable-example.component";
+import { CatDatatableModule } from "@cat-ui/datatable";
 
 @NgModule({
   declarations: [PageDatatableExampleComponent],

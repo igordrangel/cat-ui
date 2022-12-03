@@ -1,4 +1,9 @@
 <div class="table-responsive table-container">
+
+  <div *ngIf="!(loadedList$ | async)" class="datatable-loader">
+    <mat-spinner diameter="30" color="primary"></mat-spinner>
+  </div>
+
   <table class="table table-hover">
     <thead>
       <tr>
@@ -32,36 +37,47 @@
         </th>
       </tr>
     </thead>
-    <tbody *ngIf="datatableList$ | async as datatableList">
-      <tr
-        *ngFor="let rowData of datatableList | orderBy: orderBy : reverse | paginate: getPaginateProps(); let i = index ">
-        <td class="selection" *ngIf="config?.hasSelection">
-          <div class="checkbox">
-            <input
-              class="form-check-input"
-              [disabled]="config?.disableSelectionItem ? config?.disableSelectionItem(rowData) ?? false : false"
-              [checked]="isChecked(i)" (change)="toggleItem(i, rowData)" type="checkbox"/>
-          </div>
-        </td>
-        <td class="option" *ngIf="config?.hasAction">
-          <button
-             *ngFor="let actionButton of getActionButtons(rowData)"
-             [matTooltip]="actionButton?.tooltip ?? ''"
-             (click)="actionButton.fnAction ? actionButton.fnAction(rowData) : null">
-            <i [class]="actionButton.iconName"></i>
-          </button>
-        </td>
-        <td *ngFor="let column of config?.columns; let columnIndex = index" [ngClass]="{sorted: columnIndex === columnIndexSort}">
-          <cat-dynamic-component
-            *ngIf="getItemLineComponent(columnIndex) as dynamicComponent else tableCellDateText"
-            [dynamicComponent]="dynamicComponent">
-          </cat-dynamic-component>
-          <ng-template #tableCellDateText>
-            {{this.getItemLineText(columnIndex, rowData)}}
-          </ng-template>
-        </td>
-      </tr>
+    <ng-container>
+    <tbody>
+      <ng-container *ngIf="(datatableList$ | async) as datatableList">
+        <ng-container *ngIf="datatableList.length > 0 else emptyList">
+          <tr
+            *ngFor="let rowData of datatableList | orderBy: orderBy : reverse | paginate: getPaginateProps(); let i = index ">
+            <td class="selection" *ngIf="config?.hasSelection">
+              <div class="checkbox">
+                <input
+                  class="form-check-input"
+                  [disabled]="config?.disableSelectionItem ? config?.disableSelectionItem(rowData) ?? false : false"
+                  [checked]="isChecked(i)" (change)="toggleItem(i, rowData)" type="checkbox"/>
+              </div>
+            </td>
+            <td class="option"
+                *ngIf="config?.hasAction"
+                [style.width]="'calc(42px * '+(config?.actionButtons?.length ?? 1)+')'">
+              <div class="options-content">
+                <cat-icon-button
+                  *ngFor="let actionButton of getActionButtons(rowData)"
+                  [icon]="actionButton.iconName"
+                  [color]="actionButton.iconColor"
+                  [tooltip]="actionButton.tooltip"
+                  (click)="actionButton.fnAction ? actionButton.fnAction(rowData) : null">
+                </cat-icon-button>
+              </div>
+            </td>
+            <td *ngFor="let column of config?.columns; let columnIndex = index" [ngClass]="{sorted: columnIndex === columnIndexSort}">
+              <cat-dynamic-component
+                *ngIf="getItemLineComponent(columnIndex) as dynamicComponent else tableCellDateText"
+                [dynamicComponent]="dynamicComponent">
+              </cat-dynamic-component>
+              <ng-template #tableCellDateText>
+                {{this.getItemLineText(columnIndex, rowData)}}
+              </ng-template>
+            </td>
+          </tr>
+        </ng-container>
+      </ng-container>
     </tbody>
+    </ng-container>
     <tfoot *ngIf="config">
       <tr>
         <td [attr.colspan]="getFooterColspan()" class="text-left">
@@ -91,3 +107,10 @@
     </tfoot>
   </table>
 </div>
+
+<ng-template #emptyList>
+  <div *ngIf="loadedList$ | async" class="empty-list-container">
+    <i class="fa-solid fa-inbox"></i>
+    Nenhum registro encontrado
+  </div>
+</ng-template>

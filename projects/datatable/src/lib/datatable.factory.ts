@@ -1,4 +1,9 @@
-import { DatatableConfig, DatatableData, DatatableTypeDataList } from "./cat-datatable.interface";
+import {
+  DatatableActionButtonConfig,
+  DatatableConfig,
+  DatatableData, DatatableSelection,
+  DatatableTypeDataList
+} from "./cat-datatable.interface";
 import { Observable } from "rxjs";
 
 export class DatatableFactory<DataType> {
@@ -14,6 +19,12 @@ export class DatatableFactory<DataType> {
 
   hasActions(has = true) {
     this.config.hasAction = has;
+    return this;
+  }
+
+  setActionButton(options: DatatableActionButtonConfig<DataType>) {
+    if (!this.config.actionButtons) this.config.actionButtons = [];
+    this.config.actionButtons.push(options);
     return this;
   }
 
@@ -44,6 +55,16 @@ export class DatatableFactory<DataType> {
 
   setFilter(filter$: Observable<any|string>) {
     this.config.filter$ = filter$;
+    return this;
+  }
+
+  getSelection(getSelection: (selection: DatatableSelection<DataType>) => void) {
+    this.config.getSelection = getSelection;
+    return this;
+  }
+
+  getDatasource(getDatasource: (datasource: DataType[]) => void) {
+    this.config.getDatasource = getDatasource;
     return this;
   }
 

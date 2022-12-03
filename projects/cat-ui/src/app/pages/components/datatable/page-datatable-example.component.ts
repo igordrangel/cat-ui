@@ -1,7 +1,6 @@
 import { Component } from "@angular/core";
 import { CatDatatableService } from "@cat-ui/datatable";
 import { PageDatatableExampleService } from "./page-datatable-example.service";
-import { Observable } from "rxjs";
 
 @Component({
   templateUrl: 'page-datatable-example.component.html'
@@ -13,6 +12,18 @@ export class PageDatatableExampleComponent {
                  'Estado',
                  'Município'
                ])
+               .setActionButton({
+                 iconColor: 'primary-bg-transparent',
+                 iconName: 'fa-solid fa-pencil',
+                 tooltip: 'Editar',
+                 fnAction: itemLine => console.log(itemLine)
+               })
+               .setActionButton({
+                 iconColor: 'danger-bg-transparent',
+                 iconName: 'fa-solid fa-trash-can',
+                 tooltip: 'Excluir',
+                 fnAction: itemLine => console.log(itemLine)
+               })
                .setItemLine({
                  columnIndex: 0,
                  sortColumn: 'estado',
@@ -25,6 +36,9 @@ export class PageDatatableExampleComponent {
                })
                .setService(filter => this.service.getAll(filter), {typeDataList: "onDemand"})
                .hasSelection()
+               .hasActions()
+               .getSelection(selection => console.log(selection.selected))
+               .getDatasource(datasource => console.log(datasource))
                .generate();
 
   constructor(

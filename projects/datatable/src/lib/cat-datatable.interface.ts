@@ -1,5 +1,6 @@
 import { BehaviorSubject, Observable } from "rxjs";
 import { CatDynamicComponent } from "@cat-ui/dynamic-component";
+import { CatIconButtonColor } from "@cat-ui/icon-button";
 
 export interface DatatableConfig<DataType> {
   filter$?: Observable<any|string>;
@@ -46,6 +47,7 @@ export interface DatatableSelection<T> {
 }
 
 export interface DatatableActionButtonConfig<DataType> {
+  iconColor?: CatIconButtonColor;
   iconName: string;
   fnAction?: (itemLine: DataType) => void;
   havePermission?: boolean;

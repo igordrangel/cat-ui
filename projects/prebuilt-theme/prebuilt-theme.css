@@ -1,10 +1,21 @@
 @import "@fortawesome/fontawesome-free/css/all.min.css";
 @import "bootstrap/dist/css/bootstrap.min.css";
+@import "@angular/material/prebuilt-themes/indigo-pink.css";
 
 :root {
-  --primary-color: #1976D2;
+  --primary-color: #212121;
+  --primary-color-alpha: rgba(33,33,33,.3);
   --light-font-color: #f1f1f1;
   --disable-color: #9a9a9a;
+
+  --btn-icon-bg-default: #f1f1f1;
+  --btn-icon-c-default: #212121;
+  --btn-icon-bg-primary: #1565C0;
+  --btn-icon-c-primary: #f1f1f1;
+  --btn-icon-bg-warning: #FFB300;
+  --btn-icon-c-warning: #FFECB3;
+  --btn-icon-bg-danger: #C62828;
+  --btn-icon-c-danger: #FFCDD2;
 }
 
 *{
@@ -59,8 +70,19 @@
 .mr-8 {margin-right: 8px !important;}
 .padding-none {padding: 0 !important;}
 
+/*#region [Forms] */
+select option {padding: 10px;}
+.form-check-input[type=checkbox]:indeterminate,
+.form-check-input:checked {background-color: var(--primary-color);border-color: var(--primary-color);}
+.form-check-input:focus {box-shadow: 0 0 0 0.25rem var(--primary-color-alpha);}
+/*#endregion */
+/*#region [Paginator] */
 .ngx-pagination {display: flex;justify-content: flex-end;align-items: flex-start;margin-bottom: 0!important;padding: 0;}
-.ngx-pagination li {display: inline;border: none!important;font-size: 10pt;border-radius: 15px!important;}
-.ngx-pagination li a {padding: 0.1875rem 0.625rem!important;}
-.ngx-pagination .current {background: var(--primary-color);}
+.ngx-pagination li {display: inline;border: none!important;font-size: 10pt;border-radius: 5px!important;margin: 0 2px;}
+.ngx-pagination li a {padding: 0.1875rem 0.625rem!important;border-radius: 5px!important;}
+.ngx-pagination .current {background: var(--primary-color)!important;}
+/*#endregion*/
+/*#region [Spinner] */
+.mat-progress-spinner circle, .mat-spinner circle {stroke: var(--primary-color);}
+/*#endregion*/
 

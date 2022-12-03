@@ -1,6 +1,6 @@
 import { Injectable } from "@angular/core";
 import { HttpClient } from "@angular/common/http";
-import { first, map } from "rxjs";
+import { delay, first, map } from "rxjs";
 
 @Injectable({providedIn: 'root'})
 export class PageDatatableExampleService {
@@ -8,7 +8,6 @@ export class PageDatatableExampleService {
   }
 
   public getAll(filter: any) {
-    console.log(filter);
     let endpoint = 'municipios';
     if (filter.uf) {
       endpoint = `estados/${filter.uf}/municipios`;
@@ -22,6 +21,7 @@ export class PageDatatableExampleService {
                      municipio: item.nome
                    }
                  })),
+                 delay(2000),
                  first()
                );
   }

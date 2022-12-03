@@ -18,6 +18,10 @@
       "@cat-ui/palette-colors": [
         "dist/palette-colors",
         "projects/palette-colors/src"
+      ],
+      "@cat-ui/icon-button": [
+        "dist/icon-button",
+        "projects/icon-button/src"
       ]
     },
     "baseUrl": "./",

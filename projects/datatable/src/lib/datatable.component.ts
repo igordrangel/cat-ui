@@ -26,6 +26,7 @@ export class DatatableComponent implements OnInit, OnDestroy {
     checkAll: false
   });
   public datatableList$ = new BehaviorSubject<any[]>([]);
+  public loadedList$ = new BehaviorSubject<boolean>(false);
   public datatableBackupList$ = new BehaviorSubject<any[]>([]);
   public destroySubscriptions$ = new Subject();
 
@@ -87,12 +88,9 @@ export class DatatableComponent implements OnInit, OnDestroy {
     }
   }
 
-  private filterOnServer() {
-
-  }
-
   private loadData() {
     if (this.config?.service) {
+      this.loadedList$.next(false);
       this.config
           .service(this.getFilter())
           .pipe(first())
@@ -106,9 +104,14 @@ export class DatatableComponent implements OnInit, OnDestroy {
                 .array()
                 .split(this.config?.limitItemPerPage ?? 30)
                 .getValue()[0]
-                ?.length
+                ?.length;
+
+              if (this.config?.getDatasource) this.config.getDatasource(listData);
+
+              this.loadedList$.next(true);
             },
             error: () => {
+              this.loadedList$.next(true);
             }
           });
     }
@@ -132,7 +135,6 @@ export class DatatableComponent implements OnInit, OnDestroy {
 
     return filter;
   }
-
   //#endregion
 
   //#region [Order List Control]
@@ -286,11 +288,11 @@ export class DatatableComponent implements OnInit, OnDestroy {
   public handlePageChange(page: number) {
     this.currentPage = page;
     if (this.config?.typeDataList === 'onDemand') {
+      this.datatableList$.next([]);
       this.loadData();
     } else {
       this.checkAll(false);
     }
   }
-
   //#endregion
 }
