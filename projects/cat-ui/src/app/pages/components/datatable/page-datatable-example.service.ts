@@ -21,7 +21,6 @@ export class PageDatatableExampleService {
                      municipio: item.nome
                    }
                  })),
-                 delay(2000),
                  first()
                );
   }

@@ -53,9 +53,9 @@ export class DatatableComponent implements OnInit, OnDestroy {
     let colspan = 1;
     if (this.config?.hasSelection) {
       colspan++;
-      if (this.config?.hasAction) {
-        colspan++;
-      }
+    }
+    if (this.config?.hasAction) {
+      colspan++;
     }
 
     return colspan;

@@ -26,7 +26,7 @@
               type="checkbox"/>
           </div>
         </th>
-        <th scope="col" class="option" *ngIf="config?.hasAction"></th>
+        <th scope="col" class="option" *ngIf="config?.hasAction" [style.width]="42 * (config?.actionButtons?.length ?? 1) + 'px!important'"></th>
         <th
           scope="col"
           *ngFor="let column of config?.columns; let columnIndex = index"
@@ -61,7 +61,7 @@
             </td>
             <td class="option"
                 *ngIf="config?.hasAction"
-                [style.width]="'calc(42px * '+(config?.actionButtons?.length ?? 1)+')'">
+                [style.width]="42 * (config?.actionButtons?.length ?? 1) + 'px!important'">
               <div class="options-content">
                 <cat-icon-button
                   *ngFor="let actionButton of getActionButtons(rowData)"
