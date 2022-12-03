@@ -1,7 +1,7 @@
 name: PUBLISH DOC
 on:
   push:
-    branches: [ main ]
+    branches: [ develop ]
 jobs:
   build:
     name: 'production'
@@ -25,7 +25,7 @@ jobs:
         uses: SamKirkland/FTP-Deploy-Action@4.0.0
         with:
           server: ftp.igordrangel.com.br
-          username: koala@igordrangel.com.br
+          username: catui@igordrangel.com.br
           password: ${{ secrets.FTP_PASSWORD }}
           server-dir: './dist/'
           local-dir: './dist/cat-ui/'
