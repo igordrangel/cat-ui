@@ -43,5 +43,7 @@ export class PageDatatableExampleComponent {
 
   constructor(
     private datatableService: CatDatatableService,
-    private service: PageDatatableExampleService) {}
+    private service: PageDatatableExampleService) {
+    document.title = 'Datatable Example'
+  }
 }
