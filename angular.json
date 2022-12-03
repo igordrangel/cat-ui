@@ -7,7 +7,7 @@
       "projectType": "library",
       "root": "projects/datatable",
       "sourceRoot": "projects/datatable/src",
-      "prefix": "lib",
+      "prefix": "cat",
       "architect": {
         "build": {
           "builder": "@angular-devkit/build-angular:ng-packagr",
@@ -38,7 +38,7 @@
       "projectType": "library",
       "root": "projects/core",
       "sourceRoot": "projects/core/src",
-      "prefix": "lib",
+      "prefix": "cat",
       "architect": {
         "build": {
           "builder": "@angular-devkit/build-angular:ng-packagr",
@@ -65,23 +65,23 @@
         }
       }
     },
-    "palette-colors": {
+    "prebuilt-theme": {
       "projectType": "library",
-      "root": "projects/palette-colors",
-      "sourceRoot": "projects/palette-colors/src",
-      "prefix": "lib",
+      "root": "projects/prebuilt-theme",
+      "sourceRoot": "projects/prebuilt-theme/src",
+      "prefix": "cat",
       "architect": {
         "build": {
           "builder": "@angular-devkit/build-angular:ng-packagr",
           "options": {
-            "project": "projects/palette-colors/ng-package.json"
+            "project": "projects/prebuilt-theme/ng-package.json"
           },
           "configurations": {
             "production": {
-              "tsConfig": "projects/palette-colors/tsconfig.lib.prod.json"
+              "tsConfig": "projects/prebuilt-theme/tsconfig.lib.prod.json"
             },
             "development": {
-              "tsConfig": "projects/palette-colors/tsconfig.lib.json"
+              "tsConfig": "projects/prebuilt-theme/tsconfig.lib.json"
             }
           },
           "defaultConfiguration": "production"
@@ -89,9 +89,9 @@
         "test": {
           "builder": "@angular-devkit/build-angular:karma",
           "options": {
-            "main": "projects/palette-colors/src/test.ts",
-            "tsConfig": "projects/palette-colors/tsconfig.spec.json",
-            "karmaConfig": "projects/palette-colors/karma.conf.js"
+            "main": "projects/prebuilt-theme/src/test.ts",
+            "tsConfig": "projects/prebuilt-theme/tsconfig.spec.json",
+            "karmaConfig": "projects/prebuilt-theme/karma.conf.js"
           }
         }
       }
@@ -116,7 +116,8 @@
               "projects/cat-ui/src/assets"
             ],
             "styles": [
-              "projects/cat-ui/src/styles.css"
+              "projects/cat-ui/src/styles.css",
+              "projects/prebuilt-theme/prebuilt-theme.css"
             ],
             "scripts": []
           },
@@ -186,6 +187,37 @@
               "projects/cat-ui/src/styles.css"
             ],
             "scripts": []
+          }
+        }
+      }
+    },
+    "dynamic-component": {
+      "projectType": "library",
+      "root": "projects/dynamic-component",
+      "sourceRoot": "projects/dynamic-component/src",
+      "prefix": "cat",
+      "architect": {
+        "build": {
+          "builder": "@angular-devkit/build-angular:ng-packagr",
+          "options": {
+            "project": "projects/dynamic-component/ng-package.json"
+          },
+          "configurations": {
+            "production": {
+              "tsConfig": "projects/dynamic-component/tsconfig.lib.prod.json"
+            },
+            "development": {
+              "tsConfig": "projects/dynamic-component/tsconfig.lib.json"
+            }
+          },
+          "defaultConfiguration": "production"
+        },
+        "test": {
+          "builder": "@angular-devkit/build-angular:karma",
+          "options": {
+            "main": "projects/dynamic-component/src/test.ts",
+            "tsConfig": "projects/dynamic-component/tsconfig.spec.json",
+            "karmaConfig": "projects/dynamic-component/karma.conf.js"
           }
         }
       }

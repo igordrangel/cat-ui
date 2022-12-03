@@ -2,18 +2,26 @@
 {
   "compileOnSave": false,
   "compilerOptions": {
-    "baseUrl": "./",
     "paths": {
-      "core": [
-        "dist/core"
+      "@cat-ui/core": [
+        "dist/core",
+        "projects/core/src"
       ],
-      "datatable": [
-        "dist/datatable"
+      "@cat-ui/datatable": [
+        "dist/datatable",
+        "projects/datatable/src"
       ],
-      "palette-colors": [
-        "dist/palette-colors"
+      "@cat-ui/dynamic-component": [
+        "dist/dynamic-component",
+        "projects/dynamic-component/src"
+      ],
+      "@cat-ui/palette-colors": [
+        "dist/palette-colors",
+        "projects/palette-colors/src"
       ]
     },
+    "baseUrl": "./",
+    "rootDir": ".",
     "outDir": "./dist/out-tsc",
     "forceConsistentCasingInFileNames": true,
     "strict": true,
@@ -39,5 +47,10 @@
     "strictInjectionParameters": true,
     "strictInputAccessModifiers": true,
     "strictTemplates": true
-  }
+  },
+  "exclude": [
+    "node_modules",
+    "dist",
+    ".github"
+  ]
 }

@@ -1,0 +1,93 @@
+<div class="table-responsive table-container">
+  <table class="table table-hover">
+    <thead>
+      <tr>
+        <th scope="col" class="selection" *ngIf="config?.hasSelection">
+          <div *ngIf="!config?.hideCheckAll" class="checkbox">
+            <input
+              #checkboxAll
+              [checked]="isAllChecked()"
+              (change)="checkAll(checkboxAll.checked)"
+              [indeterminate]="isIndeterminateSelection()"
+              class="form-check-input"
+              type="checkbox"/>
+          </div>
+        </th>
+        <th scope="col" class="option" *ngIf="config?.hasAction"></th>
+        <th
+          scope="col"
+          *ngFor="let column of config?.columns; let columnIndex = index"
+          (click)="sort(columnIndex)"
+          [ngClass]="{
+            activeSelection: columnIndex >= 0,
+            sortable: isSortable(columnIndex),
+            sorted: columnIndex === columnIndexSort
+          }">
+          <div class="content-header">
+            {{column}}
+            <i *ngIf="columnIndex !== columnIndexSort && isSortable(columnIndex)" class="fa-solid fa-sort"></i>
+            <i *ngIf="columnIndex === columnIndexSort && !reverse" class="fa-solid fa-arrow-up-a-z"></i>
+            <i *ngIf="columnIndex === columnIndexSort && reverse" class="fa-solid fa-arrow-down-z-a"></i>
+          </div>
+        </th>
+      </tr>
+    </thead>
+    <tbody *ngIf="datatableList$ | async as datatableList">
+      <tr
+        *ngFor="let rowData of datatableList | orderBy: orderBy : reverse | paginate: getPaginateProps(); let i = index ">
+        <td class="selection" *ngIf="config?.hasSelection">
+          <div class="checkbox">
+            <input
+              class="form-check-input"
+              [disabled]="config?.disableSelectionItem ? config?.disableSelectionItem(rowData) ?? false : false"
+              [checked]="isChecked(i)" (change)="toggleItem(i, rowData)" type="checkbox"/>
+          </div>
+        </td>
+        <td class="option" *ngIf="config?.hasAction">
+          <button
+             *ngFor="let actionButton of getActionButtons(rowData)"
+             [matTooltip]="actionButton?.tooltip ?? ''"
+             (click)="actionButton.fnAction ? actionButton.fnAction(rowData) : null">
+            <i [class]="actionButton.iconName"></i>
+          </button>
+        </td>
+        <td *ngFor="let column of config?.columns; let columnIndex = index" [ngClass]="{sorted: columnIndex === columnIndexSort}">
+          <cat-dynamic-component
+            *ngIf="getItemLineComponent(columnIndex) as dynamicComponent else tableCellDateText"
+            [dynamicComponent]="dynamicComponent">
+          </cat-dynamic-component>
+          <ng-template #tableCellDateText>
+            {{this.getItemLineText(columnIndex, rowData)}}
+          </ng-template>
+        </td>
+      </tr>
+    </tbody>
+    <tfoot *ngIf="config">
+      <tr>
+        <td [attr.colspan]="getFooterColspan()" class="text-left">
+          <div class="page-size-content">
+            <label>Itens por página: </label>
+            <select
+              class="form-select form-select-sm"
+              [(ngModel)]="config.limitItemPerPage"
+              (change)="handlePageSizeChange()">
+              <option selected [ngValue]="10">10</option>
+              <option [ngValue]="30">30</option>
+              <option [ngValue]="50">50</option>
+              <option [ngValue]="100">100</option>
+            </select>
+          </div>
+        </td>
+        <td colspan="50">
+          <div class="pagination-content">
+            <span class="page-info">
+              {{currentPage}} - {{totalItemsPage}} de {{totalItemsBd}}
+            </span>
+            <pagination-controls class="my-pagination" previousLabel="Anterior" nextLabel="Próximo"
+                                 (pageChange)="handlePageChange($event)"></pagination-controls>
+          </div>
+        </td>
+      </tr>
+    </tfoot>
+  </table>
+</div>

@@ -1,5 +1,5 @@
 {
-  "name": "core",
+  "name": "@cat-ui/core",
   "version": "0.0.1",
   "peerDependencies": {
     "@angular/common": "^14.1.0",

@@ -1,0 +1,66 @@
+@import "@fortawesome/fontawesome-free/css/all.min.css";
+@import "bootstrap/dist/css/bootstrap.min.css";
+
+:root {
+  --primary-color: #1976D2;
+  --light-font-color: #f1f1f1;
+  --disable-color: #9a9a9a;
+}
+
+*{
+  font-family: Quicksand, sans-serif;
+}
+
+@font-face {
+  font-family: Quicksand;
+  src: url(projects/prebuilt-theme/fonts/Quicksand/Quicksand-Light.woff),
+       url(projects/prebuilt-theme/fonts/Quicksand/Quicksand-Regular.woff),
+       url(projects/prebuilt-theme/fonts/Quicksand/Quicksand-Medium.woff),
+       url(projects/prebuilt-theme/fonts/Quicksand/Quicksand-SemiBold.woff),
+       url(projects/prebuilt-theme/fonts/Quicksand/Quicksand-Bold.woff);
+}
+
+.p-relative {position: relative !important;}
+.d-none {display: none !important;}
+.d-block {display: block !important;}
+.d-inline {display: inline !important;}
+.d-inline-block {display: inline-block !important;}
+.align-center {margin: 0 auto;}
+.text-left {text-align: left !important;}
+.text-center {text-align: center !important;}
+.text-right {text-align: right !important;}
+.float-left {float: left !important;}
+.float-none {float: inherit !important;}
+.float-right {float: right !important;}
+.w-100 {width: 100%;}
+.w-99 {width: 99%;}
+.w-98 {width: 98%;}
+.w-97 {width: 97%;}
+.w-96 {width: 96%;}
+.w-95 {width: 95%;}
+.w-50 {width: 50%;}
+.w-40 {width: 40%;}
+.w-5 {width: 5%;}
+.mt-0 {margin-top: 0 !important;}
+.mt-5 {margin-top: 5px !important;}
+.mt-10 {margin-top: 10px !important;}
+.mt-15 {margin-top: 15px !important;}
+.mt-20 {margin-top: 20px !important;}
+.mt-25 {margin-top: 25px !important;}
+.mt-30 {margin-top: 30px !important;}
+.mt-35 {margin-top: 35px !important;}
+.mt-40 {margin-top: 40px !important;}
+.mt-45 {margin-top: 45px !important;}
+.mb-5 {margin-bottom: 5px !important;}
+.mb-10 {margin-bottom: 10px !important;}
+.mb-15 {margin-bottom: 15px !important;}
+.mb-20 {margin-bottom: 20px !important;}
+.mb-25 {margin-bottom: 25px !important;}
+.mr-8 {margin-right: 8px !important;}
+.padding-none {padding: 0 !important;}
+
+.ngx-pagination {display: flex;justify-content: flex-end;align-items: flex-start;margin-bottom: 0!important;padding: 0;}
+.ngx-pagination li {display: inline;border: none!important;font-size: 10pt;border-radius: 15px!important;}
+.ngx-pagination li a {padding: 0.1875rem 0.625rem!important;}
+.ngx-pagination .current {background: var(--primary-color);}
+
