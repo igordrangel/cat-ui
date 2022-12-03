@@ -5,6 +5,7 @@
     "ng": "ng",
     "start": "ng serve",
     "build": "node .github/scripts/publish.js && npm run format",
+    "build-doc": "ng build cat-ui --configuration production --build-optimizer",
     "format": "prettier --write \"dist/package.json\"",
     "watch": "ng build --watch --configuration development",
     "test": "ng test",
