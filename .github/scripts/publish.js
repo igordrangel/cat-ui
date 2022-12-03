@@ -1,11 +1,13 @@
 const fs = require("fs");
+const fsExtra = require("fs-extra");
 const {execSync} = require("child_process");
 const config = JSON.parse(fs.readFileSync('package.json').toString());
 const currentVersion = config.version;
 const libs = [
-  'datatable',
   'core',
-  'common'
+  'dynamic-component',
+  'icon-button',
+  'datatable',
 ];
 
 for (const [index, lib] of libs.entries()) {
@@ -38,20 +40,14 @@ fs.writeFileSync('dist/package.json', JSON.stringify({
   },
   "dependencies": {
     "tslib": "^2.2.0",
-    "exceljs": "^3.10.0",
-    "file-saver": "^2.0.5",
-    "jwt-decode": "^3.0.0",
-    "jwt-encode": "^1.0.1",
+    "@angular/material": "^14.1.0",
+    "@fortawesome/fontawesome-free": "^6.2.1",
+    "bootstrap": "^5.2.3",
     "@koalarx/utils": "^1.0.101",
-    "ng2-currency-mask": "^13.0.3",
-    "ngx-device-detector": "^4.0.1",
-    "event-source-polyfill": "^1.0.25",
-    "ngx-mask": "^13.0.1",
-    "ngx-papaparse": "^5.0.0",
-    "xlsx": "^0.17.0",
     "rxjs": "~7.5.0"
   }
 }), 'utf8');
 fs.writeFileSync('dist/README.md', fs.readFileSync('README.md').toString(), 'utf8');
+fsExtra.copySync('projects/prebuilt-theme', 'dist/prebuilt-theme')
 
 console.log('Build completed');

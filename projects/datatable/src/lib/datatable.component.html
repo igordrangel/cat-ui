@@ -7,7 +7,10 @@
 
     <ng-template #defaultLoader>
       <div class="datatable-loader">
-        <mat-spinner diameter="30" color="primary"></mat-spinner>
+        <div class="loader-content">
+          <div class="spinner-border" role="status"></div>
+          <div class="spinner-border-bg" role="status"></div>
+        </div>
       </div>
     </ng-template>
   </ng-container>

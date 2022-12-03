@@ -7,7 +7,6 @@ import { Ng2SearchPipeModule } from "ng2-search-filter";
 import { NgxPaginationModule } from "ngx-pagination";
 import { DatatableSortPipe } from "./datatable-sort.pipe";
 import { FormsModule } from "@angular/forms";
-import { MatProgressSpinnerModule } from "@angular/material/progress-spinner";
 
 @NgModule({
   declarations: [
@@ -21,8 +20,7 @@ import { MatProgressSpinnerModule } from "@angular/material/progress-spinner";
     CatDynamicComponentModule,
     CatIconButtonModule,
     Ng2SearchPipeModule,
-    NgxPaginationModule,
-    MatProgressSpinnerModule
+    NgxPaginationModule
   ]
 })
 export class CatDatatableModule { }

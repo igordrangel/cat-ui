@@ -4,9 +4,11 @@
   "scripts": {
     "ng": "ng",
     "start": "ng serve",
-    "build": "ng build",
+    "build": "node .github/scripts/publish.js && npm run format",
+    "format": "prettier --write \"dist/package.json\"",
     "watch": "ng build --watch --configuration development",
-    "test": "ng test"
+    "test": "ng test",
+    "analize-bundle": "ng build cat-ui --stats-json && webpack-bundle-analyzer dist/cat-ui/stats.json"
   },
   "private": true,
   "dependencies": {
@@ -40,6 +42,8 @@
     "karma-jasmine": "~5.1.0",
     "karma-jasmine-html-reporter": "~2.0.0",
     "ng-packagr": "^14.1.0",
+    "node-fs-extra": "^0.8.2",
+    "prettier": "^2.8.0",
     "typescript": "~4.7.2"
   }
 }

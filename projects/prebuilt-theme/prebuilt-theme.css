@@ -17,6 +17,9 @@
   --btn-icon-c-warning: #FFECB3;
   --btn-icon-bg-danger: #C62828;
   --btn-icon-c-danger: #FFCDD2;
+
+  --spinner-width: 1.5rem;
+  --spinner-height: 1.5rem;
 }
 
 *{
@@ -99,5 +102,7 @@ select option {padding: 10px;}
 .ngx-pagination .current {background: var(--primary-color)!important;}
 /*#endregion*/
 /*#region [Spinner] */
-.mat-progress-spinner circle, .mat-spinner circle {stroke: var(--primary-color);}
+.spinner-border {--bs-spinner-animation-speed: 0.6s;}
+.spinner-border {width: var(--spinner-width);height: var(--spinner-height);border: 2px solid var(--primary-color);border-right-color: transparent;}
+.spinner-border-bg {width: var(--spinner-width);height: var(--spinner-height);border: 2px solid var(--primary-color-alpha);position: absolute;border-radius: 50%;top: 0;left: 0;z-index: -1;}
 /*#endregion*/
