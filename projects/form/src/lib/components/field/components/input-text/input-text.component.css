@@ -1,7 +1,7 @@
 .cat-field-container {position: relative;}
 .cat-field-container label {
   position: absolute;
-  top: -7px;
+  top: -5px;
   left: 12px;
   font-size: 8pt;
   margin: 0;
