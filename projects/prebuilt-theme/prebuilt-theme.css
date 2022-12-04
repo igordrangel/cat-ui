@@ -91,6 +91,7 @@
 /*#endregion*/
 /*#region [Forms] */
 select option {padding: 10px;}
+input:disabled {border-style: dashed;background-color: rgba(0,0,0,.1);}
 .form-check-input[type=checkbox]:indeterminate,
 .form-check-input:checked {background-color: var(--primary-color);border-color: var(--primary-color);}
 .form-check-input:focus {box-shadow: 0 0 0 0.25rem var(--primary-color-alpha);}

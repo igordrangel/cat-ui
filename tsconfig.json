@@ -22,6 +22,14 @@
       "@cat-ui/icon-button": [
         "dist/icon-button",
         "projects/icon-button/src"
+      ],
+      "@cat-ui/loader": [
+        "dist/loader",
+        "projects/loader/src"
+      ],
+      "@cat-ui/form": [
+        "dist/form",
+        "projects/form/src"
       ]
     },
     "baseUrl": "./",

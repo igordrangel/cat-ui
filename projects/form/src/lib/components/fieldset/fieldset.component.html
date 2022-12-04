@@ -1,0 +1,18 @@
+<fieldset *ngIf="fieldsetConfig && formFieldset" [formGroup]="formFieldset">
+  <legend>{{fieldsetConfig.legend}}</legend>
+
+  <ng-container *ngFor="let fieldset of fieldsetConfig.config?.fieldset">
+    <cat-form-fieldset
+      [fieldsetConfig]="fieldset"
+      (emitFormGroup)="addFormGroup(fieldsetConfig.legend, $event)">
+    </cat-form-fieldset>
+  </ng-container>
+
+  <ng-container *ngFor="let fieldConfig of fieldsetConfig.config?.fields">
+    <cat-form-field
+      [fieldConfig]="fieldConfig"
+      (emitFormControl)="addFormControl(fieldConfig.name, $event)">
+    </cat-form-field>
+  </ng-container>
+
+</fieldset>

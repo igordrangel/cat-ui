@@ -1,0 +1,16 @@
+<div class="cat-field-container has-validation" [ngClass]="'col-' + config?.grid">
+  <label [for]="config?.name" class="form-label">{{config?.label}}</label>
+  <input
+    #inputElement
+    *ngIf="control && config"
+    [id]="config.name"
+    [formControl]="control"
+    [attr.aria-label]="config.label"
+    [required]="isRequired"
+    class="form-control form-control-sm"
+    type="text"
+    placeholder="">
+  <div *ngIf="control?.errors?.['required']" class="invalid-feedback">
+    Valor não informado.
+  </div>
+</div>
