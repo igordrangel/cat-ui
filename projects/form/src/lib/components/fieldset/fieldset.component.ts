@@ -11,6 +11,7 @@ import { toCamelCase } from "@koalarx/utils/operators/string";
 })
 export class FieldsetComponent implements OnInit {
   @Input() fieldsetConfig?: CatFormFieldsetConfig;
+  @Input() variableTree?: string;
   @Output() emitFormGroup = new EventEmitter<FormGroup>();
 
   public formFieldset?: FormGroup;
@@ -23,11 +24,19 @@ export class FieldsetComponent implements OnInit {
     this.emitFormGroup.emit(this.formFieldset);
   }
 
-  public addFormGroup(legend: string, formGroup: FormGroup) {
-    this.formFieldset?.addControl(toCamelCase(legend), formGroup);
+  public addFormGroup(name: string, formGroup: FormGroup) {
+    this.formFieldset?.addControl(name, formGroup);
   }
 
   public addFormControl(name: string, formControl: FormControl) {
     this.formFieldset?.addControl(toCamelCase(name), formControl);
+  }
+
+  public getFullFieldsetName() {
+    const name = this.fieldsetConfig?.name;
+    if (this.variableTree) {
+      return `${this.variableTree}.${name}`;
+    }
+    return name ?? '';
   }
 }

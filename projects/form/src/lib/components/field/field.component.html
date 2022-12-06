@@ -1,3 +1,5 @@
 <ng-container *ngIf="fieldConfig">
-  <cat-input-text *ngIf="fieldConfig.type === 'text'" [control]="control" [config]="fieldConfig"></cat-input-text>
+  <ng-container *ngIf="!(hidden$ | async)">
+    <cat-input-text *ngIf="fieldConfig.type === 'text'" [control]="control" [config]="fieldConfig"></cat-input-text>
+  </ng-container>
 </ng-container>

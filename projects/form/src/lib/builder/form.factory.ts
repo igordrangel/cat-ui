@@ -1,15 +1,22 @@
-import { CatFormConfig, CatFormFieldOptions, CatFormInputType } from "./form.interface";
+import { CatFormBehavior, CatFormConfig, CatFormFieldOptions, CatFormInputType } from "./form.interface";
 import { FormFieldService } from "./form-field.service";
-import { CatFormService } from "@cat-ui/form";
+import { Subject } from "rxjs";
 
 export class FormFactory<DataType> {
-  private config: CatFormConfig<DataType> = {} as CatFormConfig<DataType>;
+  private readonly config: CatFormConfig<DataType>;
 
-  public fieldset(legend: string, config: (builder: CatFormService) => CatFormConfig<DataType>) {
+  constructor(private behavior?: Subject<CatFormBehavior>) {
+    this.config = {
+      behavior: this.behavior ?? new Subject()
+    } as CatFormConfig<DataType>
+  }
+
+  public fieldset(legend: string, name: string, config: (builder: FormFactory<DataType>) => CatFormConfig<DataType>) {
     if (!this.config.fieldset) this.config.fieldset = [];
     this.config.fieldset.push({
       legend,
-      config: config(new CatFormService())
+      name,
+      config: config(new FormFactory<DataType>(this.config.behavior))
     })
     return this;
   }
@@ -38,7 +45,8 @@ export class FormFactory<DataType> {
     this.config.fields.push({
       ...field(new FormFieldService()),
       type,
-      name
+      name,
+      behavior: this.config.behavior
     });
   }
 }

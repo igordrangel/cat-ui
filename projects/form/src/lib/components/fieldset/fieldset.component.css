@@ -1,4 +1,13 @@
-fieldset {border: 1px solid rgba(0,0,0,.1);border-radius: 10px;box-sizing: border-box;padding: 10px;}
+fieldset {
+  border: 1px solid rgba(0,0,0,.1);
+  border-radius: 10px;
+  box-sizing: border-box;
+  padding: 10px;
+  margin-bottom: 10px;
+  display: flex;
+  justify-content: flex-start;
+  align-items: flex-start;
+}
 fieldset legend {
   float: none;
   width: fit-content;

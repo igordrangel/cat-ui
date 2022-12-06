@@ -1,5 +1,6 @@
-import { CatFormFieldTemplateGridType, CatFormInputOptions } from "../form.interface";
+import { CatFormBehavior, CatFormFieldTemplateGridType, CatFormInputOptions } from "../form.interface";
 import { AsyncValidatorFn, ValidatorFn } from "@angular/forms";
+import { Subject } from "rxjs";
 
 export class FormInputFactory {
   private config: CatFormInputOptions = {} as CatFormInputOptions;
@@ -31,6 +32,16 @@ export class FormInputFactory {
 
   public focus(focus = true) {
     this.config.focus = focus;
+    return this;
+  }
+
+  public hidden(hidden = true) {
+    this.config.hidden = hidden;
+    return this;
+  }
+
+  public onChange(onChange: (value: any, behavior: Subject<CatFormBehavior>) => void) {
+    this.config.onChange = onChange;
     return this;
   }
 

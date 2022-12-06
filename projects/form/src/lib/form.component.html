@@ -4,12 +4,13 @@
     <ng-container *ngFor="let fieldsetConfig of config?.fieldset">
       <cat-form-fieldset
         [fieldsetConfig]="fieldsetConfig"
-        (emitFormGroup)="addFormGroup(fieldsetConfig.legend, $event)">
+        (emitFormGroup)="addFormGroup(fieldsetConfig.name, $event)">
       </cat-form-fieldset>
     </ng-container>
 
     <ng-container *ngFor="let fieldConfig of config?.fields">
       <cat-form-field
+        [ngClass]="'col-' + fieldConfig?.grid"
         [fieldConfig]="fieldConfig"
         (emitFormControl)="addFormControl(fieldConfig.name, $event)">
       </cat-form-field>

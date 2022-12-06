@@ -59,6 +59,7 @@ export class FormComponent implements OnInit {
   }
 
   public submit() {
+    console.log(this.dynamicForm)
     if (this.config && this.dynamicForm?.valid && this.config.onSubmit) {
       this.config.onSubmit(this.getFormData());
     } else {

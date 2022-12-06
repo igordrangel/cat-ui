@@ -1,16 +1,18 @@
 import { AsyncValidatorFn, ValidatorFn } from "@angular/forms";
-import { Observable } from "rxjs";
+import { Observable, Subject } from "rxjs";
 
 export interface CatFormConfig<DataType> {
-  fieldset: CatFormFieldsetConfig[];
+  fieldset?: CatFormFieldsetConfig[];
   fields?: CatFormFieldConfig[];
   onSubmit?: (data: DataType) => void;
   onChange?: (data: DataType) => void;
+  behavior: Subject<CatFormBehavior>;
 }
 
 export interface CatFormFieldConfig extends CatFormFieldOptions {
   type: CatFormInputType | CatFormFileType | CatFormSelectType | CatFormCheckType;
   name: string;
+  behavior: Subject<CatFormBehavior>;
 }
 
 export interface CatFormFieldOptions {
@@ -18,9 +20,28 @@ export interface CatFormFieldOptions {
   value?: string;
   focus?: boolean;
   disabled?: boolean;
+  hidden?: boolean;
   grid?: CatFormFieldTemplateGridType;
   validators?: ValidatorFn[];
   asyncValidators?: AsyncValidatorFn[];
+  onChange?: (value: any, behavior: Subject<CatFormBehavior>) => void;
+}
+
+export interface CatFormBehavior {
+  disableFields?: string[];
+  enableFields?: string[];
+  showFields?: string[];
+  hideFields?: string[];
+  replaceValidators?: CatFormBehaviorValidator[];
+  replaceAsyncValidators?: CatFormBehaviorAsyncValidator[];
+}
+export interface CatFormBehaviorValidator {
+  name: string;
+  validators: ValidatorFn[];
+}
+export interface CatFormBehaviorAsyncValidator {
+  name: string;
+  asyncValidators: AsyncValidatorFn[];
 }
 
 export interface CatFormInputOptions extends CatFormFieldOptions {}
@@ -32,6 +53,7 @@ export interface CatFormCheckOptions extends CatFormFieldOptions {}
 
 export interface CatFormFieldsetConfig {
   legend: string;
+  name: string;
   config?: CatFormConfig<any>;
 }
 
