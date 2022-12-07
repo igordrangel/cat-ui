@@ -1,4 +1,13 @@
-import { ChangeDetectionStrategy, Component, EventEmitter, Input, OnDestroy, Output } from "@angular/core";
+import {
+  ChangeDetectionStrategy,
+  Component,
+  EventEmitter,
+  Input,
+  OnChanges,
+  OnDestroy,
+  Output,
+  SimpleChanges
+} from "@angular/core";
 import {
   CatFormBehavior,
   CatFormBehaviorAsyncValidator,
@@ -13,10 +22,12 @@ import { BehaviorSubject, debounceTime, Subject, takeUntil } from "rxjs";
   templateUrl: 'field.component.html',
   changeDetection: ChangeDetectionStrategy.OnPush
 })
-export class FieldComponent implements OnDestroy {
+export class FieldComponent implements OnDestroy, OnChanges {
   @Input() fieldConfig?: CatFormFieldConfig;
   @Input() variableTree?: string;
+  @Input() highlightInvalidFields = false;
   @Output() emitFormControl = new EventEmitter<FormControl>();
+  @Output() isHiddenField = new EventEmitter<boolean>();
 
   public control?: FormControl;
   public hidden$ = new BehaviorSubject<boolean>(false);
@@ -24,6 +35,13 @@ export class FieldComponent implements OnDestroy {
   private destroySubscriptions$ = new Subject();
 
   constructor(private fb: FormBuilder) {
+  }
+
+  ngOnChanges(changes: SimpleChanges) {
+    if (changes['highlightInvalidFields']) {
+      this.control?.markAsTouched();
+      this.control?.updateValueAndValidity();
+    }
   }
 
   ngOnDestroy() {
@@ -73,6 +91,10 @@ export class FieldComponent implements OnDestroy {
             });
       }
     }
+
+    this.hidden$
+        .pipe(takeUntil(this.destroySubscriptions$))
+        .subscribe(hidden => this.isHiddenField.emit(hidden));
   }
 
   private addControl() {
@@ -89,7 +111,6 @@ export class FieldComponent implements OnDestroy {
     if (fields.indexOf(this.getFullFieldName()) >= 0) {
       this.control?.enable();
       this.setDefaultValidators();
-      console.log(this.getFullFieldName(), this.control?.hasValidator(Validators.required))
     }
   }
 
@@ -120,7 +141,6 @@ export class FieldComponent implements OnDestroy {
       this.control?.clearValidators();
       if (optionField.validators.length > 0) this.control?.addValidators(optionField.validators);
       this.control?.updateValueAndValidity();
-      this.control?.markAllAsTouched();
     }
   }
 
@@ -130,7 +150,6 @@ export class FieldComponent implements OnDestroy {
       this.control?.clearAsyncValidators();
       if (optionField.asyncValidators.length > 0) this.control?.addAsyncValidators(optionField.asyncValidators);
       this.control?.updateValueAndValidity();
-      this.control?.markAllAsTouched();
     }
   }
 

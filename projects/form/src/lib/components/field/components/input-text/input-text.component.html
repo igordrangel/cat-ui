@@ -1,5 +1,5 @@
 <div class="cat-field-container has-validation">
-  <label [for]="config?.name" class="form-label">{{config?.label}}</label>
+  <label #labelElement [for]="config?.name" class="form-label">{{config?.label}} {{isRequired ? '*' : ''}}</label>
   <input
     #inputElement
     *ngIf="control && config"

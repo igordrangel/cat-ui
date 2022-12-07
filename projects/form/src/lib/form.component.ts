@@ -1,6 +1,7 @@
 import {
   ChangeDetectionStrategy,
-  Component, ElementRef,
+  Component,
+  ElementRef,
   EventEmitter,
   Input,
   OnInit,
@@ -10,7 +11,7 @@ import {
 import { CatFormConfig } from "./builder/form.interface";
 import { FormBuilder, FormControl, FormGroup, UntypedFormGroup } from "@angular/forms";
 import { toCamelCase } from "@koalarx/utils/operators/string";
-import { debounceTime, Subject, takeUntil } from "rxjs";
+import { BehaviorSubject, debounceTime, Subject, takeUntil } from "rxjs";
 
 @Component({
   selector: 'cat-form',
@@ -25,6 +26,7 @@ export class FormComponent implements OnInit {
   @Output() isValid = new EventEmitter<boolean>();
 
   public dynamicForm?: UntypedFormGroup;
+  public highlightInvalidFields$ = new BehaviorSubject<boolean>(false);
 
   @ViewChild('formElement') private elForm?: ElementRef<HTMLFormElement>
   private destroySubscriptions$ = new Subject();
@@ -59,11 +61,11 @@ export class FormComponent implements OnInit {
   }
 
   public submit() {
-    console.log(this.dynamicForm)
     if (this.config && this.dynamicForm?.valid && this.config.onSubmit) {
       this.config.onSubmit(this.getFormData());
     } else {
       this.elForm?.nativeElement?.classList.add('was-validated');
+      this.highlightInvalidFields$.next(true);
     }
   }
 
@@ -73,6 +75,14 @@ export class FormComponent implements OnInit {
 
   public addFormControl(name: string, formControl: FormControl) {
     this.dynamicForm?.addControl(toCamelCase(name), formControl);
+  }
+
+  public hideField(el: HTMLDivElement, hide: boolean) {
+    if (hide) {
+      el.classList.add('d-none');
+    } else {
+      el.classList.add('d-block');
+    }
   }
 
   private getFormData() {

@@ -12,6 +12,7 @@ import { toCamelCase } from "@koalarx/utils/operators/string";
 export class FieldsetComponent implements OnInit {
   @Input() fieldsetConfig?: CatFormFieldsetConfig;
   @Input() variableTree?: string;
+  @Input() highlightInvalidFields = false;
   @Output() emitFormGroup = new EventEmitter<FormGroup>();
 
   public formFieldset?: FormGroup;
@@ -38,5 +39,13 @@ export class FieldsetComponent implements OnInit {
       return `${this.variableTree}.${name}`;
     }
     return name ?? '';
+  }
+
+  public hideField(el: HTMLDivElement, hide: boolean) {
+    if (hide) {
+      el.classList.add('d-none');
+    } else {
+      el.classList.add('d-block');
+    }
   }
 }

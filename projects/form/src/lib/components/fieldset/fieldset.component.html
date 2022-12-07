@@ -4,18 +4,24 @@
   <ng-container *ngFor="let fieldset of fieldsetConfig.config?.fieldset">
     <cat-form-fieldset
       [fieldsetConfig]="fieldset"
+      [highlightInvalidFields]="highlightInvalidFields"
       [variableTree]="getFullFieldsetName()"
       (emitFormGroup)="addFormGroup(fieldsetConfig.name, $event)">
     </cat-form-fieldset>
   </ng-container>
 
   <ng-container *ngFor="let fieldConfig of fieldsetConfig.config?.fields">
-    <cat-form-field
-      [ngClass]="'col-' + fieldConfig?.grid"
-      [fieldConfig]="fieldConfig"
-      [variableTree]="getFullFieldsetName()"
-      (emitFormControl)="addFormControl(fieldConfig.name, $event)">
-    </cat-form-field>
+    <div
+      #containerField
+      [ngClass]="'col-' + fieldConfig.grid">
+      <cat-form-field
+        [fieldConfig]="fieldConfig"
+        [variableTree]="getFullFieldsetName()"
+        [highlightInvalidFields]="highlightInvalidFields"
+        (isHiddenField)="hideField(containerField, $event)"
+        (emitFormControl)="addFormControl(fieldConfig.name, $event)">
+      </cat-form-field>
+    </div>
   </ng-container>
 
 </fieldset>
