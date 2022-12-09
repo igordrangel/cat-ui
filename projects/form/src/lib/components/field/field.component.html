@@ -1,5 +1,6 @@
 <ng-container *ngIf="fieldConfig">
   <ng-container *ngIf="!(hidden$ | async)">
     <cat-input-text *ngIf="fieldConfig.type === 'text'" [control]="control" [config]="fieldConfig"></cat-input-text>
+    <cat-textarea *ngIf="fieldConfig.type === 'textarea'" [control]="control" [config]="fieldConfig"></cat-textarea>
   </ng-container>
 </ng-container>

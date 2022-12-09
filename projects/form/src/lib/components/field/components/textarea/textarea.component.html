@@ -1,0 +1,19 @@
+<div class="cat-field-container has-validation">
+  <label #labelElement [for]="config?.name" class="form-label">{{config?.label}} {{isRequired ? '*' : ''}}</label>
+  <textarea
+    #inputElement
+    *ngIf="control && config"
+    [id]="config.name"
+    [formControl]="control"
+    [attr.aria-label]="config.label"
+    [required]="isRequired"
+    (keyup)="manageQtyRowsOnPressEnter($event)"
+    [rows]="config?.minRows ?? 3"
+    autocomplete="off"
+    class="form-control form-control-sm"
+    placeholder="">
+  </textarea>
+  <div *ngIf="control?.errors?.['required']" class="invalid-feedback">
+    Valor não informado.
+  </div>
+</div>

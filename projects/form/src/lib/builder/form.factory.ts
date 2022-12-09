@@ -26,6 +26,11 @@ export class FormFactory<DataType> {
     return this;
   }
 
+  public textarea(name: string, field: (builder: FormFieldService) => CatFormFieldOptions) {
+    this.input('textarea', name, field);
+    return this;
+  }
+
   public onChange(callback: (data: DataType) => void) {
     this.config.onChange = callback;
     return this;

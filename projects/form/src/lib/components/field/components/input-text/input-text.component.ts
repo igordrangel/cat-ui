@@ -4,7 +4,7 @@ import { FieldBase } from "../field.base";
 @Component({
   selector: 'cat-input-text[control][config]',
   templateUrl: 'input-text.component.html',
-  styleUrls: ['input-text.component.css']
+  styleUrls: ['../field.component.css']
 })
 export class InputTextComponent extends FieldBase {
 }

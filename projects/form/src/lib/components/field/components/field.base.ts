@@ -1,13 +1,13 @@
-import { Component, Directive, ElementRef, Input, OnDestroy, OnInit, ViewChild } from "@angular/core";
+import { Directive, ElementRef, Input, OnDestroy, OnInit, ViewChild } from "@angular/core";
 import { FormControl, Validators } from "@angular/forms";
 import { CatFormFieldConfig } from "../../../builder/form.interface";
 import { delay } from "@koalarx/utils/operators/delay";
-import { BehaviorSubject, interval, Subject, takeUntil } from "rxjs";
+import { interval, Subject, takeUntil } from "rxjs";
 
 @Directive()
-export abstract class FieldBase implements OnInit, OnDestroy {
+export abstract class FieldBase<FormFieldType> implements OnInit, OnDestroy {
   @Input() control?: FormControl;
-  @Input() config?: CatFormFieldConfig;
+  @Input() config?: CatFormFieldConfig & FormFieldType;
 
   @ViewChild('labelElement') elLabel?: ElementRef<HTMLLabelElement>;
   @ViewChild('inputElement') elInput?: ElementRef<HTMLInputElement>;

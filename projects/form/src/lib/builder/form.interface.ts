@@ -45,6 +45,10 @@ export interface CatFormBehaviorAsyncValidator {
 }
 
 export interface CatFormInputOptions extends CatFormFieldOptions {}
+export interface CatFormTextareaOptions extends CatFormFieldOptions {
+  minRows?: number;
+  maxRows?: number;
+}
 export interface CatFormSelectOptions extends CatFormFieldOptions {
   options: Array<any> | Observable<any[]>;
 }

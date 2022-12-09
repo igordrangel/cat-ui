@@ -35,25 +35,13 @@ export class PageFormComponent {
                    .grid(3)
                    .disabled()
                    .setValidators([Validators.required])
-                   .onChange((value, behavior) => {
-                     if (value === 'teste') {
-                       behavior.next({
-                         showFields: ['description']
-                       });
-                     } else {
-                       behavior.next({
-                         hideFields: ['description']
-                       });
-                     }
-                   })
                    .generate()
                  )
                  .generate()
                )
-               .inputText('description', builder => builder
-                 .input('Descrição')
-                 .hidden()
-                 .setValidators([Validators.required])
+               .textarea('description', builder => builder
+                 .textarea('Descrição')
+                 .setValidators([Validators.required, Validators.maxLength(255)])
                  .generate()
                )
                // .onChange(data => console.log(data))
