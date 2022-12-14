@@ -1,0 +1,22 @@
+.has-validation.invalid {background-color: var(--bg-form-invalid-field);border-radius: 5px;padding: 0 2px 5px;}
+.cat-field-container {position: relative;}
+.cat-field-container label {
+  position: absolute;
+  top: -8px;
+  left: 12px;
+  font-size: 8pt;
+  margin: 0;
+  font-weight: bold;
+  background-color: #fff;
+  padding: 0 5px;
+  text-transform: uppercase;
+  border-radius: 5px;
+}
+.hint {display: flex;align-items: flex-start;justify-content: flex-start;box-sizing: border-box;}
+.hint .text-hint {font-size: .8em;padding: 0 5px;word-break: break-all;}
+.hint .text-hint i {font-size: .8em;}
+.hint .text-hint span {margin-left: 5px;}
+.hint .spacer {flex: 1 0 0;}
+.span-length {display: flex;align-items: center;justify-content: flex-end;color: var(--disable-color);font-size: .8em;padding: 0 5px;}
+.invalid-feedback {display: flex;align-items: center;padding: 0 5px;font-weight: bold;font-size: .8em;}
+.invalid-feedback i {font-size: .8em;margin-right: 5px;}

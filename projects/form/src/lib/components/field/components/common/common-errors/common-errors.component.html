@@ -1,0 +1,14 @@
+<ng-container *ngIf="control?.invalid && !control?.untouched">
+  <div *ngIf="control?.hasError('minlength')" class="invalid-feedback">
+    <i class="fa-solid fa-triangle-exclamation"></i>
+    O campo deve conter pelo menos {{config?.minLength}} caracteres.
+  </div>
+  <div *ngIf="control?.hasError('required')" class="invalid-feedback">
+    <i class="fa-solid fa-triangle-exclamation"></i>
+    Valor não informado.
+  </div>
+  <div *ngIf="control?.errors?.['customError']" class="invalid-feedback">
+    <i class="fa-solid fa-triangle-exclamation"></i>
+    {{control?.errors?.['customError']?.message}}
+  </div>
+</ng-container>
