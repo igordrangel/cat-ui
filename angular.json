@@ -119,7 +119,13 @@
               "projects/cat-ui/src/styles.css",
               "projects/prebuilt-theme/prebuilt-theme.css"
             ],
-            "scripts": []
+            "scripts": [],
+            "allowedCommonJsDependencies": [
+              "@koalarx/utils",
+              "@koalarx/utils/operators",
+              "@koalarx/utils/operators/delay",
+              "@koalarx/utils/operators/string"
+            ]
           },
           "configurations": {
             "production": {

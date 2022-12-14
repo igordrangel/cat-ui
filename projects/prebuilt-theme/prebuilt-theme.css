@@ -20,6 +20,8 @@
 
   --spinner-width: 1.5rem;
   --spinner-height: 1.5rem;
+
+  --bg-form-invalid-field: rgba(255,0,0,.1);
 }
 
 *{

@@ -3,8 +3,9 @@ import {
   CatFormFieldOptions,
   CatFormFieldTemplateGridType
 } from "./form.interface";
-import { AsyncValidatorFn, ValidatorFn } from "@angular/forms";
+import { AsyncValidatorFn, ValidatorFn, Validators } from "@angular/forms";
 import { Subject } from "rxjs";
+import { koala } from "@koalarx/utils";
 
 export abstract class FormFieldBase<ConfigType extends CatFormFieldOptions> {
   protected config: ConfigType = {} as ConfigType;
@@ -15,12 +16,31 @@ export abstract class FormFieldBase<ConfigType extends CatFormFieldOptions> {
   }
 
   public setValidators(validators: ValidatorFn[]) {
-    this.config.validators = validators;
+    if (!this.config.validators) this.config.validators = [];
+    this.config.validators = koala(this.config.validators)
+      .array<ValidatorFn>()
+      .merge(validators)
+      .getValue();
     return this;
   }
 
   public setAsyncValidators(asyncValidators: AsyncValidatorFn[]) {
-    this.config.asyncValidators = asyncValidators;
+    if (!this.config.asyncValidators) this.config.asyncValidators = [];
+    this.config.asyncValidators = koala(this.config.asyncValidators)
+      .array<AsyncValidatorFn>()
+      .merge(asyncValidators)
+      .getValue();
+    return this;
+  }
+
+  public setRequired(required = true) {
+    this.config.required = required;
+    this.setValidators([Validators.required]);
+    return this;
+  }
+
+  public setHint(hint: string) {
+    this.config.hint = hint;
     return this;
   }
 

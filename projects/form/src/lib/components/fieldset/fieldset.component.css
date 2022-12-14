@@ -2,11 +2,12 @@ fieldset {
   border: 1px solid rgba(0,0,0,.1);
   border-radius: 10px;
   box-sizing: border-box;
-  padding: 10px;
+  padding: 10px 10px 5px;
   margin-bottom: 10px;
   display: flex;
   justify-content: flex-start;
   align-items: flex-start;
+  flex-wrap: wrap;
 }
 fieldset legend {
   float: none;

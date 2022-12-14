@@ -1,5 +1,5 @@
 .has-validation.invalid {background-color: var(--bg-form-invalid-field);border-radius: 5px;padding: 0 2px 5px;}
-.cat-field-container {position: relative;}
+.cat-field-container {position: relative;margin-bottom: 5px;}
 .cat-field-container label {
   position: absolute;
   top: -8px;

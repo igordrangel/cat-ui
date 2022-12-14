@@ -1,12 +1,12 @@
 import { Component, ElementRef, Input, OnDestroy, OnInit, ViewChild } from "@angular/core";
 import { FormControl, Validators } from "@angular/forms";
-import { CatFormFieldConfig } from "../../../../builder/form.interface";
+import { CatFormFieldConfig } from "../../../../../builder/form.interface";
 import { interval, Subject, takeUntil } from "rxjs";
 
 @Component({
   selector: 'cat-form-field-content[control][config][elInput]',
   templateUrl: 'field-content.component.html',
-  styleUrls: ['../field.component.css']
+  styleUrls: ['../../../field.component.css']
 })
 export class FieldContentComponent implements OnInit, OnDestroy {
   @Input() control?: FormControl;

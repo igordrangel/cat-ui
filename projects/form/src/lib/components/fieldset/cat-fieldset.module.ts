@@ -1,7 +1,7 @@
 import { NgModule } from "@angular/core";
 import { FieldsetComponent } from "./fieldset.component";
 import { CommonModule } from "@angular/common";
-import { CatFieldModule } from "../field/cat-field.module";
+import { FieldModule } from "../field/field.module";
 import { ReactiveFormsModule } from "@angular/forms";
 
 @NgModule({
@@ -10,7 +10,7 @@ import { ReactiveFormsModule } from "@angular/forms";
   imports: [
     CommonModule,
     ReactiveFormsModule,
-    CatFieldModule
+    FieldModule
   ]
 })
 export class CatFieldsetModule {}

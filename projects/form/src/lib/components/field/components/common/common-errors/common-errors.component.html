@@ -11,4 +11,5 @@
     <i class="fa-solid fa-triangle-exclamation"></i>
     {{control?.errors?.['customError']?.message}}
   </div>
+  <ng-content select="[specificErrors]"></ng-content>
 </ng-container>
