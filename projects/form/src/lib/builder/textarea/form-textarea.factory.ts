@@ -1,8 +1,8 @@
 import { Validators } from '@angular/forms';
-import { FormFieldBase } from '../form-field.base';
+import { FormFieldInputBase } from '../form-field-input.base';
 import { CatFormTextareaOptions } from '../form.interface';
 
-export class FormTextareaFactory extends FormFieldBase<CatFormTextareaOptions> {
+export class FormTextareaFactory extends FormFieldInputBase<CatFormTextareaOptions> {
   public setRows(minRows: number, maxRows?: number) {
     this.config.minRows = minRows;
     this.config.maxRows = maxRows;

@@ -1,8 +1,8 @@
 import { CatFormTextOptions } from '../form.interface';
-import { FormFieldBase } from '../form-field.base';
 import { Validators } from '@angular/forms';
+import { FormFieldInputBase } from '../form-field-input.base';
 
-export class FormEmailFactory extends FormFieldBase<CatFormTextOptions> {
+export class FormEmailFactory extends FormFieldInputBase<CatFormTextOptions> {
   constructor(label: string) {
     super(label);
     this.setValidators([Validators.email]);

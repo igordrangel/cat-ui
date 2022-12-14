@@ -45,7 +45,7 @@ export class PageFormComponent {
         .url('LinkedIn', 'linkedin', (builder) => builder.grid(6).generate())
         .generate()
     )
-    .fieldset('Dados Trabalhistas', 'employeeData', (builder) =>
+    .fieldset('Dados Profissionais', 'employeeData', (builder) =>
       builder
         .fieldset('Habilidades', 'skills', (builder) =>
           builder
@@ -65,6 +65,7 @@ export class PageFormComponent {
                   { name: 'BackEnd', value: 'backend' },
                   { name: 'FullStack', value: 'fullstack' }
                 ])
+                .setValue('frontend')
                 .generate()
             )
             .grid(6)

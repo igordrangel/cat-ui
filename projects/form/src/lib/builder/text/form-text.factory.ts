@@ -1,8 +1,8 @@
 import { CatFormTextOptions } from '../form.interface';
-import { FormFieldBase } from '../form-field.base';
 import { Validators } from '@angular/forms';
+import { FormFieldInputBase } from '../form-field-input.base';
 
-export class FormTextFactory extends FormFieldBase<CatFormTextOptions> {
+export class FormTextFactory extends FormFieldInputBase<CatFormTextOptions> {
   public setMinLength(minLength: number) {
     this.config.minLength = minLength;
     this.setValidators([Validators.minLength(minLength)]);

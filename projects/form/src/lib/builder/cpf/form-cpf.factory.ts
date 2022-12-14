@@ -1,8 +1,8 @@
 import { CatFormTextOptions } from '../form.interface';
-import { FormFieldBase } from '../form-field.base';
 import { CatCpfValidator } from '../../validators/cat-cpf.validator';
+import { FormFieldInputBase } from '../form-field-input.base';
 
-export class FormCpfFactory extends FormFieldBase<CatFormTextOptions> {
+export class FormCpfFactory extends FormFieldInputBase<CatFormTextOptions> {
   constructor(label: string) {
     super(label);
     this.setValidators([CatCpfValidator]);

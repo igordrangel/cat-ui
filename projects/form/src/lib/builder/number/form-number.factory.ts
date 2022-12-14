@@ -1,8 +1,8 @@
 import { CatFormNumberOptions } from '../form.interface';
-import { FormFieldBase } from '../form-field.base';
 import { Validators } from '@angular/forms';
+import { FormFieldInputBase } from '../form-field-input.base';
 
-export class FormNumberFactory extends FormFieldBase<CatFormNumberOptions> {
+export class FormNumberFactory extends FormFieldInputBase<CatFormNumberOptions> {
   public setMin(min: number) {
     this.config.min = min;
     this.setValidators([Validators.min(min)]);

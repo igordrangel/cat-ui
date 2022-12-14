@@ -1,8 +1,14 @@
 <div class="hint">
+  <ng-container *ngIf="control?.valid else errorsContent">
     <span *ngIf="config?.hint" class="text-hint">
       <i class="fa-solid fa-circle-info"></i>
       <span [innerHTML]="config?.hint"></span>
     </span>
+  </ng-container>
+  <ng-template #errorsContent>
+    <ng-content select="[errors]"></ng-content>
+  </ng-template>
+
   <div class="spacer"></div>
 
   <span

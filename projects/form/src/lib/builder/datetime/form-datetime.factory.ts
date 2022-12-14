@@ -1,9 +1,9 @@
 import { CatFormDatetimeOptions } from '../form.interface';
-import { FormFieldBase } from '../form-field.base';
 import { CatDateMinValidator } from '../../validators/cat-date-min.validator';
 import { CatDateMaxValidator } from '../../validators/cat-date-max.validator';
+import { FormFieldInputBase } from '../form-field-input.base';
 
-export class FormDatetimeFactory extends FormFieldBase<CatFormDatetimeOptions> {
+export class FormDatetimeFactory extends FormFieldInputBase<CatFormDatetimeOptions> {
   public setMin(min: string) {
     this.config.min = min;
     this.setValidators([CatDateMinValidator(min)]);
