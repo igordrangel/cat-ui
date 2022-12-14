@@ -7,15 +7,14 @@ import {
   OnDestroy,
   Output,
   SimpleChanges
-} from "@angular/core";
+} from '@angular/core';
 import {
-  CatFormBehavior,
   CatFormBehaviorAsyncValidator,
   CatFormBehaviorValidator,
   CatFormFieldConfig
-} from "../../builder/form.interface";
-import { FormBuilder, FormControl, Validators } from "@angular/forms";
-import { BehaviorSubject, debounceTime, Subject, takeUntil } from "rxjs";
+} from '../../builder/form.interface';
+import { FormBuilder, FormControl } from '@angular/forms';
+import { BehaviorSubject, debounceTime, Subject, takeUntil } from 'rxjs';
 
 @Component({
   selector: 'cat-form-field[fieldConfig]',
@@ -34,8 +33,7 @@ export class FieldComponent implements OnDestroy, OnChanges {
 
   private destroySubscriptions$ = new Subject();
 
-  constructor(private fb: FormBuilder) {
-  }
+  constructor(private fb: FormBuilder) {}
 
   ngOnChanges(changes: SimpleChanges) {
     if (changes['highlightInvalidFields']) {
@@ -55,17 +53,13 @@ export class FieldComponent implements OnDestroy, OnChanges {
 
       if (!this.fieldConfig.hidden) {
         if (this.fieldConfig.onChange) {
-          this.control
-              ?.valueChanges
-              .pipe(
-                takeUntil(this.destroySubscriptions$),
-                debounceTime(300)
-              )
-              .subscribe(value => {
-                if (this.fieldConfig?.onChange) {
-                  this.fieldConfig?.onChange(value, this.fieldConfig?.behavior)
-                }
-              });
+          this.control?.valueChanges
+            .pipe(takeUntil(this.destroySubscriptions$), debounceTime(300))
+            .subscribe((value) => {
+              if (this.fieldConfig?.onChange) {
+                this.fieldConfig?.onChange(value, this.fieldConfig?.behavior);
+              }
+            });
         }
       } else {
         this.removeValidators();
@@ -76,33 +70,38 @@ export class FieldComponent implements OnDestroy, OnChanges {
       }
 
       if (this.fieldConfig.behavior) {
-        this.fieldConfig
-            .behavior
-            .pipe(takeUntil(this.destroySubscriptions$))
-            .subscribe(options => {
-              if (options.enableFields) this.isEnabled(options.enableFields);
-              if (options.disableFields) this.isDisable(options.disableFields);
+        this.fieldConfig.behavior
+          .pipe(takeUntil(this.destroySubscriptions$))
+          .subscribe((options) => {
+            if (options.enableFields) this.isEnabled(options.enableFields);
+            if (options.disableFields) this.isDisable(options.disableFields);
 
-              if (options.showFields) this.isVisible(options.showFields);
-              if (options.hideFields) this.isHidden(options.hideFields);
+            if (options.showFields) this.isVisible(options.showFields);
+            if (options.hideFields) this.isHidden(options.hideFields);
 
-              if (options.replaceValidators) this.changeValidators(options.replaceValidators);
-              if (options.replaceAsyncValidators) this.changeAsyncValidators(options.replaceAsyncValidators);
-            });
+            if (options.replaceValidators)
+              this.changeValidators(options.replaceValidators);
+            if (options.replaceAsyncValidators)
+              this.changeAsyncValidators(options.replaceAsyncValidators);
+          });
       }
     }
 
     this.hidden$
-        .pipe(takeUntil(this.destroySubscriptions$))
-        .subscribe(hidden => this.isHiddenField.emit(hidden));
+      .pipe(takeUntil(this.destroySubscriptions$))
+      .subscribe((hidden) => this.isHiddenField.emit(hidden));
   }
 
   private addControl() {
     if (this.fieldConfig) {
-      this.control = this.fb.control({
-        value: this.fieldConfig.value,
-        disabled: this.fieldConfig.disabled ?? false
-      }, this.fieldConfig.validators, this.fieldConfig.asyncValidators);
+      this.control = this.fb.control(
+        {
+          value: this.fieldConfig.value,
+          disabled: this.fieldConfig.disabled ?? false
+        },
+        this.fieldConfig.validators,
+        this.fieldConfig.asyncValidators
+      );
       this.emitFormControl.emit(this.control);
     }
   }
@@ -136,19 +135,25 @@ export class FieldComponent implements OnDestroy, OnChanges {
   }
 
   private changeValidators(options: CatFormBehaviorValidator[]) {
-    const optionField = options.find(option => option.name === this.getFullFieldName());
+    const optionField = options.find(
+      (option) => option.name === this.getFullFieldName()
+    );
     if (optionField) {
       this.control?.clearValidators();
-      if (optionField.validators.length > 0) this.control?.addValidators(optionField.validators);
+      if (optionField.validators.length > 0)
+        this.control?.addValidators(optionField.validators);
       this.control?.updateValueAndValidity();
     }
   }
 
   private changeAsyncValidators(options: CatFormBehaviorAsyncValidator[]) {
-    const optionField = options.find(option => option.name === this.getFullFieldName());
+    const optionField = options.find(
+      (option) => option.name === this.getFullFieldName()
+    );
     if (optionField) {
       this.control?.clearAsyncValidators();
-      if (optionField.asyncValidators.length > 0) this.control?.addAsyncValidators(optionField.asyncValidators);
+      if (optionField.asyncValidators.length > 0)
+        this.control?.addAsyncValidators(optionField.asyncValidators);
       this.control?.updateValueAndValidity();
     }
   }
@@ -163,15 +168,29 @@ export class FieldComponent implements OnDestroy, OnChanges {
 
   private setDefaultValidators() {
     if (this.fieldConfig) {
-      this.changeValidators([{name: this.getFullFieldName(), validators: this.fieldConfig.validators ?? []}]);
-      this.changeAsyncValidators([{name: this.getFullFieldName(), asyncValidators: this.fieldConfig.asyncValidators ?? []}]);
+      this.changeValidators([
+        {
+          name: this.getFullFieldName(),
+          validators: this.fieldConfig.validators ?? []
+        }
+      ]);
+      this.changeAsyncValidators([
+        {
+          name: this.getFullFieldName(),
+          asyncValidators: this.fieldConfig.asyncValidators ?? []
+        }
+      ]);
     }
   }
 
   private removeValidators() {
     if (this.fieldConfig) {
-      this.changeValidators([{name: this.getFullFieldName(), validators: []}]);
-      this.changeAsyncValidators([{name: this.getFullFieldName(), asyncValidators: []}]);
+      this.changeValidators([
+        { name: this.getFullFieldName(), validators: [] }
+      ]);
+      this.changeAsyncValidators([
+        { name: this.getFullFieldName(), asyncValidators: [] }
+      ]);
     }
   }
 }

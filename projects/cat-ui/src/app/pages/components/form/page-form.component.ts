@@ -4,7 +4,7 @@ import { Subject } from 'rxjs';
 import { nameValidator } from './validators/name.validator';
 
 @Component({
-  templateUrl: 'page-form.component.html',
+  templateUrl: 'page-form.component.html'
 })
 export class PageFormComponent {
   isFormValid = false;
@@ -24,11 +24,11 @@ export class PageFormComponent {
             .onChange((value, behavior) => {
               if (value === 'teste') {
                 behavior.next({
-                  enableFields: ['dadosGerais.lastname'],
+                  enableFields: ['dadosGerais.lastname']
                 });
               } else {
                 behavior.next({
-                  disableFields: ['dadosGerais.lastname'],
+                  disableFields: ['dadosGerais.lastname']
                 });
               }
             })
@@ -47,7 +47,12 @@ export class PageFormComponent {
             .generate()
         )
         .date('Data de Nascimento', 'birthDate', (builder) =>
-          builder.grid(3).setMin('2022-12-01').setMax('2022-12-23').generate()
+          builder
+            .grid(3)
+            .setMin('2022-12-01')
+            .setMax('2022-12-23')
+            .setRequired()
+            .generate()
         )
         .generate()
     )
