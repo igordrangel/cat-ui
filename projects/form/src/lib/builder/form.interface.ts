@@ -113,10 +113,10 @@ export type CatFormFieldType =
   | 'textarea'
   | 'cpf'
   | 'cnpj'
+  | 'checkbox'
+  | 'radio'
   | 'file'
   | 'csv'
-  | 'autocomplete'
   | 'select'
-  | 'map'
-  | 'checkbox'
-  | 'radio';
+  | 'autocomplete'
+  | 'map';
