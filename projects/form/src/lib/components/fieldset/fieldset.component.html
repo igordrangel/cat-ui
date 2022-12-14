@@ -1,13 +1,15 @@
-<fieldset *ngIf="fieldsetConfig && formFieldset" [formGroup]="formFieldset">
+<fieldset *ngIf="fieldsetConfig && formFieldset" [formGroup]="formFieldset" class="col-12">
   <legend>{{fieldsetConfig.legend}}</legend>
 
   <ng-container *ngFor="let fieldset of fieldsetConfig.config?.fieldset">
-    <cat-form-fieldset
-      [fieldsetConfig]="fieldset"
-      [highlightInvalidFields]="highlightInvalidFields"
-      [variableTree]="getFullFieldsetName()"
-      (emitFormGroup)="addFormGroup(fieldsetConfig.name, $event)">
-    </cat-form-fieldset>
+    <div [attr.class]="'col-' + fieldset.config?.grid" [ngClass]="{isCheckboxGroup: fieldset.config?.isCheckboxGroup}">
+      <cat-form-fieldset
+        [fieldsetConfig]="fieldset"
+        [highlightInvalidFields]="highlightInvalidFields"
+        [variableTree]="getFullFieldsetName()"
+        (emitFormGroup)="addFormGroup(fieldsetConfig.name, $event)">
+      </cat-form-fieldset>
+    </div>
   </ng-container>
 
   <ng-container *ngFor="let fieldConfig of fieldsetConfig.config?.fields">

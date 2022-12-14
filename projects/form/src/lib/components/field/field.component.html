@@ -47,5 +47,17 @@
       [control]="control"
       [config]="fieldConfig">
     </cat-field-cnpj>
+
+    <cat-field-checkbox
+      *ngIf="fieldConfig.type === 'checkbox'"
+      [control]="control"
+      [config]="fieldConfig">
+    </cat-field-checkbox>
+
+    <cat-field-radio
+      *ngIf="fieldConfig.type === 'radio'"
+      [control]="control"
+      [config]="fieldConfig">
+    </cat-field-radio>
   </ng-container>
 </ng-container>

@@ -9,7 +9,7 @@ import { CatFormBehavior } from '../common/cat-form-behavior';
 export abstract class FormFieldBase<ConfigType extends CatFormFieldOptions> {
   protected config: ConfigType = {} as ConfigType;
 
-  protected constructor(label: string) {
+  constructor(label: string) {
     this.config.label = label;
     this.config.grid = 12;
   }

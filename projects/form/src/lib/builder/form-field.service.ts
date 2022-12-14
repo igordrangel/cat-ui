@@ -6,6 +6,8 @@ import { FormDatetimeFactory } from './datetime/form-datetime.factory';
 import { FormCnpjFactory } from './cnpj/form-cnpj.factory';
 import { FormEmailFactory } from './email/form-email.factory';
 import { FormUrlFactory } from './url/form-url.factory';
+import { FormCheckboxFactory } from './checkbox/form-checkbox.factory';
+import { FormRadioFactory } from './radio/form-radio.factory';
 
 export class FormFieldService {
   public text(label: string) {
@@ -38,5 +40,13 @@ export class FormFieldService {
 
   public cnpj(label: string) {
     return new FormCnpjFactory(label);
+  }
+
+  public checkbox(label: string) {
+    return new FormCheckboxFactory(label);
+  }
+
+  public radio(label: string) {
+    return new FormRadioFactory(label);
   }
 }

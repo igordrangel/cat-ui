@@ -10,6 +10,8 @@ import { IConfig, NgxMaskModule } from 'ngx-mask';
 import { InputCnpjModule } from './components/input-cnpj/input-cnpj.module';
 import { InputEmailModule } from './components/input-email/input-email.module';
 import { InputUrlModule } from './components/input-url/input-url.module';
+import { InputCheckboxModule } from './components/input-checkbox/input-checkbox.module';
+import { InputRadioModule } from './components/input-radio/input-radio.module';
 
 const maskOptions: Partial<IConfig> | (() => Partial<IConfig>) = {
   validation: false
@@ -28,6 +30,8 @@ const maskOptions: Partial<IConfig> | (() => Partial<IConfig>) = {
     InputCpfModule,
     InputCnpjModule,
     TextareaModule,
+    InputCheckboxModule,
+    InputRadioModule,
     NgxMaskModule.forRoot(maskOptions)
   ]
 })

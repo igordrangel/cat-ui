@@ -7,15 +7,13 @@ export interface CatFormConfig<DataType> {
   fields?: CatFormFieldConfig[];
   onSubmit?: (data: DataType) => void;
   onChange?: (data: DataType) => void;
+  isCheckboxGroup?: boolean;
+  grid?: CatFormFieldTemplateGridType;
   behavior: CatFormBehavior;
 }
 
 export interface CatFormFieldConfig extends CatFormFieldOptions {
-  type:
-    | CatFormInputType
-    | CatFormFileType
-    | CatFormSelectType
-    | CatFormCheckType;
+  type: CatFormFieldType;
   name: string;
   behavior: CatFormBehavior;
 }
@@ -72,10 +70,18 @@ export interface CatFormDatetimeOptions extends CatFormFieldOptions {
   max?: string;
 }
 export interface CatFormSelectOptions extends CatFormFieldOptions {
-  options: Array<any> | Observable<any[]>;
+  options?: Array<CatFormListOptions> | Observable<CatFormListOptions[]>;
 }
 export interface CatFormFileOptions extends CatFormFieldOptions {}
-export interface CatFormCheckOptions extends CatFormFieldOptions {}
+export interface CatFormCheckboxOptions extends CatFormFieldOptions {}
+export interface CatFormRadioOptions extends CatFormFieldOptions {
+  options?: Array<CatFormListOptions>;
+}
+
+export interface CatFormListOptions {
+  name: string;
+  value: any;
+}
 
 export interface CatFormFieldsetConfig {
   legend: string;
@@ -96,7 +102,7 @@ export type CatFormFieldTemplateGridType =
   | 10
   | 11
   | 12;
-export type CatFormInputType =
+export type CatFormFieldType =
   | 'text'
   | 'number'
   | 'email'
@@ -106,7 +112,11 @@ export type CatFormInputType =
   | 'url'
   | 'textarea'
   | 'cpf'
-  | 'cnpj';
-export type CatFormFileType = 'file' | 'csv';
-export type CatFormSelectType = 'autocomplete' | 'select' | 'map';
-export type CatFormCheckType = 'checkbox' | 'radio';
+  | 'cnpj'
+  | 'file'
+  | 'csv'
+  | 'autocomplete'
+  | 'select'
+  | 'map'
+  | 'checkbox'
+  | 'radio';

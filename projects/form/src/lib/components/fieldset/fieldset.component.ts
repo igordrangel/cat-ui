@@ -1,7 +1,14 @@
-import { ChangeDetectionStrategy, Component, EventEmitter, Input, OnInit, Output } from "@angular/core";
-import { CatFormFieldsetConfig } from "../../builder/form.interface";
-import { FormBuilder, FormControl, FormGroup } from "@angular/forms";
-import { toCamelCase } from "@koalarx/utils/operators/string";
+import {
+  ChangeDetectionStrategy,
+  Component,
+  EventEmitter,
+  Input,
+  OnInit,
+  Output
+} from '@angular/core';
+import { CatFormFieldsetConfig } from '../../builder/form.interface';
+import { FormBuilder, FormControl, FormGroup } from '@angular/forms';
+import { toCamelCase } from '@koalarx/utils/operators/string';
 
 @Component({
   selector: 'cat-form-fieldset',
@@ -17,8 +24,7 @@ export class FieldsetComponent implements OnInit {
 
   public formFieldset?: FormGroup;
 
-  constructor(private fb: FormBuilder) {
-  }
+  constructor(private fb: FormBuilder) {}
 
   ngOnInit() {
     this.formFieldset = this.fb.group({});

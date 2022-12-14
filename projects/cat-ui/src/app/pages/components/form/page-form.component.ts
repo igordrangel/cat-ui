@@ -39,15 +39,38 @@ export class PageFormComponent {
           builder.grid(3).setRequired().generate()
         )
         .date('Data de Nascimento', 'birthDate', (builder) =>
-          builder
-            .grid(3)
-            .setMin('2022-12-01')
-            .setMax('2022-12-23')
-            .setRequired()
-            .generate()
+          builder.grid(3).setMax('2002-01-01').setRequired().generate()
         )
         .email('E-mail', 'email', (builder) => builder.grid(6).generate())
         .url('LinkedIn', 'linkedin', (builder) => builder.grid(6).generate())
+        .generate()
+    )
+    .fieldset('Dados Trabalhistas', 'employeeData', (builder) =>
+      builder
+        .fieldset('Habilidades', 'skills', (builder) =>
+          builder
+            .checkbox('NodeJS', 'nodejs', (builder) => builder.generate())
+            .checkbox('PHP', 'php', (builder) => builder.generate())
+            .checkbox('Angular', 'angular', (builder) => builder.generate())
+            .grid(6)
+            .isCheckboxGroup()
+            .generate()
+        )
+        .fieldset('Área', 'workArea', (builder) =>
+          builder
+            .radio('stack', (builder) =>
+              builder
+                .setOptions([
+                  { name: 'FrontEnd', value: 'frontend' },
+                  { name: 'BackEnd', value: 'backend' },
+                  { name: 'FullStack', value: 'fullstack' }
+                ])
+                .generate()
+            )
+            .grid(6)
+            .isCheckboxGroup()
+            .generate()
+        )
         .generate()
     )
     .fieldset('Endereço', 'employeeLocation', (builder) =>

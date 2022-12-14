@@ -1,0 +1,6 @@
+.form-check-label {
+  font-size: 9pt;
+  line-height: 8pt;
+  vertical-align: middle;
+  color: var(--primary-color);
+}

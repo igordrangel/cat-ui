@@ -1,9 +1,9 @@
 import { FormCpfFactory } from './cpf/form-cpf.factory';
 import {
-  CatFormBehaviorOptions,
   CatFormConfig,
   CatFormFieldOptions,
-  CatFormInputType,
+  CatFormFieldTemplateGridType,
+  CatFormFieldType,
   CatFormTextareaOptions
 } from './form.interface';
 import { FormFieldService } from './form-field.service';
@@ -14,6 +14,8 @@ import { FormNumberFactory } from './number/form-number.factory';
 import { FormDatetimeFactory } from './datetime/form-datetime.factory';
 import { FormCnpjFactory } from './cnpj/form-cnpj.factory';
 import { CatFormBehavior } from '../common/cat-form-behavior';
+import { FormCheckboxFactory } from './checkbox/form-checkbox.factory';
+import { FormRadioFactory } from './radio/form-radio.factory';
 
 export class FormFactory<DataType> {
   private readonly config: CatFormConfig<DataType>;
@@ -38,12 +40,22 @@ export class FormFactory<DataType> {
     return this;
   }
 
+  public isCheckboxGroup(isCheckboxGroup = true) {
+    this.config.isCheckboxGroup = isCheckboxGroup;
+    return this;
+  }
+
+  public grid(grid: CatFormFieldTemplateGridType) {
+    this.config.grid = grid;
+    return this;
+  }
+
   public text(
     label: string,
     name: string,
     field: (builder: FormTextFactory) => CatFormFieldOptions
   ) {
-    this.input('text', label, name, field);
+    this.field('text', label, name, field);
     return this;
   }
 
@@ -52,7 +64,7 @@ export class FormFactory<DataType> {
     name: string,
     field: (builder: FormTextFactory) => CatFormFieldOptions
   ) {
-    this.input('email', label, name, field);
+    this.field('email', label, name, field);
     return this;
   }
 
@@ -61,7 +73,7 @@ export class FormFactory<DataType> {
     name: string,
     field: (builder: FormTextFactory) => CatFormFieldOptions
   ) {
-    this.input('url', label, name, field);
+    this.field('url', label, name, field);
     return this;
   }
 
@@ -70,7 +82,7 @@ export class FormFactory<DataType> {
     name: string,
     field: (builder: FormNumberFactory) => CatFormFieldOptions
   ) {
-    this.input('number', label, name, field);
+    this.field('number', label, name, field);
     return this;
   }
 
@@ -79,7 +91,7 @@ export class FormFactory<DataType> {
     name: string,
     field: (builder: FormDatetimeFactory) => CatFormFieldOptions
   ) {
-    this.input('date', label, name, field);
+    this.field('date', label, name, field);
     return this;
   }
 
@@ -88,7 +100,7 @@ export class FormFactory<DataType> {
     name: string,
     field: (builder: FormDatetimeFactory) => CatFormFieldOptions
   ) {
-    this.input('time', label, name, field);
+    this.field('time', label, name, field);
     return this;
   }
 
@@ -97,7 +109,7 @@ export class FormFactory<DataType> {
     name: string,
     field: (builder: FormDatetimeFactory) => CatFormFieldOptions
   ) {
-    this.input('datetime-local', label, name, field);
+    this.field('datetime-local', label, name, field);
     return this;
   }
 
@@ -106,7 +118,7 @@ export class FormFactory<DataType> {
     name: string,
     field: (builder: FormTextareaFactory) => CatFormTextareaOptions
   ) {
-    this.input('textarea', label, name, field);
+    this.field('textarea', label, name, field);
     return this;
   }
 
@@ -115,7 +127,7 @@ export class FormFactory<DataType> {
     name: string,
     field: (builder: FormCpfFactory) => CatFormFieldOptions
   ) {
-    this.input('cpf', label, name, field);
+    this.field('cpf', label, name, field);
     return this;
   }
 
@@ -124,7 +136,24 @@ export class FormFactory<DataType> {
     name: string,
     field: (builder: FormCnpjFactory) => CatFormFieldOptions
   ) {
-    this.input('cnpj', label, name, field);
+    this.field('cnpj', label, name, field);
+    return this;
+  }
+
+  public checkbox(
+    label: string,
+    name: string,
+    field: (builder: FormCheckboxFactory) => CatFormFieldOptions
+  ) {
+    this.field('checkbox', label, name, field);
+    return this;
+  }
+
+  public radio(
+    name: string,
+    field: (builder: FormRadioFactory) => CatFormFieldOptions
+  ) {
+    this.field('radio', '', name, field);
     return this;
   }
 
@@ -142,8 +171,8 @@ export class FormFactory<DataType> {
     return this.config;
   }
 
-  private input(
-    type: CatFormInputType,
+  private field(
+    type: CatFormFieldType,
     label: string,
     name: string,
     field: (builder: any) => CatFormFieldOptions
@@ -158,7 +187,7 @@ export class FormFactory<DataType> {
     });
   }
 
-  private getFieldBuilder(label: string, type: CatFormInputType) {
+  private getFieldBuilder(label: string, type: CatFormFieldType) {
     const fieldService = new FormFieldService();
 
     switch (type) {
@@ -180,6 +209,10 @@ export class FormFactory<DataType> {
         return fieldService.cpf(label);
       case 'cnpj':
         return fieldService.cnpj(label);
+      case 'checkbox':
+        return fieldService.checkbox(label);
+      case 'radio':
+        return fieldService.radio(label);
       default:
         throw new Error('Tipo de campo não suportado.');
     }

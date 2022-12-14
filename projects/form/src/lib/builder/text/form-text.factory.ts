@@ -3,10 +3,6 @@ import { FormFieldBase } from '../form-field.base';
 import { Validators } from '@angular/forms';
 
 export class FormTextFactory extends FormFieldBase<CatFormTextOptions> {
-  constructor(label: string) {
-    super(label);
-  }
-
   public setMinLength(minLength: number) {
     this.config.minLength = minLength;
     this.setValidators([Validators.minLength(minLength)]);
