@@ -8,10 +8,15 @@ import {
   Output,
   ViewChild
 } from '@angular/core';
-import { CatFormConfig } from "./builder/form.interface";
-import { FormBuilder, FormControl, FormGroup, UntypedFormGroup } from "@angular/forms";
-import { toCamelCase } from "@koalarx/utils/operators/string";
-import { BehaviorSubject, debounceTime, Subject, takeUntil } from "rxjs";
+import { CatFormConfig } from './builder/form.interface';
+import {
+  FormBuilder,
+  FormControl,
+  FormGroup,
+  UntypedFormGroup
+} from '@angular/forms';
+import { toCamelCase } from '@koalarx/utils/operators/string';
+import { BehaviorSubject, debounceTime, Subject, takeUntil } from 'rxjs';
 
 @Component({
   selector: 'cat-form',
@@ -28,35 +33,31 @@ export class FormComponent implements OnInit {
   public dynamicForm?: UntypedFormGroup;
   public highlightInvalidFields$ = new BehaviorSubject<boolean>(false);
 
-  @ViewChild('formElement') private elForm?: ElementRef<HTMLFormElement>
+  @ViewChild('formElement') private elForm?: ElementRef<HTMLFormElement>;
   private destroySubscriptions$ = new Subject();
 
-  constructor(private fb: FormBuilder) { }
+  constructor(private fb: FormBuilder) {}
 
   ngOnInit(): void {
     this.dynamicForm = this.fb.group({});
 
     if (this.onSubmit) {
       this.onSubmit
-          .pipe(takeUntil(this.destroySubscriptions$))
-          .subscribe((submit) => {
-            if (submit) this.submit()
-          });
+        .pipe(takeUntil(this.destroySubscriptions$))
+        .subscribe((submit) => {
+          if (submit) this.submit();
+        });
     }
 
     if (this.dynamicForm) {
-      this.dynamicForm
-          .valueChanges
-          .pipe(
-            takeUntil(this.destroySubscriptions$),
-            debounceTime(300)
-          )
-          .subscribe(() => {
-            if (this.config?.onChange) {
-              this.config?.onChange(this.getFormData());
-            }
-            this.isValid.emit(this.dynamicForm?.valid)
-          });
+      this.dynamicForm.valueChanges
+        .pipe(takeUntil(this.destroySubscriptions$), debounceTime(300))
+        .subscribe(() => {
+          if (this.config?.onChange) {
+            this.config?.onChange(this.getFormData());
+          }
+          this.isValid.emit(this.dynamicForm?.valid);
+        });
     }
   }
 

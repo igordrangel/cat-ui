@@ -1,12 +1,13 @@
 import { AsyncValidatorFn, ValidatorFn } from '@angular/forms';
-import { Observable, Subject } from 'rxjs';
+import { Observable } from 'rxjs';
+import { CatFormBehavior } from '../common/cat-form-behavior';
 
 export interface CatFormConfig<DataType> {
   fieldset?: CatFormFieldsetConfig[];
   fields?: CatFormFieldConfig[];
   onSubmit?: (data: DataType) => void;
   onChange?: (data: DataType) => void;
-  behavior: Subject<CatFormBehavior>;
+  behavior: CatFormBehavior;
 }
 
 export interface CatFormFieldConfig extends CatFormFieldOptions {
@@ -16,7 +17,7 @@ export interface CatFormFieldConfig extends CatFormFieldOptions {
     | CatFormSelectType
     | CatFormCheckType;
   name: string;
-  behavior: Subject<CatFormBehavior>;
+  behavior: CatFormBehavior;
 }
 
 export interface CatFormFieldOptions {
@@ -32,16 +33,21 @@ export interface CatFormFieldOptions {
   maxLength?: number;
   validators?: ValidatorFn[];
   asyncValidators?: AsyncValidatorFn[];
-  onChange?: (value: any, behavior: Subject<CatFormBehavior>) => void;
+  onChange?: (value: any, behavior: CatFormBehavior) => void;
 }
 
-export interface CatFormBehavior {
-  disableFields?: string[];
+export interface CatFormBehaviorOptions {
   enableFields?: string[];
+  disableFields?: string[];
   showFields?: string[];
   hideFields?: string[];
   replaceValidators?: CatFormBehaviorValidator[];
   replaceAsyncValidators?: CatFormBehaviorAsyncValidator[];
+  setValues?: CatFormBehaviorSetValue[];
+}
+export interface CatFormBehaviorSetValue {
+  name: string;
+  value: any;
 }
 export interface CatFormBehaviorValidator {
   name: string;
@@ -97,7 +103,7 @@ export type CatFormInputType =
   | 'date'
   | 'datetime-local'
   | 'time'
-  | 'phone'
+  | 'url'
   | 'textarea'
   | 'cpf'
   | 'cnpj';

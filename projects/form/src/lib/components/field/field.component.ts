@@ -10,11 +10,18 @@ import {
 } from '@angular/core';
 import {
   CatFormBehaviorAsyncValidator,
+  CatFormBehaviorSetValue,
   CatFormBehaviorValidator,
   CatFormFieldConfig
 } from '../../builder/form.interface';
 import { FormBuilder, FormControl } from '@angular/forms';
-import { BehaviorSubject, debounceTime, Subject, takeUntil } from 'rxjs';
+import {
+  BehaviorSubject,
+  debounceTime,
+  skipWhile,
+  Subject,
+  takeUntil
+} from 'rxjs';
 
 @Component({
   selector: 'cat-form-field[fieldConfig]',
@@ -54,9 +61,14 @@ export class FieldComponent implements OnDestroy, OnChanges {
       if (!this.fieldConfig.hidden) {
         if (this.fieldConfig.onChange) {
           this.control?.valueChanges
-            .pipe(takeUntil(this.destroySubscriptions$), debounceTime(300))
+            .pipe(
+              skipWhile(() => this.control?.invalid ?? false),
+              takeUntil(this.destroySubscriptions$),
+              debounceTime(300)
+            )
             .subscribe((value) => {
               if (this.fieldConfig?.onChange) {
+                this.fieldConfig?.behavior?.clear();
                 this.fieldConfig?.onChange(value, this.fieldConfig?.behavior);
               }
             });
@@ -70,14 +82,19 @@ export class FieldComponent implements OnDestroy, OnChanges {
       }
 
       if (this.fieldConfig.behavior) {
-        this.fieldConfig.behavior
-          .pipe(takeUntil(this.destroySubscriptions$))
+        this.fieldConfig.behavior.subject
+          .pipe(
+            skipWhile((value) => Object.keys(value).length === 0),
+            takeUntil(this.destroySubscriptions$)
+          )
           .subscribe((options) => {
             if (options.enableFields) this.isEnabled(options.enableFields);
             if (options.disableFields) this.isDisable(options.disableFields);
 
             if (options.showFields) this.isVisible(options.showFields);
             if (options.hideFields) this.isHidden(options.hideFields);
+
+            if (options.setValues) this.setValue(options.setValues);
 
             if (options.replaceValidators)
               this.changeValidators(options.replaceValidators);
@@ -103,6 +120,15 @@ export class FieldComponent implements OnDestroy, OnChanges {
         this.fieldConfig.asyncValidators
       );
       this.emitFormControl.emit(this.control);
+    }
+  }
+
+  private setValue(values: CatFormBehaviorSetValue[]) {
+    const field = values.find(
+      (field) => field.name === this.getFullFieldName()
+    );
+    if (field) {
+      this.control?.setValue(field.value);
     }
   }
 

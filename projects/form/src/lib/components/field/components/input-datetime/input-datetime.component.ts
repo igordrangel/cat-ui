@@ -1,5 +1,5 @@
-import { Component, OnInit } from '@angular/core';
-import { CatFormDatetimeOptions } from 'projects/form/src/lib/builder/form.interface';
+import { Component } from '@angular/core';
+import { CatFormDatetimeOptions } from '../../../../builder/form.interface';
 import { FieldBase } from '../field.base';
 
 @Component({

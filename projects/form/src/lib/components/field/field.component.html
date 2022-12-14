@@ -6,6 +6,18 @@
       [config]="fieldConfig">
     </cat-field-text>
 
+    <cat-field-email
+      *ngIf="fieldConfig.type === 'email'"
+      [control]="control"
+      [config]="fieldConfig">
+    </cat-field-email>
+
+    <cat-field-url
+      *ngIf="fieldConfig.type === 'url'"
+      [control]="control"
+      [config]="fieldConfig">
+    </cat-field-url>
+
     <cat-field-number
       *ngIf="fieldConfig.type === 'number'"
       [control]="control"
@@ -23,5 +35,17 @@
       [control]="control"
       [config]="fieldConfig">
     </cat-field-textarea>
+
+    <cat-field-cpf
+      *ngIf="fieldConfig.type === 'cpf'"
+      [control]="control"
+      [config]="fieldConfig">
+    </cat-field-cpf>
+
+    <cat-field-cnpj
+      *ngIf="fieldConfig.type === 'cnpj'"
+      [control]="control"
+      [config]="fieldConfig">
+    </cat-field-cnpj>
   </ng-container>
 </ng-container>

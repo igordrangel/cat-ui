@@ -1,5 +1,6 @@
+import { FormCpfFactory } from './cpf/form-cpf.factory';
 import {
-  CatFormBehavior,
+  CatFormBehaviorOptions,
   CatFormConfig,
   CatFormFieldOptions,
   CatFormInputType,
@@ -11,13 +12,15 @@ import { FormTextareaFactory } from './textarea/form-textarea.factory';
 import { FormTextFactory } from './text/form-text.factory';
 import { FormNumberFactory } from './number/form-number.factory';
 import { FormDatetimeFactory } from './datetime/form-datetime.factory';
+import { FormCnpjFactory } from './cnpj/form-cnpj.factory';
+import { CatFormBehavior } from '../common/cat-form-behavior';
 
 export class FormFactory<DataType> {
   private readonly config: CatFormConfig<DataType>;
 
-  constructor(private behavior?: Subject<CatFormBehavior>) {
+  constructor(private behavior?: CatFormBehavior) {
     this.config = {
-      behavior: this.behavior ?? new Subject()
+      behavior: this.behavior ?? new CatFormBehavior(new Subject())
     } as CatFormConfig<DataType>;
   }
 
@@ -41,6 +44,24 @@ export class FormFactory<DataType> {
     field: (builder: FormTextFactory) => CatFormFieldOptions
   ) {
     this.input('text', label, name, field);
+    return this;
+  }
+
+  public email(
+    label: string,
+    name: string,
+    field: (builder: FormTextFactory) => CatFormFieldOptions
+  ) {
+    this.input('email', label, name, field);
+    return this;
+  }
+
+  public url(
+    label: string,
+    name: string,
+    field: (builder: FormTextFactory) => CatFormFieldOptions
+  ) {
+    this.input('url', label, name, field);
     return this;
   }
 
@@ -89,6 +110,24 @@ export class FormFactory<DataType> {
     return this;
   }
 
+  public cpf(
+    label: string,
+    name: string,
+    field: (builder: FormCpfFactory) => CatFormFieldOptions
+  ) {
+    this.input('cpf', label, name, field);
+    return this;
+  }
+
+  public cnpj(
+    label: string,
+    name: string,
+    field: (builder: FormCnpjFactory) => CatFormFieldOptions
+  ) {
+    this.input('cnpj', label, name, field);
+    return this;
+  }
+
   public onChange(callback: (data: DataType) => void) {
     this.config.onChange = callback;
     return this;
@@ -125,6 +164,10 @@ export class FormFactory<DataType> {
     switch (type) {
       case 'text':
         return fieldService.text(label);
+      case 'email':
+        return fieldService.email(label);
+      case 'url':
+        return fieldService.url(label);
       case 'number':
         return fieldService.number(label);
       case 'date':
@@ -133,6 +176,10 @@ export class FormFactory<DataType> {
         return fieldService.date(label);
       case 'textarea':
         return fieldService.textarea(label);
+      case 'cpf':
+        return fieldService.cpf(label);
+      case 'cnpj':
+        return fieldService.cnpj(label);
       default:
         throw new Error('Tipo de campo não suportado.');
     }

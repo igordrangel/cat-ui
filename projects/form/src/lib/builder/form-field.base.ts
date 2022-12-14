@@ -1,11 +1,10 @@
 import {
-  CatFormBehavior,
   CatFormFieldOptions,
   CatFormFieldTemplateGridType
-} from "./form.interface";
-import { AsyncValidatorFn, ValidatorFn, Validators } from "@angular/forms";
-import { Subject } from "rxjs";
-import { koala } from "@koalarx/utils";
+} from './form.interface';
+import { AsyncValidatorFn, ValidatorFn, Validators } from '@angular/forms';
+import { koala } from '@koalarx/utils';
+import { CatFormBehavior } from '../common/cat-form-behavior';
 
 export abstract class FormFieldBase<ConfigType extends CatFormFieldOptions> {
   protected config: ConfigType = {} as ConfigType;
@@ -64,7 +63,7 @@ export abstract class FormFieldBase<ConfigType extends CatFormFieldOptions> {
     return this;
   }
 
-  public onChange(onChange: (value: any, behavior: Subject<CatFormBehavior>) => void) {
+  public onChange(onChange: (value: any, behavior: CatFormBehavior) => void) {
     this.config.onChange = onChange;
     return this;
   }

@@ -1,10 +1,19 @@
-import { NgModule } from "@angular/core";
-import { FieldComponent } from "./field.component";
-import { CommonModule } from "@angular/common";
-import { InputTextModule } from "./components/input-text/input-text.module";
-import { TextareaModule } from "./components/textarea/textarea.module";
-import { InputNumberModule } from "./components/input-number/input-number.module";
+import { NgModule } from '@angular/core';
+import { FieldComponent } from './field.component';
+import { CommonModule } from '@angular/common';
+import { InputTextModule } from './components/input-text/input-text.module';
+import { TextareaModule } from './components/textarea/textarea.module';
+import { InputNumberModule } from './components/input-number/input-number.module';
 import { InputDatetimeModule } from './components/input-datetime/input-datetime.module';
+import { InputCpfModule } from './components/input-cpf/input-cpf.module';
+import { IConfig, NgxMaskModule } from 'ngx-mask';
+import { InputCnpjModule } from './components/input-cnpj/input-cnpj.module';
+import { InputEmailModule } from './components/input-email/input-email.module';
+import { InputUrlModule } from './components/input-url/input-url.module';
+
+const maskOptions: Partial<IConfig> | (() => Partial<IConfig>) = {
+  validation: false
+};
 
 @NgModule({
   declarations: [FieldComponent],
@@ -12,9 +21,14 @@ import { InputDatetimeModule } from './components/input-datetime/input-datetime.
   imports: [
     CommonModule,
     InputTextModule,
+    InputEmailModule,
+    InputUrlModule,
     InputNumberModule,
     InputDatetimeModule,
-    TextareaModule
+    InputCpfModule,
+    InputCnpjModule,
+    TextareaModule,
+    NgxMaskModule.forRoot(maskOptions)
   ]
 })
 export class FieldModule {}
