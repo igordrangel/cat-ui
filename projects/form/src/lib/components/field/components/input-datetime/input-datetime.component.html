@@ -10,20 +10,20 @@
       [min]="config.min ?? null"
       [max]="config.max ?? null"
       [ngClass]="{'is-invalid': control.invalid && !control.untouched}"
+      [type]="config.type"
       autocomplete="off"
       class="form-control form-control-sm"
-      type="date"
       placeholder="">
   </ng-container>
 
   <ng-container specificErrors>
     <div *ngIf="control?.errors?.['dateMin']" class="invalid-feedback">
       <i class="fa-solid fa-triangle-exclamation"></i>
-      A data deve ser no mínimo {{config?.min | date:"shortDate"}}.
+      O valor deve ser no mínimo {{control?.errors?.['dateMin']?.min | date:getFormatTypeDate()}}.
     </div>
     <div *ngIf="control?.errors?.['dateMax']" class="invalid-feedback">
       <i class="fa-solid fa-triangle-exclamation"></i>
-      A data deve ser no máximo {{config?.max | date:"shortDate"}}.
+      O valor deve ser no máximo {{control?.errors?.['dateMax']?.max | date:getFormatTypeDate()}}.
     </div>
   </ng-container>
 </cat-form-field-content>

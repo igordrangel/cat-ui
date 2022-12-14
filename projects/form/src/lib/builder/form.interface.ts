@@ -61,7 +61,7 @@ export interface CatFormNumberOptions extends CatFormFieldOptions {
   min?: number;
   max?: number;
 }
-export interface CatFormDateOptions extends CatFormFieldOptions {
+export interface CatFormDatetimeOptions extends CatFormFieldOptions {
   min?: string;
   max?: string;
 }
@@ -95,7 +95,7 @@ export type CatFormInputType =
   | 'number'
   | 'email'
   | 'date'
-  | 'datetime'
+  | 'datetime-local'
   | 'time'
   | 'phone'
   | 'textarea'

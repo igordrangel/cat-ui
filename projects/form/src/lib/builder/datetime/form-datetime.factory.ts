@@ -1,9 +1,9 @@
-import { CatFormDateOptions } from '../form.interface';
+import { CatFormDatetimeOptions } from '../form.interface';
 import { FormFieldBase } from '../form-field.base';
 import { CatDateMinValidator } from '../../validators/cat-date-min.validator';
 import { CatDateMaxValidator } from '../../validators/cat-date-max.validator';
 
-export class FormDateFactory extends FormFieldBase<CatFormDateOptions> {
+export class FormDatetimeFactory extends FormFieldBase<CatFormDatetimeOptions> {
   constructor(label: string) {
     super(label);
   }

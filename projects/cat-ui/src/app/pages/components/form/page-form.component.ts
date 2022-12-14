@@ -54,6 +54,22 @@ export class PageFormComponent {
             .setRequired()
             .generate()
         )
+        .time('Hora de Entraga', 'startTime', (builder) =>
+          builder
+            .grid(3)
+            .setMin('08:00:00')
+            .setMax('18:00:00')
+            .setRequired()
+            .generate()
+        )
+        .datetime('Data/Hora Admissão', 'contractDate', (builder) =>
+          builder
+            .grid(3)
+            .setMin('2022-12-01 00:00')
+            .setMax('2022-12-23 23:59')
+            .setRequired()
+            .generate()
+        )
         .generate()
     )
     .textarea('Descrição', 'description', (builder) =>

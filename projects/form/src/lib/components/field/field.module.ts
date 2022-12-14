@@ -4,7 +4,7 @@ import { CommonModule } from "@angular/common";
 import { InputTextModule } from "./components/input-text/input-text.module";
 import { TextareaModule } from "./components/textarea/textarea.module";
 import { InputNumberModule } from "./components/input-number/input-number.module";
-import { InputDateModule } from "./components/input-date/input-date.module";
+import { InputDatetimeModule } from './components/input-datetime/input-datetime.module';
 
 @NgModule({
   declarations: [FieldComponent],
@@ -13,7 +13,7 @@ import { InputDateModule } from "./components/input-date/input-date.module";
     CommonModule,
     InputTextModule,
     InputNumberModule,
-    InputDateModule,
+    InputDatetimeModule,
     TextareaModule
   ]
 })

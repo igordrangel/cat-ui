@@ -1,7 +1,7 @@
 import { FormTextFactory } from './text/form-text.factory';
 import { FormTextareaFactory } from './textarea/form-textarea.factory';
 import { FormNumberFactory } from './number/form-number.factory';
-import { FormDateFactory } from './date/form-date.factory';
+import { FormDatetimeFactory } from './datetime/form-datetime.factory';
 
 export class FormFieldService {
   public text(label: string) {
@@ -13,7 +13,7 @@ export class FormFieldService {
   }
 
   public date(label: string) {
-    return new FormDateFactory(label);
+    return new FormDatetimeFactory(label);
   }
 
   public textarea(label: string) {

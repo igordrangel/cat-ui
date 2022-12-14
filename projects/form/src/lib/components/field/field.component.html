@@ -1,8 +1,27 @@
 <ng-container *ngIf="fieldConfig">
   <ng-container *ngIf="!(hidden$ | async)">
-    <cat-field-text *ngIf="fieldConfig.type === 'text'" [control]="control" [config]="fieldConfig"></cat-field-text>
-    <cat-field-number *ngIf="fieldConfig.type === 'number'" [control]="control" [config]="fieldConfig"></cat-field-number>
-    <cat-field-date *ngIf="fieldConfig.type === 'date'" [control]="control" [config]="fieldConfig"></cat-field-date>
-    <cat-field-textarea *ngIf="fieldConfig.type === 'textarea'" [control]="control" [config]="fieldConfig"></cat-field-textarea>
+    <cat-field-text
+      *ngIf="fieldConfig.type === 'text'"
+      [control]="control"
+      [config]="fieldConfig">
+    </cat-field-text>
+
+    <cat-field-number
+      *ngIf="fieldConfig.type === 'number'"
+      [control]="control"
+      [config]="fieldConfig">
+    </cat-field-number>
+
+    <cat-field-datetime
+      *ngIf="fieldConfig.type === 'date' || fieldConfig.type === 'datetime-local' || fieldConfig.type === 'time'"
+      [control]="control"
+      [config]="fieldConfig">
+    </cat-field-datetime>
+
+    <cat-field-textarea
+      *ngIf="fieldConfig.type === 'textarea'"
+      [control]="control"
+      [config]="fieldConfig">
+    </cat-field-textarea>
   </ng-container>
 </ng-container>

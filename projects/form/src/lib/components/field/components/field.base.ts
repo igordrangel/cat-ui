@@ -12,7 +12,10 @@ export abstract class FieldBase<FormFieldType,ElInputType extends HTMLElement> i
 
   ngOnInit() {
     this.focus().then();
+    this.customInit();
   }
+
+  protected customInit() {}
 
   private async focus() {
     if (this.config?.focus) {

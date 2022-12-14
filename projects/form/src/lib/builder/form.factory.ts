@@ -3,21 +3,21 @@ import {
   CatFormConfig,
   CatFormFieldOptions,
   CatFormInputType,
-  CatFormTextareaOptions,
+  CatFormTextareaOptions
 } from './form.interface';
 import { FormFieldService } from './form-field.service';
 import { Subject } from 'rxjs';
 import { FormTextareaFactory } from './textarea/form-textarea.factory';
 import { FormTextFactory } from './text/form-text.factory';
 import { FormNumberFactory } from './number/form-number.factory';
-import { FormDateFactory } from './date/form-date.factory';
+import { FormDatetimeFactory } from './datetime/form-datetime.factory';
 
 export class FormFactory<DataType> {
   private readonly config: CatFormConfig<DataType>;
 
   constructor(private behavior?: Subject<CatFormBehavior>) {
     this.config = {
-      behavior: this.behavior ?? new Subject(),
+      behavior: this.behavior ?? new Subject()
     } as CatFormConfig<DataType>;
   }
 
@@ -30,7 +30,7 @@ export class FormFactory<DataType> {
     this.config.fieldset.push({
       legend,
       name,
-      config: config(new FormFactory<DataType>(this.config.behavior)),
+      config: config(new FormFactory<DataType>(this.config.behavior))
     });
     return this;
   }
@@ -56,9 +56,27 @@ export class FormFactory<DataType> {
   public date(
     label: string,
     name: string,
-    field: (builder: FormDateFactory) => CatFormFieldOptions
+    field: (builder: FormDatetimeFactory) => CatFormFieldOptions
   ) {
     this.input('date', label, name, field);
+    return this;
+  }
+
+  public time(
+    label: string,
+    name: string,
+    field: (builder: FormDatetimeFactory) => CatFormFieldOptions
+  ) {
+    this.input('time', label, name, field);
+    return this;
+  }
+
+  public datetime(
+    label: string,
+    name: string,
+    field: (builder: FormDatetimeFactory) => CatFormFieldOptions
+  ) {
+    this.input('datetime-local', label, name, field);
     return this;
   }
 
@@ -97,7 +115,7 @@ export class FormFactory<DataType> {
       ...field(this.getFieldBuilder(label, type)),
       type,
       name,
-      behavior: this.config.behavior,
+      behavior: this.config.behavior
     });
   }
 
@@ -110,6 +128,8 @@ export class FormFactory<DataType> {
       case 'number':
         return fieldService.number(label);
       case 'date':
+      case 'datetime-local':
+      case 'time':
         return fieldService.date(label);
       case 'textarea':
         return fieldService.textarea(label);
