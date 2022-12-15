@@ -72,7 +72,12 @@ export interface CatFormDatetimeOptions extends CatFormFieldOptions {
 export interface CatFormSelectOptions extends CatFormFieldOptions {
   options?: Array<CatFormListOptions> | Observable<CatFormListOptions[]>;
 }
-export interface CatFormFileOptions extends CatFormFieldOptions {}
+export interface CatFormFileOptions extends CatFormFieldOptions {
+  icon?: string;
+  btnText?: string;
+  multiple?: boolean;
+  accept?: string[];
+}
 export interface CatFormCheckboxOptions extends CatFormFieldOptions {}
 export interface CatFormRadioOptions extends CatFormFieldOptions {
   options?: Array<CatFormListOptions>;

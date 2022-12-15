@@ -1,0 +1,30 @@
+.file-drag-drop-area {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  width: 100%;
+  box-sizing: border-box;
+  padding: 50px;
+  border: 3px dashed var(--c-form-valid-field);
+  border-radius: 10px;
+  background: transparent;
+}
+.file-drag-drop-area.invalid {
+  border: 3px dashed var(--c-form-invalid-field);
+}
+.file-drag-drop-area .placeholder-content {
+  color: var(--disable-color);
+  text-align: center;
+  padding: 10px 0;
+}
+.file-drag-drop-area .placeholder-content i {
+  font-size: 40px;
+  margin-bottom: 10px;
+}
+.file-drag-drop-area .placeholder-content h2 {
+  font-size: 1.5em;
+}
+.file-drag-drop-area .placeholder-content .extensions-accepted strong {
+  font-size: 10pt;
+}

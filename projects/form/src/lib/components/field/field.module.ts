@@ -12,6 +12,7 @@ import { InputEmailModule } from './components/input-email/input-email.module';
 import { InputUrlModule } from './components/input-url/input-url.module';
 import { InputCheckboxModule } from './components/input-checkbox/input-checkbox.module';
 import { InputRadioModule } from './components/input-radio/input-radio.module';
+import { InputFileModule } from './components/input-file/input-file.module';
 
 const maskOptions: Partial<IConfig> | (() => Partial<IConfig>) = {
   validation: false
@@ -32,6 +33,7 @@ const maskOptions: Partial<IConfig> | (() => Partial<IConfig>) = {
     TextareaModule,
     InputCheckboxModule,
     InputRadioModule,
+    InputFileModule,
     NgxMaskModule.forRoot(maskOptions)
   ]
 })

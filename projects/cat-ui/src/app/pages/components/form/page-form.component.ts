@@ -5,7 +5,7 @@ import { PageFormService } from './page-form.service';
 import { nameValidator } from './validators/name.validator';
 
 @Component({
-  templateUrl: 'page-form.component.html'
+  templateUrl: 'page-form.component.html',
 })
 export class PageFormComponent {
   isFormValid = false;
@@ -63,13 +63,21 @@ export class PageFormComponent {
                 .setOptions([
                   { name: 'FrontEnd', value: 'frontend' },
                   { name: 'BackEnd', value: 'backend' },
-                  { name: 'FullStack', value: 'fullstack' }
+                  { name: 'FullStack', value: 'fullstack' },
                 ])
                 .setValue('frontend')
                 .generate()
             )
             .grid(6)
             .isCheckboxGroup()
+            .generate()
+        )
+        .file('Curriculum', 'curriculum', (builder) =>
+          builder
+            .setIcon('fa-solid fa-paperclip')
+            .setBtnText('Anexe o curriculo aqui')
+            .setExtensionsAccept(['.pdf'])
+            .setRequired()
             .generate()
         )
         .generate()
@@ -175,24 +183,24 @@ export class PageFormComponent {
       .setValues([
         {
           name: 'employeeLocation.street',
-          value: address.logradouro
+          value: address.logradouro,
         },
         {
           name: 'employeeLocation.district',
-          value: address.bairro
+          value: address.bairro,
         },
         {
           name: 'employeeLocation.complement',
-          value: address.complemento
+          value: address.complemento,
         },
         {
           name: 'employeeLocation.city',
-          value: address.localidade
+          value: address.localidade,
         },
         {
           name: 'employeeLocation.state',
-          value: address.uf
-        }
+          value: address.uf,
+        },
       ])
       .send();
   }

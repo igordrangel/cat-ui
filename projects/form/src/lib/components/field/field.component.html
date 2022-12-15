@@ -59,5 +59,11 @@
       [control]="control"
       [config]="fieldConfig">
     </cat-field-radio>
+
+    <cat-field-file
+      *ngIf="fieldConfig.type === 'file'"
+      [control]="control"
+      [config]="fieldConfig">
+    </cat-field-file>
   </ng-container>
 </ng-container>

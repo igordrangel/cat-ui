@@ -8,6 +8,7 @@ import { FormEmailFactory } from './email/form-email.factory';
 import { FormUrlFactory } from './url/form-url.factory';
 import { FormCheckboxFactory } from './checkbox/form-checkbox.factory';
 import { FormRadioFactory } from './radio/form-radio.factory';
+import { FormFileFactory } from './file/form-file.factory';
 
 export class FormFieldService {
   public text(label: string) {
@@ -48,5 +49,9 @@ export class FormFieldService {
 
   public radio(label: string) {
     return new FormRadioFactory(label);
+  }
+
+  public file(label: string) {
+    return new FormFileFactory(label);
   }
 }

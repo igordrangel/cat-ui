@@ -1,0 +1,30 @@
+<div
+  *ngIf="control && config"
+  class="file-drag-drop-area"
+  cat-drag-drop
+  [ngClass]="{invalid: control.invalid && !control.untouched}"
+  (fileDropped)="emitFiles($event)">
+  <input
+    #inputElement
+    type='file'
+    class='d-none'
+    [formControl]="control"
+    [multiple]="config.multiple"
+    [accept]="getSupportedExtensions()"
+    (change)="emitFiles(inputElement.files)"/>
+
+  <div class="placeholder-content">
+    <i class="fa-solid fa-file-circle-plus"></i>
+    <h2>Arreste e Solte aqui ou clique no botão abaixo</h2>
+    <span *ngIf="config.accept" class="extensions-accepted">
+      <strong>Suporta apenas os formatos</strong>
+      ({{getSupportedExtensions()}})
+    </span>
+  </div>
+  <div class="btn-group" role="group" [attr.aria-label]="config.label">
+    <button type="button" class="btn btn-primary" (click)="inputElement.click()">
+      <i *ngIf="config.icon" class="mr-8" [ngClass]="config.icon"></i>
+      {{config.btnText ?? 'Escolha um arquivo...'}}
+    </button>
+  </div>
+</div>

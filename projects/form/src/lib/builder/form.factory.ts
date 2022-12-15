@@ -16,6 +16,7 @@ import { FormCnpjFactory } from './cnpj/form-cnpj.factory';
 import { CatFormBehavior } from '../common/cat-form-behavior';
 import { FormCheckboxFactory } from './checkbox/form-checkbox.factory';
 import { FormRadioFactory } from './radio/form-radio.factory';
+import { FormFileFactory } from './file/form-file.factory';
 
 export class FormFactory<DataType> {
   private readonly config: CatFormConfig<DataType>;
@@ -157,6 +158,15 @@ export class FormFactory<DataType> {
     return this;
   }
 
+  public file(
+    label: string,
+    name: string,
+    field: (builder: FormFileFactory) => CatFormFieldOptions
+  ) {
+    this.field('file', label, name, field);
+    return this;
+  }
+
   public onChange(callback: (data: DataType) => void) {
     this.config.onChange = callback;
     return this;
@@ -213,6 +223,8 @@ export class FormFactory<DataType> {
         return fieldService.checkbox(label);
       case 'radio':
         return fieldService.radio(label);
+      case 'file':
+        return fieldService.file(label);
       default:
         throw new Error('Tipo de campo não suportado.');
     }
