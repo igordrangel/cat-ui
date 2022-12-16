@@ -65,14 +65,14 @@ export class PageFormComponent {
                   { name: 'BackEnd', value: 'backend' },
                   { name: 'FullStack', value: 'fullstack' },
                 ])
-                .setValue('frontend')
+                .setValue('backend')
                 .generate()
             )
             .grid(6)
             .isCheckboxGroup()
             .generate()
         )
-        .file('Curriculum', 'curriculum', (builder) =>
+        .file('curriculum', (builder) =>
           builder
             .setIcon('fa-solid fa-paperclip')
             .setBtnText('Anexe o curriculo aqui')
@@ -169,7 +169,7 @@ export class PageFormComponent {
     .textarea('Descrição', 'description', (builder) =>
       builder.setMaxLength(1000).generate()
     )
-    // .onChange(data => console.log(data))
+    .onChange((data) => console.log(data))
     .onSubmit((data) => console.log(data))
     .generate();
 

@@ -4,7 +4,7 @@ import {
   EventEmitter,
   Input,
   OnInit,
-  Output
+  Output,
 } from '@angular/core';
 import { CatFormFieldsetConfig } from '../../builder/form.interface';
 import { FormBuilder, FormControl, FormGroup } from '@angular/forms';
@@ -14,7 +14,7 @@ import { toCamelCase } from '@koalarx/utils/operators/string';
   selector: 'cat-form-fieldset',
   templateUrl: 'fieldset.component.html',
   styleUrls: ['fieldset.component.css'],
-  changeDetection: ChangeDetectionStrategy.OnPush
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class FieldsetComponent implements OnInit {
   @Input() fieldsetConfig?: CatFormFieldsetConfig;

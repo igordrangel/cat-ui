@@ -159,11 +159,10 @@ export class FormFactory<DataType> {
   }
 
   public file(
-    label: string,
     name: string,
     field: (builder: FormFileFactory) => CatFormFieldOptions
   ) {
-    this.field('file', label, name, field);
+    this.field('file', '', name, field);
     return this;
   }
 

@@ -1,5 +1,6 @@
 import { ValidatorFn, Validators } from '@angular/forms';
 import { koala } from '@koalarx/utils';
+import { CatFileValidator } from '../../validators/cat-file.validator';
 import { FormFieldBase } from '../form-field.base';
 import { CatFormFileOptions } from '../form.interface';
 
@@ -27,6 +28,7 @@ export class FormFileFactory extends FormFieldBase<CatFormFileOptions> {
 
   public setExtensionsAccept(extensions: string[]) {
     this.config.accept = extensions;
+    this.setValidators([CatFileValidator(this.config.accept)]);
     return this;
   }
 

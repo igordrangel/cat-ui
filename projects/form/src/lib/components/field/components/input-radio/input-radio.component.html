@@ -3,9 +3,10 @@
     <div *ngFor="let option of config.options;let i = index" class="form-check form-check-inline">
       <input
         [id]="config.name + i"
-        [formControl]="control"
         [attr.aria-label]="config.label"
+        [name]="config.name"
         [value]="option.value"
+        [formControl]="control"
         class="form-check-input"
         type="radio">
       <label class="form-check-label" [attr.for]="config.name + i">

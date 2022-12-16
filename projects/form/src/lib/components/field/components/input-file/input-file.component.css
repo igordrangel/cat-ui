@@ -13,6 +13,7 @@
 .file-drag-drop-area.invalid {
   border: 3px dashed var(--c-form-invalid-field);
 }
+
 .file-drag-drop-area .placeholder-content {
   color: var(--disable-color);
   text-align: center;
@@ -27,4 +28,42 @@
 }
 .file-drag-drop-area .placeholder-content .extensions-accepted strong {
   font-size: 10pt;
+}
+
+.file-drag-drop-area .files-content {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-wrap: wrap;
+  box-sizing: border-box;
+  width: 100%;
+  padding: 5px;
+}
+.file-drag-drop-area .files-content .file-content {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  border-radius: 5px;
+  padding: 2px 10px;
+  color: var(--c-form-valid-field);
+  background-color: var(--primary-color-alpha);
+  margin: 5px;
+}
+.file-drag-drop-area .files-content .file-content .btn-remove {
+  background-color: transparent;
+  border: none;
+  margin-left: 5px;
+  color: var(--disable-color);
+  border-radius: 5px;
+  transition: 0.1s;
+  font-size: 14px;
+  line-height: 14px;
+}
+.file-drag-drop-area .files-content .file-content .btn-remove:hover {
+  color: var(--btn-icon-bg-danger);
+  background-color: var(--btn-icon-c-danger);
+}
+.file-drag-drop-area .files-content .file-content.invalid {
+  color: var(--c-form-invalid-field);
+  background-color: var(--bg-form-invalid-field);
 }

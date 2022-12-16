@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
 import { FieldBase } from '../field.base';
 import { CatFormFileOptions } from '../../../../builder/form.interface';
 import { CatFileInterface } from './cat-file.interface';
@@ -14,10 +14,17 @@ export class InputFileComponent extends FieldBase<
   HTMLInputElement
 > {
   public files: CatFileInterface[] = [];
+  public errorMultipleNotAllowed?: boolean;
 
   public async emitFiles(files: FileList | null) {
     if (files) {
-      if (files?.length > 0) {
+      this.errorMultipleNotAllowed =
+        !this.config?.multiple && (this.files.length > 0 || files.length > 1);
+
+      if (
+        !this.errorMultipleNotAllowed ||
+        (this.config?.multiple && files?.length > 0)
+      ) {
         for (let f = 0; f <= files.length; f++) {
           const file = files.item(f);
           if (file) {
@@ -27,11 +34,14 @@ export class InputFileComponent extends FieldBase<
             }
           }
         }
-      } else {
+        this.control?.setValue(this.files);
+      }
+
+      if (this.control) {
+        this.control.markAsTouched();
+        this.updateComponent$.next(true);
       }
     }
-
-    if (this.control) this.control.setValue(this.files);
   }
 
   public getSupportedExtensions() {
@@ -39,6 +49,24 @@ export class InputFileComponent extends FieldBase<
       .array<string>()
       .toString()
       .getValue();
+  }
+
+  public hasValidExtension(filename: string) {
+    if (this.config?.accept) {
+      const fileExtension = filename.substring(filename.lastIndexOf('.'));
+      return (
+        this.config.accept
+          .map((ext) => ext.toLowerCase())
+          .indexOf(fileExtension.toLowerCase()) >= 0
+      );
+    }
+
+    return true;
+  }
+
+  public removeFile(index: number) {
+    this.files.splice(index, 1);
+    this.control?.setValue(this.files);
   }
 
   private async convertFile(file: File): Promise<CatFileInterface | null> {

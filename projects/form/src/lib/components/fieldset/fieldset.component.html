@@ -7,7 +7,7 @@
         [fieldsetConfig]="fieldset"
         [highlightInvalidFields]="highlightInvalidFields"
         [variableTree]="getFullFieldsetName()"
-        (emitFormGroup)="addFormGroup(fieldsetConfig.name, $event)">
+        (emitFormGroup)="addFormGroup(fieldset.name, $event)">
       </cat-form-fieldset>
     </div>
   </ng-container>

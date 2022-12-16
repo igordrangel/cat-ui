@@ -1,30 +1,55 @@
-<div
-  *ngIf="control && config"
-  class="file-drag-drop-area"
-  cat-drag-drop
-  [ngClass]="{invalid: control.invalid && !control.untouched}"
-  (fileDropped)="emitFiles($event)">
-  <input
-    #inputElement
-    type='file'
-    class='d-none'
-    [formControl]="control"
-    [multiple]="config.multiple"
-    [accept]="getSupportedExtensions()"
-    (change)="emitFiles(inputElement.files)"/>
+<div *ngIf="updateComponent$ | async" class="has-validation" [ngClass]="{invalid: control?.invalid && control?.touched}">
+  <div
+    class="file-drag-drop-area"
+    cat-drag-drop
+    *ngIf="control && config"
+    [ngClass]="{invalid: control.invalid && control.touched}"
+    (fileDropped)="emitFiles($event)">
+    <input type='hidden' [formControl]="control"/>
+    <input
+      #inputElement
+      type='file'
+      class='d-none'
+      [multiple]="config.multiple"
+      [accept]="getSupportedExtensions()"
+      (change)="emitFiles(inputElement.files)"/>
 
-  <div class="placeholder-content">
-    <i class="fa-solid fa-file-circle-plus"></i>
-    <h2>Arreste e Solte aqui ou clique no botão abaixo</h2>
-    <span *ngIf="config.accept" class="extensions-accepted">
-      <strong>Suporta apenas os formatos</strong>
-      ({{getSupportedExtensions()}})
-    </span>
+    <div class="placeholder-content">
+      <i class="fa-solid fa-file-circle-plus"></i>
+      <h2>Arreste e Solte aqui ou clique no botão abaixo</h2>
+      <span *ngIf="config.accept" class="extensions-accepted">
+        <strong>Suporta apenas os formatos</strong>
+        ({{getSupportedExtensions()}})
+      </span>
+    </div>
+    <div class="btn-group" role="group" [attr.aria-label]="config.label">
+      <button type="button" class="btn btn-primary" (click)="inputElement.click()">
+        <i *ngIf="config.icon" class="mr-8" [ngClass]="config.icon"></i>
+        {{config.btnText ?? 'Escolha um arquivo...'}}
+      </button>
+    </div>
+    <div class="files-content">
+      <div
+        class="file-content"
+        *ngFor="let file of files;let i = index"
+        [ngClass]="{invalid: !hasValidExtension(file.filename)}">
+        <strong>{{file.filename}}</strong>
+        <button (click)="removeFile(i)" class="btn-remove" type="button">
+          <i class="fa-solid fa-xmark"></i>
+        </button>
+      </div>
+    </div>
   </div>
-  <div class="btn-group" role="group" [attr.aria-label]="config.label">
-    <button type="button" class="btn btn-primary" (click)="inputElement.click()">
-      <i *ngIf="config.icon" class="mr-8" [ngClass]="config.icon"></i>
-      {{config.btnText ?? 'Escolha um arquivo...'}}
-    </button>
-  </div>
+  <cat-form-field-common-errors [control]="control" [config]="config">
+    <ng-container specificErrors>
+      <div *ngIf="control?.errors?.['fileInvalid']" class="invalid-feedback">
+        <i class="fa-solid fa-triangle-exclamation"></i>
+        Arquivo de extensão inválida.
+      </div>
+      <div *ngIf="errorMultipleNotAllowed" class="invalid-feedback">
+        <i class="fa-solid fa-triangle-exclamation"></i>
+        Só é permitido o envio de apenas 1 arquivo.
+      </div>
+    </ng-container>
+  </cat-form-field-common-errors>
 </div>

@@ -6,14 +6,14 @@ import {
   Input,
   OnInit,
   Output,
-  ViewChild
+  ViewChild,
 } from '@angular/core';
 import { CatFormConfig } from './builder/form.interface';
 import {
   FormBuilder,
   FormControl,
   FormGroup,
-  UntypedFormGroup
+  UntypedFormGroup,
 } from '@angular/forms';
 import { toCamelCase } from '@koalarx/utils/operators/string';
 import { BehaviorSubject, debounceTime, Subject, takeUntil } from 'rxjs';
@@ -22,7 +22,7 @@ import { BehaviorSubject, debounceTime, Subject, takeUntil } from 'rxjs';
   selector: 'cat-form',
   templateUrl: 'form.component.html',
   styleUrls: ['form.component.css'],
-  changeDetection: ChangeDetectionStrategy.OnPush
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class FormComponent implements OnInit {
   @Input() config?: CatFormConfig<any>;
