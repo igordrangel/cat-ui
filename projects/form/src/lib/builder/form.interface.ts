@@ -70,13 +70,16 @@ export interface CatFormDatetimeOptions extends CatFormFieldOptions {
   max?: string;
 }
 export interface CatFormSelectOptions extends CatFormFieldOptions {
-  options?: Array<CatFormListOptions> | Observable<CatFormListOptions[]>;
+  options?: Observable<CatFormListOptions[]>;
 }
 export interface CatFormFileOptions extends CatFormFieldOptions {
   icon?: string;
   btnText?: string;
   multiple?: boolean;
   accept?: string[];
+}
+export interface CatFormCsvOptions extends CatFormFileOptions {
+  csvModel: CatCsvModel;
 }
 export interface CatFormCheckboxOptions extends CatFormFieldOptions {}
 export interface CatFormRadioOptions extends CatFormFieldOptions {
@@ -92,6 +95,11 @@ export interface CatFormFieldsetConfig {
   legend: string;
   name: string;
   config?: CatFormConfig<any>;
+}
+
+export interface CatCsvModel {
+  filename: string;
+  model: { [key: string]: '' };
 }
 
 export type CatFormFieldTemplateGridType =

@@ -1,3 +1,4 @@
+import { FormSelectFactory } from './select/form-select.factory';
 import { FormCpfFactory } from './cpf/form-cpf.factory';
 import {
   CatFormConfig,
@@ -17,13 +18,14 @@ import { CatFormBehavior } from '../common/cat-form-behavior';
 import { FormCheckboxFactory } from './checkbox/form-checkbox.factory';
 import { FormRadioFactory } from './radio/form-radio.factory';
 import { FormFileFactory } from './file/form-file.factory';
+import { FormCsvFactory } from './csv/form-csv.factory';
 
 export class FormFactory<DataType> {
   private readonly config: CatFormConfig<DataType>;
 
   constructor(private behavior?: CatFormBehavior) {
     this.config = {
-      behavior: this.behavior ?? new CatFormBehavior(new Subject())
+      behavior: this.behavior ?? new CatFormBehavior(new Subject()),
     } as CatFormConfig<DataType>;
   }
 
@@ -36,7 +38,7 @@ export class FormFactory<DataType> {
     this.config.fieldset.push({
       legend,
       name,
-      config: config(new FormFactory<DataType>(this.config.behavior))
+      config: config(new FormFactory<DataType>(this.config.behavior)),
     });
     return this;
   }
@@ -166,6 +168,23 @@ export class FormFactory<DataType> {
     return this;
   }
 
+  public csv(
+    name: string,
+    field: (builder: FormCsvFactory) => CatFormFieldOptions
+  ) {
+    this.field('csv', '', name, field);
+    return this;
+  }
+
+  public select(
+    label: string,
+    name: string,
+    field: (builder: FormSelectFactory) => CatFormFieldOptions
+  ) {
+    this.field('select', label, name, field);
+    return this;
+  }
+
   public onChange(callback: (data: DataType) => void) {
     this.config.onChange = callback;
     return this;
@@ -192,7 +211,7 @@ export class FormFactory<DataType> {
       ...field(this.getFieldBuilder(label, type)),
       type,
       name,
-      behavior: this.config.behavior
+      behavior: this.config.behavior,
     });
   }
 
@@ -224,6 +243,10 @@ export class FormFactory<DataType> {
         return fieldService.radio(label);
       case 'file':
         return fieldService.file(label);
+      case 'csv':
+        return fieldService.csv(label);
+      case 'select':
+        return fieldService.select(label);
       default:
         throw new Error('Tipo de campo não suportado.');
     }

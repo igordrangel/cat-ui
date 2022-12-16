@@ -10,5 +10,5 @@ import { FormControl } from "@angular/forms";
 export class HintComponent {
   @Input() control?: FormControl;
   @Input() config?: CatFormFieldConfig;
-  @Input() elInput?: ElementRef<HTMLInputElement|HTMLTextAreaElement>;
+  @Input() elInput?: ElementRef<HTMLInputElement|HTMLTextAreaElement|HTMLSelectElement>;
 }

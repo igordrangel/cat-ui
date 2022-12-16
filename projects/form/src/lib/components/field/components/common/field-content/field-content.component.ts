@@ -11,7 +11,7 @@ import { interval, Subject, takeUntil } from "rxjs";
 export class FieldContentComponent implements OnInit, OnDestroy {
   @Input() control?: FormControl;
   @Input() config?: CatFormFieldConfig;
-  @Input() elInput?: ElementRef<HTMLInputElement|HTMLTextAreaElement>;
+  @Input() elInput?: ElementRef<HTMLInputElement|HTMLTextAreaElement|HTMLSelectElement>;
   @ViewChild('labelElement') elLabel?: ElementRef<HTMLLabelElement>;
 
   isRequired = false;

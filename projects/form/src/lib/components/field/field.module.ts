@@ -1,3 +1,4 @@
+import { InputSelectModule } from './components/input-select/input-select.module';
 import { NgModule } from '@angular/core';
 import { FieldComponent } from './field.component';
 import { CommonModule } from '@angular/common';
@@ -34,6 +35,7 @@ const maskOptions: Partial<IConfig> | (() => Partial<IConfig>) = {
     InputCheckboxModule,
     InputRadioModule,
     InputFileModule,
+    InputSelectModule,
     NgxMaskModule.forRoot(maskOptions)
   ]
 })

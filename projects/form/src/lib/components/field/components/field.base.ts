@@ -4,7 +4,7 @@ import {
   Input,
   OnInit,
   ViewChild,
-  OnDestroy
+  OnDestroy,
 } from '@angular/core';
 import { FormControl } from '@angular/forms';
 import { CatFormFieldConfig } from '../../../builder/form.interface';

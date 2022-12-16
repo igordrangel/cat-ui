@@ -3,9 +3,9 @@ import { CatFileInterface } from '../components/field/components/input-file/cat-
 
 export function CatFileValidator(validExtensions: string[]) {
   return (control: AbstractControl) => {
-    const files: CatFileInterface[] | null = control.value as
-      | CatFileInterface[]
-      | null;
+    const value: CatFileInterface[] | CatFileInterface | null =
+      control.value as CatFileInterface[] | null;
+    const files = value ? (Array.isArray(value) ? value : [value]) : null;
 
     if (files) {
       const invalid =
@@ -13,7 +13,11 @@ export function CatFileValidator(validExtensions: string[]) {
           const fileExtension = file.filename.substring(
             file.filename.lastIndexOf('.')
           );
-          return validExtensions.map(ext => ext.toLowerCase()).indexOf(fileExtension.toLowerCase()) < 0;
+          return (
+            validExtensions
+              .map((ext) => ext.toLowerCase())
+              .indexOf(fileExtension.toLowerCase()) < 0
+          );
         }).length > 0;
 
       if (invalid) {

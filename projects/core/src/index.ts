@@ -5,3 +5,5 @@
 export * from './lib/core.service';
 export * from './lib/core.component';
 export * from './lib/core.module';
+export * from './lib/services/cat-object.service';
+export * from './lib/services/cat-csv.service';

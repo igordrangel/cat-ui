@@ -9,6 +9,8 @@ import { FormUrlFactory } from './url/form-url.factory';
 import { FormCheckboxFactory } from './checkbox/form-checkbox.factory';
 import { FormRadioFactory } from './radio/form-radio.factory';
 import { FormFileFactory } from './file/form-file.factory';
+import { FormCsvFactory } from './csv/form-csv.factory';
+import { FormSelectFactory } from './select/form-select.factory';
 
 export class FormFieldService {
   public text(label: string) {
@@ -53,5 +55,13 @@ export class FormFieldService {
 
   public file(label: string) {
     return new FormFileFactory(label);
+  }
+
+  public csv(label: string) {
+    return new FormCsvFactory(label);
+  }
+
+  public select(label: string) {
+    return new FormSelectFactory(label);
   }
 }

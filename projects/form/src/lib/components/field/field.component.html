@@ -61,9 +61,15 @@
     </cat-field-radio>
 
     <cat-field-file
-      *ngIf="fieldConfig.type === 'file'"
+      *ngIf="fieldConfig.type === 'file' || fieldConfig.type === 'csv'"
       [control]="control"
       [config]="fieldConfig">
     </cat-field-file>
+
+    <cat-field-select
+      *ngIf="fieldConfig.type === 'select'"
+      [control]="control"
+      [config]="fieldConfig">
+    </cat-field-select>
   </ng-container>
 </ng-container>

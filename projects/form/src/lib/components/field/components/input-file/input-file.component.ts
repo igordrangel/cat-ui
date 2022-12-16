@@ -1,8 +1,12 @@
 import { Component } from '@angular/core';
 import { FieldBase } from '../field.base';
-import { CatFormFileOptions } from '../../../../builder/form.interface';
+import {
+  CatFormCsvOptions,
+  CatFormFileOptions,
+} from '../../../../builder/form.interface';
 import { CatFileInterface } from './cat-file.interface';
 import { koala } from '@koalarx/utils';
+import { CatCsvService } from '@cat-ui/core';
 
 @Component({
   selector: 'cat-field-file[control][config]',
@@ -10,11 +14,15 @@ import { koala } from '@koalarx/utils';
   styleUrls: ['../../field.component.css', './input-file.component.css'],
 })
 export class InputFileComponent extends FieldBase<
-  CatFormFileOptions,
+  CatFormFileOptions | CatFormCsvOptions,
   HTMLInputElement
 > {
   public files: CatFileInterface[] = [];
   public errorMultipleNotAllowed?: boolean;
+
+  constructor(private csvService: CatCsvService) {
+    super();
+  }
 
   public async emitFiles(files: FileList | null) {
     if (files) {
@@ -30,11 +38,20 @@ export class InputFileComponent extends FieldBase<
           if (file) {
             const fileResult = await this.convertFile(file);
             if (fileResult) {
-              this.files.push(fileResult);
+              const indexFile = koala(this.files)
+                .array()
+                .getIndex('filename', fileResult.filename);
+              if (indexFile >= 0) {
+                this.files[indexFile] = fileResult;
+              } else {
+                this.files.push(fileResult);
+              }
             }
           }
         }
-        this.control?.setValue(this.files);
+        this.control?.setValue(
+          this.config?.multiple ? this.files : this.files?.[0]
+        );
       }
 
       if (this.control) {
@@ -69,6 +86,16 @@ export class InputFileComponent extends FieldBase<
     this.control?.setValue(this.files);
   }
 
+  public hasCsvModel() {
+    return !!(this.config as CatFormCsvOptions).csvModel;
+  }
+
+  public downloadCsvModel() {
+    const csvModel = (this.config as CatFormCsvOptions).csvModel;
+    if (csvModel)
+      this.csvService.convertJsonToCsv([csvModel.model], csvModel.filename);
+  }
+
   private async convertFile(file: File): Promise<CatFileInterface | null> {
     const blobFile = await new Promise<string | ArrayBuffer | null>(
       (resolve) => {
@@ -81,11 +108,17 @@ export class InputFileComponent extends FieldBase<
     );
     if (blobFile) {
       const fileSplit = blobFile.toString().split(';base64,');
-      return {
+      const fileResult: CatFileInterface = {
         filename: file.name,
         type: fileSplit[0].replace('data:', ''),
         base64: fileSplit[1],
       };
+
+      if (this.config?.type === 'csv') {
+        fileResult.csvContent = this.csvService.convertCsvToJson(fileResult);
+      }
+
+      return fileResult;
     }
 
     return null;

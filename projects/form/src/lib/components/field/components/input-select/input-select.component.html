@@ -1,0 +1,24 @@
+<cat-form-field-content *ngIf="updateComponent$ | async" [control]="control" [config]="config" [elInput]="elInput">
+  <ng-container *ngIf="control && config" field>
+    <ng-select
+      *ngIf="(config.options | async) as options else showLoader"
+      [id]="config.name"
+      [formControl]="control"
+      [attr.aria-label]="config.label"
+      [required]="config.required ?? false"
+      [ngClass]="{'is-invalid': control.invalid && !control.untouched && !control.disabled}"
+      [searchable]="false"
+      appearance="outline">
+
+      <ng-option
+        *ngFor="let option of options"
+        [value]="option.value"
+        [innerHTML]="option.name">
+      </ng-option>
+    </ng-select>
+  </ng-container>
+</cat-form-field-content>
+
+<ng-template #showLoader>
+  <input class="form-control form-control-sm" disabled type="text" placeholder="CARREGANDO..."/>
+</ng-template>

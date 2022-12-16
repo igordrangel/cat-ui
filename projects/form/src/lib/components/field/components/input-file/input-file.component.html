@@ -5,6 +5,7 @@
     *ngIf="control && config"
     [ngClass]="{invalid: control.invalid && control.touched}"
     (fileDropped)="emitFiles($event)">
+
     <input type='hidden' [formControl]="control"/>
     <input
       #inputElement
@@ -22,12 +23,18 @@
         ({{getSupportedExtensions()}})
       </span>
     </div>
+
     <div class="btn-group" role="group" [attr.aria-label]="config.label">
+      <button *ngIf="hasCsvModel()" type="button" class="btn btn-secondary" (click)="downloadCsvModel()">
+        <i class="fa-solid fa-file-csv mr-8"></i>
+        Baixar modelo
+      </button>
       <button type="button" class="btn btn-primary" (click)="inputElement.click()">
         <i *ngIf="config.icon" class="mr-8" [ngClass]="config.icon"></i>
         {{config.btnText ?? 'Escolha um arquivo...'}}
       </button>
     </div>
+
     <div class="files-content">
       <div
         class="file-content"
@@ -40,6 +47,7 @@
       </div>
     </div>
   </div>
+
   <cat-form-field-common-errors [control]="control" [config]="config">
     <ng-container specificErrors>
       <div *ngIf="control?.errors?.['fileInvalid']" class="invalid-feedback">

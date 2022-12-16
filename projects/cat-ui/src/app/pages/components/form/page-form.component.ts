@@ -1,5 +1,9 @@
 import { Component } from '@angular/core';
-import { CatFormBehavior, CatFormService } from '@cat-ui/form';
+import {
+  CatFileInterface,
+  CatFormBehavior,
+  CatFormService,
+} from '@cat-ui/form';
 import { Subject } from 'rxjs';
 import { PageFormService } from './page-form.service';
 import { nameValidator } from './validators/name.validator';
@@ -12,6 +16,38 @@ export class PageFormComponent {
   submit = new Subject<boolean>();
   config = this.formService
     .build()
+    .fieldset(
+      'Autopreencher funcionário por arquivo',
+      'autofillFormByFile',
+      (builder) =>
+        builder
+          .csv('importEmployee', (builder) =>
+            builder
+              .setModel({
+                filename: 'MODELO_IMPORTACAO_FUNCIONARIO',
+                model: { name: '', lastname: '' },
+              })
+              .onChange((data: CatFileInterface, behavior) => {
+                const employee = data?.csvContent?.[0];
+                if (employee) {
+                  behavior
+                    .setValues([
+                      {
+                        name: 'personData.name',
+                        value: employee['name'],
+                      },
+                      {
+                        name: 'personData.lastname',
+                        value: employee['lastname'],
+                      },
+                    ])
+                    .send();
+                }
+              })
+              .generate()
+          )
+          .generate()
+    )
     .fieldset('Dados Pessoais', 'personData', (builder) =>
       builder
         .text('Nome', 'name', (builder) =>
@@ -110,8 +146,8 @@ export class PageFormComponent {
         .text('Cidade', 'city', (builder) =>
           builder.grid(4).setRequired().setMaxLength(50).generate()
         )
-        .text('Estado', 'state', (builder) =>
-          builder.grid(3).setRequired().setMaxLength(2).generate()
+        .select('Estado', 'state', (builder) =>
+          builder.setOptions(this.pageFormService.getUFs()).grid(3).setRequired().generate()
         )
         .generate()
     )
@@ -169,7 +205,6 @@ export class PageFormComponent {
     .textarea('Descrição', 'description', (builder) =>
       builder.setMaxLength(1000).generate()
     )
-    .onChange((data) => console.log(data))
     .onSubmit((data) => console.log(data))
     .generate();
 

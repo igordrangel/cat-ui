@@ -6,13 +6,13 @@ import {
   OnChanges,
   OnDestroy,
   Output,
-  SimpleChanges
+  SimpleChanges,
 } from '@angular/core';
 import {
   CatFormBehaviorAsyncValidator,
   CatFormBehaviorSetValue,
   CatFormBehaviorValidator,
-  CatFormFieldConfig
+  CatFormFieldConfig,
 } from '../../builder/form.interface';
 import { FormBuilder, FormControl } from '@angular/forms';
 import {
@@ -20,13 +20,13 @@ import {
   debounceTime,
   skipWhile,
   Subject,
-  takeUntil
+  takeUntil,
 } from 'rxjs';
 
 @Component({
   selector: 'cat-form-field[fieldConfig]',
   templateUrl: 'field.component.html',
-  changeDetection: ChangeDetectionStrategy.OnPush
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class FieldComponent implements OnDestroy, OnChanges {
   @Input() fieldConfig?: CatFormFieldConfig;
@@ -113,8 +113,8 @@ export class FieldComponent implements OnDestroy, OnChanges {
     if (this.fieldConfig) {
       this.control = this.fb.control(
         {
-          value: this.fieldConfig.value,
-          disabled: this.fieldConfig.disabled ?? false
+          value: this.fieldConfig.value ?? null,
+          disabled: this.fieldConfig.disabled ?? false,
         },
         this.fieldConfig.validators,
         this.fieldConfig.asyncValidators
@@ -197,14 +197,14 @@ export class FieldComponent implements OnDestroy, OnChanges {
       this.changeValidators([
         {
           name: this.getFullFieldName(),
-          validators: this.fieldConfig.validators ?? []
-        }
+          validators: this.fieldConfig.validators ?? [],
+        },
       ]);
       this.changeAsyncValidators([
         {
           name: this.getFullFieldName(),
-          asyncValidators: this.fieldConfig.asyncValidators ?? []
-        }
+          asyncValidators: this.fieldConfig.asyncValidators ?? [],
+        },
       ]);
     }
   }
@@ -212,10 +212,10 @@ export class FieldComponent implements OnDestroy, OnChanges {
   private removeValidators() {
     if (this.fieldConfig) {
       this.changeValidators([
-        { name: this.getFullFieldName(), validators: [] }
+        { name: this.getFullFieldName(), validators: [] },
       ]);
       this.changeAsyncValidators([
-        { name: this.getFullFieldName(), asyncValidators: [] }
+        { name: this.getFullFieldName(), asyncValidators: [] },
       ]);
     }
   }

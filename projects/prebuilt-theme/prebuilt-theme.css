@@ -1,13 +1,13 @@
-@import '@fortawesome/fontawesome-free/css/all.min.css';
-@import 'bootstrap/dist/css/bootstrap.min.css';
-@import '@angular/material/prebuilt-themes/indigo-pink.css';
+@import "@fortawesome/fontawesome-free/css/all.min.css";
+@import "bootstrap/dist/css/bootstrap.min.css";
+@import "@angular/material/prebuilt-themes/indigo-pink.css";
 
 :root {
   --font-color: #616161;
   --light-font-color: #f1f1f1;
   --disable-color: #9a9a9a;
   --primary-color: #212121;
-  --primary-color-alpha: rgba(33, 33, 33, 0.3);
+  --primary-color-alpha: rgba(33, 33, 33, 0.2);
 
   --btn-icon-bg-default: #f1f1f1;
   --btn-icon-c-default: #212121;
@@ -210,7 +210,7 @@
 }
 
 /*#region [Grid]*/
-[class*='col-'] {
+[class*="col-"] {
   box-sizing: border-box;
   display: inline-block;
   padding: 2.5px;
@@ -270,11 +270,12 @@
 select option {
   padding: 10px;
 }
-input:disabled {
+input:disabled,
+select:disabled {
   border-style: dashed;
   background-color: rgba(0, 0, 0, 0.1);
 }
-.form-check-input[type='checkbox']:indeterminate,
+.form-check-input[type="checkbox"]:indeterminate,
 .form-check-input:checked {
   background-color: var(--primary-color);
   border-color: var(--primary-color);
