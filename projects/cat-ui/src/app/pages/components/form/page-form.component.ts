@@ -146,8 +146,12 @@ export class PageFormComponent {
         .text('Cidade', 'city', (builder) =>
           builder.grid(4).setRequired().setMaxLength(50).generate()
         )
-        .select('Estado', 'state', (builder) =>
-          builder.setOptions(this.pageFormService.getUFs()).grid(3).setRequired().generate()
+        .autocomplete('Estado', 'state', (builder) =>
+          builder
+            .setOptions(this.pageFormService.getUFs())
+            .grid(3)
+            .setRequired()
+            .generate()
         )
         .generate()
     )

@@ -71,5 +71,11 @@
       [control]="control"
       [config]="fieldConfig">
     </cat-field-select>
+
+    <cat-field-autocomplete
+      *ngIf="fieldConfig.type === 'autocomplete'"
+      [control]="control"
+      [config]="fieldConfig">
+    </cat-field-autocomplete>
   </ng-container>
 </ng-container>

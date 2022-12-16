@@ -11,6 +11,7 @@ import { FormRadioFactory } from './radio/form-radio.factory';
 import { FormFileFactory } from './file/form-file.factory';
 import { FormCsvFactory } from './csv/form-csv.factory';
 import { FormSelectFactory } from './select/form-select.factory';
+import { FormAutocompleteFactory } from './autocomplete/form-autocomplete.factory';
 
 export class FormFieldService {
   public text(label: string) {
@@ -63,5 +64,9 @@ export class FormFieldService {
 
   public select(label: string) {
     return new FormSelectFactory(label);
+  }
+
+  public autocomplete(label: string) {
+    return new FormAutocompleteFactory(label);
   }
 }

@@ -185,6 +185,15 @@ export class FormFactory<DataType> {
     return this;
   }
 
+  public autocomplete(
+    label: string,
+    name: string,
+    field: (builder: FormSelectFactory) => CatFormFieldOptions
+  ) {
+    this.field('autocomplete', label, name, field);
+    return this;
+  }
+
   public onChange(callback: (data: DataType) => void) {
     this.config.onChange = callback;
     return this;
@@ -247,6 +256,8 @@ export class FormFactory<DataType> {
         return fieldService.csv(label);
       case 'select':
         return fieldService.select(label);
+      case 'autocomplete':
+        return fieldService.autocomplete(label);
       default:
         throw new Error('Tipo de campo não suportado.');
     }
