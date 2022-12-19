@@ -1,17 +1,29 @@
 import { Observable } from 'rxjs';
 import { FormFieldInputBase } from '../form-field-input.base';
-import { CatFormListOptions, CatFormSelectOptions } from '../form.interface';
+import {
+  CatFormListOptions,
+  CatFormAutocompleteOptions,
+  CatFormAutocompleteAddOption,
+} from '../form.interface';
 
-export class FormAutocompleteFactory extends FormFieldInputBase<CatFormSelectOptions> {
+export class FormAutocompleteFactory extends FormFieldInputBase<CatFormAutocompleteOptions> {
   public setOptions(
-    options: CatFormListOptions[] | Observable<CatFormListOptions[]>
+    options:
+      | Observable<CatFormListOptions[]>
+      | ((filter: any) => Observable<CatFormListOptions[]>)
   ) {
-    this.config.options = Array.isArray(options)
-      ? new Observable((observe) => {
-          observe.next(options as []);
-          observe.complete();
-        })
-      : options;
+    this.config.options = options;
+    return this;
+  }
+
+  public setMultiple(multiple = true) {
+    this.config.multiple = multiple;
+    return this;
+  }
+
+  public setAddOption(options?: CatFormAutocompleteAddOption) {
+    this.config.add = true;
+    this.config.addOption = options;
     return this;
   }
 }

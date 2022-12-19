@@ -16,7 +16,7 @@ export abstract class FieldBase<FormFieldType, ElInputType extends HTMLElement>
   implements OnInit, OnDestroy
 {
   @Input() control?: FormControl;
-  @Input() config?: CatFormFieldConfig & FormFieldType;
+  @Input() fieldConfig?: CatFormFieldConfig & FormFieldType;
 
   @ViewChild('inputElement')
   elInput?: ElementRef<ElInputType>;
@@ -33,8 +33,8 @@ export abstract class FieldBase<FormFieldType, ElInputType extends HTMLElement>
     this.focus().then();
     this.customInit();
 
-    if (this.config && this.config.behavior) {
-      this.config.behavior.subject
+    if (this.fieldConfig && this.fieldConfig.behavior) {
+      this.fieldConfig.behavior.subject
         .pipe(takeUntil(this.destroySubscriptions$))
         .subscribe(() => {
           this.updateComponent$.next(true);
@@ -45,7 +45,7 @@ export abstract class FieldBase<FormFieldType, ElInputType extends HTMLElement>
   protected customInit() {}
 
   private async focus() {
-    if (this.config?.focus) {
+    if (this.fieldConfig?.focus) {
       while (!this.elInput) await delay(300);
       this.elInput?.nativeElement?.focus();
     }

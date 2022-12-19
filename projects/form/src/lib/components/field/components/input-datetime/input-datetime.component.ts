@@ -3,16 +3,16 @@ import { CatFormDatetimeOptions } from '../../../../builder/form.interface';
 import { FieldBase } from '../field.base';
 
 @Component({
-  selector: 'cat-field-datetime[control][config]',
+  selector: 'cat-field-datetime[control][fieldConfig]',
   templateUrl: './input-datetime.component.html',
-  styleUrls: ['../../field.component.css']
+  styleUrls: ['../../field.component.css'],
 })
 export class InputDatetimeComponent extends FieldBase<
   CatFormDatetimeOptions,
   HTMLInputElement
 > {
   public getFormatTypeDate() {
-    switch (this.config?.type) {
+    switch (this.fieldConfig?.type) {
       case 'date':
         return 'shortDate';
       case 'datetime-local':

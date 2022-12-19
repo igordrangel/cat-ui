@@ -1,14 +1,14 @@
-<cat-form-field-content *ngIf="updateComponent$ | async" [control]="control" [config]="config" [elInput]="elInput">
+<cat-form-field-content *ngIf="updateComponent$ | async" [control]="control" [config]="fieldConfig" [elInput]="elInput">
   <ng-container field>
     <input
       #inputElement
-      *ngIf="control && config"
-      [id]="config.name"
+      *ngIf="control && fieldConfig"
+      [id]="fieldConfig.name"
       [formControl]="control"
-      [attr.aria-label]="config.label"
-      [required]="config.required ?? false"
-      [min]="config.min ?? null"
-      [max]="config.max ?? null"
+      [attr.aria-label]="fieldConfig.label"
+      [required]="fieldConfig.required ?? false"
+      [min]="fieldConfig.min ?? null"
+      [max]="fieldConfig.max ?? null"
       [ngClass]="{'is-invalid': control.invalid && !control.untouched && !control.disabled}"
       autocomplete="off"
       class="form-control form-control-sm"
@@ -19,11 +19,11 @@
   <ng-container specificErrors>
     <div *ngIf="control?.hasError('min')" class="invalid-feedback">
       <i class="fa-solid fa-triangle-exclamation"></i>
-      O valor deve ser no mínimo {{config?.min}}.
+      O valor deve ser no mínimo {{fieldConfig?.min}}.
     </div>
     <div *ngIf="control?.hasError('max')" class="invalid-feedback">
       <i class="fa-solid fa-triangle-exclamation"></i>
-      O valor deve ser no máximo {{config?.max}}.
+      O valor deve ser no máximo {{fieldConfig?.max}}.
     </div>
   </ng-container>
 </cat-form-field-content>

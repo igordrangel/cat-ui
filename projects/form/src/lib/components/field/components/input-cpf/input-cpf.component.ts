@@ -3,9 +3,9 @@ import { CatFormTextOptions } from '../../../../builder/form.interface';
 import { FieldBase } from '../field.base';
 
 @Component({
-  selector: 'cat-field-cpf[control][config]',
+  selector: 'cat-field-cpf[control][fieldConfig]',
   templateUrl: './input-cpf.component.html',
-  styleUrls: ['../../field.component.css']
+  styleUrls: ['../../field.component.css'],
 })
 export class InputCpfComponent extends FieldBase<
   CatFormTextOptions,

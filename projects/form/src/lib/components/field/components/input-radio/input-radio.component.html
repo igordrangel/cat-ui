@@ -1,15 +1,15 @@
 <div *ngIf="updateComponent$ | async">
-  <ng-container *ngIf="control && config">
-    <div *ngFor="let option of config.options;let i = index" class="form-check form-check-inline">
+  <ng-container *ngIf="control && fieldConfig">
+    <div *ngFor="let option of fieldConfig.options;let i = index" class="form-check form-check-inline">
       <input
-        [id]="config.name + i"
-        [attr.aria-label]="config.label"
-        [name]="config.name"
+        [id]="fieldConfig.name + i"
+        [attr.aria-label]="fieldConfig.label"
+        [name]="fieldConfig.name"
         [value]="option.value"
         [formControl]="control"
         class="form-check-input"
         type="radio">
-      <label class="form-check-label" [attr.for]="config.name + i">
+      <label class="form-check-label" [attr.for]="fieldConfig.name + i">
         {{option?.name}}
       </label>
     </div>

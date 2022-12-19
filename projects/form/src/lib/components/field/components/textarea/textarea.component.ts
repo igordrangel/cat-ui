@@ -3,7 +3,7 @@ import { FieldBase } from '../field.base';
 import { CatFormTextareaOptions } from '../../../../builder/form.interface';
 
 @Component({
-  selector: 'cat-field-textarea[control][config]',
+  selector: 'cat-field-textarea[control][fieldConfig]',
   templateUrl: 'textarea.component.html',
   styleUrls: ['textarea.component.css', '../../field.component.css'],
 })
@@ -18,8 +18,8 @@ export class TextareaComponent extends FieldBase<
 
     if (textarea) {
       const rows = this.getQtyRows();
-      const minRows = this.config?.minRows ?? this.defaultMinRows;
-      const maxRows = this.config?.maxRows ?? 0;
+      const minRows = this.fieldConfig?.minRows ?? this.defaultMinRows;
+      const maxRows = this.fieldConfig?.maxRows ?? 0;
 
       if (rows <= minRows) {
         textarea.rows = minRows;

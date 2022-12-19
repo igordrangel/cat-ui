@@ -19,6 +19,7 @@ import { FormCheckboxFactory } from './checkbox/form-checkbox.factory';
 import { FormRadioFactory } from './radio/form-radio.factory';
 import { FormFileFactory } from './file/form-file.factory';
 import { FormCsvFactory } from './csv/form-csv.factory';
+import { FormAutocompleteFactory } from './autocomplete/form-autocomplete.factory';
 
 export class FormFactory<DataType> {
   private readonly config: CatFormConfig<DataType>;
@@ -188,7 +189,7 @@ export class FormFactory<DataType> {
   public autocomplete(
     label: string,
     name: string,
-    field: (builder: FormSelectFactory) => CatFormFieldOptions
+    field: (builder: FormAutocompleteFactory) => CatFormFieldOptions
   ) {
     this.field('autocomplete', label, name, field);
     return this;

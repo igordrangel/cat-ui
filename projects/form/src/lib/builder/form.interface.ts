@@ -1,6 +1,7 @@
 import { AsyncValidatorFn, ValidatorFn } from '@angular/forms';
 import { Observable } from 'rxjs';
 import { CatFormBehavior } from '../common/cat-form-behavior';
+import { Type } from '@angular/core';
 
 export interface CatFormConfig<DataType> {
   fieldset?: CatFormFieldsetConfig[];
@@ -71,6 +72,19 @@ export interface CatFormDatetimeOptions extends CatFormFieldOptions {
 }
 export interface CatFormSelectOptions extends CatFormFieldOptions {
   options?: Observable<CatFormListOptions[]>;
+  multiple?: boolean;
+}
+export interface CatFormAutocompleteOptions extends CatFormFieldOptions {
+  options?:
+    | ((filter?: any) => Observable<CatFormListOptions[]>)
+    | Observable<CatFormListOptions[]>;
+  multiple?: boolean;
+  add?: boolean;
+  addOption?: CatFormAutocompleteAddOption;
+}
+export interface CatFormAutocompleteAddOption {
+  persistService?: (value: string) => Observable<CatFormListOptions>;
+  customTemplate?: Type<any>;
 }
 export interface CatFormFileOptions extends CatFormFieldOptions {
   icon?: string;

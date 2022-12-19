@@ -4,7 +4,7 @@ import {
   CatFormBehavior,
   CatFormService,
 } from '@cat-ui/form';
-import { Subject } from 'rxjs';
+import { Observable, Subject } from 'rxjs';
 import { PageFormService } from './page-form.service';
 import { nameValidator } from './validators/name.validator';
 
@@ -151,6 +151,7 @@ export class PageFormComponent {
             .setOptions(this.pageFormService.getUFs())
             .grid(3)
             .setRequired()
+            .onChange((value) => console.log(value))
             .generate()
         )
         .generate()

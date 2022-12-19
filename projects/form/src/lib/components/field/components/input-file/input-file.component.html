@@ -2,7 +2,7 @@
   <div
     class="file-drag-drop-area"
     cat-drag-drop
-    *ngIf="control && config"
+    *ngIf="control && fieldConfig"
     [ngClass]="{invalid: control.invalid && control.touched}"
     (fileDropped)="emitFiles($event)">
 
@@ -11,27 +11,27 @@
       #inputElement
       type='file'
       class='d-none'
-      [multiple]="config.multiple"
+      [multiple]="fieldConfig.multiple"
       [accept]="getSupportedExtensions()"
       (change)="emitFiles(inputElement.files)"/>
 
     <div class="placeholder-content">
       <i class="fa-solid fa-file-circle-plus"></i>
       <h2>Arreste e Solte aqui ou clique no botão abaixo</h2>
-      <span *ngIf="config.accept" class="extensions-accepted">
+      <span *ngIf="fieldConfig.accept" class="extensions-accepted">
         <strong>Suporta apenas os formatos</strong>
         ({{getSupportedExtensions()}})
       </span>
     </div>
 
-    <div class="btn-group" role="group" [attr.aria-label]="config.label">
+    <div class="btn-group" role="group" [attr.aria-label]="fieldConfig.label">
       <button *ngIf="hasCsvModel()" type="button" class="btn btn-secondary" (click)="downloadCsvModel()">
         <i class="fa-solid fa-file-csv mr-8"></i>
         Baixar modelo
       </button>
       <button type="button" class="btn btn-primary" (click)="inputElement.click()">
-        <i *ngIf="config.icon" class="mr-8" [ngClass]="config.icon"></i>
-        {{config.btnText ?? 'Escolha um arquivo...'}}
+        <i *ngIf="fieldConfig.icon" class="mr-8" [ngClass]="fieldConfig.icon"></i>
+        {{fieldConfig.btnText ?? 'Escolha um arquivo...'}}
       </button>
     </div>
 
@@ -48,7 +48,7 @@
     </div>
   </div>
 
-  <cat-form-field-common-errors [control]="control" [config]="config">
+  <cat-form-field-common-errors [control]="control" [config]="fieldConfig">
     <ng-container specificErrors>
       <div *ngIf="control?.errors?.['fileInvalid']" class="invalid-feedback">
         <i class="fa-solid fa-triangle-exclamation"></i>

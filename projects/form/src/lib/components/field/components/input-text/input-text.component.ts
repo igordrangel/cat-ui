@@ -3,7 +3,7 @@ import { FieldBase } from '../field.base';
 import { CatFormTextOptions } from '../../../../builder/form.interface';
 
 @Component({
-  selector: 'cat-field-text[control][config]',
+  selector: 'cat-field-text[control][fieldConfig]',
   templateUrl: 'input-text.component.html',
   styleUrls: ['../../field.component.css'],
 })

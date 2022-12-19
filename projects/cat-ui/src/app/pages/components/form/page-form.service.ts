@@ -24,7 +24,7 @@ export class PageFormService {
         }
       )
       .pipe(
-        delay(5000),
+        delay(2000),
         map((ufs) =>
           ufs.map((uf) => {
             return {

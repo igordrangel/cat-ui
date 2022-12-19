@@ -9,7 +9,7 @@ import { koala } from '@koalarx/utils';
 import { CatCsvService } from '@cat-ui/core';
 
 @Component({
-  selector: 'cat-field-file[control][config]',
+  selector: 'cat-field-file[control][fieldConfig]',
   templateUrl: './input-file.component.html',
   styleUrls: ['../../field.component.css', './input-file.component.css'],
 })
@@ -27,11 +27,12 @@ export class InputFileComponent extends FieldBase<
   public async emitFiles(files: FileList | null) {
     if (files) {
       this.errorMultipleNotAllowed =
-        !this.config?.multiple && (this.files.length > 0 || files.length > 1);
+        !this.fieldConfig?.multiple &&
+        (this.files.length > 0 || files.length > 1);
 
       if (
         !this.errorMultipleNotAllowed ||
-        (this.config?.multiple && files?.length > 0)
+        (this.fieldConfig?.multiple && files?.length > 0)
       ) {
         for (let f = 0; f <= files.length; f++) {
           const file = files.item(f);
@@ -50,7 +51,7 @@ export class InputFileComponent extends FieldBase<
           }
         }
         this.control?.setValue(
-          this.config?.multiple ? this.files : this.files?.[0]
+          this.fieldConfig?.multiple ? this.files : this.files?.[0]
         );
       }
 
@@ -62,17 +63,17 @@ export class InputFileComponent extends FieldBase<
   }
 
   public getSupportedExtensions() {
-    return koala(this.config?.accept ?? [])
+    return koala(this.fieldConfig?.accept ?? [])
       .array<string>()
       .toString()
       .getValue();
   }
 
   public hasValidExtension(filename: string) {
-    if (this.config?.accept) {
+    if (this.fieldConfig?.accept) {
       const fileExtension = filename.substring(filename.lastIndexOf('.'));
       return (
-        this.config.accept
+        this.fieldConfig.accept
           .map((ext) => ext.toLowerCase())
           .indexOf(fileExtension.toLowerCase()) >= 0
       );
@@ -87,11 +88,11 @@ export class InputFileComponent extends FieldBase<
   }
 
   public hasCsvModel() {
-    return !!(this.config as CatFormCsvOptions).csvModel;
+    return !!(this.fieldConfig as CatFormCsvOptions).csvModel;
   }
 
   public downloadCsvModel() {
-    const csvModel = (this.config as CatFormCsvOptions).csvModel;
+    const csvModel = (this.fieldConfig as CatFormCsvOptions).csvModel;
     if (csvModel)
       this.csvService.convertJsonToCsv([csvModel.model], csvModel.filename);
   }
@@ -114,7 +115,7 @@ export class InputFileComponent extends FieldBase<
         base64: fileSplit[1],
       };
 
-      if (this.config?.type === 'csv') {
+      if (this.fieldConfig?.type === 'csv') {
         fileResult.csvContent = this.csvService.convertCsvToJson(fileResult);
       }
 
