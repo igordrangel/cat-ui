@@ -4,7 +4,7 @@ import {
   CatFormBehavior,
   CatFormService,
 } from '@cat-ui/form';
-import { Observable, Subject } from 'rxjs';
+import { Subject } from 'rxjs';
 import { PageFormService } from './page-form.service';
 import { nameValidator } from './validators/name.validator';
 

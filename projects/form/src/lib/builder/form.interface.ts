@@ -145,5 +145,4 @@ export type CatFormFieldType =
   | 'file'
   | 'csv'
   | 'select'
-  | 'autocomplete'
-  | 'map';
+  | 'autocomplete';
