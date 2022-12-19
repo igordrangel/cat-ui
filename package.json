@@ -10,7 +10,11 @@
     "watch": "ng build --watch --configuration development",
     "test": "ng test",
     "analize-bundle": "ng build cat-ui --stats-json && webpack-bundle-analyzer dist/cat-ui/stats.json",
-    "lint": "npx eslint 'src/**/*.{js,jsx,ts,tsx,html,css,scss}' --quiet --fix"
+    "postversion": "git push && git push --tags",
+    "deploy": "npm run postversion",
+    "deploy:hotfix": "npm version patch && npm run deploy",
+    "deploy:feature": "npm version minor && npm run deploy",
+    "deploy:release": "npm version major && npm run deploy"
   },
   "private": true,
   "dependencies": {
