@@ -1,6 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { CatFormListOptions } from '@cat-ui/form';
+import { CatFormListOptions } from '@catrx/ui/form';
 import { delay, first, map } from 'rxjs/operators';
 
 @Injectable({

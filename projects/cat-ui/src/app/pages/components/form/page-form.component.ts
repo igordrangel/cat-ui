@@ -3,7 +3,7 @@ import {
   CatFileInterface,
   CatFormBehavior,
   CatFormService,
-} from '@cat-ui/form';
+} from '@catrx/ui/form';
 import { Subject } from 'rxjs';
 import { PageFormService } from './page-form.service';
 import { nameValidator } from './validators/name.validator';

@@ -3,31 +3,31 @@
   "compileOnSave": false,
   "compilerOptions": {
     "paths": {
-      "@cat-ui/core": [
+      "@catrx/ui/core": [
         "dist/core",
         "projects/core/src"
       ],
-      "@cat-ui/datatable": [
+      "@catrx/ui/datatable": [
         "dist/datatable",
         "projects/datatable/src"
       ],
-      "@cat-ui/dynamic-component": [
+      "@catrx/ui/dynamic-component": [
         "dist/dynamic-component",
         "projects/dynamic-component/src"
       ],
-      "@cat-ui/palette-colors": [
+      "@catrx/ui/palette-colors": [
         "dist/palette-colors",
         "projects/palette-colors/src"
       ],
-      "@cat-ui/icon-button": [
+      "@catrx/ui/icon-button": [
         "dist/icon-button",
         "projects/icon-button/src"
       ],
-      "@cat-ui/loader": [
+      "@catrx/ui/loader": [
         "dist/loader",
         "projects/loader/src"
       ],
-      "@cat-ui/form": [
+      "@catrx/ui/form": [
         "dist/form",
         "projects/form/src"
       ]

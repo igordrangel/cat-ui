@@ -18,7 +18,7 @@ for (const [index, lib] of libs.entries()) {
 }
 
 fs.writeFileSync('dist/package.json', JSON.stringify({
-  "name": "@cat/ui",
+  "name": "@catrx/ui",
   "version": currentVersion,
   "description": config.description,
   "repository": {
@@ -32,7 +32,7 @@ fs.writeFileSync('dist/package.json', JSON.stringify({
     "url": "https://github.com/igordrangel/cat-ui/issues"
   },
   "homepage": "https://github.com/igordrangel/cat-ui#readme",
-  "types": "./koalarx-ui.d.ts",
+  "types": "./catrx-ui.d.ts",
   "peerDependencies": {
     "@angular/cli": ">=15.0.0",
     "@angular/common": ">=15.0.0",
