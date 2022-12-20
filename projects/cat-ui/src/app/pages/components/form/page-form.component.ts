@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
+import { CatFileInterface } from '@catrx/ui/core';
 import {
-  CatFileInterface,
   CatFormBehavior,
   CatFormService,
 } from '@catrx/ui/form';
