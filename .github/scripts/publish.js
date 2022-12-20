@@ -7,7 +7,9 @@ const libs = [
   'core',
   'dynamic-component',
   'icon-button',
+  'loader',
   'datatable',
+  'form'
 ];
 
 for (const [index, lib] of libs.entries()) {
@@ -32,19 +34,22 @@ fs.writeFileSync('dist/package.json', JSON.stringify({
   "homepage": "https://github.com/igordrangel/cat-ui#readme",
   "types": "./koalarx-ui.d.ts",
   "peerDependencies": {
-    "@angular/common": ">=14.1.3",
-    "@angular/core": ">=14.1.3",
-    "@angular/forms": ">=14.1.3",
-    "@angular/material": ">=14.1.3",
-    "@angular/cdk": ">=14.1.3"
+    "@angular/cli": ">=15.0.0",
+    "@angular/common": ">=15.0.0",
+    "@angular/core": ">=15.0.0"
   },
   "dependencies": {
-    "tslib": "^2.2.0",
-    "@angular/material": "^14.1.0",
+    "@angular/material": "^15.0.3",
     "@fortawesome/fontawesome-free": "^6.2.1",
-    "bootstrap": "^5.2.3",
     "@koalarx/utils": "^1.0.101",
-    "rxjs": "~7.5.0"
+    "@ng-select/ng-select": "^10.0.1",
+    "bootstrap": "^5.2.3",
+    "ng2-search-filter": "^0.5.1",
+    "ngx-mask": "^14.2.4",
+    "ngx-pagination": "^6.0.3",
+    "ngx-papaparse": "^6.0.2",
+    "rxjs": "~7.5.0",
+    "tslib": "^2.3.0",
   }
 }), 'utf8');
 fs.writeFileSync('dist/README.md', fs.readFileSync('README.md').toString(), 'utf8');
