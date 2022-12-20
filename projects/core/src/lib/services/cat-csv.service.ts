@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
-import { CatFileInterface } from '@cat-ui/form';
 import { Papa } from 'ngx-papaparse';
 import { UnparseData } from 'ngx-papaparse/lib/interfaces/unparse-data';
+import { CatFileInterface } from '../interfaces/cat-file.interface';
 import { CatObjectService } from './cat-object.service';
 
 @Injectable({ providedIn: 'any' })

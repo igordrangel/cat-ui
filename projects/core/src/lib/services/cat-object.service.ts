@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { CatFileInterface } from '@cat-ui/form';
+import { CatFileInterface } from '../interfaces/cat-file.interface';
 
 @Injectable({ providedIn: 'any' })
 export class CatObjectService {

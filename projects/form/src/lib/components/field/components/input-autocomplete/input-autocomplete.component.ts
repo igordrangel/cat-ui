@@ -1,6 +1,5 @@
 import { Component } from '@angular/core';
 import { FieldBase } from '../field.base';
-import { CatDynamicComponent } from '../../../../../../../dynamic-component/src/lib/cat-dynamic-component';
 import {
   CatFormListOptions,
   CatFormAutocompleteOptions,
@@ -12,6 +11,7 @@ import {
   debounceTime,
   Subject,
 } from 'rxjs';
+import { CatDynamicComponent } from '@cat-ui/dynamic-component';
 
 @Component({
   selector: 'cat-field-autocomplete[control][fieldConfig]',

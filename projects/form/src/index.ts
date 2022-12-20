@@ -5,8 +5,6 @@
 export * from './lib/builder/form.interface';
 export * from './lib/common/cat-form-behavior';
 
-export * from './lib/components/field/components/input-file/cat-file.interface';
-
 export * from './lib/validators/cat-cnpj.validator';
 export * from './lib/validators/cat-cpf.validator';
 export * from './lib/validators/cat-date-max.validator';
