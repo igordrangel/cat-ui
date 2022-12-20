@@ -1,5 +1,5 @@
 {
-  "name": "@cat-ui/form",
+  "name": "@catrx/ui/form",
   "version": "0.0.1",
   "peerDependencies": {
     "@angular/common": "^14.1.0",

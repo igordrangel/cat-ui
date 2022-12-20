@@ -11,7 +11,7 @@ import {
   debounceTime,
   Subject,
 } from 'rxjs';
-import { CatDynamicComponent } from '@cat-ui/dynamic-component';
+import { CatDynamicComponent } from '@catrx/ui/dynamic-component';
 
 @Component({
   selector: 'cat-field-autocomplete[control][fieldConfig]',

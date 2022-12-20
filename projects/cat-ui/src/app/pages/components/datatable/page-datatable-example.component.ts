@@ -1,5 +1,5 @@
 import { Component } from "@angular/core";
-import { CatDatatableService } from "@cat-ui/datatable";
+import { CatDatatableService } from "@catrx/ui/datatable";
 import { PageDatatableExampleService } from "./page-datatable-example.service";
 
 @Component({

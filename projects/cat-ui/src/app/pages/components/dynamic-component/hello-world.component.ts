@@ -1,5 +1,5 @@
 import { Component } from "@angular/core";
-import { CatDynamicComponentDataInterface } from "@cat-ui/dynamic-component";
+import { CatDynamicComponentDataInterface } from "@catrx/ui/dynamic-component";
 
 @Component({
   templateUrl: 'hello-world.component.html'

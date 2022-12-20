@@ -5,7 +5,7 @@ import {
   DatatableTypeDataList
 } from "./cat-datatable.interface";
 import { Observable } from "rxjs";
-import { CatDynamicComponent } from "@cat-ui/dynamic-component";
+import { CatDynamicComponent } from "@catrx/ui/dynamic-component";
 
 export class DatatableFactory<DataType> {
   private config: DatatableConfig<DataType> = {

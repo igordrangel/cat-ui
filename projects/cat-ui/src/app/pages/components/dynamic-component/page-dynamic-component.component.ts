@@ -1,5 +1,5 @@
 import { Component, OnInit } from "@angular/core";
-import { CatDynamicComponent } from "@cat-ui/dynamic-component";
+import { CatDynamicComponent } from "@catrx/ui/dynamic-component";
 import { HelloWorldComponent } from "./hello-world.component";
 
 @Component({
