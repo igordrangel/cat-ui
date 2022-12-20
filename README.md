@@ -1,5 +1,5 @@
-# Cat UI - A Design System Angular
-> Cat UI is a Design System developed in Angular whose objective is to facilitate and make your development faster and simpler, making this framework your greatest ally.
+# Cat UI - Um Design System Angular
+> Cat UI é um Design System para projetos Angular, onde seu maior objetivo é abstrair ao máximo a criação de sistemas, permitindo mais produtividade.
 
 ## Install
 ```bash

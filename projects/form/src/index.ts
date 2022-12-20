@@ -12,6 +12,7 @@ export * from './lib/validators/cat-date-min.validator';
 export * from './lib/validators/cat-file.validator';
 export * from './lib/validators/cat-url.validator';
 
+export * from './lib/cat-form-validator-response.factory';
 export * from './lib/cat-form.service';
 export * from './lib/form.component';
 export * from './lib/cat-form.module';
