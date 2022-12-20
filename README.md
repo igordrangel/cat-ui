@@ -3,7 +3,7 @@
 
 ## Install
 ```bash
-npm i cat-ui
+npm i @catrx/ui
 ```
 
 ## Usage
