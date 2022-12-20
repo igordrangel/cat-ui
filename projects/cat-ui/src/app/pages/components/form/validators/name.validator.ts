@@ -1,5 +1,5 @@
 import { AbstractControl } from "@angular/forms";
-import { CatFormValidatorResponseFactory } from "../../../../../../../form/src/lib/cat-form-validator-response.factory";
+import { CatFormValidatorResponseFactory } from "@catrx/ui/form";
 
 export function nameValidator(control: AbstractControl) {
   if (!Number.isNaN(parseInt(control.value))) {
