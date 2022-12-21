@@ -1,0 +1,35 @@
+<main [ngClass]="themeActive$ | async">
+  <aside *ngIf="sideMenuOptions" [ngClass]="{show: menuCollapsed$ | async}">
+    <ng-container>
+      <button type="button" class="btn-menu-collapse" (click)="collapseMenu()">
+        <i *ngIf="!(menuCollapsed$ | async)" class="fa-solid fa-chevron-right"></i>
+        <i *ngIf="menuCollapsed$ | async" class="fa-solid fa-chevron-left"></i>
+      </button>
+
+      <img
+        class="logotype"
+        [src]="(themeActive$ | async) === 'dark' && logotypeImageNegativeSource
+          ? logotypeImageNegativeSource
+          : logotypeImageSource"
+        alt="Logotipo"/>
+
+      <cat-menu></cat-menu>
+    </ng-container>
+    <div class="space"></div>
+    <div class="btn-group">
+      <button type="button" *ngIf="darkMode && (themeActive$ | async) as themeActive" (click)="switchTheme()">
+        <i *ngIf="themeActive === 'light'" class="fa-solid fa-moon"></i>
+        <i *ngIf="themeActive === 'dark'" class="fa-solid fa-sun"></i>
+      </button>
+      <button type="button">
+        <i class="fa-solid fa-bell"></i>
+      </button>
+      <button type="button">
+        <i class="fa-solid fa-arrow-right-from-bracket"></i>
+      </button>
+    </div>
+  </aside>
+  <section>
+    <ng-content select="[router-container]"></ng-content>
+  </section>
+</main>

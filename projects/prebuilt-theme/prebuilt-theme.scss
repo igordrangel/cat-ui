@@ -1,9 +1,14 @@
 @import "@fortawesome/fontawesome-free/css/all.min.css";
-@import "bootstrap/dist/css/bootstrap.min.css";
+@import "bootstrap/scss/bootstrap.scss";
 @import "@angular/material/prebuilt-themes/indigo-pink.css";
 @import "@ng-select/ng-select/themes/ant.design.theme.css";
 
-:root {
+$checkbox-radio-icon-color-dark: '%23212121';
+$checkbox-radio-icon-color-light: '%23f1f1f1';
+
+:root,
+main {
+  --bg-body: #fff;
   --font-color: #616161;
   --light-font-color: #f1f1f1;
   --disable-color: #9a9a9a;
@@ -28,25 +33,71 @@
 
   --c-tag: #f1f1f1;
   --bg-tag: #212121;
+
+  --btn-primary-color-alpha-hover: rgba(33, 33, 33, 0.2);
+  --btn-primary-color-alpha-active: rgba(33, 33, 33, 0.4);
+
+  --fieldset-border-color: rgba(0, 0, 0, 0.1);
+  --fieldset-legend-color: rgba(0, 0, 0, 0.8);
+
+  --bg-select-option-hover-active: rgba(0, 0, 0, 0.1);
+}
+
+main.dark {
+  --bg-body: #212121;
+  --font-color: #f1f1f1;
+  --light-font-color: #f1f1f1;
+  --disable-color: #9a9a9a;
+  --primary-color: #f1f1f1;
+  --primary-color-alpha: rgba(255, 255, 255, 0.2);
+
+  --btn-icon-bg-default: #212121;
+  --btn-icon-c-default: #f1f1f1;
+  --btn-icon-bg-primary: #1565c0;
+  --btn-icon-c-primary: #f1f1f1;
+  --btn-icon-bg-warning: #ffb300;
+  --btn-icon-c-warning: #ffecb3;
+  --btn-icon-bg-danger: #c62828;
+  --btn-icon-c-danger: #ffcdd2;
+
+  --spinner-width: 1.5rem;
+  --spinner-height: 1.5rem;
+
+  --c-form-valid-field: #1976d2;
+  --c-form-invalid-field: #d32f2f;
+  --bg-form-invalid-field: rgba(255, 0, 0, 0.2);
+
+  --c-tag: #212121;
+  --bg-tag: #f1f1f1;
+
+  --btn-primary-color-alpha-hover: rgba(255, 255, 255, 0.2);
+  --btn-primary-color-alpha-active: rgba(255, 255, 255, 0.4);
+
+  --fieldset-border-color: rgba(255, 255, 255, 0.4);
+  --fieldset-legend-color: rgba(255, 255, 255, 0.6);
+
+  --bg-select-option-hover-active: rgba(0, 0, 0, 0.2);
 }
 
 /*#region [GERAL] */
 * {
   font-family: OpenSans, sans-serif;
+  background-color: transparent;
+  transition: .2s;
 }
 
 @font-face {
   font-family: OpenSans;
-  src: url(projects/prebuilt-theme/fonts/OpenSans/OpenSans-Light.woff),
-    url(projects/prebuilt-theme/fonts/OpenSans/OpenSans-LightItalic.woff),
-    url(projects/prebuilt-theme/fonts/OpenSans/OpenSans-Medium.woff),
-    url(projects/prebuilt-theme/fonts/OpenSans/OpenSans-MediumItalic.woff),
-    url(projects/prebuilt-theme/fonts/OpenSans/OpenSans-SemiBold.woff),
-    url(projects/prebuilt-theme/fonts/OpenSans/OpenSans-SemiBoldItalic.woff),
-    url(projects/prebuilt-theme/fonts/OpenSans/OpenSans-Bold.woff),
-    url(projects/prebuilt-theme/fonts/OpenSans/OpenSans-BoldItalic.woff),
-    url(projects/prebuilt-theme/fonts/OpenSans/OpenSans-ExtraBold.woff),
-    url(projects/prebuilt-theme/fonts/OpenSans/OpenSans-ExtraBoldItalic.woff);
+  src: url(./fonts/OpenSans/OpenSans-Light.woff),
+    url(./fonts/OpenSans/OpenSans-LightItalic.woff),
+    url(./fonts/OpenSans/OpenSans-Medium.woff),
+    url(./fonts/OpenSans/OpenSans-MediumItalic.woff),
+    url(./fonts/OpenSans/OpenSans-SemiBold.woff),
+    url(./fonts/OpenSans/OpenSans-SemiBoldItalic.woff),
+    url(./fonts/OpenSans/OpenSans-Bold.woff),
+    url(./fonts/OpenSans/OpenSans-BoldItalic.woff),
+    url(./fonts/OpenSans/OpenSans-ExtraBold.woff),
+    url(./fonts/OpenSans/OpenSans-ExtraBoldItalic.woff);
 }
 
 .p-relative {
@@ -272,8 +323,10 @@
 }
 /*#endregion*/
 /*#region [Forms] */
-select option {
-  padding: 10px;
+input,select,textarea {background-color: var(--bg-body)!important;color: var(--font-color)!important;}
+.dark input {color-scheme: dark;}
+.ng-select .ng-select-container {
+  background-color: var(--bg-body)!important;
 }
 .ng-select.is-invalid .ng-select-container {
   border-color: #dc3545;
@@ -284,9 +337,19 @@ select option {
   background-size: calc(0.75em + 0.375rem) calc(0.75em + 0.375rem);
   transition: none;
 }
+.ng-dropdown-panel {background-color: var(--bg-body);}
 .ng-select .ng-arrow-wrapper .ng-arrow {
   width: 8px !important;
   height: 8px !important;
+  color: var(--font-color);
+}
+.ng-dropdown-panel .ng-dropdown-panel-items .ng-option {
+  background-color: var(--bg-body);
+  color: var(--font-color);
+}
+.ng-dropdown-panel .ng-dropdown-panel-items .ng-option.ng-option-marked {
+  background-color: var(--bg-select-option-hover-active);
+  color: var(--font-color);
 }
 .ng-select .ng-clear-wrapper {
   cursor: pointer;
@@ -321,12 +384,19 @@ select option {
 input:disabled,
 select:disabled {
   border-style: dashed;
-  background-color: rgba(0, 0, 0, 0.1);
+  background-color: var(--disable-color);
 }
+.form-check-input {border-color: var(--font-color);}
 .form-check-input[type="checkbox"]:indeterminate,
 .form-check-input:checked {
-  background-color: var(--primary-color);
-  border-color: var(--primary-color);
+  background-color: var(--font-color)!important;
+  border-color: var(--font-color)!important;
+}
+.dark .form-check-input:checked[type="checkbox"] {
+  background-image: url("data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 20 20'><path fill='none' stroke='#{$checkbox-radio-icon-color-dark}' stroke-linecap='round' stroke-linejoin='round' stroke-width='3' d='m6 10 3 3 6-6'/></svg>")!important;
+}
+.dark .form-check-input:checked[type="radio"] {
+  background-image: url("data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='-4 -4 8 8'><circle r='2' fill='#{$checkbox-radio-icon-color-dark}'/></svg>");
 }
 .form-check-input:focus {
   box-shadow: 0 0 0 0.25rem var(--primary-color-alpha);

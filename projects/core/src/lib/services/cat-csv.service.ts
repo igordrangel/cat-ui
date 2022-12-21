@@ -2,14 +2,14 @@ import { Injectable } from '@angular/core';
 import { Papa } from 'ngx-papaparse';
 import { UnparseData } from 'ngx-papaparse/lib/interfaces/unparse-data';
 import { CatFileInterface } from '../interfaces/cat-file.interface';
-import { CatObjectService } from './cat-object.service';
+import { CatFileService } from './cat-file.service';
 
 @Injectable({ providedIn: 'any' })
 export class CatCsvService {
-  constructor(private papa: Papa, private objectService: CatObjectService) {}
+  constructor(private papa: Papa, private fileService: CatFileService) {}
 
   public convertCsvToJson(file: CatFileInterface) {
-    const csvContent = this.objectService.getContentOnFile(file);
+    const csvContent = this.fileService.getContentOnFile(file);
     return this.papa.parse(csvContent, {
       header: true,
       delimiter: ';',

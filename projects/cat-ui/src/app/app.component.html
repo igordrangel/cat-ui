@@ -1,1 +1,9 @@
-<router-outlet></router-outlet>
+<cat-app-container
+  logotypeImageSource="../assets/logotype.svg"
+  logotypeImageNegativeSource="../assets/logotype-negative.svg"
+  [darkMode]="true"
+  [sideMenuOptions]="sidebarOptions">
+  <ng-container router-container>
+    <router-outlet></router-outlet>
+  </ng-container>
+</cat-app-container>
