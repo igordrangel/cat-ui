@@ -126,7 +126,8 @@
               "@koalarx/utils/operators/delay",
               "@koalarx/utils/operators/string",
               "papaparse/papaparse.min.js",
-              "b64-to-blob"
+              "b64-to-blob",
+              "jwt-encode"
             ]
           },
           "configurations": {

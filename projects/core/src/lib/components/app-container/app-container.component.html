@@ -1,35 +1,83 @@
 <main [ngClass]="themeActive$ | async">
-  <aside *ngIf="sideMenuOptions" [ngClass]="{show: menuCollapsed$ | async}">
-    <ng-container>
-      <button type="button" class="btn-menu-collapse" (click)="collapseMenu()">
-        <i *ngIf="!(menuCollapsed$ | async)" class="fa-solid fa-chevron-right"></i>
-        <i *ngIf="menuCollapsed$ | async" class="fa-solid fa-chevron-left"></i>
-      </button>
+  <ng-container *ngIf="logged$ | async else loginTemplate">
+    <aside
+      #asideElement
+      [ngClass]="{show: menuCollapsed$ | async}"
+      (mouseenter)="asideElement.classList.add('show')"
+      (mouseleave)="!(menuCollapsed$.getValue()) ? asideElement.classList.remove('show') : null">
+      <ng-container>
+        <button type="button" class="btn-menu-collapse" (click)="collapseMenu()">
+          <i *ngIf="!(menuCollapsed$ | async)" class="fa-solid fa-chevron-right"></i>
+          <i *ngIf="menuCollapsed$ | async" class="fa-solid fa-chevron-left"></i>
+        </button>
 
-      <img
-        class="logotype"
-        [src]="(themeActive$ | async) === 'dark' && logotypeImageNegativeSource
-          ? logotypeImageNegativeSource
-          : logotypeImageSource"
-        alt="Logotipo"/>
+        <img
+          class="logotype"
+          [src]="(themeActive$ | async) === 'dark' && config.logotype.negative
+            ? config.logotype.negative
+            : config.logotype.default"
+          alt="Logotipo"/>
 
-      <cat-menu></cat-menu>
-    </ng-container>
-    <div class="space"></div>
-    <div class="btn-group">
-      <button type="button" *ngIf="darkMode && (themeActive$ | async) as themeActive" (click)="switchTheme()">
-        <i *ngIf="themeActive === 'light'" class="fa-solid fa-moon"></i>
-        <i *ngIf="themeActive === 'dark'" class="fa-solid fa-sun"></i>
-      </button>
-      <button type="button">
-        <i class="fa-solid fa-bell"></i>
-      </button>
-      <button type="button">
-        <i class="fa-solid fa-arrow-right-from-bracket"></i>
-      </button>
-    </div>
-  </aside>
-  <section>
-    <ng-content select="[router-container]"></ng-content>
-  </section>
+        <cat-menu *ngIf="config.sideBarMenu" [config]="config.sideBarMenu"></cat-menu>
+      </ng-container>
+      <div class="space"></div>
+      <div class="btn-group">
+        <button
+          type="button"
+          *ngIf="config.darkMode && (themeActive$ | async) as themeActive"
+          (click)="switchTheme()"
+          [matTooltip]="'Ativar modo ' + ((themeActive$ | async) === 'light' ? 'escuro' : 'claro')"
+          matTooltipPosition="above">
+          <i *ngIf="themeActive === 'light'" class="fa-solid fa-moon"></i>
+          <i *ngIf="themeActive === 'dark'" class="fa-solid fa-sun"></i>
+        </button>
+
+        <button
+          type="button"
+          matTooltip="Notificações"
+          matTooltipPosition="above">
+          <i class="fa-solid fa-bell"></i>
+        </button>
+
+        <button
+          (click)="logout(true)"
+          type="button"
+          matTooltip="Sair"
+          matTooltipPosition="above">
+          <i class="fa-solid fa-arrow-right-from-bracket"></i>
+        </button>
+      </div>
+    </aside>
+    <section>
+      <ng-content select="[router-container]"></ng-content>
+    </section>
+  </ng-container>
 </main>
+
+<ng-template #loginTemplate>
+  <div *ngIf="errorLoadConfig$ | async else loadingData" class="loading-info">
+    <div class="loading-info">
+      <i class="icon-session-expired fa-solid fa-person-walking-arrow-right"></i>
+      <h2>Ocorreu um erro ao tentar carregar seus dados.</h2>
+      <small>Certifique-se de que esteja conectado à internet.</small>
+      <div class="btn-group">
+        <button
+          (click)="logoutAndTryAgain()"
+          class="btn btn-primary">
+          Tentar Novamente
+        </button>
+      </div>
+    </div>
+  </div>
+  <ng-template #loadingData>
+    <div class="loading-info">
+      <img [src]="(themeActive$ | async) === 'dark' && config.logotype.negative
+          ? config.logotype.negative
+          : config.logotype.default" alt="Logotipo"/>
+      <h1>Bem-Vindo ao {{config.appName}}!</h1>
+      <small>Validando credenciais...<br/>Você será redirecionado em instantes.</small>
+      <cat-loader></cat-loader>
+    </div>
+  </ng-template>
+</ng-template>
+

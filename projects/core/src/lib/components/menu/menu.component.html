@@ -1,0 +1,24 @@
+<nav>
+  <div class="menu-container">
+    <ul>
+      <li
+        #moduleElement
+        *ngFor="let module of config.modules"
+        class="module"
+        routerLinkActive="active">
+        <h2 (click)="moduleElement.classList.toggle('active')">
+          <i *ngIf="module.icon" [ngClass]="module.icon"></i>
+          <span>{{module.name}}</span>
+        </h2>
+        <ul>
+          <li *ngFor="let tool of module.tools" class="tool" [routerLink]="tool.routerLink" routerLinkActive="active">
+            <h3>
+              <i *ngIf="tool.icon" [ngClass]="tool.icon"></i>
+              <span>{{tool.name}}</span>
+            </h3>
+          </li>
+        </ul>
+      </li>
+    </ul>
+  </div>
+</nav>
