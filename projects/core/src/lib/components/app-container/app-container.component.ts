@@ -6,7 +6,7 @@ import {
 } from '@angular/core';
 import { delay } from '@koalarx/utils/operators/delay';
 import { BehaviorSubject, interval, Subject, takeUntil } from 'rxjs';
-import { AppConfig, CatThemeType } from '../../factory/app-config.interface';
+import { AppConfig, CatThemeType, AppConfigMenu } from '../../factory/app-config.interface';
 import { CatOAuth2Config } from '../../services/openid/cat-oauth2.config';
 import { CatOAuth2Service } from '../../services/openid/cat-oauth2.service';
 import {
@@ -15,11 +15,11 @@ import {
 } from '../../services/token/cat-token.service';
 import { Subscription } from 'rxjs/internal/Subscription';
 import { first } from 'rxjs/operators';
-import { CatOAuth2ConfigInterface } from '../../services/openid/cat-oauth2-config.interface';
 import { TokenFactory } from '../../factory/token.factory';
 import jwtEncode from 'jwt-encode';
 import { Router } from '@angular/router';
-import jwt from 'jwt-decode';
+import { SafeUrl } from '@angular/platform-browser';
+import { CatOAuth2ConfigInterface } from '../../services/openid/cat-oauth2-config.interface';
 
 @Component({
   selector: 'cat-app-container[config]',
@@ -35,6 +35,9 @@ export class AppContainerComponent implements OnInit {
   public logged$ = new BehaviorSubject<boolean>(false);
   public validatingScope$ = new BehaviorSubject<boolean>(false);
   public errorLoadConfig$ = new BehaviorSubject<boolean>(false);
+  public sideMenuConfig$ = new BehaviorSubject<AppConfigMenu>(null);
+  public username: string;
+  public userPicture$ = new BehaviorSubject<SafeUrl | null>(null);
 
   private intervalToken: Subscription;
   private destroySubscriptions$ = new Subject<boolean>();
@@ -56,6 +59,10 @@ export class AppContainerComponent implements OnInit {
   ngOnInit() {
     if (this.config.authSettings.mode === 'openId') {
       this.startOpenID();
+    }
+
+    if (this.config.sideBarMenu) {
+      this.sideMenuConfig$.next(this.config.sideBarMenu);
     }
 
     this.startTokenFlow();
@@ -138,7 +145,11 @@ export class AppContainerComponent implements OnInit {
               this.tokenService.getDecodedToken<CatOAuth2TokenInterface>()
             )
             .pipe(first())
-            .subscribe(async () => {
+            .subscribe(async (sideMenuConfig) => {
+              this.username = this.tokenService.getOAuth2Token().login;
+              this.userPicture$.next(this.oauth2Service.getPicture());
+
+              this.sideMenuConfig$.next(sideMenuConfig);
               this.router.navigate(['']);
               this.intervalToken = interval(1).subscribe(() =>
                 this.verifyToken()
@@ -197,6 +208,7 @@ export class AppContainerComponent implements OnInit {
         customQueryParams: config.customQueryParams,
         endpointToken: config.endpointToken ?? null,
         endpointClaims: config.endpointClaims ?? null,
+        indexPictureName: config.indexPictureName
       });
       this.oauth2Service.loadDiscoveryDocumentAndTryLogin().then();
 

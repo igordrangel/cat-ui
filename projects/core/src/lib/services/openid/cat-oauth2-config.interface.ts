@@ -3,6 +3,7 @@ export interface CatOAuth2ConfigInterface {
   scope: string;
   domain: string;
   indexLoginName: string;
+  indexPictureName?: string;
   customQueryParams?: object;
   strictDiscoveryDocumentValidation?: boolean;
   endpointLogout?: string;

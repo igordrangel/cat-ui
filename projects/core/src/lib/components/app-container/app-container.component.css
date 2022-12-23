@@ -95,5 +95,40 @@ main section {width: 100%;height: 100vh;overflow: auto;box-sizing: border-box;}
 .loading-info h1 {margin: 0;padding: 15px 15px 0;}
 .loading-info small {font-size: 16px;padding: 5px;}
 .loading-info img {width: 100px;height: auto;}
-.loading-info .btn-group {justify-content: center;}
+.loading-info .btn-group {justify-content: center;margin-top: 20px;}
 .loading-info cat-loader {margin: 20px auto 0;}
+.loading-info .icon-session-expired {font-size: 60px;margin-bottom: 20px;}
+
+.btn-avatar .avatar-container {padding: 0;}
+.btn-avatar .avatar-container img {
+  width: 30px;
+  height: 30px;
+}
+.avatar-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  box-sizing: border-box;
+  padding: 40px 15px;
+  width: 300px;
+}
+.avatar-container img {
+  width: 80px;
+  height: 80px;
+  border-radius: 50%;
+  border: 1px solid var(--shadow-color);
+  background-color: var(--bg-avatar-image);
+}
+.dropdown-menu .avatar-container i {
+  font-size: 80px;
+  color: var(--font-color);
+  margin-bottom: 10px;
+}
+.avatar-container h2 {
+  padding: 5px;
+  margin: 0;
+  text-align: center;
+  font-size: 10pt;
+  color: var(--font-color);
+}

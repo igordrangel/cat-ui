@@ -13,7 +13,9 @@ export interface AppConfig {
 export interface AppAuthSettings {
   mode: CatAuthMode;
   service?: string;
-  onAuth: (decodedToken: CatOAuth2TokenInterface | {[key: string]: any}) => Observable<boolean>;
+  onAuth: (
+    decodedToken: CatOAuth2TokenInterface | { [key: string]: any }
+  ) => Observable<AppConfigMenu>;
 }
 
 export interface AppConfigLogotype {

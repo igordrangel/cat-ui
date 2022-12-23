@@ -18,7 +18,7 @@
             : config.logotype.default"
           alt="Logotipo"/>
 
-        <cat-menu *ngIf="config.sideBarMenu" [config]="config.sideBarMenu"></cat-menu>
+        <cat-menu *ngIf="sideMenuConfig$ | async as sideMenuConfig" [config]="sideMenuConfig"></cat-menu>
       </ng-container>
       <div class="space"></div>
       <div class="btn-group">
@@ -39,13 +39,50 @@
           <i class="fa-solid fa-bell"></i>
         </button>
 
-        <button
-          (click)="logout(true)"
-          type="button"
-          matTooltip="Sair"
-          matTooltipPosition="above">
-          <i class="fa-solid fa-arrow-right-from-bracket"></i>
-        </button>
+        <div dropdown [dropup]="true" class="dropup">
+          <button
+            dropdownToggle
+            class="btn-avatar"
+            type="button"
+            matTooltip="Perfil"
+            matTooltipPosition="above"
+            aria-controls="cat-app-container-menu-dropdown-user">
+
+            <div class="avatar-container">
+              <img
+                *ngIf="userPicture$ | async as userPicture else loggedUserAvatar"
+                [src]="userPicture"
+                [alt]="'Bem-Vindo ' + username"/>
+            </div>
+          </button>
+          <ul id="cat-app-container-menu-dropdown-user" *dropdownMenu class="dropdown-menu" role="menu" aria-labelledby="button-basic">
+            <li>
+              <div class="avatar-container">
+                <img
+                  *ngIf="userPicture$ | async as userPicture else loggedUserAvatar"
+                  [src]="userPicture"
+                  [alt]="'Bem-Vindo ' + username"/>
+                <h2>{{username}}</h2>
+              </div>
+            </li>
+            <li><hr class="dropdown-divider"></li>
+            <li>
+              <a
+                href="#"
+                class="dropdown-item"
+                (click)="logout(true)"
+                type="button">
+                <i class="fa-solid fa-arrow-right-from-bracket mr-8"></i>
+                Sair
+              </a>
+            </li>
+          </ul>
+
+          <ng-template #loggedUserAvatar>
+            <i class="fa-solid fa-circle-user"></i>
+          </ng-template>
+
+        </div>
       </div>
     </aside>
     <section>
@@ -80,4 +117,3 @@
     </div>
   </ng-template>
 </ng-template>
-

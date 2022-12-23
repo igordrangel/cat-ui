@@ -47,6 +47,10 @@ export class CatTokenService implements OnDestroy {
     return TokenFactory.hasToken() ? jwt(TokenFactory.getToken()) : null;
   }
 
+  public getOAuth2DecodedToken() {
+    return jwt(this.getOAuth2Token().idToken) as any;
+  }
+
   public removeToken() {
     TokenFactory.removeToken();
   }

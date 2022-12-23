@@ -62,6 +62,10 @@ main {
   --bg-menu: rgba(0, 0, 0, 0.8);
   --bg-menu-hover: rgba(0, 0, 0, 0.9);
   --bg-menu-active: rgba(0, 0, 0, 1);
+
+  --bg-avatar-image: #fff;
+
+  --shadow-color: rgba(0,0,0,.15);
 }
 
 main.dark {
@@ -119,6 +123,10 @@ main.dark {
   --bg-menu: rgba(0, 0, 0, 0.6);
   --bg-menu-hover: rgba(0, 0, 0, 0.8);
   --bg-menu-active: rgba(0, 0, 0, 1);
+
+  --bg-avatar-image: #000;
+
+  --shadow-color: rgba(255,255,255,.15);
 }
 
 /*#region [GERAL] */
@@ -141,6 +149,17 @@ main {color: var(--font-color);}
     url(./fonts/OpenSans/OpenSans-ExtraBold.woff),
     url(./fonts/OpenSans/OpenSans-ExtraBoldItalic.woff);
 }
+
+.dropdown-menu {
+  --bs-dropdown-bg: var(--bg-body);
+  --bs-dropdown-link-color: var(--font-color);
+  --bs-dropdown-link-hover-color: var(--c-menu-hover);
+  --bs-dropdown-link-hover-bg: var(--bg-menu-hover);
+  --bs-dropdown-link-active-color: var(--c-menu-active);
+  --bs-dropdown-link-active-bg: var(--bg-menu-active);
+  --bs-dropdown-border-color: var(--shadow-color);
+}
+.dropdown-menu .dropdown-item {transition: .1s;}
 
 .p-relative {
   position: relative !important;

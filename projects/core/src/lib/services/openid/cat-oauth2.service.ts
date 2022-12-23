@@ -7,6 +7,7 @@ import { delay } from '@koalarx/utils/operators/delay';
 import { randomString } from '@koalarx/utils/operators/string';
 import { CatTokenService } from '../token/cat-token.service';
 import { CatOAuth2Config } from './cat-oauth2.config';
+import { DomSanitizer, SafeUrl } from '@angular/platform-browser';
 
 export interface CatOpenIDConfigInterface {
   redirectUri: string;
@@ -18,6 +19,7 @@ export interface CatOpenIDConfigInterface {
   customQueryParams?: object;
   endpointToken?: string;
   endpointClaims?: string;
+  indexPictureName?: string;
 }
 
 export interface CatOpenIdConfig {
@@ -80,7 +82,8 @@ export class CatOAuth2Service implements OnDestroy {
   constructor(
     private http: HttpClient,
     private router: Router,
-    private tokenService: CatTokenService
+    private tokenService: CatTokenService,
+    private sanitizer: DomSanitizer
   ) {
     this.generateState();
   }
@@ -181,6 +184,14 @@ export class CatOAuth2Service implements OnDestroy {
 
   public getCode() {
     return this.code;
+  }
+
+  public getPicture(): SafeUrl | null {
+    if (this.config.indexPictureName) {
+      return this.tokenService.getOAuth2DecodedToken()[this.config.indexPictureName];
+    }
+
+    return null;
   }
 
   public logout() {

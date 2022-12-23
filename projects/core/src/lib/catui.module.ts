@@ -5,16 +5,25 @@ import { BrowserModule } from '@angular/platform-browser';
 import { registerLocaleData } from '@angular/common';
 import ptBr from '@angular/common/locales/pt';
 import { CatAppService } from './services/app/cat-app.service';
-import { CatEnvironment, CatEnvironmentInterface } from './environments/cat-environment';
+import {
+  CatEnvironment,
+  CatEnvironmentInterface,
+} from './environments/cat-environment';
 import { CatOAuth2Service } from './services/openid/cat-oauth2.service';
 import { CatAuthGuard } from './guard/cat-auth.guard';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 registerLocaleData(ptBr);
 
 @NgModule({
   declarations: [],
   exports: [HttpClientModule, AppContainerModule],
-  imports: [BrowserModule, HttpClientModule, AppContainerModule],
+  imports: [
+    BrowserModule,
+    BrowserAnimationsModule,
+    HttpClientModule,
+    AppContainerModule,
+  ],
   providers: [
     { provide: LOCALE_ID, useValue: 'pt-BR' },
     CatAppService,

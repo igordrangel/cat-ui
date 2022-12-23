@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { CatAppService } from '@catrx/ui/core';
 import { Observable } from 'rxjs/internal/Observable';
+import { AppConfigMenu } from '../../../core/src/lib/factory/app-config.interface';
 
 @Component({
   selector: 'app-root',
@@ -12,9 +13,38 @@ export class AppComponent {
     .build('Cat UI', {
       mode: 'openId',
       service: 'google',
-      onAuth: (decodedToken) => new Observable<boolean>(observe => {
-        console.log(decodedToken);
-        observe.next(true);
+      onAuth: (decodedToken) => new Observable<AppConfigMenu>(observe => {
+        observe.next({
+          modules: [
+            {
+              icon: 'fa-solid fa-database',
+              name: 'Exibição de Dados',
+              tools: [
+                {
+                  name: 'Datatable',
+                  hasPermission: true,
+                  routerLink: './components/datatable',
+                },
+                {
+                  name: 'Componentes Dinâmicos',
+                  hasPermission: true,
+                  routerLink: './components/dynamic-components',
+                },
+              ],
+            },
+            {
+              icon: 'fa-brands fa-wpforms',
+              name: 'Formulário',
+              tools: [
+                {
+                  name: 'Formulário Dinâmico',
+                  hasPermission: true,
+                  routerLink: './components/form',
+                },
+              ],
+            },
+          ],
+        });
       }),
     })
     .setLogotype({
@@ -22,37 +52,6 @@ export class AppComponent {
       negative: '../assets/logotype-negative.svg',
     })
     .enableDarkMode()
-    .setSideMenu({
-      modules: [
-        {
-          icon: 'fa-solid fa-database',
-          name: 'Exibição de Dados',
-          tools: [
-            {
-              name: 'Datatable',
-              hasPermission: true,
-              routerLink: './components/datatable',
-            },
-            {
-              name: 'Componentes Dinâmicos',
-              hasPermission: true,
-              routerLink: './components/dynamic-components',
-            },
-          ],
-        },
-        {
-          icon: 'fa-brands fa-wpforms',
-          name: 'Formulário',
-          tools: [
-            {
-              name: 'Formulário Dinâmico',
-              hasPermission: true,
-              routerLink: './components/form',
-            },
-          ],
-        },
-      ],
-    })
     .generate();
 
   constructor(private appService: CatAppService) {}
