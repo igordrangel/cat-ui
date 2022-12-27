@@ -130,7 +130,7 @@
   },
   "editor.semanticHighlighting.enabled" : false,
   "breadcrumbs.enabled" : true,
-  "workbench.productIconTheme" : "fluent-icons",
+  "workbench.productIconTheme" : "Default",
   "gitlens.codeLens.authors.enabled" : false,
   "editor.tabSize" : 2,
   "security.workspace.trust.untrustedFiles" : "newWindow",
@@ -143,5 +143,5 @@
   },
   "tabnine.experimentalAutoImports" : true,
   "gitlens.codeLens.enabled": false,
-  "workbench.iconTheme": "material-icon-theme"
+  "workbench.iconTheme": "vscode-icons"
 }
