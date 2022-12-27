@@ -3,6 +3,7 @@
 @import "@angular/material/prebuilt-themes/indigo-pink.css";
 @import "@ng-select/ng-select/themes/ant.design.theme.css";
 
+$select-icon-color-dark: "%23f1f1f1";
 $checkbox-radio-icon-color-dark: "%23212121";
 $checkbox-radio-icon-color-light: "%23f1f1f1";
 
@@ -472,6 +473,9 @@ select:disabled {
 }
 .dark .form-check-input:indeterminate[type="checkbox"] {
   background-image: url("data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 20 20'><path fill='none' stroke='#{$checkbox-radio-icon-color-dark}' stroke-linecap='round' stroke-linejoin='round' stroke-width='3' d='M6 10h8'/></svg>") !important;
+}
+.dark .form-select {
+  background-image: url("data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'><path fill='none' stroke='#{$select-icon-color-dark}' stroke-linecap='round' stroke-linejoin='round' stroke-width='2' d='m2 5 6 6 6-6'/></svg>") !important;
 }
 .form-check-input:focus {
   box-shadow: 0 0 0 0.25rem var(--primary-color-alpha);

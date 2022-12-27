@@ -30,7 +30,7 @@ import { CatOAuth2ConfigInterface } from '../../services/openid/cat-oauth2-confi
 export class AppContainerComponent implements OnInit {
   @Input() config: AppConfig;
 
-  public menuCollapsed$ = new BehaviorSubject<boolean>(false);
+  public menuCollapsed$ = new BehaviorSubject<boolean>(true);
   public themeActive$ = new BehaviorSubject<CatThemeType>('light');
   public logged$ = new BehaviorSubject<boolean>(false);
   public validatingScope$ = new BehaviorSubject<boolean>(false);

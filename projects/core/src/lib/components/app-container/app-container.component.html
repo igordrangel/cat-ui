@@ -2,9 +2,7 @@
   <ng-container *ngIf="logged$ | async else loginTemplate">
     <aside
       #asideElement
-      [ngClass]="{show: menuCollapsed$ | async}"
-      (mouseenter)="asideElement.classList.add('show')"
-      (mouseleave)="!(menuCollapsed$.getValue()) ? asideElement.classList.remove('show') : null">
+      [ngClass]="{show: menuCollapsed$ | async}">
       <ng-container>
         <button type="button" class="btn-menu-collapse" (click)="collapseMenu()">
           <i *ngIf="!(menuCollapsed$ | async)" class="fa-solid fa-chevron-right"></i>

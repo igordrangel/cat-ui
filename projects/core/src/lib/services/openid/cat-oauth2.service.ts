@@ -188,7 +188,7 @@ export class CatOAuth2Service implements OnDestroy {
 
   public getPicture(): SafeUrl | null {
     if (this.config.indexPictureName) {
-      return this.tokenService.getOAuth2DecodedToken()[this.config.indexPictureName];
+      return this.sanitizer.bypassSecurityTrustResourceUrl(this.tokenService.getOAuth2DecodedToken()[this.config.indexPictureName]);
     }
 
     return null;
