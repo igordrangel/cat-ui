@@ -12,6 +12,7 @@ export interface AppConfig {
 
 export interface AppAuthSettings {
   mode: CatAuthMode;
+  autoAuth: boolean;
   service?: string;
   onAuth: (
     decodedToken: CatOAuth2TokenInterface | { [key: string]: any }

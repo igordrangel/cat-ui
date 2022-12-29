@@ -455,7 +455,7 @@ textarea {
 input:disabled,
 select:disabled {
   border-style: dashed;
-  background-color: var(--disable-color);
+  background-color: rgba(0,0,0,.2)!important;
 }
 .form-check-input {
   border-color: var(--font-color);

@@ -4,7 +4,7 @@ import { CatAuthGuard } from '@catrx/ui/core';
 import { PageFormComponent } from './page-form.component';
 
 const routes: Routes = [
-  { path: '', component: PageFormComponent, canActivate: [CatAuthGuard] },
+  { path: '', component: PageFormComponent },
 ];
 
 @NgModule({

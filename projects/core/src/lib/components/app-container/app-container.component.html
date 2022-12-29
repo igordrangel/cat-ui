@@ -1,5 +1,5 @@
 <main [ngClass]="themeActive$ | async">
-  <ng-container *ngIf="logged$ | async else loginTemplate">
+  <ng-container *ngIf="!this.config.authSettings.autoAuth || (logged$ | async) else loginTemplate">
     <aside
       #asideElement
       [ngClass]="{show: menuCollapsed$ | async}">
@@ -16,7 +16,7 @@
             : config.logotype.default"
           alt="Logotipo"/>
 
-        <cat-menu *ngIf="sideMenuConfig$ | async as sideMenuConfig" [config]="sideMenuConfig"></cat-menu>
+        <cat-menu *ngIf="(sideMenuConfig$ | async) as sideMenuConfig" [config]="sideMenuConfig"></cat-menu>
       </ng-container>
       <div class="space"></div>
       <div class="btn-group">
@@ -31,13 +31,23 @@
         </button>
 
         <button
+          *ngIf="logged$ | async"
           type="button"
           matTooltip="Notificações"
           matTooltipPosition="above">
           <i class="fa-solid fa-bell"></i>
         </button>
 
-        <div dropdown [dropup]="true" class="dropup">
+        <button
+          *ngIf="!(logged$ | async)"
+          (click)="login()"
+          type="button"
+          matTooltip="Entrar"
+          matTooltipPosition="above">
+          <i class="fa-solid fa-arrow-right-to-bracket"></i>
+        </button>
+
+        <div *ngIf="logged$ | async" dropdown [dropup]="true" class="dropup">
           <button
             dropdownToggle
             class="btn-avatar"
@@ -50,7 +60,8 @@
               <img
                 *ngIf="userPicture$ | async as userPicture else loggedUserAvatar"
                 [src]="userPicture"
-                [alt]="'Bem-Vindo ' + username"/>
+                [alt]="'Bem-Vindo ' + username"
+                referrerpolicy="no-referrer"/>
             </div>
           </button>
           <ul id="cat-app-container-menu-dropdown-user" *dropdownMenu class="dropdown-menu" role="menu" aria-labelledby="button-basic">
@@ -59,7 +70,8 @@
                 <img
                   *ngIf="userPicture$ | async as userPicture else loggedUserAvatar"
                   [src]="userPicture"
-                  [alt]="'Bem-Vindo ' + username"/>
+                  [alt]="'Bem-Vindo ' + username"
+                  referrerpolicy="no-referrer"/>
                 <h2>{{username}}</h2>
               </div>
             </li>

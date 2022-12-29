@@ -86,11 +86,18 @@ export class AppContainerComponent implements OnInit {
     }
   }
 
+  public login() {
+    this.oauth2Service.events.next('authenticate');
+  }
+
   private startOpenID() {
     if (!CatOAuth2Config.hasConfig()) {
       setTimeout(
-        () =>
-          this.oauth2Service.initLoginFlow(this.config.authSettings.service),
+        () => {
+          if (this.config.authSettings.autoAuth) {
+            this.oauth2Service.initLoginFlow(this.config.authSettings.service);
+          }
+        },
         3000
       );
     }
@@ -111,11 +118,13 @@ export class AppContainerComponent implements OnInit {
               !this.tokenService.getOAuth2Token()) ||
             (event === 'logout' && !this.errorLoadConfig$.getValue())
           ) {
-            if (event === 'logout') {
-              await delay(3000);
-              this.oauth2Service.events.next('authenticate');
-            } else {
-              this.oauth2Service.events.next('authenticate');
+            if (this.config.authSettings.autoAuth) {
+              if (event === 'logout') {
+                await delay(3000);
+                this.oauth2Service.events.next('authenticate');
+              } else {
+                this.oauth2Service.events.next('authenticate');
+              }
             }
           }
           break;

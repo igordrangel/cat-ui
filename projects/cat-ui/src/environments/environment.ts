@@ -18,7 +18,7 @@ export const environment: CatEnvironmentInterface = {
       domain: 'https://accounts.google.com',
       strictDiscoveryDocumentValidation: false,
       indexLoginName: 'name',
-      indexPictureName: 'picture'
+      indexPictureName: 'picture',
     },
   ],
 };

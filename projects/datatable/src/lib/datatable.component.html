@@ -1,17 +1,4 @@
 <div class="table-responsive table-container">
-
-  <ng-container *ngIf="!(loadedList$ | async)">
-    <ng-container *ngIf="config?.customLoaderComponent else defaultLoader">
-      <cat-dynamic-component [component]="config?.customLoaderComponent"></cat-dynamic-component>
-    </ng-container>
-
-    <ng-template #defaultLoader>
-      <div class="datatable-loader">
-        <cat-loader></cat-loader>
-      </div>
-    </ng-template>
-  </ng-container>
-
   <table class="table table-hover">
     <thead>
       <tr>
@@ -47,6 +34,18 @@
     </thead>
     <ng-container>
     <tbody>
+      <ng-container *ngIf="!(loadedList$ | async)">
+        <ng-container *ngIf="config?.customLoaderComponent else defaultLoader">
+          <cat-dynamic-component [component]="config?.customLoaderComponent"></cat-dynamic-component>
+        </ng-container>
+
+        <ng-template #defaultLoader>
+          <div class="datatable-loader">
+            <cat-loader></cat-loader>
+          </div>
+        </ng-template>
+      </ng-container>
+
       <ng-container *ngIf="(datatableList$ | async) as datatableList">
         <ng-container *ngIf="datatableList.length > 0 else emptyList">
           <tr

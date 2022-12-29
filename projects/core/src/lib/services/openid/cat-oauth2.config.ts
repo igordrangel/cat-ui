@@ -41,7 +41,7 @@ export class CatOAuth2Config {
         scope: null,
         domain: null,
         strictDiscoveryDocumentValidation: false,
-        indexLoginName: 'name',
+        indexLoginName: 'name'
       }
     );
   }

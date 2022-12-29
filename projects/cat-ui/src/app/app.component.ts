@@ -11,6 +11,7 @@ import { AppConfigMenu } from '../../../core/src/lib/factory/app-config.interfac
 export class AppComponent {
   appConfig = this.appService
     .build('Cat UI', {
+      autoAuth: false,
       mode: 'openId',
       service: 'google',
       onAuth: (decodedToken) => new Observable<AppConfigMenu>(observe => {
