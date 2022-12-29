@@ -1,4 +1,4 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, Input } from '@angular/core';
 
 export type CatIconButtonColor =
   'primary'
@@ -16,15 +16,8 @@ export type CatIconButtonColor =
   templateUrl: 'icon-button.component.html',
   styleUrls: ['icon-button.component.css']
 })
-export class IconButtonComponent implements OnInit {
+export class IconButtonComponent {
   @Input() icon?: string;
   @Input() color?: CatIconButtonColor;
   @Input() tooltip?: string;
-
-  constructor() {
-  }
-
-  ngOnInit(): void {
-  }
-
 }

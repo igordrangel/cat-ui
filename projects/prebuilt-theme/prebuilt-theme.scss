@@ -64,6 +64,13 @@ main {
   --bg-menu-hover: rgba(0, 0, 0, 0.9);
   --bg-menu-active: rgba(0, 0, 0, 1);
 
+  --c-dropdown: rgba(0, 0, 0, 0.6);
+  --c-dropdown-hover: rgba(0, 0, 0, 0.8);
+  --c-dropdown-active: rgba(0, 0, 0, 1);
+  --bg-dropdown: rgba(0, 0, 0, 0.1);
+  --bg-dropdown-hover: rgba(0, 0, 0, 0.2);
+  --bg-dropdown-active: rgba(0, 0, 0, 0.3);
+
   --bg-avatar-image: #fff;
 
   --shadow-color: rgba(0,0,0,.15);
@@ -125,6 +132,13 @@ main.dark {
   --bg-menu-hover: rgba(0, 0, 0, 0.8);
   --bg-menu-active: rgba(0, 0, 0, 1);
 
+  --c-dropdown: rgba(255, 255, 255, 0.6);
+  --c-dropdown-hover: rgba(255, 255, 255, 0.8);
+  --c-dropdown-active: rgba(255, 255, 255, 1);
+  --bg-dropdown: rgba(0, 0, 0, 0.6);
+  --bg-dropdown-hover: rgba(0, 0, 0, 0.8);
+  --bg-dropdown-active: rgba(0, 0, 0, 1);
+
   --bg-avatar-image: #000;
 
   --shadow-color: rgba(255,255,255,.15);
@@ -154,13 +168,32 @@ main {color: var(--font-color);}
 .dropdown-menu {
   --bs-dropdown-bg: var(--bg-body);
   --bs-dropdown-link-color: var(--font-color);
-  --bs-dropdown-link-hover-color: var(--c-menu-hover);
-  --bs-dropdown-link-hover-bg: var(--bg-menu-hover);
-  --bs-dropdown-link-active-color: var(--c-menu-active);
-  --bs-dropdown-link-active-bg: var(--bg-menu-active);
+  --bs-dropdown-link-hover-color: var(--c-dropdown-hover);
+  --bs-dropdown-link-hover-bg: var(--bg-dropdown-hover);
+  --bs-dropdown-link-active-color: var(--c-dropdown-active);
+  --bs-dropdown-link-active-bg: var(--bg-dropdown-active);
   --bs-dropdown-border-color: var(--shadow-color);
+  --bs-dropdown-divider-bg: var(--shadow-color);
 }
-.dropdown-menu .dropdown-item {transition: .1s;}
+.dropdown-menu .dropdown-item {
+  color: var(--c-dropdown);
+  transition: .1s;
+}
+.dropdown-menu .dropdown-item:hover {
+  color: var(--c-dropdown-hover)!important;
+  background-color: var(--bg-dropdown-hover)!important;
+}
+.dropdown-menu .dropdown-item:active {
+  color: var(--c-dropdown-active)!important;
+  background-color: var(--bg-dropdown-active)!important;
+}
+.dropdown-menu .dropdown-item i {color: var(--c-dropdown);}
+.dropdown-menu .dropdown-item:hover i {
+  color: var(--c-dropdown-hover)!important;
+}
+.dropdown-menu .dropdown-item:active i {
+  color: var(--c-dropdown-active)!important;
+}
 
 .p-relative {
   position: relative !important;
@@ -326,6 +359,7 @@ main {color: var(--font-color);}
 .padding-none {
   padding: 0 !important;
 }
+
 /*#endregion */
 /*#region [Grid]*/
 [class*="col-"] {

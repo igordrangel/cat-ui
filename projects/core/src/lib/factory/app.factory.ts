@@ -1,4 +1,4 @@
-import { AppAuthSettings, AppConfig, AppConfigLogotype, AppConfigMenu, CatAuthMode } from "./app-config.interface";
+import { AppAuthSettings, AppConfig, AppConfigLogotype, AppConfigMenu, AppNotificationsConfig, CatAuthMode } from "./app-config.interface";
 
 export class AppFactory {
   private config = {} as AppConfig;
@@ -20,6 +20,11 @@ export class AppFactory {
 
   public setSideMenu(options: AppConfigMenu) {
     this.config.sideBarMenu = options;
+    return this;
+  }
+
+  public pushNotifications(config: AppNotificationsConfig) {
+    this.config.pushNotifications = config;
     return this;
   }
 

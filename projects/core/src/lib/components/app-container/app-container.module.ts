@@ -5,6 +5,8 @@ import { MenuModule } from '../menu/menu.module';
 import { MatTooltipModule } from '@angular/material/tooltip';
 import { CatLoaderModule } from '@catrx/ui/loader';
 import { BsDropdownModule } from 'ngx-bootstrap/dropdown';
+import { CatDynamicComponentModule } from '@catrx/ui/dynamic-component';
+import { RouterModule } from '@angular/router';
 
 @NgModule({
   declarations: [AppContainerComponent],
@@ -13,8 +15,10 @@ import { BsDropdownModule } from 'ngx-bootstrap/dropdown';
     CommonModule,
     MenuModule,
     CatLoaderModule,
+    CatDynamicComponentModule,
     MatTooltipModule,
-    BsDropdownModule.forRoot()
+    BsDropdownModule.forRoot(),
+    RouterModule
   ],
 })
 export class AppContainerModule {}

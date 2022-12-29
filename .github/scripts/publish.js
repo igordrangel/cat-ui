@@ -4,10 +4,10 @@ const {execSync} = require("child_process");
 const config = JSON.parse(fs.readFileSync('package.json').toString());
 const currentVersion = config.version;
 const libs = [
-  'core',
   'dynamic-component',
-  'icon-button',
   'loader',
+  'icon-button',
+  'core',
   'datatable',
   'form'
 ];

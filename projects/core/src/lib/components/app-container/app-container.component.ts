@@ -6,20 +6,21 @@ import {
 } from '@angular/core';
 import { delay } from '@koalarx/utils/operators/delay';
 import { BehaviorSubject, interval, Subject, takeUntil } from 'rxjs';
-import { AppConfig, CatThemeType, AppConfigMenu } from '../../factory/app-config.interface';
+import { AppConfig, CatThemeType, AppConfigMenu, AppNotification } from '../../factory/app-config.interface';
 import { CatOAuth2Config } from '../../services/openid/cat-oauth2.config';
 import { CatOAuth2Service } from '../../services/openid/cat-oauth2.service';
 import {
   CatOAuth2TokenInterface,
   CatTokenService,
 } from '../../services/token/cat-token.service';
-import { Subscription } from 'rxjs/internal/Subscription';
-import { first } from 'rxjs/operators';
+import { first, startWith } from 'rxjs/operators';
 import { TokenFactory } from '../../factory/token.factory';
 import jwtEncode from 'jwt-encode';
 import { Router } from '@angular/router';
 import { SafeUrl } from '@angular/platform-browser';
 import { CatOAuth2ConfigInterface } from '../../services/openid/cat-oauth2-config.interface';
+import { NotificationService } from '../../services/notifications/notification.service';
+import { Subscription } from 'rxjs/internal/Subscription';
 
 @Component({
   selector: 'cat-app-container[config]',
@@ -38,14 +39,18 @@ export class AppContainerComponent implements OnInit {
   public sideMenuConfig$ = new BehaviorSubject<AppConfigMenu>(null);
   public username: string;
   public userPicture$ = new BehaviorSubject<SafeUrl | null>(null);
+  public loadingNotifications$ = new BehaviorSubject<boolean>(false);
+  public notifications$ = new BehaviorSubject<AppNotification[] | null>(null);
 
-  private intervalToken: Subscription;
+  private intervalNotifications?: Subscription;
+  private destroyLoggedSubscriptions$ = new Subject<boolean>();
   private destroySubscriptions$ = new Subject<boolean>();
 
   constructor(
     private router: Router,
     private oauth2Service: CatOAuth2Service,
-    private tokenService: CatTokenService
+    private tokenService: CatTokenService,
+    private notificationService: NotificationService
   ) {
     if (window.matchMedia) {
       if (window.matchMedia('(prefers-color-scheme: dark)').matches) {
@@ -65,6 +70,10 @@ export class AppContainerComponent implements OnInit {
       this.sideMenuConfig$.next(this.config.sideBarMenu);
     }
 
+    if (this.config.pushNotifications?.getPermissionToNotifyOnBrowser) {
+      this.notificationService.requestPermission();
+    }
+
     this.startTokenFlow();
   }
 
@@ -78,11 +87,17 @@ export class AppContainerComponent implements OnInit {
   }
 
   public logout(clearToken = false) {
-    this.intervalToken?.unsubscribe();
+    this.destroyLoggedSubscriptions$.next(true);
+    this.intervalNotifications?.unsubscribe();
     this.logged$.next(false);
     if (clearToken) {
       this.tokenService.removeToken();
       this.oauth2Service.logout();
+
+      this.username = null;
+      this.userPicture$.next(null);
+
+      this.router.navigate(['']);
     }
   }
 
@@ -90,16 +105,56 @@ export class AppContainerComponent implements OnInit {
     this.oauth2Service.events.next('authenticate');
   }
 
+  public logoutAndTryAgain() {
+    this.errorLoadConfig$.next(false);
+    this.logout(true);
+  }
+
+  public removeNotification(id: number) {
+    this.intervalNotifications?.unsubscribe();
+    this.loadingNotifications$.next(true);
+    this.config.pushNotifications
+      .onDelete(id)
+      .pipe(first())
+      .subscribe({
+        next: () => {
+          this.loadingNotifications$.next(false);
+          this.observeNotifications();
+        },
+        error: (err) => {
+          console.error(err);
+          this.loadingNotifications$.next(false);
+        },
+      });
+  }
+
+  public removeAllNotifications() {
+    this.intervalNotifications?.unsubscribe();
+    this.loadingNotifications$.next(true);
+    this.config.pushNotifications
+      .onAllDelete(
+        this.notifications$.getValue().map((notification) => notification.id)
+      )
+      .pipe(first())
+      .subscribe({
+        next: () => {
+          this.loadingNotifications$.next(false);
+          this.observeNotifications();
+        },
+        error: (err) => {
+          console.error(err);
+          this.loadingNotifications$.next(false);
+        },
+      });
+  }
+
   private startOpenID() {
     if (!CatOAuth2Config.hasConfig()) {
-      setTimeout(
-        () => {
-          if (this.config.authSettings.autoAuth) {
-            this.oauth2Service.initLoginFlow(this.config.authSettings.service);
-          }
-        },
-        3000
-      );
+      setTimeout(() => {
+        if (this.config.authSettings.autoAuth) {
+          this.oauth2Service.initLoginFlow(this.config.authSettings.service);
+        }
+      }, 3000);
     }
 
     this.oauth2Service.events.subscribe(async (event) => {
@@ -149,37 +204,43 @@ export class AppContainerComponent implements OnInit {
             this.tokenService.getOAuth2Token().refreshToken
           );
 
-          this.config.authSettings
-            .onAuth(
-              this.tokenService.getDecodedToken<CatOAuth2TokenInterface>()
-            )
-            .pipe(first())
-            .subscribe(async (sideMenuConfig) => {
-              this.username = this.tokenService.getOAuth2Token().login;
-              this.userPicture$.next(this.oauth2Service.getPicture());
-
-              this.sideMenuConfig$.next(sideMenuConfig);
-              this.router.navigate(['']);
-              this.intervalToken = interval(1).subscribe(() =>
-                this.verifyToken()
-              );
-              await delay(300);
-              this.logged$.next(true);
-            });
+          this.buildMenu();
         }
       } else {
         this.logout();
+        this.buildMenu();
       }
     });
   }
 
-  private validatingScope() {
-    return location.href.indexOf('/?state=') >= 0;
+  private buildMenu() {
+    this.config.authSettings
+      .onAuth(this.tokenService.getDecodedToken<CatOAuth2TokenInterface>())
+      .pipe(first())
+      .subscribe(async (sideMenuConfig) => {
+        this.sideMenuConfig$.next(sideMenuConfig);
+
+        if (TokenFactory.hasToken()) {
+          this.username = this.tokenService.getOAuth2Token()?.login;
+          this.userPicture$.next(this.oauth2Service.getPicture());
+          this.router.navigate(['']);
+
+          interval(1)
+            .pipe(takeUntil(this.destroyLoggedSubscriptions$))
+            .subscribe(() => this.verifyToken());
+
+          if (this.config.pushNotifications) {
+            this.observeNotifications();
+          }
+
+          await delay(300);
+          this.logged$.next(true);
+        }
+      });
   }
 
-  public logoutAndTryAgain() {
-    this.errorLoadConfig$.next(false);
-    this.logout(true);
+  private validatingScope() {
+    return location.href.indexOf('/?state=') >= 0;
   }
 
   private verifyToken() {
@@ -196,6 +257,53 @@ export class AppContainerComponent implements OnInit {
     }
 
     return true;
+  }
+
+  private observeNotifications() {
+    this.intervalNotifications = interval(
+      this.config.pushNotifications.intervalToGet
+    )
+      .pipe(startWith(0))
+      .subscribe(() => this.pushNotifications());
+  }
+
+  private pushNotifications() {
+    if (this.config.pushNotifications) {
+      this.loadingNotifications$.next(true);
+      this.config.pushNotifications.getNotifications.pipe(first()).subscribe({
+        next: (notifications) => {
+          if (notifications.length > 0) {
+            notifications.forEach((notification) => {
+              if (notification.notifyOnBrowser) {
+                this.notificationService
+                  .notify(notification.title, {
+                    icon: this.config.logotype.default,
+                    body: notification.message,
+                  })
+                  .subscribe((notify) => {
+                    if (
+                      notify.event.type === 'click' &&
+                      notification.routerLink
+                    ) {
+                      this.router.navigate([notification.routerLink]);
+                    }
+                  });
+              }
+            });
+
+            this.notifications$.next(notifications);
+          } else {
+            this.notifications$.next(null);
+          }
+          this.loadingNotifications$.next(false);
+        },
+        error: (err) => {
+          console.error(err);
+          this.notifications$.next(null);
+          this.loadingNotifications$.next(false);
+        },
+      });
+    }
   }
 
   private initOAuth2() {
@@ -217,7 +325,7 @@ export class AppContainerComponent implements OnInit {
         customQueryParams: config.customQueryParams,
         endpointToken: config.endpointToken ?? null,
         endpointClaims: config.endpointClaims ?? null,
-        indexPictureName: config.indexPictureName
+        indexPictureName: config.indexPictureName,
       });
       this.oauth2Service.loadDiscoveryDocumentAndTryLogin().then();
 

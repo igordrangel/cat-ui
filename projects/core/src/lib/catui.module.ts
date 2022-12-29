@@ -16,7 +16,6 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 registerLocaleData(ptBr);
 
 @NgModule({
-  declarations: [],
   exports: [HttpClientModule, AppContainerModule],
   imports: [
     BrowserModule,
