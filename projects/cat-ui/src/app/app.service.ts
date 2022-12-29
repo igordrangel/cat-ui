@@ -70,12 +70,12 @@ export class AppService {
               {
                 name: 'Datatable',
                 hasPermission: () => true,
-                routerLink: './components/datatable',
+                routerLink: '/components/datatable',
               },
               {
                 name: 'Componentes Dinâmicos',
                 hasPermission: () => true,
-                routerLink: './components/dynamic-components',
+                routerLink: '/components/dynamic-components',
               },
             ],
           },
@@ -86,7 +86,7 @@ export class AppService {
               {
                 name: 'Formulário Dinâmico',
                 hasPermission: () => true,
-                routerLink: './components/form',
+                routerLink: '/components/form',
               },
             ],
           },

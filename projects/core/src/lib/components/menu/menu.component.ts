@@ -1,7 +1,9 @@
 import { Component, Input, OnChanges, SimpleChanges } from '@angular/core';
 import { koala } from '@koalarx/utils';
-import { AppConfigMenu, AppConfigMenuTool } from '../../factory/app-config.interface';
+import { AppConfigMenu, AppConfigMenuModule, AppConfigMenuTool } from '../../factory/app-config.interface';
 import { BehaviorSubject } from 'rxjs';
+import { CatMenuContext } from './cat-menu-context';
+import { CatToolbarBreadcrumb } from '../../../../../toolbar/src/lib/cat-toolbar.interface';
 
 @Component({
   selector: 'cat-menu[config]',
@@ -17,6 +19,30 @@ export class MenuComponent implements OnChanges {
     if (changes['config']) {
       this.buildMenu();
     }
+  }
+
+  public setInContext(toolOption: AppConfigMenuTool, moduleOption?: AppConfigMenuModule) {
+    let breadcrumb: CatToolbarBreadcrumb[];
+
+    if (moduleOption) {
+      breadcrumb = [
+        { name: moduleOption.name },
+        { name: toolOption.name, routerLink: toolOption.routerLink },
+      ];
+    } else {
+      breadcrumb = [
+        { name: toolOption.name, routerLink: toolOption.routerLink },
+      ];
+    }
+
+    CatMenuContext.context = {
+      icon: moduleOption?.icon ?? toolOption.icon,
+      title: moduleOption?.name ?? toolOption.name,
+      breadcrumb: [
+        { name: moduleOption.name },
+        { name: toolOption.name, routerLink: toolOption.routerLink },
+      ],
+    };
   }
 
   private buildMenu() {

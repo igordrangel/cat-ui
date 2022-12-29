@@ -7,6 +7,7 @@ const libs = [
   'dynamic-component',
   'loader',
   'icon-button',
+  'toolbar',
   'core',
   'datatable',
   'form'

@@ -1,0 +1,20 @@
+<nav class="cat-toolbar">
+  <div class="info-content">
+    <h1>
+      <i *ngIf="config.icon" [ngClass]="config.icon" class="mr-8"></i>
+      {{config.title}}
+    </h1>
+    <ol *ngIf="config.breadcrumb" class="breadcrumb">
+      <li
+        *ngFor="let item of config.breadcrumb"
+        class="breadcrumb-item">
+
+        <a [routerLink]="item.routerLink" routerLinkActive="active">{{item.name}}</a>
+      </li>
+    </ol>
+  </div>
+  <div class="space"></div>
+  <div class="btn-group">
+    <ng-content select="[buttons]"></ng-content>
+  </div>
+</nav>

@@ -1,6 +1,5 @@
 .table-container {overflow: auto;height: 553px;width: 100%;position: relative;}
 table {position: relative;border-collapse: collapse;margin-bottom: 0;color: var(--font-color);}
-table tbody {height: 474px;}
 table thead,
 table tfoot {position: relative;z-index: 1;}
 table .sorted {background: var(--bg-datatable-th);}
@@ -20,13 +19,15 @@ table tr td.selection {width: 40px;text-align: center;}
 table tr td.option .options-content {display: flex;justify-content: space-between;align-items: center;}
 table tr .checkbox {margin: 0;}
 table tr .checkbox label::before {margin-left: -19px!important;}
+table .fake-line td {padding: 0;border: none;}
+table .fake-line {border: none;--bs-table-hover-bg: transparent;}
 .page-size-content {display: flex;justify-content: flex-start;align-items: center;padding: 0 15px;box-sizing: border-box;}
 .page-size-content label {white-space: nowrap;font-size: 8pt;text-transform: uppercase;color: var(--font-color);}
 .page-size-content select {margin-left: 8px;width: fit-content;}
 .pagination-content {display: flex;align-items: center;justify-content: flex-end;padding-right: 10px;}
 .pagination-content span.page-info {font-size: 9pt;line-height: 10pt;color: var(--font-color);border-radius: 50px;padding: 5px 10px;margin-right: 10px;box-sizing: border-box;}
 
-.datatable-loader {position: absolute;display: flex;justify-content: center;align-items: center;width: calc(100% - 1px);height: 516px;background-color: rgba(0,0,0,.2);z-index: 1;}
+.datatable-loader {display: flex;justify-content: center;align-items: center;width: calc(100% - 1px);height: 474px;background-color: rgba(0,0,0,.2);z-index: 1;box-sizing: border-box;}
 
-.empty-list-container {position: absolute;display: flex;flex-direction: column;justify-content: center;align-items: center;width: calc(100% - 1px);height: 516px;font-weight: bold;box-sizing: border-box;}
+.empty-list-container {display: flex;flex-direction: column;justify-content: center;align-items: center;width: calc(100% - 1px);height: 474px;font-weight: bold;box-sizing: border-box;}
 .empty-list-container i {font-size: 40px;opacity: .8;}

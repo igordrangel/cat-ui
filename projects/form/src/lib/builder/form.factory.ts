@@ -20,6 +20,8 @@ import { FormRadioFactory } from './radio/form-radio.factory';
 import { FormFileFactory } from './file/form-file.factory';
 import { FormCsvFactory } from './csv/form-csv.factory';
 import { FormAutocompleteFactory } from './autocomplete/form-autocomplete.factory';
+import { FormPasswordFactory } from './password/form-password.factory';
+import { FormSearchFactory } from './search/form-search.factory';
 
 export class FormFactory<DataType> {
   private readonly config: CatFormConfig<DataType>;
@@ -63,10 +65,19 @@ export class FormFactory<DataType> {
     return this;
   }
 
+  public search(
+    label: string,
+    name: string,
+    field: (builder: FormSearchFactory) => CatFormFieldOptions
+  ) {
+    this.field('search', label, name, field);
+    return this;
+  }
+
   public password(
     label: string,
     name: string,
-    field: (builder: FormTextFactory) => CatFormFieldOptions
+    field: (builder: FormPasswordFactory) => CatFormFieldOptions
   ) {
     this.field('password', label, name, field);
     return this;
@@ -240,6 +251,8 @@ export class FormFactory<DataType> {
     switch (type) {
       case 'text':
         return fieldService.text(label);
+      case 'search':
+        return fieldService.search(label);
       case 'password':
         return fieldService.password(label);
       case 'email':

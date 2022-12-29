@@ -12,10 +12,15 @@ import { FormFileFactory } from './file/form-file.factory';
 import { FormCsvFactory } from './csv/form-csv.factory';
 import { FormSelectFactory } from './select/form-select.factory';
 import { FormAutocompleteFactory } from './autocomplete/form-autocomplete.factory';
+import { FormSearchFactory } from './search/form-search.factory';
 
 export class FormFieldService {
   public text(label: string) {
     return new FormTextFactory(label);
+  }
+
+  public search(label: string) {
+    return new FormSearchFactory(label);
   }
 
   public password(label: string) {
