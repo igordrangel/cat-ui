@@ -21,8 +21,8 @@ import { SafeUrl } from '@angular/platform-browser';
 import { CatOAuth2ConfigInterface } from '../../services/openid/cat-oauth2-config.interface';
 import { NotificationService } from '../../services/notifications/notification.service';
 import { Subscription } from 'rxjs/internal/Subscription';
-import { CatDynamicComponent } from '../../../../../dynamic-component/src/lib/cat-dynamic-component';
 import { LogotypeComponent } from '../logotype/logotype.component';
+import { CatDynamicComponent } from '@catrx/ui/dynamic-component';
 
 @Component({
   selector: 'cat-app-container[config]',
