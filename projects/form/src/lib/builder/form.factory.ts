@@ -63,6 +63,15 @@ export class FormFactory<DataType> {
     return this;
   }
 
+  public password(
+    label: string,
+    name: string,
+    field: (builder: FormTextFactory) => CatFormFieldOptions
+  ) {
+    this.field('password', label, name, field);
+    return this;
+  }
+
   public email(
     label: string,
     name: string,
@@ -231,6 +240,8 @@ export class FormFactory<DataType> {
     switch (type) {
       case 'text':
         return fieldService.text(label);
+      case 'password':
+        return fieldService.password(label);
       case 'email':
         return fieldService.email(label);
       case 'url':

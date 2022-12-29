@@ -6,7 +6,7 @@ import {
 } from '@angular/core';
 import { delay } from '@koalarx/utils/operators/delay';
 import { BehaviorSubject, interval, Subject, takeUntil } from 'rxjs';
-import { AppConfig, CatThemeType, AppConfigMenu, AppNotification } from '../../factory/app-config.interface';
+import { AppConfig, CatThemeType, AppConfigMenu, AppNotification, AppContainerConfig } from '../../factory/app-config.interface';
 import { CatOAuth2Config } from '../../services/openid/cat-oauth2.config';
 import { CatOAuth2Service } from '../../services/openid/cat-oauth2.service';
 import {
@@ -21,6 +21,8 @@ import { SafeUrl } from '@angular/platform-browser';
 import { CatOAuth2ConfigInterface } from '../../services/openid/cat-oauth2-config.interface';
 import { NotificationService } from '../../services/notifications/notification.service';
 import { Subscription } from 'rxjs/internal/Subscription';
+import { CatDynamicComponent } from '../../../../../dynamic-component/src/lib/cat-dynamic-component';
+import { LogotypeComponent } from '../logotype/logotype.component';
 
 @Component({
   selector: 'cat-app-container[config]',
@@ -41,6 +43,7 @@ export class AppContainerComponent implements OnInit {
   public userPicture$ = new BehaviorSubject<SafeUrl | null>(null);
   public loadingNotifications$ = new BehaviorSubject<boolean>(false);
   public notifications$ = new BehaviorSubject<AppNotification[] | null>(null);
+  public forceLogin$ = new BehaviorSubject<boolean>(false);
 
   private intervalNotifications?: Subscription;
   private destroyLoggedSubscriptions$ = new Subject<boolean>();
@@ -62,7 +65,7 @@ export class AppContainerComponent implements OnInit {
   }
 
   ngOnInit() {
-    if (this.config.authSettings.mode === 'openId') {
+    if (this.config.authSettings.openId) {
       this.startOpenID();
     }
 
@@ -102,12 +105,22 @@ export class AppContainerComponent implements OnInit {
   }
 
   public login() {
-    this.oauth2Service.events.next('authenticate');
+    if (this.config.authSettings.openId) {
+      this.oauth2Service.events.next('authenticate');
+    } else if (this.config.authSettings.jwt) {
+      this.forceLogin$.next(true);
+    }
   }
 
   public logoutAndTryAgain() {
     this.errorLoadConfig$.next(false);
     this.logout(true);
+  }
+
+  public reloadNotifications() {
+    this.intervalNotifications?.unsubscribe();
+    this.loadingNotifications$.next(true);
+    this.observeNotifications();
   }
 
   public removeNotification(id: number) {
@@ -148,11 +161,24 @@ export class AppContainerComponent implements OnInit {
       });
   }
 
+  public getLoginComponent() {
+    if (this.config.authSettings.jwt) {
+      return new CatDynamicComponent(
+        this.config.authSettings.jwt.loginComponent,
+        new CatDynamicComponent(LogotypeComponent, {
+          config: this.config,
+          themeActive$: this.themeActive$,
+        } as AppContainerConfig)
+      );
+    }
+    return null;
+  }
+
   private startOpenID() {
     if (!CatOAuth2Config.hasConfig()) {
       setTimeout(() => {
         if (this.config.authSettings.autoAuth) {
-          this.oauth2Service.initLoginFlow(this.config.authSettings.service);
+          this.oauth2Service.initLoginFlow(this.config.authSettings.openId.service);
         }
       }, 3000);
     }
@@ -222,7 +248,11 @@ export class AppContainerComponent implements OnInit {
 
         if (TokenFactory.hasToken()) {
           this.username = this.tokenService.getOAuth2Token()?.login;
-          this.userPicture$.next(this.oauth2Service.getPicture());
+
+          if (this.config.authSettings.openId) {
+            this.userPicture$.next(this.oauth2Service.getPicture());
+          }
+
           this.router.navigate(['']);
 
           interval(1)
@@ -235,6 +265,7 @@ export class AppContainerComponent implements OnInit {
 
           await delay(300);
           this.logged$.next(true);
+          this.forceLogin$.next(false);
         }
       });
   }

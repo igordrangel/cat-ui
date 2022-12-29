@@ -1,6 +1,15 @@
+import { Type } from "@angular/core";
 import { CatDynamicComponent } from "@catrx/ui/dynamic-component";
+import { BehaviorSubject } from "rxjs/internal/BehaviorSubject";
 import { Observable } from "rxjs/internal/Observable";
 import { CatOAuth2TokenInterface } from "../services/token/cat-token.service";
+
+export class CatLogotypeApp extends CatDynamicComponent {}
+
+export interface AppContainerConfig {
+  config: AppConfig;
+  themeActive$: BehaviorSubject<CatThemeType>;
+}
 
 export interface AppConfig {
   appName: string;
@@ -13,12 +22,14 @@ export interface AppConfig {
 }
 
 export interface AppAuthSettings {
-  mode: CatAuthMode;
   autoAuth: boolean;
-  service?: string;
-  onAuth: (
-    decodedToken: CatOAuth2TokenInterface | { [key: string]: any }
-  ) => Observable<AppConfigMenu>;
+  openId?: {
+    service: string;
+  };
+  jwt?: {
+    loginComponent: Type<any>;
+  };
+  onAuth: (decodedToken: CatAppDecodedToken) => Observable<AppConfigMenu>;
 }
 
 export interface AppNotificationsConfig {
@@ -62,5 +73,5 @@ export interface AppConfigMenuTool {
   fnAction?: () => void;
 }
 
-export type CatAuthMode = 'jwt' | 'openId';
 export type CatThemeType = 'light' | 'dark';
+export type CatAppDecodedToken = CatOAuth2TokenInterface | { [key: string]: any };
