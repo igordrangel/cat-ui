@@ -1,4 +1,5 @@
-import jwt from 'jwt-decode';
+import jwtDecode from 'jwt-decode';
+import jwtEncode from 'jwt-encode';
 
 import { Injectable, OnDestroy } from '@angular/core';
 import { BehaviorSubject } from 'rxjs/internal/BehaviorSubject';
@@ -35,20 +36,24 @@ export class CatTokenService implements OnDestroy {
     TokenFactory.setToken(token);
   }
 
+  public setDecodedToken(data: any, secret: string) {
+    this.setToken(jwtEncode(data, secret));
+  }
+
   public getToken(): BehaviorSubject<string|null> {
     return this.token$;
   }
 
   public getDecodedToken<T>(): T | null {
-    return TokenFactory.hasToken() ? jwt(TokenFactory.getToken()) : null;
+    return TokenFactory.hasToken() ? jwtDecode(TokenFactory.getToken()) : null;
   }
 
   public getOAuth2Token(): CatOAuth2TokenInterface | null {
-    return TokenFactory.hasToken() ? jwt(TokenFactory.getToken()) : null;
+    return TokenFactory.hasToken() ? jwtDecode(TokenFactory.getToken()) : null;
   }
 
   public getOAuth2DecodedToken() {
-    return jwt(this.getOAuth2Token().idToken) as any;
+    return jwtDecode(this.getOAuth2Token().idToken) as any;
   }
 
   public removeToken() {

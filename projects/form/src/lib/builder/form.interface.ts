@@ -57,7 +57,10 @@ export interface CatFormBehaviorAsyncValidator {
   asyncValidators: AsyncValidatorFn[];
 }
 
-export interface CatFormTextOptions extends CatFormFieldOptions {}
+export interface CatFormTextOptions extends CatFormFieldOptions {
+  mask?: string;
+}
+export interface CatFormPasswordOptions extends CatFormFieldOptions {}
 export interface CatFormTextareaOptions extends CatFormFieldOptions {
   minRows?: number;
   maxRows?: number;
@@ -131,6 +134,7 @@ export type CatFormFieldTemplateGridType =
   | 12;
 export type CatFormFieldType =
   | 'text'
+  | 'password'
   | 'number'
   | 'email'
   | 'date'

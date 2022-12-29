@@ -10,7 +10,7 @@ export class CatOAuth2Config {
 
   public static getConfig() {
     return localStorage.getItem(
-      CatEnvironment.environment?.storageOAuthTypeName
+      CatEnvironment.environment?.storageOpenIDTypeName
     );
   }
 
@@ -20,7 +20,7 @@ export class CatOAuth2Config {
 
   public static setConfig(type: string) {
     localStorage.setItem(
-      CatEnvironment.environment?.storageOAuthTypeName,
+      CatEnvironment.environment?.storageOpenIDTypeName,
       type
     );
     this.config.next(this.getOAuthConfig(type));

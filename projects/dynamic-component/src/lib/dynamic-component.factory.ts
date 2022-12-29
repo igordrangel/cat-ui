@@ -24,7 +24,7 @@ export class DynamicComponentFactory implements OnInit {
 
       const componentRef = viewContainerRef?.createComponent<CatDynamicComponentDataInterface>(dynamicComponent.component);
       const instance = componentRef?.instance;
-      if (instance) instance.data = dynamicComponent.data;
+      if (instance && dynamicComponent.data) instance.data = dynamicComponent.data;
     }
   }
 }

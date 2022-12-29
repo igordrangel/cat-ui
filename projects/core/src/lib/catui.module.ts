@@ -34,8 +34,8 @@ export class CatUiModule {
   static forRoot(
     environment: CatEnvironmentInterface
   ): ModuleWithProviders<CatUiModule> {
-    environment.storageOAuthTypeName =
-      environment.storageOAuthTypeName ?? 'catui_oauth_type';
+    environment.storageOpenIDTypeName =
+      environment.storageOpenIDTypeName ?? 'catui_oauth_type';
     environment.storageTokenName =
       environment.storageTokenName ?? 'catui_token';
 

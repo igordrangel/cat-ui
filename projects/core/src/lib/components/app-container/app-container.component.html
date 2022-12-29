@@ -1,6 +1,6 @@
 <main [ngClass]="themeActive$ | async">
   <ng-container *ngIf="!(validatingScope$ | async) else loginTemplate">
-    <ng-container *ngIf="!this.config.authSettings.autoAuth || (logged$ | async) else loginTemplate">
+    <ng-container *ngIf="!(forceLogin$ | async) && (!this.config.authSettings.autoAuth || (logged$ | async)) else loginTemplate">
       <aside
         #asideElement
         [ngClass]="{show: menuCollapsed$ | async}">
@@ -43,9 +43,16 @@
 
             <ul id="cat-app-container-notifications-dropdown" *dropdownMenu class="dropdown-menu" role="menu" aria-labelledby="button-basic">
               <li class="notifications-head">
-                Notificações
-                <div class="space"></div>
+                <span class="mr-8">Notificações</span>
                 <cat-loader *ngIf="loadingNotifications$ | async"></cat-loader>
+                <div class="space"></div>
+                <button
+                  (click)="reloadNotifications()"
+                  type="button"
+                  matTooltip="Buscar Notificaçoes"
+                  matTooltipPosition="above">
+                  <i class="fa-solid fa-rotate"></i>
+                </button>
                 <button
                   (click)="removeAllNotifications()"
                   type="button"
@@ -178,13 +185,21 @@
     </div>
   </div>
   <ng-template #loadingData>
-    <div class="loading-info">
-      <img [src]="(themeActive$ | async) === 'dark' && config.logotype.negative
-          ? config.logotype.negative
-          : config.logotype.default" alt="Logotipo"/>
-      <h1>Bem-Vindo ao {{config.appName}}!</h1>
-      <small>Validando credenciais...</small>
-      <cat-loader></cat-loader>
-    </div>
+    <ng-container *ngIf="config.authSettings.jwt?.loginComponent else templateDefault">
+      <div class="content-login">
+        <cat-dynamic-component [component]="getLoginComponent()"></cat-dynamic-component>
+      </div>
+    </ng-container>
+
+    <ng-template #templateDefault>
+      <div class="loading-info">
+        <img [src]="(themeActive$ | async) === 'dark' && config.logotype.negative
+            ? config.logotype.negative
+            : config.logotype.default" alt="Logotipo"/>
+        <h1>Bem-Vindo ao {{config.appName}}!</h1>
+        <small>Validando credenciais...</small>
+        <cat-loader></cat-loader>
+      </div>
+    </ng-template>
   </ng-template>
 </ng-template>

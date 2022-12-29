@@ -18,6 +18,10 @@ export class FormFieldService {
     return new FormTextFactory(label);
   }
 
+  public password(label: string) {
+    return new FormTextFactory(label);
+  }
+
   public email(label: string) {
     return new FormEmailFactory(label);
   }

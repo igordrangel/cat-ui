@@ -15,6 +15,7 @@ import { InputCheckboxModule } from './components/input-checkbox/input-checkbox.
 import { InputRadioModule } from './components/input-radio/input-radio.module';
 import { InputFileModule } from './components/input-file/input-file.module';
 import { InputAutocompleteModule } from './components/input-autocomplete/input-autocomplete.module';
+import { InputPasswordModule } from './components/input-password/input-password.module';
 
 const maskOptions: Partial<IConfig> | (() => Partial<IConfig>) = {
   validation: false
@@ -26,6 +27,7 @@ const maskOptions: Partial<IConfig> | (() => Partial<IConfig>) = {
   imports: [
     CommonModule,
     InputTextModule,
+    InputPasswordModule,
     InputEmailModule,
     InputUrlModule,
     InputNumberModule,

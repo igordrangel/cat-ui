@@ -7,9 +7,8 @@ export interface CatEnvironmentOAuthInterface extends CatOAuth2ConfigInterface {
 export interface CatEnvironmentInterface {
   production: boolean;
   storageTokenName?: string;
-  storageOAuthTypeName?: string;
-  endpointApi?: string;
-  authenticator?: string;
+  storageOpenIDTypeName?: string;
+  hostApi?: string;
   oauthConfig?: CatEnvironmentOAuthInterface[];
 }
 
