@@ -1,0 +1,190 @@
+<main [ngClass]="themeActive$ | async">
+  <ng-container *ngIf="!(validatingScope$ | async) else loginTemplate">
+    <ng-container *ngIf="!this.config.authSettings.autoAuth || (logged$ | async) else loginTemplate">
+      <aside
+        #asideElement
+        [ngClass]="{show: menuCollapsed$ | async}">
+        <ng-container>
+          <button type="button" class="btn-menu-collapse" (click)="collapseMenu()">
+            <i *ngIf="!(menuCollapsed$ | async)" class="fa-solid fa-chevron-right"></i>
+            <i *ngIf="menuCollapsed$ | async" class="fa-solid fa-chevron-left"></i>
+          </button>
+
+          <img
+            class="logotype"
+            [src]="(themeActive$ | async) === 'dark' && config.logotype.negative
+              ? config.logotype.negative
+              : config.logotype.default"
+            alt="Logotipo"/>
+
+          <cat-menu [config]="sideMenuConfig$ | async"></cat-menu>
+        </ng-container>
+        <div class="space"></div>
+        <div class="btn-group">
+          <button
+            type="button"
+            *ngIf="config.darkMode && (themeActive$ | async) as themeActive"
+            (click)="switchTheme()"
+            [matTooltip]="'Ativar modo ' + ((themeActive$ | async) === 'light' ? 'escuro' : 'claro')"
+            matTooltipPosition="above">
+            <i *ngIf="themeActive === 'light'" class="fa-solid fa-moon"></i>
+            <i *ngIf="themeActive === 'dark'" class="fa-solid fa-sun"></i>
+          </button>
+
+          <div *ngIf="config.pushNotifications && (logged$ | async)" dropdown [dropup]="true" [insideClick]="true" class="dropup">
+            <button
+              dropdownToggle
+              type="button"
+              matTooltip="Notificações"
+              matTooltipPosition="above"
+              aria-controls="cat-app-container-notifications-dropdown">
+              <i class="fa-solid fa-bell"></i>
+            </button>
+
+            <ul id="cat-app-container-notifications-dropdown" *dropdownMenu class="dropdown-menu" role="menu" aria-labelledby="button-basic">
+              <li class="notifications-head">
+                Notificações
+                <div class="space"></div>
+                <cat-loader *ngIf="loadingNotifications$ | async"></cat-loader>
+                <button
+                  (click)="removeAllNotifications()"
+                  type="button"
+                  matTooltip="Remover todos"
+                  matTooltipPosition="above">
+                  <i class="fa-solid fa-trash-can"></i>
+                </button>
+              </li>
+
+              <li><hr class="dropdown-divider"></li>
+
+              <ng-container *ngIf="notifications$ | async as notifications else emptyNotifications">
+                <li
+                  *ngFor="let notification of notifications"
+                  class="notification-item dropdown-item">
+                  <i class="notification-icon fa-solid fa-message"></i>
+
+                  <div
+                    class="notification-item-message"
+                    [routerLink]="notification.routerLink"
+                    [ngClass]="{noAction: !notification.routerLink}">
+                    <small>{{notification.title}}</small>
+                    <p>{{notification.message}}</p>
+                  </div>
+
+                  <div class="space"></div>
+
+                  <button
+                    (click)="removeNotification(notification.id)"
+                    type="button"
+                    matTooltip="Excluir"
+                    matTooltipPosition="above">
+                    <i class="fa-solid fa-trash-can"></i>
+                  </button>
+                </li>
+              </ng-container>
+
+              <ng-template #emptyNotifications>
+                <ng-container *ngIf="config.pushNotifications.emptyTemplate else emptyNotificationsDefaultTemplate">
+                  <cat-dynamic-component [component]="config.pushNotifications.emptyTemplate"></cat-dynamic-component>
+                </ng-container>
+
+                <ng-template #emptyNotificationsDefaultTemplate>
+                  <div class="cat-empty-notifications-content">
+                    <i class="fa-solid fa-envelope-open"></i>
+                    <h2>Nenhuma notificação recebida até o momento.</h2>
+                  </div>
+                </ng-template>
+              </ng-template>
+            </ul>
+          </div>
+
+          <button
+            *ngIf="!(logged$ | async)"
+            (click)="login()"
+            type="button"
+            matTooltip="Entrar"
+            matTooltipPosition="above">
+            <i class="fa-solid fa-arrow-right-to-bracket"></i>
+          </button>
+
+          <div *ngIf="logged$ | async" dropdown [dropup]="true" class="dropup">
+            <button
+              dropdownToggle
+              class="btn-avatar"
+              type="button"
+              matTooltip="Perfil"
+              matTooltipPosition="above"
+              aria-controls="cat-app-container-menu-dropdown-user">
+
+              <div class="avatar-container">
+                <img
+                  *ngIf="userPicture$ | async as userPicture else loggedUserAvatar"
+                  [src]="userPicture"
+                  [alt]="'Bem-Vindo ' + username"
+                  referrerpolicy="no-referrer"/>
+              </div>
+            </button>
+            <ul id="cat-app-container-menu-dropdown-user" *dropdownMenu class="dropdown-menu" role="menu" aria-labelledby="button-basic">
+              <li>
+                <div class="avatar-container">
+                  <img
+                    *ngIf="userPicture$ | async as userPicture else loggedUserAvatar"
+                    [src]="userPicture"
+                    [alt]="'Bem-Vindo ' + username"
+                    referrerpolicy="no-referrer"/>
+                  <h2>{{username}}</h2>
+                </div>
+              </li>
+              <li><hr class="dropdown-divider"></li>
+              <li>
+                <a
+                  href="#"
+                  class="dropdown-item"
+                  (click)="logout(true)"
+                  type="button">
+                  <i class="fa-solid fa-arrow-right-from-bracket mr-8"></i>
+                  Sair
+                </a>
+              </li>
+            </ul>
+
+            <ng-template #loggedUserAvatar>
+              <i class="fa-solid fa-circle-user"></i>
+            </ng-template>
+
+          </div>
+        </div>
+      </aside>
+      <section>
+        <ng-content select="[router-container]"></ng-content>
+      </section>
+    </ng-container>
+  </ng-container>
+</main>
+
+<ng-template #loginTemplate>
+  <div *ngIf="errorLoadConfig$ | async else loadingData" class="loading-info">
+    <div class="loading-info">
+      <i class="icon-session-expired fa-solid fa-person-walking-arrow-right"></i>
+      <h2>Ocorreu um erro ao tentar carregar seus dados.</h2>
+      <small>Certifique-se de que esteja conectado à internet.</small>
+      <div class="btn-group">
+        <button
+          (click)="logoutAndTryAgain()"
+          class="btn btn-primary">
+          Tentar Novamente
+        </button>
+      </div>
+    </div>
+  </div>
+  <ng-template #loadingData>
+    <div class="loading-info">
+      <img [src]="(themeActive$ | async) === 'dark' && config.logotype.negative
+          ? config.logotype.negative
+          : config.logotype.default" alt="Logotipo"/>
+      <h1>Bem-Vindo ao {{config.appName}}!</h1>
+      <small>Validando credenciais...</small>
+      <cat-loader></cat-loader>
+    </div>
+  </ng-template>
+</ng-template>

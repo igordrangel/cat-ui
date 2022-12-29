@@ -3,7 +3,10 @@ import { NgModule } from "@angular/core";
 import { PageDatatableExampleComponent } from "./page-datatable-example.component";
 
 const routes: Routes = [
-  {path: '', component: PageDatatableExampleComponent}
+  {
+    path: '',
+    component: PageDatatableExampleComponent
+  },
 ];
 
 @NgModule({

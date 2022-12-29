@@ -13,13 +13,11 @@ export class PageDatatableExampleComponent {
                  'Município'
                ])
                .setActionButton({
-                 iconColor: 'primary-bg-transparent',
                  iconName: 'fa-solid fa-pencil',
                  tooltip: 'Editar',
                  fnAction: itemLine => console.log(itemLine)
                })
                .setActionButton({
-                 iconColor: 'danger-bg-transparent',
                  iconName: 'fa-solid fa-trash-can',
                  tooltip: 'Excluir',
                  fnAction: itemLine => console.log(itemLine)

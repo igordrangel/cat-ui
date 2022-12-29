@@ -14,7 +14,8 @@
   font-size: 8pt;
   margin: 0;
   font-weight: bold;
-  background-color: #fff;
+  background-color: var(--bg-body);
+  color: var(--font-color);
   padding: 0 5px;
   text-transform: uppercase;
   border-radius: 5px;
@@ -25,6 +26,7 @@
   align-items: flex-start;
   justify-content: flex-start;
   box-sizing: border-box;
+  background-color: transparent;
 }
 .hint .text-hint {
   font-size: 0.8em;

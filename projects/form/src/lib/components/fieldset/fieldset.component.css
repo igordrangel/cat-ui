@@ -1,5 +1,5 @@
 fieldset {
-  border: 1px solid rgba(0, 0, 0, 0.1);
+  border: 1px solid var(--fieldset-border-color);
   border-radius: 10px;
   box-sizing: border-box;
   padding: 10px 10px 5px;
@@ -16,4 +16,5 @@ fieldset legend {
   font-size: 8pt;
   font-weight: bold;
   text-transform: uppercase;
+  color: var(--fieldset-legend-color);
 }

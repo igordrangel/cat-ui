@@ -4,10 +4,10 @@ const {execSync} = require("child_process");
 const config = JSON.parse(fs.readFileSync('package.json').toString());
 const currentVersion = config.version;
 const libs = [
-  'core',
   'dynamic-component',
-  'icon-button',
   'loader',
+  'icon-button',
+  'core',
   'datatable',
   'form'
 ];
@@ -43,6 +43,7 @@ fs.writeFileSync('dist/package.json', JSON.stringify({
     "@fortawesome/fontawesome-free": "^6.2.1",
     "@koalarx/utils": "^1.0.101",
     "@ng-select/ng-select": "^10.0.1",
+    "b64-to-blob": "^1.2.19",
     "bootstrap": "^5.2.3",
     "ng2-search-filter": "^0.5.1",
     "ngx-mask": "^14.2.4",

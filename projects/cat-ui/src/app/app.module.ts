@@ -1,18 +1,13 @@
-import { LOCALE_ID, NgModule } from '@angular/core';
-import { BrowserModule } from '@angular/platform-browser';
-import { registerLocaleData } from '@angular/common';
-import ptBr from '@angular/common/locales/pt';
+import { NgModule } from '@angular/core';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { HttpClientModule } from '@angular/common/http';
-
-registerLocaleData(ptBr);
+import { CatUiModule } from '@catrx/ui/core';
+import { environment } from '../environments/environment';
 
 @NgModule({
   declarations: [AppComponent],
-  imports: [BrowserModule, HttpClientModule, AppRoutingModule],
-  providers: [{ provide: LOCALE_ID, useValue: 'pt-BR' }],
+  imports: [CatUiModule.forRoot(environment), AppRoutingModule],
   bootstrap: [AppComponent],
 })
 export class AppModule {}

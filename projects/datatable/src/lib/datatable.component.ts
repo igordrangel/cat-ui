@@ -86,6 +86,7 @@ export class DatatableComponent implements OnInit, OnDestroy {
   }
 
   private loadData() {
+    console.log(this.datatableList$.getValue())
     if (this.config?.service) {
       this.loadedList$.next(false);
       this.config
