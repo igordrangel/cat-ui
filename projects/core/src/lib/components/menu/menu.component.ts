@@ -3,8 +3,8 @@ import { koala } from '@koalarx/utils';
 import { AppConfigMenu, AppConfigMenuModule, AppConfigMenuTool } from '../../factory/app-config.interface';
 import { BehaviorSubject } from 'rxjs';
 import { CatMenuContext } from './cat-menu-context';
-import { CatToolbarBreadcrumb } from '../../../../../toolbar/src/lib/cat-toolbar.interface';
 import { NavigationEnd, Router } from '@angular/router';
+import { CatToolbarBreadcrumb } from '@catrx/ui/toolbar';
 
 @Component({
   selector: 'cat-menu[config]',
