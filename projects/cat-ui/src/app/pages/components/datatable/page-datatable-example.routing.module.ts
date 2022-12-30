@@ -4,8 +4,12 @@ import { PageDatatableExampleComponent } from "./page-datatable-example.componen
 
 const routes: Routes = [
   {
+    path: ':uf',
+    component: PageDatatableExampleComponent,
+  },
+  {
     path: '',
-    component: PageDatatableExampleComponent
+    component: PageDatatableExampleComponent,
   },
 ];
 

@@ -90,6 +90,17 @@ export class AppService {
               },
             ],
           },
+          {
+            icon: 'fa-solid fa-bars-progress',
+            name: 'Menu',
+            tools: [
+              {
+                name: 'Toolbar',
+                hasPermission: () => true,
+                routerLink: '/components/toolbar',
+              },
+            ],
+          },
         ],
       });
     });

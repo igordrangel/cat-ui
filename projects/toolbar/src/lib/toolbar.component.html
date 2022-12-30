@@ -9,7 +9,14 @@
         *ngFor="let item of config.breadcrumb"
         class="breadcrumb-item">
 
-        <a [routerLink]="item.routerLink" routerLinkActive="active">{{item.name}}</a>
+        <a
+          [routerLink]="item.routerLink"
+          [ngClass]="{
+            active: router.url === item.routerLink,
+            noRoute: !item.routerLink
+          }">
+          {{item.name}}
+        </a>
       </li>
     </ol>
   </div>

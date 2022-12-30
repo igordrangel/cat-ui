@@ -18,6 +18,7 @@ export class PageDatatableExampleService {
         map((response) =>
           response.map((item) => {
             return {
+              uf: item['regiao-imediata']['regiao-intermediaria'].UF.sigla,
               estado: item['regiao-imediata']['regiao-intermediaria'].UF.nome,
               municipio: item.nome,
             };

@@ -11,7 +11,8 @@
   text-decoration: none;
   color: var(--font-color);
 }
-.cat-toolbar li a.active {color: var(--disable-color);}
+.cat-toolbar li a.active,
+.cat-toolbar li a.noRoute {color: var(--disable-color);cursor: default;}
 .cat-toolbar .active a {font-weight: bold;}
 .cat-toolbar .info-content {
   display: flex;
