@@ -1,6 +1,5 @@
 import { Component } from "@angular/core";
 import { Route, Router } from '@angular/router';
-import { CatBaseComponent } from "@catrx/ui/core";
 import { CatDatatableService } from "@catrx/ui/datatable";
 import { CatFormService } from "@catrx/ui/form";
 import { BehaviorSubject } from "rxjs/internal/BehaviorSubject";
@@ -17,7 +16,7 @@ import { PageDatatableExampleService } from "./page-datatable-example.service";
     `,
   ],
 })
-export class PageDatatableExampleComponent extends CatBaseComponent {
+export class PageDatatableExampleComponent {
   datatableFilter$ = new BehaviorSubject(null);
   filterConfig = this.formService
     .build<any>()
@@ -61,7 +60,5 @@ export class PageDatatableExampleComponent extends CatBaseComponent {
     private formService: CatFormService,
     private datatableService: CatDatatableService,
     private service: PageDatatableExampleService
-  ) {
-    super();
-  }
+  ) {}
 }

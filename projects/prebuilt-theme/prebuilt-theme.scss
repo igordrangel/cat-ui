@@ -6,8 +6,8 @@
 $select-icon-color-dark: "%23f1f1f1";
 $checkbox-radio-icon-color-dark: "%23212121";
 $checkbox-radio-icon-color-light: "%23f1f1f1";
-$breadcrumb-divider-color-dark: "%23212121";
-$breadcrumb-divider-color-light: "%23f1f1f1";
+$breadcrumb-divider-color-dark: "%23f1f1f1";
+$breadcrumb-divider-color-light: "%23212121";
 
 :root,
 main {
@@ -198,10 +198,10 @@ main {color: var(--font-color);}
 }
 
 .breadcrumb {
-  --bs-breadcrumb-divider: url("data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' width='8' height='8'><path d='M2.5 0L1 1.5 3.5 4 1 6.5 2.5 8l4-4-4-4z' fill='#{$breadcrumb-divider-color-dark}'/></svg>");
+  --bs-breadcrumb-divider: url("data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' width='8' height='8'><path d='M2.5 0L1 1.5 3.5 4 1 6.5 2.5 8l4-4-4-4z' fill='#{$breadcrumb-divider-color-light}'/></svg>");
 }
 .dark .breadcrumb {
-  --bs-breadcrumb-divider: url("data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' width='8' height='8'><path d='M2.5 0L1 1.5 3.5 4 1 6.5 2.5 8l4-4-4-4z' fill='#{$breadcrumb-divider-color-light}'/></svg>");
+  --bs-breadcrumb-divider: url("data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' width='8' height='8'><path d='M2.5 0L1 1.5 3.5 4 1 6.5 2.5 8l4-4-4-4z' fill='#{$breadcrumb-divider-color-dark}'/></svg>");
 }
 
 .p-relative {

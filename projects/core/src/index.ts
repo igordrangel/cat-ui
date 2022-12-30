@@ -15,4 +15,4 @@ export * from './lib/services/token/cat-token.service';
 export * from './lib/interfaces/cat-file.interface';
 export * from './lib/environments/cat-environment';
 export * from './lib/guard/cat-auth.guard';
-export * from './lib/abstractions/cat-base.component';
+export * from './lib/abstractions/cat-component.base';
