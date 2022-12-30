@@ -1,7 +1,6 @@
-<cat-form
-  [config]="config"
-  [onSubmit]="submit"
-  (isValid)="isFormValid = $event">
-</cat-form>
+<form [formGroup]="form.dynamicForm" (submit)="form.submit()">
+  <cat-form #form [config]="config">
+  </cat-form>
 
-<button class="btn btn-primary btn-sm ml-10" (click)="submit.next(true)">Enviar</button>
+  <button type="submit" class="btn btn-primary btn-sm">Enviar</button>
+</form>

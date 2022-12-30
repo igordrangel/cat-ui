@@ -7,12 +7,7 @@ import { FieldModule } from "./components/field/field.module";
 
 @NgModule({
   declarations: [FormComponent],
-  exports: [FormComponent],
-  imports: [
-    CommonModule,
-    ReactiveFormsModule,
-    CatFieldsetModule,
-    FieldModule
-  ]
+  exports: [FormComponent, ReactiveFormsModule],
+  imports: [CommonModule, ReactiveFormsModule, CatFieldsetModule, FieldModule],
 })
-export class CatFormModule { }
+export class CatFormModule {}
