@@ -10,10 +10,16 @@ import { nameValidator } from './validators/name.validator';
 
 @Component({
   templateUrl: 'page-form.component.html',
+  styles: [
+    `
+      form {
+        display: block;
+        margin: 15px 20px;
+      }
+    `,
+  ],
 })
 export class PageFormComponent {
-  isFormValid = false;
-  submit = new Subject<boolean>();
   config = this.formService
     .build()
     .fieldset(
