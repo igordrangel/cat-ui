@@ -1,9 +1,10 @@
-import { BehaviorSubject, Observable } from "rxjs";
 import { CatDynamicComponent } from "@catrx/ui/dynamic-component";
 import { CatIconButtonColor } from "@catrx/ui/icon-button";
+import { BehaviorSubject } from "rxjs/internal/BehaviorSubject";
+import { Observable } from "rxjs/internal/Observable";
 
 export interface DatatableConfig<DataType> {
-  filter$?: Observable<any|string>;
+  filter$?: BehaviorSubject<any|string>;
   hasSelection?: boolean;
   hasAction?: boolean;
   columns: string[];

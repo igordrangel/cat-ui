@@ -30,6 +30,10 @@
       "@catrx/ui/form": [
         "dist/form",
         "projects/form/src"
+      ],
+      "@catrx/ui/toolbar": [
+        "dist/toolbar",
+        "projects/toolbar/src"
       ]
     },
     "baseUrl": "./",

@@ -6,6 +6,12 @@
       [fieldConfig]="fieldConfig">
     </cat-field-text>
 
+    <cat-field-search
+      *ngIf="fieldConfig.type === 'search'"
+      [control]="control"
+      [fieldConfig]="fieldConfig">
+    </cat-field-search>
+
     <cat-field-password
       *ngIf="fieldConfig.type === 'password'"
       [control]="control"

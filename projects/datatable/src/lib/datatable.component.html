@@ -34,20 +34,40 @@
     </thead>
     <ng-container>
     <tbody>
-      <ng-container *ngIf="!(loadedList$ | async)">
-        <ng-container *ngIf="config?.customLoaderComponent else defaultLoader">
-          <cat-dynamic-component [component]="config?.customLoaderComponent"></cat-dynamic-component>
-        </ng-container>
+      <tr *ngIf="!(loadedList$ | async)" class="fake-line">
+        <td colspan="50">
+          <ng-container *ngIf="config?.customLoaderComponent else defaultLoader">
+            <cat-dynamic-component [component]="config?.customLoaderComponent"></cat-dynamic-component>
+          </ng-container>
 
-        <ng-template #defaultLoader>
-          <div class="datatable-loader">
-            <cat-loader></cat-loader>
-          </div>
-        </ng-template>
-      </ng-container>
+          <ng-template #defaultLoader>
+            <div class="datatable-loader">
+              <cat-loader></cat-loader>
+            </div>
+          </ng-template>
+        </td>
+      </tr>
 
       <ng-container *ngIf="(datatableList$ | async) as datatableList">
-        <ng-container *ngIf="datatableList.length > 0 else emptyList">
+
+        <ng-container *ngIf="datatableList.length === 0 && loadedList$ | async">
+          <tr>
+            <td colspan="50">
+              <ng-container *ngIf="config?.customEmptyComponent else defaultEmptyList">
+                <cat-dynamic-component [component]="config?.customEmptyComponent"></cat-dynamic-component>
+              </ng-container>
+
+              <ng-template #defaultEmptyList>
+                <div *ngIf="loadedList$ | async" class="empty-list-container">
+                  <i class="fa-solid fa-inbox"></i>
+                  Nenhum registro encontrado
+                </div>
+              </ng-template>
+            </td>
+          </tr>
+        </ng-container>
+
+        <ng-container>
           <tr
             *ngFor="let rowData of datatableList | orderBy: orderBy : reverse | paginate: getPaginateProps(); let i = index ">
             <td class="selection" *ngIf="config?.hasSelection">
@@ -104,7 +124,7 @@
         <td colspan="50">
           <div class="pagination-content">
             <span class="page-info">
-              {{currentPage}} - {{totalItemsPage}} de {{totalItemsBd}}
+              {{currentPage}} - {{totalItemsPage}} de {{getPaginateProps().totalItems}}
             </span>
             <pagination-controls class="my-pagination" previousLabel="Anterior" nextLabel="Próximo"
                                  (pageChange)="handlePageChange($event)"></pagination-controls>
@@ -114,16 +134,3 @@
     </tfoot>
   </table>
 </div>
-
-<ng-template #emptyList>
-  <ng-container *ngIf="config?.customEmptyComponent else defaultEmptyList">
-    <cat-dynamic-component [component]="config?.customEmptyComponent"></cat-dynamic-component>
-  </ng-container>
-
-  <ng-template #defaultEmptyList>
-    <div *ngIf="loadedList$ | async" class="empty-list-container">
-      <i class="fa-solid fa-inbox"></i>
-      Nenhum registro encontrado
-    </div>
-  </ng-template>
-</ng-template>

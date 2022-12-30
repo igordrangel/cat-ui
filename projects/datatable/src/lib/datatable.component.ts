@@ -8,12 +8,13 @@ import {
 import { BehaviorSubject, first, Subject, takeUntil } from "rxjs";
 import { koala } from "@koalarx/utils";
 import { clone } from "@koalarx/utils/operators";
+import { Ng2SearchPipe } from 'ng2-search-filter';
 
 @Component({
   selector: 'cat-datatable',
   templateUrl: 'datatable.component.html',
   styleUrls: ['datatable.component.css'],
-  changeDetection: ChangeDetectionStrategy.OnPush
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class DatatableComponent implements OnInit, OnDestroy {
   @Input() config?: DatatableConfig<any>;
@@ -23,15 +24,12 @@ export class DatatableComponent implements OnInit, OnDestroy {
     lastSelected: null,
     selected: [],
     emit: false,
-    checkAll: false
+    checkAll: false,
   });
   public datatableList$ = new BehaviorSubject<any[]>([]);
-  public loadedList$ = new BehaviorSubject<boolean>(false);
   public datatableBackupList$ = new BehaviorSubject<any[]>([]);
+  public loadedList$ = new BehaviorSubject<boolean>(false);
   public destroySubscriptions$ = new Subject();
-
-  public textFilter?: string;
-  public objectFilter?: any;
 
   public currentPage = 1;
   public totalItemsPage = 0;
@@ -39,6 +37,9 @@ export class DatatableComponent implements OnInit, OnDestroy {
   public columnIndexSort = -1;
   public orderBy = '';
   public reverse = false;
+
+  private textFilter?: string;
+  private objectFilter?: any;
 
   ngOnDestroy() {
     this.destroySubscriptions$.next(true);
@@ -66,18 +67,41 @@ export class DatatableComponent implements OnInit, OnDestroy {
     if (this.config) {
       (this.config.filter$ ?? new BehaviorSubject(null))
         .pipe(takeUntil(this.destroySubscriptions$))
-        .subscribe(filter => {
+        .subscribe((filter) => {
+          console.log(filter, this.config?.typeDataList);
           if (typeof filter === 'string') {
-            this.textFilter = filter;
+            this.datatableList$.next(
+              Ng2SearchPipe.filter(this.datatableBackupList$.getValue(), filter)
+            );
           } else if (typeof filter === 'object') {
             this.objectFilter = filter;
+
+            let filteredList = this.datatableBackupList$.getValue();
+            filteredList = filteredList.filter((itemLine) => {
+              const dataFiltered = [];
+              Object.keys(filter).forEach((indexNameFilter) => {
+                if (filter[indexNameFilter] && indexNameFilter !== 'filter') {
+                  dataFiltered.push(
+                    JSON.stringify(itemLine[indexNameFilter]) ===
+                      JSON.stringify(filter[indexNameFilter]) ||
+                      (itemLine[indexNameFilter]?.['id'] ?? 0) ===
+                        (filter[indexNameFilter]?.['id'] ?? -1) ||
+                      (itemLine[indexNameFilter]?.['codigo'] ?? 0) ===
+                        (filter[indexNameFilter]?.['codigo'] ?? -1)
+                  );
+                }
+              });
+
+              return dataFiltered.filter((d) => d === false).length === 0;
+            });
+            this.datatableList$.next(filteredList);
           }
 
           switch (this.config?.typeDataList) {
-            case "all":
-              if (this.datatableList$.getValue().length === 0) this.loadData();
+            case 'all':
+              if (this.datatableBackupList$.getValue().length === 0) this.loadData();
               break;
-            case "onDemand":
+            case 'onDemand':
               this.loadData();
               break;
           }
@@ -86,32 +110,34 @@ export class DatatableComponent implements OnInit, OnDestroy {
   }
 
   private loadData() {
-    console.log(this.datatableList$.getValue())
     if (this.config?.service) {
       this.loadedList$.next(false);
       this.config
-          .service(this.getFilter())
-          .pipe(first())
-          .subscribe({
-            next: (response: any[]) => {
-              const listData = (this.config?.listPropName ? response[this.config?.listPropName as any] : response);
-              this.datatableList$.next(listData);
-              this.datatableBackupList$.next(clone(listData));
-              this.totalItemsBd = (this.config?.listQtyPropName ? response[this.config?.listQtyPropName as any] : response.length);
-              this.totalItemsPage = koala(listData)
-                .array()
-                .split(this.config?.limitItemPerPage ?? 30)
-                .getValue()[0]
-                ?.length;
+        .service(this.getFilter())
+        .pipe(first())
+        .subscribe({
+          next: (response: any[]) => {
+            const listData = this.config?.listPropName
+              ? response[this.config?.listPropName as any]
+              : response;
+            this.datatableList$.next(listData);
+            this.datatableBackupList$.next(clone(listData));
+            this.totalItemsBd = this.config?.listQtyPropName
+              ? response[this.config?.listQtyPropName as any]
+              : response.length;
+            this.totalItemsPage = koala(listData)
+              .array()
+              .split(this.config?.limitItemPerPage ?? 30)
+              .getValue()[0]?.length;
 
-              if (this.config?.getDatasource) this.config.getDatasource(listData);
+            if (this.config?.getDatasource) this.config.getDatasource(listData);
 
-              this.loadedList$.next(true);
-            },
-            error: () => {
-              this.loadedList$.next(true);
-            }
-          });
+            this.loadedList$.next(true);
+          },
+          error: () => {
+            this.loadedList$.next(true);
+          },
+        });
     }
   }
 
@@ -119,7 +145,7 @@ export class DatatableComponent implements OnInit, OnDestroy {
     let filter = {
       page: this.currentPage,
       orderBy: this.orderBy,
-      direction: this.reverse ? 'desc' : 'asc'
+      direction: this.reverse ? 'desc' : 'asc',
     } as DatatableFilterResponse;
 
     if (this.textFilter) {
@@ -127,8 +153,8 @@ export class DatatableComponent implements OnInit, OnDestroy {
     } else if (this.objectFilter) {
       filter = {
         ...filter,
-        ...this.objectFilter
-      }
+        ...this.objectFilter,
+      };
     }
 
     return filter;
@@ -147,7 +173,9 @@ export class DatatableComponent implements OnInit, OnDestroy {
     if (this.orderBy) {
       this.reverse = reverse
         ? reverse
-        : (this.columnIndexSort !== columnIndex ? false : !this.reverse);
+        : this.columnIndexSort !== columnIndex
+        ? false
+        : !this.reverse;
       this.columnIndexSort = columnIndex;
     }
   }
@@ -157,23 +185,35 @@ export class DatatableComponent implements OnInit, OnDestroy {
   //#region [Selection List Control]
   public isChecked(index: number) {
     const selection = this.selection$.getValue();
-    return selection ? !!selection.selected.find(selectItem => selectItem.index === index) : false;
+    return selection
+      ? !!selection.selected.find((selectItem) => selectItem.index === index)
+      : false;
   }
 
-  public toggleItem(index: number, item: any, forceCheck: boolean = false, emit: boolean = true, checkAll: boolean = false) {
+  public toggleItem(
+    index: number,
+    item: any,
+    forceCheck: boolean = false,
+    emit: boolean = true,
+    checkAll: boolean = false
+  ) {
     const selection = this.selection$.getValue();
-    const itemSelection = {index, item};
+    const itemSelection = { index, item };
     selection.emit = emit;
     selection.checkAll = checkAll;
     selection.lastSelected = itemSelection;
 
     if (this.isChecked(index) && !forceCheck) {
-      selection.selected = koala(selection.selected).array<any>().map(selectItem => {
-        if (selectItem.index === index) {
-          return null;
-        }
-        return selectItem;
-      }).clearEmptyValues().getValue();
+      selection.selected = koala(selection.selected)
+        .array<any>()
+        .map((selectItem) => {
+          if (selectItem.index === index) {
+            return null;
+          }
+          return selectItem;
+        })
+        .clearEmptyValues()
+        .getValue();
     } else if (!this.isChecked(index)) {
       selection.selected.push(itemSelection);
     }
@@ -185,7 +225,9 @@ export class DatatableComponent implements OnInit, OnDestroy {
     const selection = this.selection$.getValue();
 
     if (checked) {
-      this.getItemsOnCurrentPage().forEach((itemList, index) => this.toggleItem(index, itemList, checked, false));
+      this.getItemsOnCurrentPage().forEach((itemList, index) =>
+        this.toggleItem(index, itemList, checked, false)
+      );
     } else {
       selection.selected = [];
     }
@@ -197,7 +239,9 @@ export class DatatableComponent implements OnInit, OnDestroy {
 
   public isAllChecked() {
     const selection = this.selection$.getValue();
-    return selection ? selection?.selected?.length === this.getItemsOnCurrentPage()?.length : false;
+    return selection
+      ? selection?.selected?.length === this.getItemsOnCurrentPage()?.length
+      : false;
   }
 
   public isIndeterminateSelection() {
@@ -218,13 +262,13 @@ export class DatatableComponent implements OnInit, OnDestroy {
   private observeAnEmitSelection() {
     if (this.config?.getSelection && this.config?.hasSelection) {
       this.selection$
-          .pipe(takeUntil(this.destroySubscriptions$))
-          .subscribe(selection => {
-            selection.data = this.datatableList$.getValue();
-            if (selection.emit && this.config?.getSelection) {
-              this.config.getSelection(selection);
-            }
-          });
+        .pipe(takeUntil(this.destroySubscriptions$))
+        .subscribe((selection) => {
+          selection.data = this.datatableList$.getValue();
+          if (selection.emit && this.config?.getSelection) {
+            this.config.getSelection(selection);
+          }
+        });
     }
   }
 
@@ -232,14 +276,17 @@ export class DatatableComponent implements OnInit, OnDestroy {
 
   //#region [List Control]
   public getActionButtons(rowData: any): DatatableActionButtonConfig<any>[] {
-    return this.config?.actionButtons?.filter(btn =>
-      (btn.havePermission === undefined || btn.havePermission) &&
-      (btn.showBtn ? btn.showBtn(rowData) : true)
-    ) ?? [];
+    return (
+      this.config?.actionButtons?.filter(
+        (btn) =>
+          (btn.havePermission === undefined || btn.havePermission) &&
+          (btn.showBtn ? btn.showBtn(rowData) : true)
+      ) ?? []
+    );
   }
 
   public getItemLine(columnIndex: number) {
-    return this.config?.data?.find(item => item.columnIndex === columnIndex);
+    return this.config?.data?.find((item) => item.columnIndex === columnIndex);
   }
 
   public getItemLineComponent(columnIndex: number) {
@@ -266,9 +313,9 @@ export class DatatableComponent implements OnInit, OnDestroy {
     return {
       itemsPerPage: this.config?.limitItemPerPage ?? 30,
       currentPage: this.currentPage ?? 0,
-      totalItems: (this.totalItemsBd
+      totalItems: this.totalItemsBd && this.config.typeDataList === 'onDemand'
         ? this.totalItemsBd
-        : this.datatableList$.getValue()?.length)
+        : this.datatableList$.getValue()?.length,
     };
   }
 

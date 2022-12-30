@@ -134,6 +134,7 @@ export type CatFormFieldTemplateGridType =
   | 12;
 export type CatFormFieldType =
   | 'text'
+  | 'search'
   | 'password'
   | 'number'
   | 'email'

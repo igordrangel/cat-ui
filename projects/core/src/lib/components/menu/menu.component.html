@@ -12,7 +12,12 @@
             <span>{{module.name}}</span>
           </h2>
           <ul>
-            <li *ngFor="let tool of module.tools" class="tool" [routerLink]="tool.routerLink" routerLinkActive="active">
+            <li
+              *ngFor="let tool of module.tools"
+              class="tool"
+              [routerLink]="tool.routerLink"
+              (click)="setInContext(tool, module)"
+              routerLinkActive="active">
               <h3>
                 <i *ngIf="tool.icon" [ngClass]="tool.icon"></i>
                 <span>{{tool.name}}</span>
@@ -24,7 +29,11 @@
     </ul>
 
     <ul *ngIf="menuOptions.tools?.length > 0">
-      <li *ngFor="let tool of menuOptions.tools" class="tool" [routerLink]="tool.routerLink" routerLinkActive="active">
+      <li class="tool"
+        *ngFor="let tool of menuOptions.tools"
+        [routerLink]="tool.routerLink"
+        (click)="setInContext(tool)"
+        routerLinkActive="active">
         <h3>
           <i *ngIf="tool.icon" [ngClass]="tool.icon"></i>
           <span>{{tool.name}}</span>

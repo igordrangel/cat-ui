@@ -4,8 +4,9 @@ import {
   DatatableData, DatatableSelection,
   DatatableTypeDataList
 } from "./cat-datatable.interface";
-import { Observable } from "rxjs";
 import { CatDynamicComponent } from "@catrx/ui/dynamic-component";
+import { Observable } from "rxjs/internal/Observable";
+import { BehaviorSubject } from "rxjs/internal/BehaviorSubject";
 
 export class DatatableFactory<DataType> {
   private config: DatatableConfig<DataType> = {
@@ -64,7 +65,7 @@ export class DatatableFactory<DataType> {
     return this;
   }
 
-  setFilter(filter$: Observable<any|string>) {
+  setFilter(filter$: BehaviorSubject<any|string>) {
     this.config.filter$ = filter$;
     return this;
   }
