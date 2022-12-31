@@ -93,7 +93,7 @@
             </td>
             <td *ngFor="let column of config?.columns; let columnIndex = index" [ngClass]="{sorted: columnIndex === columnIndexSort}">
               <cat-dynamic-component
-                *ngIf="getItemLineComponent(columnIndex) as dynamicComponent else tableCellDateText"
+                *ngIf="getItemLineComponent(columnIndex, rowData) as dynamicComponent else tableCellDateText"
                 [component]="dynamicComponent">
               </cat-dynamic-component>
               <ng-template #tableCellDateText>

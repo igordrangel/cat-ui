@@ -1,6 +1,4 @@
-<form [formGroup]="form.dynamicForm" (submit)="form.submit()">
-  <cat-form #form [config]="config">
-  </cat-form>
-
+<form (submit)="$event.preventDefault();form.submit()">
+  <cat-form #form [config]="config"></cat-form>
   <button type="submit" class="btn btn-primary btn-sm">Enviar</button>
 </form>
