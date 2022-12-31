@@ -117,6 +117,17 @@ export class AppService {
               },
             ],
           },
+          {
+            icon: 'fa-solid fa-file-arrow-down',
+            name: 'Exportação e Download de Dados',
+            tools: [
+              {
+                name: '.csv',
+                hasPermission: () => true,
+                routerLink: '/services/csv',
+              },
+            ],
+          },
         ],
       });
     });

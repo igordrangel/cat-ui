@@ -49,6 +49,18 @@ const routes: Routes = [
       },
     ],
   },
+  {
+    path: 'services',
+    children: [
+      {
+        path: 'csv',
+        loadChildren: () =>
+          import('./pages/services/csv/page-csv.module').then(
+            (m) => m.PageCsvModule
+          ),
+      },
+    ],
+  },
 ];
 
 @NgModule({
