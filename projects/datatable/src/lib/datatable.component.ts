@@ -11,13 +11,14 @@ import { clone } from "@koalarx/utils/operators";
 import { Ng2SearchPipe } from 'ng2-search-filter';
 
 @Component({
-  selector: 'cat-datatable',
+  selector: 'cat-datatable[config]',
   templateUrl: 'datatable.component.html',
   styleUrls: ['datatable.component.css'],
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class DatatableComponent implements OnInit, OnDestroy {
-  @Input() config?: DatatableConfig<any>;
+  @Input() config: DatatableConfig<any>;
+  @Input() reloadList: Subject<boolean>;
 
   public selection$ = new BehaviorSubject<DatatableSelection<any>>({
     data: [],
@@ -48,6 +49,11 @@ export class DatatableComponent implements OnInit, OnDestroy {
   ngOnInit(): void {
     this.watchFilter();
     this.observeAnEmitSelection();
+    if (this.reloadList) {
+      this.reloadList
+        .pipe(takeUntil(this.destroySubscriptions$))
+        .subscribe(() => this.loadData());
+    }
   }
 
   public getFooterColspan() {
@@ -98,7 +104,8 @@ export class DatatableComponent implements OnInit, OnDestroy {
 
           switch (this.config?.typeDataList) {
             case 'all':
-              if (this.datatableBackupList$.getValue().length === 0) this.loadData();
+              if (this.datatableBackupList$.getValue().length === 0)
+                this.loadData();
               break;
             case 'onDemand':
               this.loadData();
@@ -288,11 +295,11 @@ export class DatatableComponent implements OnInit, OnDestroy {
     return this.config?.data?.find((item) => item.columnIndex === columnIndex);
   }
 
-  public getItemLineComponent(columnIndex: number) {
+  public getItemLineComponent(columnIndex: number, data: any) {
     const itemLine = this.getItemLine(columnIndex);
 
     if (itemLine && itemLine.component) {
-      return itemLine.component(itemLine);
+      return itemLine.component(data);
     }
 
     return null;
@@ -312,9 +319,10 @@ export class DatatableComponent implements OnInit, OnDestroy {
     return {
       itemsPerPage: this.config?.limitItemPerPage ?? 30,
       currentPage: this.currentPage ?? 0,
-      totalItems: this.totalItemsBd && this.config.typeDataList === 'onDemand'
-        ? this.totalItemsBd
-        : this.datatableList$.getValue()?.length,
+      totalItems:
+        this.totalItemsBd && this.config.typeDataList === 'onDemand'
+          ? this.totalItemsBd
+          : this.datatableList$.getValue()?.length,
     };
   }
 
