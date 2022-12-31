@@ -40,6 +40,13 @@ const routes: Routes = [
             (m) => m.PageDialogModule
           ),
       },
+      {
+        path: 'confirm',
+        loadChildren: () =>
+          import('./pages/components/confirm/page-confirm.module').then(
+            (m) => m.PageConfirmModule
+          ),
+      },
     ],
   },
 ];

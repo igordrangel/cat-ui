@@ -4,13 +4,14 @@ import { DynamicComponentDirective } from './dynamic-component.directive';
 import { CatDynamicComponentDataInterface } from './cat-dynamic-component-data.interface';
 
 @Component({
-  selector: 'cat-dynamic-component',
-  template: `<ng-template catDynamicComponent></ng-template>`
+  selector: 'cat-dynamic-component[component]',
+  template: `<ng-template catDynamicComponent></ng-template>`,
 })
 export class DynamicComponentFactory implements OnInit {
   @Input() component?: CatDynamicComponent;
 
-  @ViewChild(DynamicComponentDirective, {static: true}) dynamicComponentDirective?: DynamicComponentDirective;
+  @ViewChild(DynamicComponentDirective, { static: true })
+  dynamicComponentDirective?: DynamicComponentDirective;
 
   ngOnInit() {
     this.loadComponent();
@@ -22,9 +23,13 @@ export class DynamicComponentFactory implements OnInit {
       const viewContainerRef = this.dynamicComponentDirective?.viewContainerRef;
       viewContainerRef?.clear();
 
-      const componentRef = viewContainerRef?.createComponent<CatDynamicComponentDataInterface>(dynamicComponent.component);
+      const componentRef =
+        viewContainerRef?.createComponent<CatDynamicComponentDataInterface>(
+          dynamicComponent.component
+        );
       const instance = componentRef?.instance;
-      if (instance && dynamicComponent.data) instance.data = dynamicComponent.data;
+      if (instance && dynamicComponent.data)
+        instance.data = dynamicComponent.data;
     }
   }
 }

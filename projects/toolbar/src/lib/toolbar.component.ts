@@ -1,4 +1,4 @@
-import { Component, Input } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { CatToolbarConfig } from './cat-toolbar.interface';
 
@@ -10,5 +10,5 @@ import { CatToolbarConfig } from './cat-toolbar.interface';
 export class ToolbarComponent {
   @Input() config: CatToolbarConfig;
 
-  constructor(public router: Router) {}
+  constructor(public router: Router) { }
 }

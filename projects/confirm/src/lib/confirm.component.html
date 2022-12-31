@@ -1,0 +1,15 @@
+<cat-dialog>
+  <div class="cat-confirm-content" content>
+    <cat-dynamic-component *ngIf="options.icon else defaultIcon" [component]="options.icon"></cat-dynamic-component>
+    <p [innerHTML]="options.question"></p>
+  </div>
+  <div class="cat-confirm-actions" actions>
+    <button (click)="answer('yes')" class="btn btn-success btn-sm">Sim</button>
+    <span class="divide-buttons">ou</span>
+    <button (click)="answer('no')" class="btn btn-danger btn-sm">Não</button>
+  </div>
+</cat-dialog>
+
+<ng-template #defaultIcon>
+  <i class="fa-solid fa-question"></i>
+</ng-template>

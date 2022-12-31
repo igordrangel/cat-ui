@@ -7,11 +7,12 @@ import { NavigationEnd, Router } from '@angular/router';
 import { CatToolbarBreadcrumb } from '@catrx/ui/toolbar';
 
 @Component({
-  selector: 'cat-menu[config]',
+  selector: 'cat-menu[appName][config]',
   templateUrl: './menu.component.html',
   styleUrls: ['./menu.component.css'],
 })
 export class MenuComponent implements OnInit, OnChanges {
+  @Input() appName: string;
   @Input() config: AppConfigMenu;
 
   public menuOptions$ = new BehaviorSubject<AppConfigMenu | null>(null);
@@ -21,7 +22,10 @@ export class MenuComponent implements OnInit, OnChanges {
   ngOnInit() {
     this.router.events.subscribe((event) => {
       if (event instanceof NavigationEnd) {
-        this.setInContext(this.getActiveTool(), this.getActiveModule());
+        const activeTool = this.getActiveTool();
+        if (activeTool) {
+          this.setInContext(activeTool, this.getActiveModule());
+        }
       }
     })
   }
@@ -72,11 +76,20 @@ export class MenuComponent implements OnInit, OnChanges {
         .getValue();
     }
 
+    let title: string;
+    if (moduleOption) {
+      title = `${moduleOption.name} | ${toolOption.name}`;
+    } else {
+      title = toolOption.name;
+    }
+
     CatMenuContext.context = {
       icon: moduleOption?.icon ?? toolOption.icon,
-      title: moduleOption?.name ?? toolOption.name,
+      title,
       breadcrumb,
     };
+
+    document.title = `${toolOption.name} | ${this.appName}`;
   }
 
   private buildMenu() {
