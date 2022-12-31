@@ -68,7 +68,6 @@ export class DatatableComponent implements OnInit, OnDestroy {
       (this.config.filter$ ?? new BehaviorSubject(null))
         .pipe(takeUntil(this.destroySubscriptions$))
         .subscribe((filter) => {
-          console.log(filter, this.config?.typeDataList);
           if (typeof filter === 'string') {
             this.datatableList$.next(
               Ng2SearchPipe.filter(this.datatableBackupList$.getValue(), filter)

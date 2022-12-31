@@ -370,7 +370,12 @@ main {color: var(--font-color);}
 }
 
 /*#endregion */
-/*#region [Grid]*/
+/*#region [Dialog] */
+.dialog-size-small .cat-dialog-content {width: 25vw;}
+.dialog-size-medium .cat-dialog-content {width: 50vw;}
+.dialog-size-big .cat-dialog-content {width: 75vw;}
+/*#endregion */
+/*#region [Grid] */
 [class*="col-"] {
   box-sizing: border-box;
   display: inline-block;
@@ -461,9 +466,10 @@ textarea {
   background-color: var(--bg-body);
   color: var(--font-color);
 }
-.ng-dropdown-panel .ng-dropdown-panel-items .ng-option.ng-option-marked {
-  background-color: var(--bg-select-option-hover-active);
-  color: var(--font-color);
+.ng-dropdown-panel .ng-dropdown-panel-items .ng-option.ng-option-marked,
+.ng-dropdown-panel .ng-dropdown-panel-items .ng-option.ng-option-selected {
+  background-color: var(--bg-select-option-hover-active)!important;
+  color: var(--font-color)!important;
 }
 .ng-select .ng-clear-wrapper {
   cursor: pointer;
@@ -483,10 +489,7 @@ textarea {
   .ng-clear-wrapper {
   display: flex;
 }
-.ng-select.ng-select-multiple
-  .ng-select-container
-  .ng-value-container
-  .ng-value {
+.ng-select.ng-select-multiple .ng-select-container .ng-value-container .ng-value {
   border-radius: 5px;
   color: var(--c-tag);
   background-color: var(--bg-tag);
@@ -495,6 +498,7 @@ textarea {
   line-height: 20px;
   font-size: 9pt;
 }
+.ng-select .ng-select-container .ng-value-container .ng-value {color: var(--font-color);}
 input:disabled,
 select:disabled {
   border-style: dashed;

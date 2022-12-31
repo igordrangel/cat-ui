@@ -11,6 +11,7 @@
       [multiple]="fieldConfig.multiple"
       [addTag]="fieldConfig.add ? setNewOption(fieldConfig) : false"
       [loadingText]="loaderText"
+      [appendTo]="'main'"
       (search)="searchOnType($event.term)"
       bindLabel="name"
       bindValue="value"

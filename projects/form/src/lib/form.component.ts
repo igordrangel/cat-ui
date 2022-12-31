@@ -19,7 +19,7 @@ import { toCamelCase } from '@koalarx/utils/operators/string';
 import { BehaviorSubject, debounceTime, Subject, takeUntil } from 'rxjs';
 
 @Component({
-  selector: 'cat-form',
+  selector: 'cat-form[config]',
   templateUrl: 'form.component.html',
   styleUrls: ['form.component.css'],
   changeDetection: ChangeDetectionStrategy.OnPush,

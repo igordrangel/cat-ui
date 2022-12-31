@@ -101,6 +101,17 @@ export class AppService {
               },
             ],
           },
+          {
+            icon: 'fa-regular fa-window-restore',
+            name: 'Janelas e Alertas',
+            tools: [
+              {
+                name: 'Dialog',
+                hasPermission: () => true,
+                routerLink: '/components/dialog',
+              },
+            ],
+          },
         ],
       });
     });

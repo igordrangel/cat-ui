@@ -8,6 +8,7 @@ const libs = [
   'loader',
   'icon-button',
   'toolbar',
+  'dialog',
   'core',
   'datatable',
   'form'
