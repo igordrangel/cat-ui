@@ -38,6 +38,10 @@
       "@catrx/ui/dialog": [
         "dist/dialog",
         "projects/dialog/src"
+      ],
+      "@catrx/ui/confirm": [
+        "dist/confirm",
+        "projects/confirm/src"
       ]
     },
     "baseUrl": "./",

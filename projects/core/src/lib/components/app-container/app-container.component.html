@@ -17,7 +17,7 @@
               : config.logotype.default"
             alt="Logotipo"/>
 
-          <cat-menu [config]="sideMenuConfig$ | async"></cat-menu>
+          <cat-menu [appName]="config.appName" [config]="sideMenuConfig$ | async"></cat-menu>
         </ng-container>
         <div class="space"></div>
         <div class="btn-group">
@@ -37,7 +37,8 @@
               type="button"
               matTooltip="Notificações"
               matTooltipPosition="above"
-              aria-controls="cat-app-container-notifications-dropdown">
+              aria-controls="cat-app-container-notifications-dropdown"
+              [ngClass]="{'has-notification': notifications$ | async}">
               <i class="fa-solid fa-bell"></i>
             </button>
 

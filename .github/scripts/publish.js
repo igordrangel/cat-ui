@@ -9,6 +9,7 @@ const libs = [
   'icon-button',
   'toolbar',
   'dialog',
+  'confirm',
   'core',
   'datatable',
   'form'

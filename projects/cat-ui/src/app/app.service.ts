@@ -110,6 +110,11 @@ export class AppService {
                 hasPermission: () => true,
                 routerLink: '/components/dialog',
               },
+              {
+                name: 'Confirm',
+                hasPermission: () => true,
+                routerLink: '/components/confirm',
+              },
             ],
           },
         ],
