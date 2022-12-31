@@ -34,6 +34,10 @@
       "@catrx/ui/toolbar": [
         "dist/toolbar",
         "projects/toolbar/src"
+      ],
+      "@catrx/ui/dialog": [
+        "dist/dialog",
+        "projects/dialog/src"
       ]
     },
     "baseUrl": "./",

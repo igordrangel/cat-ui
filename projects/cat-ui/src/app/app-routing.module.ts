@@ -29,9 +29,16 @@ const routes: Routes = [
       {
         path: 'toolbar',
         loadChildren: () =>
-          import(
-            './pages/components/toolbar/page-toolbar.module'
-          ).then((m) => m.PageToolbarModule),
+          import('./pages/components/toolbar/page-toolbar.module').then(
+            (m) => m.PageToolbarModule
+          ),
+      },
+      {
+        path: 'dialog',
+        loadChildren: () =>
+          import('./pages/components/dialog/page-dialog.module').then(
+            (m) => m.PageDialogModule
+          ),
       },
     ],
   },

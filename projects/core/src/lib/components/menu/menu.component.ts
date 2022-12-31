@@ -106,22 +106,22 @@ export class MenuComponent implements OnInit, OnChanges {
   }
 
   private getActiveModule() {
-    return this.config.modules.find((module) =>
+    return this.config.modules?.find((module) =>
       module.tools.find((tool) => this.router.url.indexOf(tool.routerLink) >= 0)
-    );
+    ) ?? null;
   }
 
   private getActiveTool() {
     const activeModule = this.getActiveModule();
 
     if (activeModule) {
-      return activeModule.tools.find(
+      return activeModule.tools?.find(
         (tool) => this.router.url.indexOf(tool.routerLink) >= 0
-      );
+      ) ?? null;
     }
 
-    return this.config.tools.find(
+    return this.config.tools?.find(
       (tool) => this.router.url.indexOf(tool.routerLink) >= 0
-    );
+    ) ?? null;
   }
 }
