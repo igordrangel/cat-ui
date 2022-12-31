@@ -31,6 +31,8 @@
             <i *ngIf="themeActive === 'dark'" class="fa-solid fa-sun"></i>
           </button>
 
+          <ng-content select="[bottom-buttons]"></ng-content>
+
           <div *ngIf="config.pushNotifications && (logged$ | async)" dropdown [dropup]="true" [insideClick]="true" class="dropup">
             <button
               dropdownToggle

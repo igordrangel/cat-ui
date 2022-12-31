@@ -9,18 +9,20 @@
       </cat-form-fieldset>
     </ng-container>
 
-    <ng-container *ngFor="let fieldConfig of config?.fields">
-      <div
-        #containerField
-        [ngClass]="'col-' + fieldConfig.grid">
-        <cat-form-field
-          [fieldConfig]="fieldConfig"
-          [highlightInvalidFields]="(highlightInvalidFields$ | async) ?? false"
-          (isHiddenField)="hideField(containerField, $event)"
-          (emitFormControl)="addFormControl(fieldConfig.name, $event)">
-        </cat-form-field>
-      </div>
-    </ng-container>
+    <div class="fields-content">
+      <ng-container *ngFor="let fieldConfig of config?.fields">
+        <div
+          #containerField
+          [ngClass]="'col-' + fieldConfig.grid">
+          <cat-form-field
+            [fieldConfig]="fieldConfig"
+            [highlightInvalidFields]="(highlightInvalidFields$ | async) ?? false"
+            (isHiddenField)="hideField(containerField, $event)"
+            (emitFormControl)="addFormControl(fieldConfig.name, $event)">
+          </cat-form-field>
+        </div>
+      </ng-container>
+    </div>
 
   </form>
 </ng-container>

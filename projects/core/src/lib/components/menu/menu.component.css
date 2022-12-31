@@ -73,7 +73,7 @@ nav ul li.tool h3 {
 nav ul li.module h2 i,
 nav ul li.tool h3 i {margin-right: 8px;}
 nav ul li.tool.active {color: var(--c-menu-active);}
-nav ul li.module.active {border-left: 4px solid var(--c-menu-active);color: var(--c-menu-active);}
+nav ul li.module.active {border-left: 4px solid var(--c-menu-border-active);color: var(--c-menu-active);}
 nav ul li.module ul {
   height: 0;
   overflow: hidden;

@@ -39,6 +39,10 @@ main {
   --spinner-width: 1.5rem;
   --spinner-height: 1.5rem;
 
+  --c-toolbar: #616161;
+  --bg-toolbar: #fff;
+
+  --c-datatable-th: #616161;
   --bg-datatable-th: #f1f1f1;
   --bg-datatable-hover-bg: rgba(0,0,0,.1);
   --bg-datatable-hover-color: #000;
@@ -62,6 +66,7 @@ main {
   --c-menu: rgba(255, 255, 255, 0.6);
   --c-menu-hover: rgba(255, 255, 255, 0.8);
   --c-menu-active: rgba(255, 255, 255, 1);
+  --c-menu-border-active: rgba(255, 255, 255, 1);
   --bg-menu: rgba(0, 0, 0, 0.8);
   --bg-menu-hover: rgba(0, 0, 0, 0.9);
   --bg-menu-active: rgba(0, 0, 0, 1);
@@ -107,6 +112,10 @@ main.dark {
   --spinner-width: 1.5rem;
   --spinner-height: 1.5rem;
 
+  --c-toolbar: #f1f1f1;
+  --bg-toolbar: #212121;
+
+  --c-datatable-th: #f1f1f1;
   --bg-datatable-th: #111111;
   --bg-datatable-hover-bg: rgba(0,0,0,.3);
   --bg-datatable-hover-color: #fff;
@@ -130,6 +139,7 @@ main.dark {
   --c-menu: rgba(255, 255, 255, 0.6);
   --c-menu-hover: rgba(255, 255, 255, 0.8);
   --c-menu-active: rgba(255, 255, 255, 1);
+  --c-menu-border-active: rgba(255, 255, 255, 1);
   --bg-menu: rgba(0, 0, 0, 0.6);
   --bg-menu-hover: rgba(0, 0, 0, 0.8);
   --bg-menu-active: rgba(0, 0, 0, 1);
