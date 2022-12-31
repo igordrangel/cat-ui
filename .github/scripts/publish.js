@@ -49,6 +49,7 @@ fs.writeFileSync('dist/package.json', JSON.stringify({
     "b64-to-blob": "^1.2.19",
     "bootstrap": "^5.2.3",
     "ng2-search-filter": "^0.5.1",
+    "ngx-bootstrap": "^6.2.0",
     "ngx-mask": "^14.2.4",
     "ngx-pagination": "^6.0.3",
     "ngx-papaparse": "^6.0.2",
