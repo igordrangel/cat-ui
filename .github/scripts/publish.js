@@ -10,9 +10,11 @@ const libs = [
   'toolbar',
   'dialog',
   'confirm',
-  'core',
+  'utils',
   'datatable',
-  'form'
+  'form',
+  'common',
+  'core'
 ];
 
 for (const [index, lib] of libs.entries()) {

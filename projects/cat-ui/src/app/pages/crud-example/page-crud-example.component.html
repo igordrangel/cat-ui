@@ -1,0 +1,9 @@
+<cat-toolbar [config]="getToolbarInfo()">
+  <nav buttons>
+    <button (click)="openDialog()" class="btn btn-primary btn-sm">
+      Incluir Gato
+    </button>
+  </nav>
+</cat-toolbar>
+<cat-form [config]="filterConfig"></cat-form>
+<cat-datatable [config]="listConfig"></cat-datatable>

@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { CatComponentBase } from '@catrx/ui/core';
+import { CatComponentBase } from '@catrx/ui/common';
 import { CatDialogService } from '@catrx/ui/dialog';
 import { DialogExampleComponent } from './dialog-example.component';
 

@@ -1,5 +1,5 @@
 import { Directive } from "@angular/core";
-import { CatMenuContext } from "../components/menu/cat-menu-context";
+import { CatMenuContext } from "../cat-menu-context";
 
 @Directive()
 export abstract class CatComponentBase {

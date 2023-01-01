@@ -1,5 +1,6 @@
-import { Component, OnInit } from '@angular/core';
-import { CatComponentBase, CatCsvService } from '@catrx/ui/core';
+import { Component } from '@angular/core';
+import { CatComponentBase } from '@catrx/ui/common';
+import { CatCsvService } from '@catrx/ui/utils';
 
 @Component({ templateUrl: './page-csv.component.html' })
 export class PageCsvComponent extends CatComponentBase {

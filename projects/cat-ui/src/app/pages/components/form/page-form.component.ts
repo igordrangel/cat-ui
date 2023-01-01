@@ -1,10 +1,9 @@
 import { Component } from '@angular/core';
-import { CatFileInterface } from '@catrx/ui/core';
 import {
   CatFormBehavior,
   CatFormService,
 } from '@catrx/ui/form';
-import { Subject } from 'rxjs';
+import { CatFileInterface } from '@catrx/ui/utils';
 import { PageFormService } from './page-form.service';
 import { nameValidator } from './validators/name.validator';
 

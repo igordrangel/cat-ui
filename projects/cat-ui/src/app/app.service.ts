@@ -128,6 +128,17 @@ export class AppService {
               },
             ],
           },
+          {
+            icon: 'fa-solid fa-book',
+            name: 'Guias',
+            tools: [
+              {
+                name: 'Página de CRUD',
+                hasPermission: () => true,
+                routerLink: '/guides/crud-page',
+              },
+            ],
+          },
         ],
       });
     });

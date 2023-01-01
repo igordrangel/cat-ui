@@ -1,5 +1,5 @@
 import { AbstractControl } from '@angular/forms';
-import { CatFileInterface } from '@catrx/ui/core';
+import { CatFileInterface } from '@catrx/ui/utils';
 
 export function CatFileValidator(validExtensions: string[]) {
   return (control: AbstractControl) => {

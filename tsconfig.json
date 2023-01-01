@@ -42,6 +42,14 @@
       "@catrx/ui/confirm": [
         "dist/confirm",
         "projects/confirm/src"
+      ],
+      "@catrx/ui/common": [
+        "dist/common",
+        "projects/common/src"
+      ],
+      "@catrx/ui/utils": [
+        "dist/utils",
+        "projects/utils/src"
       ]
     },
     "baseUrl": "./",

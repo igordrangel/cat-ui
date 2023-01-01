@@ -11,6 +11,7 @@ export interface CatFormConfig<DataType> {
   isCheckboxGroup?: boolean;
   grid?: CatFormFieldTemplateGridType;
   behavior: CatFormBehavior;
+  autofill?: DataType;
 }
 
 export interface CatFormFieldConfig extends CatFormFieldOptions {

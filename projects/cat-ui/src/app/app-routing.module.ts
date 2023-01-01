@@ -61,6 +61,18 @@ const routes: Routes = [
       },
     ],
   },
+  {
+    path: 'guides',
+    children: [
+      {
+        path: 'crud-page',
+        loadChildren: () =>
+          import('./pages/crud-example/page-crud.example.module').then(
+            (m) => m.PageCRUDExampleModule
+          ),
+      },
+    ],
+  },
 ];
 
 @NgModule({

@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { CatFileInterface } from '../../interfaces/cat-file.interface';
+import { CatFileInterface } from './cat-file.interface';
 import b64toBlob from 'b64-to-blob';
 
 @Injectable({ providedIn: 'any' })

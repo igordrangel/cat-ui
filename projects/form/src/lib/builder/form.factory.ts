@@ -26,9 +26,13 @@ import { FormSearchFactory } from './search/form-search.factory';
 export class FormFactory<DataType> {
   private readonly config: CatFormConfig<DataType>;
 
-  constructor(private behavior?: CatFormBehavior) {
+  constructor(
+    private data?: DataType,
+    private behavior?: CatFormBehavior
+  ) {
     this.config = {
       behavior: this.behavior ?? new CatFormBehavior(new Subject()),
+      autofill: data
     } as CatFormConfig<DataType>;
   }
 
@@ -41,7 +45,7 @@ export class FormFactory<DataType> {
     this.config.fieldset.push({
       legend,
       name,
-      config: config(new FormFactory<DataType>(this.config.behavior)),
+      config: config(new FormFactory<DataType>(this.data[name], this.config.behavior)),
     });
     return this;
   }

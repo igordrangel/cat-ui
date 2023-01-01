@@ -122,15 +122,11 @@ export class DatatableComponent implements OnInit, OnDestroy {
         .service(this.getFilter())
         .pipe(first())
         .subscribe({
-          next: (response: any[]) => {
-            const listData = this.config?.listPropName
-              ? response[this.config?.listPropName as any]
-              : response;
+          next: (response) => {
+            const listData = response.items;
             this.datatableList$.next(listData);
             this.datatableBackupList$.next(clone(listData));
-            this.totalItemsBd = this.config?.listQtyPropName
-              ? response[this.config?.listQtyPropName as any]
-              : response.length;
+            this.totalItemsBd = response.count;
             this.totalItemsPage = koala(listData)
               .array()
               .split(this.config?.limitItemPerPage ?? 30)

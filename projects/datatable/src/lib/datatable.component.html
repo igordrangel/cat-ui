@@ -51,7 +51,7 @@
       <ng-container *ngIf="(datatableList$ | async) as datatableList">
 
         <ng-container *ngIf="datatableList.length === 0 && loadedList$ | async">
-          <tr>
+          <tr class="fake-line">
             <td colspan="50">
               <ng-container *ngIf="config?.customEmptyComponent else defaultEmptyList">
                 <cat-dynamic-component [component]="config?.customEmptyComponent"></cat-dynamic-component>
