@@ -66,6 +66,10 @@
       "@catrx/ui/alert": [
         "dist/alert",
         "projects/alert/src"
+      ],
+      "@catrx/ui/side-window": [
+        "dist/side-window",
+        "projects/side-window/src"
       ]
     },
     "baseUrl": "./",

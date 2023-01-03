@@ -34,6 +34,13 @@ const routes: Routes = [
           ),
       },
       {
+        path: 'side-window',
+        loadChildren: () =>
+          import('./pages/components/side-window/page-side-window.module').then(
+            (m) => m.PageSideWindowModule
+          ),
+      },
+      {
         path: 'dialog',
         loadChildren: () =>
           import('./pages/components/dialog/page-dialog.module').then(
