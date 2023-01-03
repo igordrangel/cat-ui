@@ -106,6 +106,11 @@ export class AppService {
             name: 'Janelas e Alertas',
             tools: [
               {
+                name: 'Side Window',
+                hasPermission: () => true,
+                routerLink: '/components/side-window',
+              },
+              {
                 name: 'Dialog',
                 hasPermission: () => true,
                 routerLink: '/components/dialog',

@@ -8,4 +8,4 @@ npm i @catrx/ui
 
 ## Usage
 
-https://doc.cat-ui.igordrangel.com.br
+https://doc.catui.igordrangel.com.br
