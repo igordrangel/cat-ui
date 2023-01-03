@@ -9,8 +9,6 @@ import { CatSnackbarService } from '@catrx/ui/snackbar';
 import { CatCsvService } from '@catrx/ui/utils';
 import { Cat, CatFilter, CatSexSelectOptions } from './services/cat.interface';
 import { CatService } from './services/cat.service';
-import { Observable } from 'rxjs/internal/Observable';
-import { delay } from '@koalarx/utils/operators/delay';
 
 @Component({
   templateUrl: './page-crud-example.component.html',

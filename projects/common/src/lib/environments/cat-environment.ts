@@ -1,4 +1,4 @@
-import { CatOAuth2ConfigInterface } from "../services/openid/cat-oauth2-config.interface";
+import { CatOAuth2ConfigInterface } from "../interfaces/cat-oauth2-config.interface";
 
 export interface CatEnvironmentOAuthInterface extends CatOAuth2ConfigInterface {
   name: string;

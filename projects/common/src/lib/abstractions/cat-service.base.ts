@@ -1,12 +1,12 @@
 import { Injectable } from "@angular/core";
 import { HttpClient, HttpErrorResponse } from '@angular/common/http';
-import { CatEnvironment } from '../../../../core/src/lib/environments/cat-environment';
 import { debounceTime, first } from 'rxjs/operators';
 import { CatDatatableDataHttpResponse } from "@catrx/ui/datatable";
 import { Observable } from "rxjs/internal/Observable";
 import { koala } from "@koalarx/utils";
 import { forkJoin } from "rxjs/internal/observable/forkJoin";
 import { lastValueFrom } from "rxjs/internal/lastValueFrom";
+import { CatEnvironment } from "../environments/cat-environment";
 
 class CatDatabaseMockup {
   static database: { [key: string]: any[] } = {};

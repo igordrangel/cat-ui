@@ -1,5 +1,5 @@
 import { CommonModule } from "@angular/common";
-import { Component, Inject, ViewChild, ElementRef } from '@angular/core';
+import { Component, Inject, ViewChild } from '@angular/core';
 import { CatPrimaryButtonComponent, CatSecondaryButtonComponent } from "@catrx/ui/button";
 import { CatDialogModule, CatDialogRef, CAT_DIALOG_DATA } from "@catrx/ui/dialog";
 import { CatFormModule, FormComponent } from "@catrx/ui/form";

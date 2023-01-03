@@ -18,11 +18,11 @@ import { TokenFactory } from '../../factory/token.factory';
 import jwtEncode from 'jwt-encode';
 import { Router } from '@angular/router';
 import { SafeUrl } from '@angular/platform-browser';
-import { CatOAuth2ConfigInterface } from '../../services/openid/cat-oauth2-config.interface';
 import { NotificationService } from '../../services/notifications/notification.service';
 import { Subscription } from 'rxjs/internal/Subscription';
 import { LogotypeComponent } from '../logotype/logotype.component';
 import { CatDynamicComponent } from '@catrx/ui/dynamic-component';
+import { CatOAuth2ConfigInterface } from '@catrx/ui/common';
 
 @Component({
   selector: 'cat-app-container[config]',
