@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { CatConfirmService } from '@catrx/ui/confirm';
-import { CatComponentBase } from '@catrx/ui/core';
+import { CatComponentBase } from '@catrx/ui/common';
 
 @Component({
   templateUrl: './page-confirm.component.html'

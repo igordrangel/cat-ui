@@ -5,7 +5,7 @@ import {
   CatFormFileOptions,
 } from '../../../../builder/form.interface';
 import { koala } from '@koalarx/utils';
-import { CatCsvService, CatFileInterface } from '@catrx/ui/core';
+import { CatCsvService, CatFileInterface } from '@catrx/ui/utils';
 
 @Component({
   selector: 'cat-field-file[control][fieldConfig]',

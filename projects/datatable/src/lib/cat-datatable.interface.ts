@@ -4,23 +4,23 @@ import { BehaviorSubject } from "rxjs/internal/BehaviorSubject";
 import { Observable } from "rxjs/internal/Observable";
 
 export interface DatatableConfig<DataType> {
-  filter$?: BehaviorSubject<any|string>;
+  filter$?: BehaviorSubject<any | string>;
   hasSelection?: boolean;
   hasAction?: boolean;
   columns: string[];
   data: DatatableData<DataType>[];
   actionButtons: DatatableActionButtonConfig<DataType>[];
-  service: (filter: DatatableFilterResponse) => Observable<DataType[]>;
+  service: <ListType>(
+    filter: any
+  ) => Observable<CatDatatableDataHttpResponse<ListType>>;
   typeDataList: DatatableTypeDataList;
-  listPropName?: string;
-  listQtyPropName?: string;
-  limitItemPerPage: 10|30|50|100;
+  limitItemPerPage: 10 | 30 | 50 | 100;
   defaultColumSortIndex?: number;
   defaultColumOrder?: ColumOrderType;
-  reloadList: BehaviorSubject<boolean | {reload: boolean;preservePagination: boolean;}>;
+  reloadList: BehaviorSubject<{ reload: boolean; preservePagination: boolean }>;
   getDatasource?: (datasource: DataType[]) => void;
   getCurrentFilter?: (currentFilter: any) => void;
-  getSelection?: (selection: DatatableSelection<DataType>) => void;
+  getSelection?: (selection: CatDatatableSelection<DataType>) => void;
   disableSelectionItem?: (item: DataType) => boolean;
   customEmptyComponent?: CatDynamicComponent;
   customLoaderComponent?: CatDynamicComponent;
@@ -38,7 +38,7 @@ export interface DatatableSelectedItem<T> {
   item: T;
 }
 
-export interface DatatableSelection<T> {
+export interface CatDatatableSelection<T> {
   selected: DatatableSelectedItem<T>[];
   lastSelected: DatatableSelectedItem<T> | null;
   data: T[];
@@ -60,6 +60,11 @@ export interface DatatableData<DataType> {
   sortColumn?: string;
   text?: (itemLine: DataType) => string;
   component?: (itemLine: DataType) => CatDynamicComponent;
+}
+
+export interface CatDatatableDataHttpResponse<ListType> {
+  count: number;
+  items: ListType[];
 }
 
 export type ColumOrderType = 'asc' | 'desc';

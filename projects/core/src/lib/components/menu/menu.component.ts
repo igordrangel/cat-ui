@@ -2,9 +2,9 @@ import { Component, Input, OnChanges, OnInit, SimpleChanges } from '@angular/cor
 import { koala } from '@koalarx/utils';
 import { AppConfigMenu, AppConfigMenuModule, AppConfigMenuTool } from '../../factory/app-config.interface';
 import { BehaviorSubject } from 'rxjs';
-import { CatMenuContext } from './cat-menu-context';
 import { NavigationEnd, Router } from '@angular/router';
 import { CatToolbarBreadcrumb } from '@catrx/ui/toolbar';
+import { CatMenuContext } from '@catrx/ui/common';
 
 @Component({
   selector: 'cat-menu[appName][config]',

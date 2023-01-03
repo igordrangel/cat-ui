@@ -1,18 +1,31 @@
 import {
   DatatableActionButtonConfig,
   DatatableConfig,
-  DatatableData, DatatableSelection,
+  DatatableData, CatDatatableDataHttpResponse, CatDatatableSelection,
   DatatableTypeDataList
 } from "./cat-datatable.interface";
 import { CatDynamicComponent } from "@catrx/ui/dynamic-component";
 import { Observable } from "rxjs/internal/Observable";
 import { BehaviorSubject } from "rxjs/internal/BehaviorSubject";
 
-export class DatatableFactory<DataType> {
-  private config: DatatableConfig<DataType> = {
-    typeDataList: 'all',
-    limitItemPerPage: 30
-  } as DatatableConfig<DataType>;
+export class DatatableFactory<FilterType = any, DataType = any> {
+  private config: DatatableConfig<DataType>;
+
+  constructor(
+    filter$: BehaviorSubject<FilterType>,
+    service: (
+      filter: FilterType
+    ) => Observable<CatDatatableDataHttpResponse<DataType>>,
+    loadType: DatatableTypeDataList = 'all'
+  ) {
+    this.config = {
+      filter$: filter$,
+      service,
+      typeDataList: loadType,
+      limitItemPerPage: 30,
+      reloadList: new BehaviorSubject({reload: false})
+    } as DatatableConfig<DataType>;
+  }
 
   hasSelection(has = true) {
     this.config.hasSelection = has;
@@ -51,26 +64,9 @@ export class DatatableFactory<DataType> {
     return this;
   }
 
-  setService(service: (filter: any) => Observable<DataType[]>, options?: {
-    listPropName?: string;
-    listQtyPropName?: string;
-    typeDataList?: DatatableTypeDataList;
-  }) {
-    this.config.service = service;
-
-    if (options?.listPropName) this.config.listPropName = options.listPropName;
-    if (options?.listQtyPropName) this.config.listQtyPropName = options.listQtyPropName;
-    if (options?.typeDataList) this.config.typeDataList = options?.typeDataList;
-
-    return this;
-  }
-
-  setFilter(filter$: BehaviorSubject<any|string>) {
-    this.config.filter$ = filter$;
-    return this;
-  }
-
-  getSelection(getSelection: (selection: DatatableSelection<DataType>) => void) {
+  getSelection(
+    getSelection: (selection: CatDatatableSelection<DataType>) => void
+  ) {
     this.config.getSelection = getSelection;
     return this;
   }

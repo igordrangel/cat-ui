@@ -31,6 +31,8 @@
             <i *ngIf="themeActive === 'dark'" class="fa-solid fa-sun"></i>
           </button>
 
+          <ng-content select="[bottom-buttons]"></ng-content>
+
           <div *ngIf="config.pushNotifications && (logged$ | async)" dropdown [dropup]="true" [insideClick]="true" class="dropup">
             <button
               dropdownToggle
@@ -44,7 +46,7 @@
 
             <ul id="cat-app-container-notifications-dropdown" *dropdownMenu class="dropdown-menu" role="menu" aria-labelledby="button-basic">
               <li class="notifications-head">
-                <span class="mr-8">Notificações</span>
+                <span class="mr-15">Notificações</span>
                 <cat-loader *ngIf="loadingNotifications$ | async"></cat-loader>
                 <div class="space"></div>
                 <button

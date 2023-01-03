@@ -1,3 +1,9 @@
+<nav class="cat-datatable-menu">
+  <ng-container *ngIf="(selection$ | async)?.selected?.length > 0">
+    <ng-content select="nav[list-checked-actions]"></ng-content>
+  </ng-container>
+  <ng-content select="nav[list-actions]"></ng-content>
+</nav>
 <div class="table-responsive table-container">
   <table class="table table-hover">
     <thead>
@@ -51,7 +57,7 @@
       <ng-container *ngIf="(datatableList$ | async) as datatableList">
 
         <ng-container *ngIf="datatableList.length === 0 && loadedList$ | async">
-          <tr>
+          <tr class="fake-line">
             <td colspan="50">
               <ng-container *ngIf="config?.customEmptyComponent else defaultEmptyList">
                 <cat-dynamic-component [component]="config?.customEmptyComponent"></cat-dynamic-component>
@@ -67,7 +73,7 @@
           </tr>
         </ng-container>
 
-        <ng-container>
+        <ng-container *ngIf="datatableList.length > 0 && loadedList$ | async">
           <tr
             *ngFor="let rowData of datatableList | orderBy: orderBy : reverse | paginate: getPaginateProps(); let i = index ">
             <td class="selection" *ngIf="config?.hasSelection">
@@ -124,7 +130,7 @@
         <td colspan="50">
           <div class="pagination-content">
             <span class="page-info">
-              {{currentPage}} - {{totalItemsPage}} de {{getPaginateProps().totalItems}}
+              {{currentPage}} - {{totalItemsPage ?? 0}} de {{getPaginateProps().totalItems}}
             </span>
             <pagination-controls class="my-pagination" previousLabel="Anterior" nextLabel="Próximo"
                                  (pageChange)="handlePageChange($event)"></pagination-controls>

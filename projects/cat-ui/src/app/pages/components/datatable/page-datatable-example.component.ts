@@ -1,5 +1,4 @@
 import { Component } from "@angular/core";
-import { Route, Router } from '@angular/router';
 import { CatDatatableService } from "@catrx/ui/datatable";
 import { CatFormService } from "@catrx/ui/form";
 import { BehaviorSubject } from "rxjs/internal/BehaviorSubject";
@@ -25,9 +24,8 @@ export class PageDatatableExampleComponent {
     .generate();
 
   datatableConfig = this.datatableService
-    .build<any>()
+    .build(this.datatableFilter$, (filter) => this.service.getDatatable(filter))
     .setColumns(['Estado', 'Município'])
-    .setFilter(this.datatableFilter$)
     .setActionButton({
       iconName: 'fa-solid fa-pencil',
       tooltip: 'Editar',
@@ -48,7 +46,6 @@ export class PageDatatableExampleComponent {
       sortColumn: 'municipio',
       text: (itemLine) => itemLine.municipio,
     })
-    .setService((filter) => this.service.getAll(filter))
     .hasSelection()
     .hasActions()
     .getSelection((selection) => console.log(selection.selected))
@@ -56,7 +53,6 @@ export class PageDatatableExampleComponent {
     .generate();
 
   constructor(
-    private router: Router,
     private formService: CatFormService,
     private datatableService: CatDatatableService,
     private service: PageDatatableExampleService

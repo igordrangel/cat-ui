@@ -5,14 +5,20 @@ const config = JSON.parse(fs.readFileSync('package.json').toString());
 const currentVersion = config.version;
 const libs = [
   'dynamic-component',
+  'snackbar',
   'loader',
+  'loader-page',
   'icon-button',
+  'button',
   'toolbar',
   'dialog',
   'confirm',
-  'core',
+  'alert',
+  'utils',
   'datatable',
-  'form'
+  'form',
+  'common',
+  'core'
 ];
 
 for (const [index, lib] of libs.entries()) {
@@ -46,6 +52,7 @@ fs.writeFileSync('dist/package.json', JSON.stringify({
     "@fortawesome/fontawesome-free": "^6.2.1",
     "@koalarx/utils": "^1.0.101",
     "@ng-select/ng-select": "^10.0.1",
+    "animate.css": "^4.1.1",
     "b64-to-blob": "^1.2.19",
     "bootstrap": "^5.2.3",
     "jwt-decode": "^3.1.2",

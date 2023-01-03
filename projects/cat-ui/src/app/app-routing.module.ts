@@ -47,6 +47,20 @@ const routes: Routes = [
             (m) => m.PageConfirmModule
           ),
       },
+      {
+        path: 'snackbar',
+        loadChildren: () =>
+          import('./pages/components/snackbar/page-snackbar.module').then(
+            (m) => m.PageSnackbarModule
+          ),
+      },
+      {
+        path: 'alert',
+        loadChildren: () =>
+          import('./pages/components/alert/page-alert.module').then(
+            (m) => m.PageAlertModule
+          ),
+      },
     ],
   },
   {
@@ -57,6 +71,18 @@ const routes: Routes = [
         loadChildren: () =>
           import('./pages/services/csv/page-csv.module').then(
             (m) => m.PageCsvModule
+          ),
+      },
+    ],
+  },
+  {
+    path: 'guides',
+    children: [
+      {
+        path: 'crud-page',
+        loadChildren: () =>
+          import('./pages/crud-example/page-crud.example.module').then(
+            (m) => m.PageCRUDExampleModule
           ),
       },
     ],

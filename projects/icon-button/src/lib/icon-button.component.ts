@@ -12,12 +12,12 @@ export type CatIconButtonColor =
   | 'warning-bg-transparent';
 
 @Component({
-  selector: 'cat-icon-button',
+  selector: 'cat-icon-button[icon]',
   templateUrl: 'icon-button.component.html',
-  styleUrls: ['icon-button.component.css']
+  styleUrls: ['icon-button.component.css'],
 })
 export class IconButtonComponent {
-  @Input() icon?: string;
+  @Input() icon: string;
   @Input() color?: CatIconButtonColor;
   @Input() tooltip?: string;
 }

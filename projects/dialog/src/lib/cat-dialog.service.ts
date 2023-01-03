@@ -1,34 +1,7 @@
-import { ApplicationRef, ComponentFactoryResolver, EmbeddedViewRef, Inject, Injectable, InjectionToken, Injector, Type, ViewRef } from '@angular/core';
+import { ApplicationRef, ComponentFactoryResolver, EmbeddedViewRef, Injectable, Injector, Type } from '@angular/core';
 import { CatDialogOptions } from './cat-dialog.interface';
 import { randomString } from '@koalarx/utils/operators/string';
-
-export const CAT_DIALOG_DATA = new InjectionToken('CatDialogData');
-export const CAT_DIALOG_OPTIONS = new InjectionToken('CatDialogOptions');
-export const CAT_DIALOG_REF_TOKEN = new InjectionToken('CatDialogRefToken');
-
-@Injectable()
-export class CatDialogRef<DialogRef> {
-  constructor(
-    @Inject(CAT_DIALOG_OPTIONS) private options: CatDialogOptions,
-    @Inject(CAT_DIALOG_REF_TOKEN) private elementId: string
-  ) {}
-
-  close(value?: any) {
-    const elDialog = document.getElementById(this.elementId);
-    if (elDialog) {
-      elDialog.remove();
-
-      if (
-        this.options?.closeTrigger === value ||
-        (typeof this.options?.closeTrigger === 'object' &&
-          typeof value === 'object')
-      ) {
-        if (this.options.callbackCloseTrigger)
-          this.options.callbackCloseTrigger(value);
-      }
-    }
-  }
-}
+import { CatDialogRef, CAT_DIALOG_DATA, CAT_DIALOG_OPTIONS, CAT_DIALOG_REF_TOKEN } from './cat-dialog';
 
 @Injectable()
 export class CatDialogService {
@@ -65,6 +38,18 @@ export class CatDialogService {
     );
 
     main.appendChild(elDialog);
+
+    const elDialogBackdrop = document.querySelector(
+      `#${elementId} .cat-dialog`
+    );
+    elDialogBackdrop?.classList.add('animate__animated');
+    elDialogBackdrop?.classList.add('animate__fadeIn');
+
+    const elDialogContent = document.querySelector(
+      `#${elementId} .cat-dialog-content`
+    );
+    elDialogContent?.classList.add('animate__animated');
+    elDialogContent?.classList.add('animate__zoomIn');
   }
 
   private generateElementId() {
@@ -72,9 +57,10 @@ export class CatDialogService {
 
     do {
       elementId = randomString(50, {
-        numbers: true,
+        numbers: false,
         lowercase: true,
         uppercase: true,
+        specialCharacters: false
       });
     } while (!!document.getElementById(elementId));
 

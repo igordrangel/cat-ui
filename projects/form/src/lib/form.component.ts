@@ -8,7 +8,7 @@ import {
   Output,
   ViewChild,
 } from '@angular/core';
-import { CatFormConfig } from './builder/form.interface';
+import { CatFormBehaviorSetValue, CatFormConfig } from './builder/form.interface';
 import {
   FormBuilder,
   FormControl,
@@ -16,7 +16,9 @@ import {
   UntypedFormGroup,
 } from '@angular/forms';
 import { toCamelCase } from '@koalarx/utils/operators/string';
-import { BehaviorSubject, debounceTime, Subject, takeUntil } from 'rxjs';
+import { BehaviorSubject, debounceTime, Subject, takeUntil, first } from 'rxjs';
+import { clone } from '@koalarx/utils/operators';
+import { koala } from '@koalarx/utils';
 
 @Component({
   selector: 'cat-form[config]',
@@ -26,7 +28,6 @@ import { BehaviorSubject, debounceTime, Subject, takeUntil } from 'rxjs';
 })
 export class FormComponent implements OnInit {
   @Input() config?: CatFormConfig<any>;
-  @Input() onSubmit?: Subject<boolean>;
 
   @Output() isValid = new EventEmitter<boolean>();
 
@@ -36,18 +37,12 @@ export class FormComponent implements OnInit {
   @ViewChild('formElement') private elForm?: ElementRef<HTMLFormElement>;
   private destroySubscriptions$ = new Subject();
 
+  private autofillValues: CatFormBehaviorSetValue[] = [];
+
   constructor(private fb: FormBuilder) {}
 
   ngOnInit(): void {
     this.dynamicForm = this.fb.group({});
-
-    if (this.onSubmit) {
-      this.onSubmit
-        .pipe(takeUntil(this.destroySubscriptions$))
-        .subscribe((submit) => {
-          if (submit) this.submit();
-        });
-    }
 
     if (this.dynamicForm) {
       this.dynamicForm.valueChanges
@@ -59,11 +54,33 @@ export class FormComponent implements OnInit {
           this.isValid.emit(this.dynamicForm?.valid);
         });
     }
+
+    if (this.config.autofill) {
+      setTimeout(() => {
+        this.generateAutofillDataTree(this.config.autofill);
+        this.config.behavior.setValues(this.autofillValues).send();
+      }, 1);
+    }
   }
 
-  public submit() {
+  public submit(
+    cbBeforeSend?: () => void,
+    cbSuccess?: (response: any) => void,
+    cbError?: (err: any) => void
+  ) {
     if (this.config && this.dynamicForm?.valid && this.config.onSubmit) {
-      this.config.onSubmit(this.getFormData());
+      if (cbBeforeSend) cbBeforeSend();
+      this.config
+        .onSubmit(this.getFormData())
+        .pipe(first())
+        .subscribe({
+          next: (response) => {
+            if (cbSuccess) cbSuccess(response);
+          },
+          error: (err) => {
+            if (cbError) cbError(err);
+          },
+        });
     } else {
       this.elForm?.nativeElement?.classList.add('was-validated');
       this.highlightInvalidFields$.next(true);
@@ -88,5 +105,58 @@ export class FormComponent implements OnInit {
 
   private getFormData() {
     return this.dynamicForm?.getRawValue();
+  }
+
+  private generateAutofillDataTree(
+    data: { [key: string | number]: any },
+    name?: string
+  ) {
+    if (name) {
+      const valueDataByTree = eval(`this.config.autofill.${name}`) as {
+        [key: string | number]: any;
+      };
+
+      if (typeof valueDataByTree === 'object') {
+        clone(Object.keys(valueDataByTree)).forEach((index) => {
+          name = this.generateAutofillDataTree(
+            valueDataByTree[index],
+            `${name}.${index}`
+          );
+        });
+      } else {
+        this.autofillValues.push({
+          name,
+          value: valueDataByTree,
+        });
+        name = koala(name)
+          .string()
+          .split('.')
+          .pipe((KlName) => {
+            const arrName = KlName.getValue();
+            arrName.splice(arrName.length - 1, 1);
+            return arrName;
+          })
+          .toString('.')
+          .getValue();
+      }
+    } else {
+      clone(Object.keys(data)).map((index) => {
+        if (typeof data[index] === 'object') {
+          clone(Object.keys(data[index])).forEach((objIndex) => {
+            name = this.generateAutofillDataTree(
+              data[index],
+              `${index}.${objIndex}`
+            );
+          });
+        } else {
+          this.autofillValues.push({
+            name: index,
+            value: data[index],
+          });
+        }
+      });
+    }
+
+    return name;
   }
 }

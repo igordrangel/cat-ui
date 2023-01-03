@@ -6,11 +6,12 @@ import { Type } from '@angular/core';
 export interface CatFormConfig<DataType> {
   fieldset?: CatFormFieldsetConfig[];
   fields?: CatFormFieldConfig[];
-  onSubmit?: (data: DataType) => void;
+  onSubmit?: (data: DataType) => Observable<any>;
   onChange?: (data: DataType) => void;
   isCheckboxGroup?: boolean;
   grid?: CatFormFieldTemplateGridType;
   behavior: CatFormBehavior;
+  autofill?: DataType;
 }
 
 export interface CatFormFieldConfig extends CatFormFieldOptions {

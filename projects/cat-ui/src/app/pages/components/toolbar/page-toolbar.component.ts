@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
-import { CatComponentBase } from '@catrx/ui/core';
+import { CatComponentBase } from '@catrx/ui/common';
 
 @Component({
   templateUrl: './page-toolbar.component.html'

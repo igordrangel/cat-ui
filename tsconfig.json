@@ -42,6 +42,30 @@
       "@catrx/ui/confirm": [
         "dist/confirm",
         "projects/confirm/src"
+      ],
+      "@catrx/ui/common": [
+        "dist/common",
+        "projects/common/src"
+      ],
+      "@catrx/ui/utils": [
+        "dist/utils",
+        "projects/utils/src"
+      ],
+      "@catrx/ui/button": [
+        "dist/button",
+        "projects/button/src"
+      ],
+      "@catrx/ui/loader-page": [
+        "dist/loader-page",
+        "projects/loader-page/src"
+      ],
+      "@catrx/ui/snackbar": [
+        "dist/snackbar",
+        "projects/snackbar/src"
+      ],
+      "@catrx/ui/alert": [
+        "dist/alert",
+        "projects/alert/src"
       ]
     },
     "baseUrl": "./",

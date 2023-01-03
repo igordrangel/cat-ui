@@ -115,6 +115,16 @@ export class AppService {
                 hasPermission: () => true,
                 routerLink: '/components/confirm',
               },
+              {
+                name: 'Snackbar',
+                hasPermission: () => true,
+                routerLink: '/components/snackbar',
+              },
+              {
+                name: 'Alert',
+                hasPermission: () => true,
+                routerLink: '/components/alert',
+              },
             ],
           },
           {
@@ -125,6 +135,17 @@ export class AppService {
                 name: '.csv',
                 hasPermission: () => true,
                 routerLink: '/services/csv',
+              },
+            ],
+          },
+          {
+            icon: 'fa-solid fa-book',
+            name: 'Guias',
+            tools: [
+              {
+                name: 'Página de CRUD',
+                hasPermission: () => true,
+                routerLink: '/guides/crud-page',
               },
             ],
           },

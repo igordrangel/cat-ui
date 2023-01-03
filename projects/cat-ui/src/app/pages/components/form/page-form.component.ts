@@ -1,12 +1,12 @@
 import { Component } from '@angular/core';
-import { CatFileInterface } from '@catrx/ui/core';
 import {
   CatFormBehavior,
   CatFormService,
 } from '@catrx/ui/form';
-import { Subject } from 'rxjs';
+import { CatFileInterface } from '@catrx/ui/utils';
 import { PageFormService } from './page-form.service';
 import { nameValidator } from './validators/name.validator';
+import { Observable } from 'rxjs';
 
 @Component({
   templateUrl: 'page-form.component.html',
@@ -216,7 +216,13 @@ export class PageFormComponent {
     .textarea('Descrição', 'description', (builder) =>
       builder.setMaxLength(1000).generate()
     )
-    .onSubmit((data) => console.log(data))
+    .onSubmit(
+      (data) =>
+        new Observable((obverve) => {
+          console.log(data);
+          obverve.next(data);
+        })
+    )
     .generate();
 
   constructor(

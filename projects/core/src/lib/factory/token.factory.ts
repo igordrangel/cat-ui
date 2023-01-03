@@ -1,4 +1,4 @@
-import { CatEnvironment } from "../environments/cat-environment";
+import { CatEnvironment } from "@catrx/ui/common";
 
 // @dynamic
 export class TokenFactory {
