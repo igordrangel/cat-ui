@@ -8,7 +8,7 @@ import {
   CatFormTextareaOptions
 } from './form.interface';
 import { FormFieldService } from './form-field.service';
-import { Subject } from 'rxjs';
+import { Subject, Observable } from 'rxjs';
 import { FormTextareaFactory } from './textarea/form-textarea.factory';
 import { FormTextFactory } from './text/form-text.factory';
 import { FormNumberFactory } from './number/form-number.factory';
@@ -45,7 +45,7 @@ export class FormFactory<DataType> {
     this.config.fieldset.push({
       legend,
       name,
-      config: config(new FormFactory<DataType>(this.data[name], this.config.behavior)),
+      config: config(new FormFactory<DataType>(this.data?.[name], this.config.behavior)),
     });
     return this;
   }
@@ -224,7 +224,7 @@ export class FormFactory<DataType> {
     return this;
   }
 
-  public onSubmit(callback: (data: DataType) => void) {
+  public onSubmit(callback: (data: DataType) => Observable<any>) {
     this.config.onSubmit = callback;
     return this;
   }

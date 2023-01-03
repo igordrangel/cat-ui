@@ -1,8 +1,10 @@
 import { Component } from '@angular/core';
 import { CatCRUDComponentBase } from '@catrx/ui/common';
+import { CatConfirmService } from '@catrx/ui/confirm';
 import { CatDatatableService } from '@catrx/ui/datatable';
 import { CatDialogService } from '@catrx/ui/dialog';
 import { CatFormService } from '@catrx/ui/form';
+import { CatCsvService } from '@catrx/ui/utils';
 import { Cat, CatFilter, CatSexSelectOptions } from './services/cat.interface';
 import { CatService } from './services/cat.service';
 
@@ -17,27 +19,59 @@ import { CatService } from './services/cat.service';
     `,
   ],
 })
-export class PageCRUDExampleComponent extends CatCRUDComponentBase<CatFilter> {
+export class PageCRUDExampleComponent extends CatCRUDComponentBase<
+  CatFilter,
+  Cat
+> {
   filterConfig = this.filterFormBuilder
     .search('Filtro', 'filter', (builder) => builder.grid(3).generate())
-    .onChange((data) => this.filterValueChanges$.next(data))
+    .onChange((data) => this.filterValueChanges$.next(data?.filter))
     .generate();
 
   listConfig = this.datatableService
-    .build(this.filterValueChanges$, (filter) => this.service.getDatatable(filter))
+    .build(this.filterValueChanges$, (filter) =>
+      this.service.getDatatable(filter)
+    )
     .setColumns(['Foto', 'Sexo', 'Raça'])
     .setItemLine({ columnIndex: 0, text: (item) => item.photo })
     .setItemLine({ columnIndex: 1, text: (item) => item.sex })
     .setItemLine({ columnIndex: 2, text: (item) => item.race })
+    .setActionButton({
+      iconName: 'fa-solid fa-pencil',
+      tooltip: 'Editar',
+      fnAction: (item) => this.openDialog(item),
+    })
+    .getSelection((selection) => (this.selection = selection))
+    .getDatasource((datasource) => (this.datasource = datasource))
+    .hasSelection()
+    .hasActions()
     .generate();
 
   constructor(
+    protected override service: CatService,
     formService: CatFormService,
     datatableService: CatDatatableService,
     dialogService: CatDialogService,
-    protected override service: CatService
+    confirmService: CatConfirmService,
+    csvService: CatCsvService
   ) {
-    super(formService, datatableService, dialogService, service);
+    super(
+      formService,
+      datatableService,
+      service,
+      dialogService,
+      confirmService,
+      { csv: csvService }
+    );
+  }
+
+  export(filename: string): void {
+    this.exportCsv((item) => {
+      return {
+        Raça: item.race,
+        Sexo: item.sex === 'M' ? 'Macho' : 'Fêmea',
+      };
+    }, filename);
   }
 
   openDialog(data?: Cat) {
@@ -60,7 +94,7 @@ export class PageCRUDExampleComponent extends CatCRUDComponentBase<CatFilter> {
         .onSubmit((cat) => this.service.save(cat, data?.id))
         .generate(),
       !!data,
-      {title: 'Gato'}
+      { title: 'Gato' }
     );
   }
 }

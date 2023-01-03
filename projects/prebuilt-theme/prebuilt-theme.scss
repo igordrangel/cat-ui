@@ -2,6 +2,7 @@
 @import "bootstrap/scss/bootstrap.scss";
 @import "@angular/material/prebuilt-themes/indigo-pink.css";
 @import "@ng-select/ng-select/themes/ant.design.theme.css";
+@import "animate.css/animate.min.css";
 
 $select-icon-color-dark: "%23f1f1f1";
 $checkbox-radio-icon-color-dark: "%23212121";
@@ -81,6 +82,9 @@ main {
   --bg-avatar-image: #fff;
 
   --shadow-color: rgba(0,0,0,.15);
+
+  --animate-duration: 200ms;
+  --animate-delay: 0s;
 }
 
 main.dark {
@@ -602,5 +606,10 @@ select:disabled {
   top: 0;
   left: 0;
   z-index: 0;
+}
+button .spinner-border,
+button .spinner-border-bg {
+  --spinner-width: 1.2rem;
+  --spinner-height: 1.2rem;
 }
 /*#endregion*/

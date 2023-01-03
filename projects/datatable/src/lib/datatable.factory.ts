@@ -1,7 +1,7 @@
 import {
   DatatableActionButtonConfig,
   DatatableConfig,
-  DatatableData, CatDatatableDataHttpResponse, DatatableSelection,
+  DatatableData, CatDatatableDataHttpResponse, CatDatatableSelection,
   DatatableTypeDataList
 } from "./cat-datatable.interface";
 import { CatDynamicComponent } from "@catrx/ui/dynamic-component";
@@ -23,6 +23,7 @@ export class DatatableFactory<FilterType = any, DataType = any> {
       service,
       typeDataList: loadType,
       limitItemPerPage: 30,
+      reloadList: new BehaviorSubject({reload: false})
     } as DatatableConfig<DataType>;
   }
 
@@ -64,7 +65,7 @@ export class DatatableFactory<FilterType = any, DataType = any> {
   }
 
   getSelection(
-    getSelection: (selection: DatatableSelection<DataType>) => void
+    getSelection: (selection: CatDatatableSelection<DataType>) => void
   ) {
     this.config.getSelection = getSelection;
     return this;

@@ -29,7 +29,7 @@ export class CatCsvService {
           }),
         ],
         {
-          type: 'text/csv;charset=utf-8;',
+          type: 'text/csv;charset=utf8;',
         }
       ),
       filename

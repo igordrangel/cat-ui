@@ -1,9 +1,24 @@
 <cat-toolbar [config]="getToolbarInfo()">
   <nav buttons>
-    <button (click)="openDialog()" class="btn btn-primary btn-sm">
-      Incluir Gato
-    </button>
+    <cat-primary-button (click)="openDialog()">Incluir Gato</cat-primary-button>
   </nav>
 </cat-toolbar>
 <cat-form [config]="filterConfig"></cat-form>
-<cat-datatable [config]="listConfig"></cat-datatable>
+<cat-datatable [config]="listConfig">
+  <nav list-checked-actions>
+    <cat-icon-button
+      (click)="deleteSelected()"
+      icon="fa-solid fa-trash-can"
+      tooltip="Excluir Selecionados">
+    </cat-icon-button>
+  </nav>
+
+  <nav list-actions>
+    <cat-icon-button
+      *ngIf="datasource?.length > 0"
+      (click)="export('Lista de Gatos')"
+      icon="fa-solid fa-download"
+      tooltip="Exportar Lista">
+    </cat-icon-button>
+  </nav>
+</cat-datatable>

@@ -2,10 +2,14 @@ import { Component } from '@angular/core';
 import { CatLogotypeApp, CatTokenService } from '@catrx/ui/core';
 import { CatFormModule, CatFormService } from '@catrx/ui/form';
 import { CatDynamicComponentDataInterface, CatDynamicComponentModule } from '@catrx/ui/dynamic-component';
+import { Observable } from 'rxjs';
+import { CatPrimaryButtonComponent } from '@catrx/ui/button';
+import { CatFormBase } from '@catrx/ui/common';
+import { CommonModule } from '@angular/common';
 
 @Component({
   template: `
-    <div class="login-content">
+    <form class="login-content" (submit)="submit($event)">
       <cat-dynamic-component
         class="logotype"
         [component]="data"
@@ -13,10 +17,10 @@ import { CatDynamicComponentDataInterface, CatDynamicComponentModule } from '@ca
 
       <cat-form #form [config]="loginFormConfig"></cat-form>
 
-      <button (click)="form.submit()" class="w-100 text-center btn btn-primary">
+      <cat-primary-button class="w-100" type="submit" [showLoader]="submitLoader$ | async">
         Entrar
-      </button>
-    </div>
+      </cat-primary-button>
+    </form>
   `,
   styles: [
     `
@@ -32,9 +36,17 @@ import { CatDynamicComponentDataInterface, CatDynamicComponentModule } from '@ca
     `,
   ],
   standalone: true,
-  imports: [CatDynamicComponentModule, CatFormModule],
+  imports: [
+    CommonModule,
+    CatDynamicComponentModule,
+    CatFormModule,
+    CatPrimaryButtonComponent,
+  ],
 })
-export class LoginComponent implements CatDynamicComponentDataInterface {
+export class LoginComponent
+  extends CatFormBase
+  implements CatDynamicComponentDataInterface
+{
   data: CatLogotypeApp;
 
   loginFormConfig = this.formService
@@ -43,11 +55,22 @@ export class LoginComponent implements CatDynamicComponentDataInterface {
     .password('Senha', 'password', (builder) =>
       builder.setRequired().generate()
     )
-    .onSubmit((data) => this.tokenService.setDecodedToken(data, 'demo'))
+    .onSubmit(
+      (data) =>
+        new Observable((observe) => {
+          setTimeout(() => {
+            this.tokenService.setDecodedToken(data, 'demo');
+            observe.next();
+            observe.complete();
+          }, 1000);
+        })
+    )
     .generate();
 
   constructor(
     private formService: CatFormService,
     private tokenService: CatTokenService
-  ) {}
+  ) {
+    super();
+  }
 }

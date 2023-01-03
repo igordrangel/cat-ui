@@ -16,7 +16,18 @@ export class CatDialogRef<DialogRef> {
   close(value?: any) {
     const elDialog = document.getElementById(this.elementId);
     if (elDialog) {
-      elDialog.remove();
+      const elDialogBackdrop = document.querySelector(
+        `#${this.elementId} .cat-dialog`
+      );;
+      elDialogBackdrop?.classList.add('animate__animated');
+      elDialogBackdrop?.classList.add('animate__fadeOut');
+
+      const elDialogContent = document.querySelector(
+        `#${this.elementId} .cat-dialog-content`
+      );
+      elDialogContent?.classList.add('animate__animated');
+      elDialogContent?.classList.add('animate__zoomOut');
+      setTimeout(() => elDialog.remove(), 200);
 
       if (
         this.options?.closeTrigger === value ||
@@ -65,6 +76,18 @@ export class CatDialogService {
     );
 
     main.appendChild(elDialog);
+
+    const elDialogBackdrop = document.querySelector(
+      `#${elementId} .cat-dialog`
+    );
+    elDialogBackdrop?.classList.add('animate__animated');
+    elDialogBackdrop?.classList.add('animate__fadeIn');
+
+    const elDialogContent = document.querySelector(
+      `#${elementId} .cat-dialog-content`
+    );
+    elDialogContent?.classList.add('animate__animated');
+    elDialogContent?.classList.add('animate__zoomIn');
   }
 
   private generateElementId() {
@@ -72,9 +95,10 @@ export class CatDialogService {
 
     do {
       elementId = randomString(50, {
-        numbers: true,
+        numbers: false,
         lowercase: true,
         uppercase: true,
+        specialCharacters: false
       });
     } while (!!document.getElementById(elementId));
 

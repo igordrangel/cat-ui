@@ -7,6 +7,8 @@ import { CatDatatableModule } from '@catrx/ui/datatable';
 import { CatDialogModule } from '@catrx/ui/dialog';
 import { CatConfirmModule } from '@catrx/ui/confirm';
 import { PageCRUDExampleRoutingModule } from './page-crud-example.routing.module';
+import { CatPrimaryButtonComponent } from '@catrx/ui/button';
+import { CatIconButtonModule } from '@catrx/ui/icon-button';
 
 @NgModule({
   declarations: [PageCRUDExampleComponent],
@@ -17,6 +19,8 @@ import { PageCRUDExampleRoutingModule } from './page-crud-example.routing.module
     CatDatatableModule,
     CatDialogModule,
     CatConfirmModule,
+    CatIconButtonModule,
+    CatPrimaryButtonComponent,
     PageCRUDExampleRoutingModule
   ]
 })

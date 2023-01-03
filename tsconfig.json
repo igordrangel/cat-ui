@@ -50,6 +50,10 @@
       "@catrx/ui/utils": [
         "dist/utils",
         "projects/utils/src"
+      ],
+      "@catrx/ui/button": [
+        "dist/button",
+        "projects/button/src"
       ]
     },
     "baseUrl": "./",

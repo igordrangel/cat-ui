@@ -3,7 +3,7 @@ import {
   DatatableActionButtonConfig,
   DatatableConfig,
   DatatableFilterResponse,
-  DatatableSelection
+  CatDatatableSelection
 } from "./cat-datatable.interface";
 import { BehaviorSubject, first, Subject, takeUntil } from "rxjs";
 import { koala } from "@koalarx/utils";
@@ -18,9 +18,8 @@ import { Ng2SearchPipe } from 'ng2-search-filter';
 })
 export class DatatableComponent implements OnInit, OnDestroy {
   @Input() config: DatatableConfig<any>;
-  @Input() reloadList: Subject<boolean>;
 
-  public selection$ = new BehaviorSubject<DatatableSelection<any>>({
+  public selection$ = new BehaviorSubject<CatDatatableSelection<any>>({
     data: [],
     lastSelected: null,
     selected: [],
@@ -49,10 +48,13 @@ export class DatatableComponent implements OnInit, OnDestroy {
   ngOnInit(): void {
     this.watchFilter();
     this.observeAnEmitSelection();
-    if (this.reloadList) {
-      this.reloadList
+    if (this.config?.reloadList) {
+      this.config?.reloadList
         .pipe(takeUntil(this.destroySubscriptions$))
-        .subscribe(() => this.loadData());
+        .subscribe((reloadlist) => {
+          if (reloadlist.reload)
+            this.loadData(reloadlist.preservePagination);
+        });
     }
   }
 
@@ -115,8 +117,10 @@ export class DatatableComponent implements OnInit, OnDestroy {
     }
   }
 
-  private loadData() {
+  private loadData(preserveCurrentPage = false) {
     if (this.config?.service) {
+      if (!preserveCurrentPage) this.currentPage = 1;
+      this.clearSelection();
       this.loadedList$.next(false);
       this.config
         .service(this.getFilter())
@@ -272,6 +276,16 @@ export class DatatableComponent implements OnInit, OnDestroy {
           }
         });
     }
+  }
+
+  private clearSelection() {
+    this.selection$.next({
+      data: [],
+      lastSelected: null,
+      selected: [],
+      emit: false,
+      checkAll: false,
+    });
   }
 
   //#endregion
