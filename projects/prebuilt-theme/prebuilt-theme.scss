@@ -83,6 +83,9 @@ main {
 
   --shadow-color: rgba(0,0,0,.15);
 
+  --bg-progress-bar-container: #212121;
+  --bg-progress-bar: #f1f1f1;
+
   --animate-duration: 200ms;
   --animate-delay: 0s;
 }
@@ -158,6 +161,9 @@ main.dark {
   --bg-avatar-image: #000;
 
   --shadow-color: rgba(255,255,255,.15);
+
+  --bg-progress-bar-container: #f1f1f1;
+  --bg-progress-bar: #616161;
 }
 
 /*#region [GERAL] */
@@ -375,8 +381,38 @@ main {color: var(--font-color);}
   margin-left: 45px !important;
 }
 
+.mr-0 {
+  margin-right: 0 !important;
+}
+.mr-5 {
+  margin-right: 5px !important;
+}
 .mr-8 {
   margin-right: 8px !important;
+}
+.mr-10 {
+  margin-right: 10px !important;
+}
+.mr-15 {
+  margin-right: 15px !important;
+}
+.mr-20 {
+  margin-right: 20px !important;
+}
+.mr-25 {
+  margin-right: 25px !important;
+}
+.mr-30 {
+  margin-right: 30px !important;
+}
+.mr-35 {
+  margin-right: 35px !important;
+}
+.mr-40 {
+  margin-right: 40px !important;
+}
+.mr-45 {
+  margin-right: 45px !important;
 }
 
 .padding-none {
@@ -603,13 +639,14 @@ select:disabled {
   border: 2px solid var(--primary-color-alpha);
   position: absolute;
   border-radius: 50%;
-  top: 0;
-  left: 0;
   z-index: 0;
 }
+button .loader-content,
 button .spinner-border,
 button .spinner-border-bg {
   --spinner-width: 1.2rem;
   --spinner-height: 1.2rem;
+  --primary-color-alpha: #ccc;
+  --primary-color: #f1f1f1;
 }
 /*#endregion*/

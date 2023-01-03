@@ -4,9 +4,13 @@ import { CatConfirmService } from '@catrx/ui/confirm';
 import { CatDatatableService } from '@catrx/ui/datatable';
 import { CatDialogService } from '@catrx/ui/dialog';
 import { CatFormService } from '@catrx/ui/form';
+import { CatLoaderPageService } from '@catrx/ui/loader-page';
+import { CatSnackbarService } from '@catrx/ui/snackbar';
 import { CatCsvService } from '@catrx/ui/utils';
 import { Cat, CatFilter, CatSexSelectOptions } from './services/cat.interface';
 import { CatService } from './services/cat.service';
+import { Observable } from 'rxjs/internal/Observable';
+import { delay } from '@koalarx/utils/operators/delay';
 
 @Component({
   templateUrl: './page-crud-example.component.html',
@@ -53,12 +57,16 @@ export class PageCRUDExampleComponent extends CatCRUDComponentBase<
     datatableService: CatDatatableService,
     dialogService: CatDialogService,
     confirmService: CatConfirmService,
-    csvService: CatCsvService
+    csvService: CatCsvService,
+    loaderService: CatLoaderPageService,
+    snackbarService: CatSnackbarService
   ) {
     super(
       formService,
       datatableService,
       service,
+      loaderService,
+      snackbarService,
       dialogService,
       confirmService,
       { csv: csvService }
@@ -66,12 +74,7 @@ export class PageCRUDExampleComponent extends CatCRUDComponentBase<
   }
 
   export(filename: string): void {
-    this.exportCsv((item) => {
-      return {
-        Raça: item.race,
-        Sexo: item.sex === 'M' ? 'Macho' : 'Fêmea',
-      };
-    }, filename);
+    this.exportByService('csv', filename, this.service.export());
   }
 
   openDialog(data?: Cat) {

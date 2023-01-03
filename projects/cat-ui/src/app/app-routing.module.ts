@@ -47,6 +47,13 @@ const routes: Routes = [
             (m) => m.PageConfirmModule
           ),
       },
+      {
+        path: 'snackbar',
+        loadChildren: () =>
+          import('./pages/components/snackbar/page-snackbar.module').then(
+            (m) => m.PageSnackbarModule
+          ),
+      },
     ],
   },
   {

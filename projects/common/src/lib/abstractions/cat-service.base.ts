@@ -1,11 +1,12 @@
 import { Injectable } from "@angular/core";
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpErrorResponse } from '@angular/common/http';
 import { CatEnvironment } from '../../../../core/src/lib/environments/cat-environment';
 import { debounceTime, first } from 'rxjs/operators';
 import { CatDatatableDataHttpResponse } from "@catrx/ui/datatable";
 import { Observable } from "rxjs/internal/Observable";
 import { koala } from "@koalarx/utils";
-import { forkJoin } from "rxjs";
+import { forkJoin } from "rxjs/internal/observable/forkJoin";
+import { lastValueFrom } from "rxjs/internal/lastValueFrom";
 
 class CatDatabaseMockup {
   static database: { [key: string]: any[] } = {};
@@ -28,6 +29,7 @@ class CatServiceMockup {
       setTimeout(() => {
         if (id) {
           const index = koala(this.getDatabase()).array().getIndex('id', id);
+          item['id'] = id;
           if (index >= 0) this.getDatabase()[index] = item;
         } else {
           item['id'] = this.getNextId();
@@ -131,12 +133,46 @@ export abstract class CatServiceBase<
     }
   }
 
-  public exportCsv() {
-    throw new Error('Método não implementando.');
-  }
+  public exportByService<ItemType = any>(
+    service: (page: number) => Observable<CatDatatableDataHttpResponse<ItemType>>,
+  ) {
+    return new Observable<number | ItemType[]>((observe) => {
+      (async () => {
+        let items: ItemType[] = [];
+        let totalItems: number;
+        let page = 0;
+        let error: HttpErrorResponse;
 
-  public exportXlsx() {
-    throw new Error('Método não implementando.');
+        do {
+          const response = (await lastValueFrom(service(page)).catch((err) => {
+            error = err;
+            return null;
+          })) as CatDatatableDataHttpResponse<ItemType>;
+
+          if (response) {
+            if (!totalItems) totalItems = response.count;
+            items = koala(items)
+              .array<ItemType>()
+              .merge(response.items)
+              .getValue();
+            observe.next(Math.ceil((items.length * 100) / totalItems));
+            page++;
+          }
+        } while (items.length < totalItems && !error);
+
+        if (!error) {
+          return items;
+        } else {
+          throw error;
+        }
+      })().then((items) => {
+        observe.next(items);
+        observe.complete();
+      }).catch(err => {
+        observe.error(err);
+        observe.complete();
+      });
+    });
   }
 
   public abstract getDatatable(

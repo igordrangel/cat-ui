@@ -115,6 +115,11 @@ export class AppService {
                 hasPermission: () => true,
                 routerLink: '/components/confirm',
               },
+              {
+                name: 'Snackbar',
+                hasPermission: () => true,
+                routerLink: '/components/snackbar',
+              },
             ],
           },
           {

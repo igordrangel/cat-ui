@@ -5,6 +5,8 @@ import { CatDialogModule, CatDialogRef, CAT_DIALOG_DATA } from "@catrx/ui/dialog
 import { CatFormModule, FormComponent } from "@catrx/ui/form";
 import { CatDialogFormConfig } from "./cat-dialog-form.interface";
 import { BehaviorSubject } from 'rxjs';
+import { CatSnackbarService } from "@catrx/ui/snackbar";
+import { HttpErrorResponse } from "@angular/common/http";
 
 @Component({
   template: `<form (submit)="$event.preventDefault(); submit()">
@@ -27,7 +29,11 @@ import { BehaviorSubject } from 'rxjs';
         <cat-form #form [config]="config?.formConfig"></cat-form>
       </div>
       <div actions>
-        <cat-secondary-button (click)="dialogRef.close()" class="mr-8">
+        <cat-secondary-button
+          (click)="dialogRef.close()"
+          [disabled]="submitLoader$ | async"
+          class="mr-8"
+        >
           Cancelar
         </cat-secondary-button>
         <cat-primary-button type="submit" [showLoader]="submitLoader$ | async">
@@ -50,8 +56,9 @@ export class CatDialogFormComponent {
   @ViewChild('form', { static: true }) private elForm?: FormComponent;
 
   constructor(
+    @Inject(CAT_DIALOG_DATA) public config: CatDialogFormConfig,
     public dialogRef: CatDialogRef<CatDialogFormComponent>,
-    @Inject(CAT_DIALOG_DATA) public config: CatDialogFormConfig
+    private snackbarService: CatSnackbarService
   ) {}
 
   public submit() {
@@ -59,9 +66,23 @@ export class CatDialogFormComponent {
       () => this.submitLoader$.next(true),
       () => {
         this.submitLoader$.next(false);
+        this.snackbarService.open({
+          type: 'success',
+          openedTime: 5000,
+          title: `Registro ${
+            this.config.isEdit ? 'atualizado' : 'incluído'
+          } com sucesso!`,
+        });
         this.dialogRef.close('reloadList');
       },
-      () => this.submitLoader$.next(false)
+      (err: HttpErrorResponse) => {
+        this.submitLoader$.next(false);
+        this.snackbarService.open({
+          type: err?.statusText?.startsWith('4') ? 'warning' : 'error',
+          title: 'Algo inesperado ocorreu...',
+          message: err?.message ?? 'Ocorreu um problema desconhecido.',
+        });
+      }
     );
   }
 }

@@ -9,6 +9,10 @@ import { CatDialogFormComponent } from '../components/dialog-form/cat-dialog-for
 import { CatDialogFormConfig } from '../components/dialog-form/cat-dialog-form.interface';
 import { CatConfirmService } from '@catrx/ui/confirm';
 import { CatCsvService } from '@catrx/ui/utils';
+import { CatLoaderPageService } from '@catrx/ui/loader-page';
+import { CatSnackbarService } from '@catrx/ui/snackbar';
+import { HttpErrorResponse } from '@angular/common/http';
+import { Observable } from 'rxjs/internal/Observable';
 
 interface DialogFormOptions {
   size?: CatDialogSize;
@@ -30,6 +34,8 @@ export abstract class CatCRUDComponentBase<
     protected readonly formService: CatFormService,
     protected readonly datatableService: CatDatatableService,
     protected readonly service: CatServiceBase,
+    protected readonly loaderService?: CatLoaderPageService,
+    protected readonly snackbarService?: CatSnackbarService,
     protected readonly dialogService?: CatDialogService,
     protected readonly confirmService?: CatConfirmService,
     protected readonly exportService?: {
@@ -44,13 +50,29 @@ export abstract class CatCRUDComponentBase<
       this.confirmService.ask(
         'Você realmente deseja excluir os itens selecionados?',
         () => {
+          this.loaderService?.show();
           this.service
-            .deleteMany(this.selection?.selected?.map((item) => item.item['id']))
+            .deleteMany(
+              this.selection?.selected?.map((item) => item.item['id'])
+            )
             .subscribe({
               next: () => {
                 this.reloadList(false);
+                this.snackbarService?.open({
+                  type: 'success',
+                  openedTime: 5000,
+                  title: 'Os itens selecionados foram removidos com sucesso!',
+                });
+                this.loaderService?.dismiss();
               },
-              error: () => { },
+              error: (err: HttpErrorResponse) => {
+                this.snackbarService?.open({
+                  type: err?.statusText?.startsWith('4') ? 'warning' : 'error',
+                  title: 'Algo inesperado ocorreu...',
+                  message: err?.message ?? 'Ocorreu um problema desconhecido.',
+                });
+                this.loaderService?.dismiss();
+              },
             });
         }
       );
@@ -59,18 +81,49 @@ export abstract class CatCRUDComponentBase<
 
   abstract export(filename: string): void;
 
-  protected exportCsv(mapItem: (item: EntityType) => any, filename: string) {
+  protected exportByService(
+    type: 'csv' | 'xlsx',
+    filename: string,
+    service: Observable<number | any[]>
+  ) {
+    this.loaderService?.show();
+    const exportSubscription = service.subscribe(response => {
+      if (Array.isArray(response)) {
+        this.loaderService?.dismiss();
+        exportSubscription.unsubscribe();
+        if (response.length > 0) {
+          if (type === 'csv') {
+            this.exportCsv((item) => item, filename, response);
+          } else if (type === 'xlsx') {
+            this.exportXlsx((item) => item, filename, response);
+          }
+        }
+      } else {
+        this.loaderService?.setProgress(response);
+      }
+    });
+  }
+
+  protected exportCsv(
+    mapItem: (item: EntityType) => any,
+    filename: string,
+    customDatasource?: any[]
+  ) {
     if (this.exportService?.csv) {
-      if (this.listConfig.typeDataList === 'all' && this.datasource) {
+      if (this.datasource || customDatasource) {
         this.exportService.csv.convertJsonToCsv(
-          this.datasource.map(mapItem),
+          (customDatasource ?? this.datasource).map(mapItem),
           filename
         );
       }
     }
   }
 
-  protected exportXlsx(mapItem: (item: EntityType) => any, filename: string) {
+  protected exportXlsx(
+    mapItem: (item: EntityType) => any,
+    filename: string,
+    customDatasource?: any[]
+  ) {
     throw new Error('Método indisponível nesta versão.');
   }
 

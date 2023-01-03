@@ -54,6 +54,14 @@
       "@catrx/ui/button": [
         "dist/button",
         "projects/button/src"
+      ],
+      "@catrx/ui/loader-page": [
+        "dist/loader-page",
+        "projects/loader-page/src"
+      ],
+      "@catrx/ui/snackbar": [
+        "dist/snackbar",
+        "projects/snackbar/src"
       ]
     },
     "baseUrl": "./",

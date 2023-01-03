@@ -9,6 +9,7 @@ import { CatButtonComponent, CatButtonType } from "../cat-button.component";
     [type]="type"
     [showLoader]="showLoader"
     [class]="class"
+    [disabled]="disabled"
   >
     <ng-content></ng-content
   ></cat-button>`,
@@ -20,4 +21,5 @@ export class CatDangerButtonComponent {
   @Input() showLoader = false;
   @Input() outline = false;
   @Input() class?: string;
+  @Input() disabled?: boolean;
 }

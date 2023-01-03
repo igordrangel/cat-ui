@@ -23,6 +23,10 @@ export class CatService extends CatServiceBase<CatFilter, Array<Cat>, Cat> {
     });
   }
 
+  public export() {
+    return this.exportByService(() => this.getDatatable());
+  }
+
   public getDatatable(filter?: CatFilter): Observable<CatDatatableDataHttpResponse<Cat>> {
     return this.getAll(filter).pipe(map(response => {
       return {

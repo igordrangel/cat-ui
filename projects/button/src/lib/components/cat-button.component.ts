@@ -9,10 +9,10 @@ export type CatButtonType = 'button' | 'submit';
   template: `<button
     [type]="type"
     [attr.class]="'btn btn-sm ' + color + ' ' + (class ?? '')"
-    [disabled]="showLoader"
+    [disabled]="showLoader || disabled"
     [ngClass]="{ loading: showLoader }"
   >
-    <cat-loader *ngIf="showLoader"></cat-loader>
+    <cat-loader *ngIf="showLoader" class="mr-5"></cat-loader>
     <ng-content></ng-content>
   </button>`,
   styleUrls: ['./cat-button.component.css'],
@@ -24,4 +24,5 @@ export class CatButtonComponent {
   @Input() type: CatButtonType = 'button';
   @Input() showLoader = false;
   @Input() class?: string;
+  @Input() disabled?: boolean;
 }
