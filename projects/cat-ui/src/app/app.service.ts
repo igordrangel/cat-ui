@@ -120,6 +120,11 @@ export class AppService {
                 hasPermission: () => true,
                 routerLink: '/components/snackbar',
               },
+              {
+                name: 'Alert',
+                hasPermission: () => true,
+                routerLink: '/components/alert',
+              },
             ],
           },
           {

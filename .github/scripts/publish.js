@@ -13,6 +13,7 @@ const libs = [
   'toolbar',
   'dialog',
   'confirm',
+  'alert',
   'utils',
   'datatable',
   'form',

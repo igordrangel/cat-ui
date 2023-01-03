@@ -13,6 +13,7 @@ export type CatButtonType = 'button' | 'submit';
     [ngClass]="{ loading: showLoader }"
   >
     <cat-loader *ngIf="showLoader" class="mr-5"></cat-loader>
+    <ng-content select="[icon]"></ng-content>
     <ng-content></ng-content>
   </button>`,
   styleUrls: ['./cat-button.component.css'],

@@ -62,6 +62,10 @@
       "@catrx/ui/snackbar": [
         "dist/snackbar",
         "projects/snackbar/src"
+      ],
+      "@catrx/ui/alert": [
+        "dist/alert",
+        "projects/alert/src"
       ]
     },
     "baseUrl": "./",

@@ -54,6 +54,13 @@ const routes: Routes = [
             (m) => m.PageSnackbarModule
           ),
       },
+      {
+        path: 'alert',
+        loadChildren: () =>
+          import('./pages/components/alert/page-alert.module').then(
+            (m) => m.PageAlertModule
+          ),
+      },
     ],
   },
   {
