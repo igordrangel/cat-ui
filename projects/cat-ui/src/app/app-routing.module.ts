@@ -88,6 +88,13 @@ const routes: Routes = [
           ),
       },
       {
+        path: 'xlsx',
+        loadChildren: () =>
+          import('./pages/services/xlsx/page-xlsx.module').then(
+            (m) => m.PageXlsxModule
+          ),
+      },
+      {
         path: 'loader-page',
         loadChildren: () =>
           import('./pages/services/loader-page/page-loader-page.module').then(
