@@ -141,6 +141,11 @@ export class AppService {
                 hasPermission: () => true,
                 routerLink: '/services/csv',
               },
+              {
+                name: '.xlsx',
+                hasPermission: () => true,
+                routerLink: '/services/xlsx',
+              },
             ],
           },
           {

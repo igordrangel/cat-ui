@@ -11,7 +11,8 @@ import { environment } from '../environments/environment';
     xlsxConfig: {
       headerBackgroundColor: '#212121',
       headerFontColor: '#f1f1f1',
-      normalizeHeader: true
+      normalizeHeader: true,
+      password: '123'
     }
   }), AppRoutingModule],
   bootstrap: [AppComponent],
