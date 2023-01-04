@@ -110,7 +110,9 @@ export class MenuComponent implements OnInit, OnChanges {
           if (module.hasPermission && !module.hasPermission()) {
             return null;
           }
-          module.tools = this.getTools(module.tools);
+          if (module.tools?.length > 0) {
+            module.tools = this.getTools(module.tools);
+          }
           return module;
         })
         .clearEmptyValues()
