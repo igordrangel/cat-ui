@@ -1,0 +1,18 @@
+<ul *ngIf="modules?.length > 0">
+  <ng-container *ngFor="let module of modules">
+    <li
+      #moduleElement
+      *ngIf="module.tools.length > 0"
+      class="module"
+      routerLinkActive="active">
+      <h2 [routerLink]="module.routerLink" routerLinkActive="active" (click)="moduleElement.classList.toggle('collapsed')">
+        <i *ngIf="module.icon" [ngClass]="module.icon"></i>
+        <span>{{module.name}}</span>
+      </h2>
+      <cat-menu-tool
+        *ngIf="module.tools?.length > 0"
+        [tools]="module.tools">
+      </cat-menu-tool>
+    </li>
+  </ng-container>
+</ul>
