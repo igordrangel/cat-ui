@@ -56,6 +56,8 @@ fs.writeFileSync('dist/package.json', JSON.stringify({
     "animate.css": "^4.1.1",
     "b64-to-blob": "^1.2.19",
     "bootstrap": "^5.2.3",
+    "exceljs": "^4.3.0",
+    "file-saver": "^2.0.5",
     "jwt-decode": "^3.1.2",
     "jwt-encode": "^1.0.1",
     "ng2-search-filter": "^0.5.1",
