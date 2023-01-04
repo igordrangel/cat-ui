@@ -172,7 +172,7 @@ export class AppService {
               {
                 name: 'Página de CRUD',
                 hasPermission: () => true,
-                routerLink: '/guides/crud-page',
+                routerLink: '/examples/crud-page',
               },
             ],
           },

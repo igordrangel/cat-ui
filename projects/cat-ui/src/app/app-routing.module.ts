@@ -97,7 +97,7 @@ const routes: Routes = [
     ],
   },
   {
-    path: 'guides',
+    path: 'examples',
     children: [
       {
         path: 'crud-page',
