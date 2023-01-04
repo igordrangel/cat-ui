@@ -9,6 +9,14 @@
       </cat-form-fieldset>
     </ng-container>
 
+    <ng-container *ngFor="let listItemConfig of config?.listItems">
+      <cat-form-list-item
+        [listItemConfig]="listItemConfig"
+        [highlightInvalidFields]="(highlightInvalidFields$ | async) ?? false"
+        (emitFormGroup)="addFormGroup(listItemConfig.name, $event)">
+      </cat-form-list-item>
+    </ng-container>
+
     <div class="fields-content">
       <ng-container *ngFor="let fieldConfig of config?.fields">
         <div

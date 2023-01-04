@@ -7,7 +7,7 @@ import {
   Output,
 } from '@angular/core';
 import { CatFormFieldsetConfig } from '../../builder/form.interface';
-import { FormBuilder, FormControl, FormGroup } from '@angular/forms';
+import { FormBuilder, FormControl, FormGroup, FormArray } from '@angular/forms';
 import { toCamelCase } from '@koalarx/utils/operators/string';
 
 @Component({
@@ -31,7 +31,7 @@ export class FieldsetComponent implements OnInit {
     this.emitFormGroup.emit(this.formFieldset);
   }
 
-  public addFormGroup(name: string, formGroup: FormGroup) {
+  public addFormGroup(name: string, formGroup: FormGroup | FormArray) {
     this.formFieldset?.addControl(name, formGroup);
   }
 

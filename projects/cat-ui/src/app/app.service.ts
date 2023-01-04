@@ -88,6 +88,11 @@ export class AppService {
                 hasPermission: () => true,
                 routerLink: '/components/form',
               },
+              {
+                name: 'Lista de Itens',
+                hasPermission: () => true,
+                routerLink: '/components/form/list-item',
+              },
             ],
           },
           {

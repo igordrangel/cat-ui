@@ -11,6 +11,7 @@
     [maxlength]="fieldConfig.maxLength ?? null"
     [ngClass]="{'is-invalid': control.invalid && !control.untouched && !control.disabled}"
     [validation]="control.errors?.['cpfInvalid']"
+    [dropSpecialCharacters]="false"
     mask="000.000.000-00"
     autocomplete="off"
     class="form-control form-control-sm"

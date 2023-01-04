@@ -19,6 +19,7 @@ import { toCamelCase } from '@koalarx/utils/operators/string';
 import { BehaviorSubject, debounceTime, Subject, takeUntil, first } from 'rxjs';
 import { clone } from '@koalarx/utils/operators';
 import { koala } from '@koalarx/utils';
+import { FormArray } from '@angular/forms';
 
 @Component({
   selector: 'cat-form[config]',
@@ -87,7 +88,7 @@ export class FormComponent implements OnInit {
     }
   }
 
-  public addFormGroup(legend: string, formGroup: FormGroup) {
+  public addFormGroup(legend: string, formGroup: FormGroup | FormArray) {
     this.dynamicForm?.addControl(toCamelCase(legend), formGroup);
   }
 

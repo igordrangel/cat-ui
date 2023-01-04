@@ -5,6 +5,7 @@ import { Type } from '@angular/core';
 
 export interface CatFormConfig<DataType> {
   fieldset?: CatFormFieldsetConfig[];
+  listItems?: CatFormListItemConfig[];
   fields?: CatFormFieldConfig[];
   onSubmit?: (data: DataType) => Observable<any>;
   onChange?: (data: DataType) => void;
@@ -113,6 +114,17 @@ export interface CatFormFieldsetConfig {
   legend: string;
   name: string;
   config?: CatFormConfig<any>;
+}
+
+export interface CatFormListItemConfig {
+  legend: string;
+  name: string;
+  config?: CatFormConfig<any>;
+  options?: CatFormItemListOptions;
+}
+export interface CatFormItemListOptions {
+  minItems?: number;
+  maxItems?: number;
 }
 
 export interface CatCsvModel {

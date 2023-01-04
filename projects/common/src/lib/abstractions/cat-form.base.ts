@@ -1,9 +1,10 @@
 import { Directive, ViewChild } from "@angular/core";
 import { FormComponent } from "@catrx/ui/form";
 import { BehaviorSubject } from 'rxjs/internal/BehaviorSubject';
+import { CatComponentBase } from './cat-component.base';
 
 @Directive()
-export abstract class CatFormBase {
+export abstract class CatFormBase extends CatComponentBase {
   public submitLoader$ = new BehaviorSubject<boolean>(false);
 
   @ViewChild('form', { static: true }) private elForm?: FormComponent;
