@@ -3,6 +3,7 @@
  */
 
 export * from './lib/builder/form.interface';
+export * from './lib/builder/form.factory';
 export * from './lib/common/cat-form-behavior';
 
 export * from './lib/validators/cat-cnpj.validator';
