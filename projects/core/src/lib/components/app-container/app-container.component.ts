@@ -231,6 +231,10 @@ export class AppContainerComponent implements OnInit {
           );
 
           this.buildMenu();
+
+          if (this.config?.authSettings?.startedPage) {
+            this.router.navigate([this.config?.authSettings?.startedPage]);
+          }
         }
       } else {
         this.logout();
