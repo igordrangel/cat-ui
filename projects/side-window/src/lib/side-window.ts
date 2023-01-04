@@ -20,6 +20,9 @@ export class CatSideWindowRef<SideWindowRef> {
       elSideWindowContent?.classList.add('animate__animated');
       elSideWindowContent?.classList.add('animate__slideOutRight');
       setTimeout(() => elDialog.remove(), 200);
+
+      if (this.config.onClose)
+        this.config.onClose();
     }
   }
 }

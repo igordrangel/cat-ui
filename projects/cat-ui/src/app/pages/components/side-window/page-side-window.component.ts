@@ -12,6 +12,9 @@ export class PageSideWindowComponent extends CatComponentBase {
   }
 
   public open() {
-    this.sideWindowService.open(SideWindowExampleComponent, 'Olá Mundo');
+    this.sideWindowService.open(SideWindowExampleComponent, {
+      data: 'Olá Mundo',
+      onClose: () => alert('Fechou a Janela Lateral.')
+    });
   }
 }

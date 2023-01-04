@@ -4,8 +4,8 @@ import { CatSideWindowRef, CAT_SIDE_WINDOW_CONFIG, CAT_SIDE_WINDOW_REF_TOKEN } f
 import { SideWindowComponent } from './side-window.component';
 
 export interface CatSideWindowConfig {
-  component: Type<any>;
   data?: any;
+  onClose?: () => void;
 }
 
 @Injectable({ providedIn: 'root' })
@@ -15,7 +15,7 @@ export class CatSideWindowService {
     private appRef: ApplicationRef
   ) {}
 
-  public open(component: Type<any>, data?: any) {
+  public open(component: Type<any>, options?: CatSideWindowConfig) {
     const elementId = this.generateElementId();
     const contentApp = document.querySelector('main #cat-content-app');
     const componentRef = this.componentFactoryResolver
@@ -26,9 +26,9 @@ export class CatSideWindowService {
             {
               provide: CAT_SIDE_WINDOW_CONFIG,
               useValue: {
+                ...options ?? {},
                 component,
-                data
-              } as CatSideWindowConfig,
+              },
             },
             { provide: CAT_SIDE_WINDOW_REF_TOKEN, useValue: elementId },
             {
@@ -41,7 +41,8 @@ export class CatSideWindowService {
 
     this.appRef.attachView(componentRef.hostView);
 
-    const elSideWindow = (componentRef.hostView as EmbeddedViewRef<any>).rootNodes[0] as HTMLElement;
+    const elSideWindow = (componentRef.hostView as EmbeddedViewRef<any>)
+      .rootNodes[0] as HTMLElement;
     elSideWindow.id = elementId;
 
     contentApp.appendChild(elSideWindow);
