@@ -108,7 +108,7 @@ export abstract class CatServiceBase<
     if (options?.customHost) {
       this.host = options.customHost;
     }
-    if (options.useMockup && options.mockupStartBase) {
+    if (options?.useMockup && options?.mockupStartBase) {
       CatDatabaseMockup.database[mainResource] = options.mockupStartBase;
     }
   }
