@@ -8,7 +8,7 @@ import { CatDialogService, CatDialogSize } from '@catrx/ui/dialog';
 import { CatDialogFormComponent } from '../components/dialog-form/cat-dialog-form.component';
 import { CatDialogFormConfig } from '../components/dialog-form/cat-dialog-form.interface';
 import { CatConfirmService } from '@catrx/ui/confirm';
-import { CatCsvService } from '@catrx/ui/utils';
+import { CatCsvService, CatXlsxService } from '@catrx/ui/utils';
 import { CatLoaderPageService } from '@catrx/ui/loader-page';
 import { CatSnackbarService } from '@catrx/ui/snackbar';
 import { HttpErrorResponse } from '@angular/common/http';
@@ -40,6 +40,7 @@ export abstract class CatCRUDComponentBase<
     protected readonly confirmService?: CatConfirmService,
     protected readonly exportService?: {
       csv?: CatCsvService;
+      xlsx?: CatXlsxService;
     }
   ) {
     super();
@@ -82,20 +83,27 @@ export abstract class CatCRUDComponentBase<
   abstract export(filename: string): void;
 
   protected exportByService(
-    type: 'csv' | 'xlsx',
-    filename: string,
+    settings: {
+      csv?: { filename: string };
+      xlsx?: { filename: string; sheetName: string };
+    },
     service: Observable<number | any[]>
   ) {
     this.loaderService?.show();
-    const exportSubscription = service.subscribe(response => {
+    const exportSubscription = service.subscribe((response) => {
       if (Array.isArray(response)) {
         this.loaderService?.dismiss();
         exportSubscription.unsubscribe();
         if (response.length > 0) {
-          if (type === 'csv') {
-            this.exportCsv((item) => item, filename, response);
-          } else if (type === 'xlsx') {
-            this.exportXlsx((item) => item, filename, response);
+          if (settings.csv) {
+            this.exportCsv((item) => item, settings.csv.filename, response);
+          } else if (settings.xlsx) {
+            this.exportXlsx(
+              (item) => item,
+              settings.xlsx.filename,
+              settings.xlsx.sheetName,
+              response
+            );
           }
         }
       } else {
@@ -122,9 +130,22 @@ export abstract class CatCRUDComponentBase<
   protected exportXlsx(
     mapItem: (item: EntityType) => any,
     filename: string,
+    sheetName: string,
     customDatasource?: any[]
   ) {
-    throw new Error('Método indisponível nesta versão.');
+    if (this.exportService?.xlsx) {
+      if (this.datasource || customDatasource) {
+        this.exportService.xlsx.convertJsonToXlsx(
+          [
+            {
+              sheetName,
+              json: (customDatasource ?? this.datasource).map(mapItem),
+            },
+          ],
+          filename
+        );
+      }
+    }
   }
 
   protected openFormDialog(

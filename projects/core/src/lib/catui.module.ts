@@ -9,6 +9,7 @@ import { CatOAuth2Service } from './services/openid/cat-oauth2.service';
 import { CatAuthGuard } from './guard/cat-auth.guard';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { CatEnvironment, CatEnvironmentInterface } from '@catrx/ui/common';
+import { CatXlsxConfig, CatXlsxConfigInterface } from '@catrx/ui/utils';
 
 registerLocaleData(ptBr);
 
@@ -18,7 +19,7 @@ registerLocaleData(ptBr);
     BrowserModule,
     BrowserAnimationsModule,
     HttpClientModule,
-    AppContainerModule
+    AppContainerModule,
   ],
   providers: [
     { provide: LOCALE_ID, useValue: 'pt-BR' },
@@ -29,7 +30,10 @@ registerLocaleData(ptBr);
 })
 export class CatUiModule {
   static forRoot(
-    environment: CatEnvironmentInterface
+    environment: CatEnvironmentInterface,
+    options?: {
+      xlsxConfig?: CatXlsxConfigInterface;
+    }
   ): ModuleWithProviders<CatUiModule> {
     environment.storageOpenIDTypeName =
       environment.storageOpenIDTypeName ?? 'catui_oauth_type';
@@ -37,6 +41,10 @@ export class CatUiModule {
       environment.storageTokenName ?? 'catui_token';
 
     CatEnvironment.environment = environment;
+
+    if (options?.xlsxConfig) {
+      CatXlsxConfig.config = options.xlsxConfig;
+    }
 
     return {
       ngModule: CatUiModule,

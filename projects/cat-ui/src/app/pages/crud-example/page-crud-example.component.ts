@@ -7,7 +7,7 @@ import { CatDynamicComponent } from '@catrx/ui/dynamic-component';
 import { CatFormService } from '@catrx/ui/form';
 import { CatLoaderPageService } from '@catrx/ui/loader-page';
 import { CatSnackbarService } from '@catrx/ui/snackbar';
-import { CatCsvService } from '@catrx/ui/utils';
+import { CatCsvService, CatXlsxService } from '@catrx/ui/utils';
 import { CatPhotoComponent } from './cat-photo.component';
 import { Cat, CatFilter, CatSexSelectOptions } from './services/cat.interface';
 import { CatService } from './services/cat.service';
@@ -61,6 +61,7 @@ export class PageCRUDExampleComponent extends CatCRUDComponentBase<
     dialogService: CatDialogService,
     confirmService: CatConfirmService,
     csvService: CatCsvService,
+    xlsxService: CatXlsxService,
     loaderService: CatLoaderPageService,
     snackbarService: CatSnackbarService
   ) {
@@ -72,12 +73,12 @@ export class PageCRUDExampleComponent extends CatCRUDComponentBase<
       snackbarService,
       dialogService,
       confirmService,
-      { csv: csvService }
+      { csv: csvService, xlsx: xlsxService }
     );
   }
 
   export(filename: string): void {
-    this.exportByService('csv', filename, this.service.export());
+    this.exportByService({ xlsx: { filename, sheetName: 'Gatos' } }, this.service.export());
   }
 
   openDialog(data?: Cat) {
