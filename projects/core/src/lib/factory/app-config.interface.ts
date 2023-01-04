@@ -23,13 +23,14 @@ export interface AppConfig {
 
 export interface AppAuthSettings {
   autoAuth: boolean;
+  onAuth: (decodedToken: CatAppDecodedToken) => Observable<AppConfigMenu>;
+  startedPage?: string;
   openId?: {
     service: string;
   };
   jwt?: {
     loginComponent: Type<any>;
   };
-  onAuth: (decodedToken: CatAppDecodedToken) => Observable<AppConfigMenu>;
 }
 
 export interface AppNotificationsConfig {
