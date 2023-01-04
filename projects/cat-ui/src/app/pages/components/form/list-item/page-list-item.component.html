@@ -1,0 +1,7 @@
+<cat-toolbar [config]="getToolbarInfo()"></cat-toolbar>
+<form (submit)="submit($event)">
+  <cat-form #form [config]="config"></cat-form>
+  <cat-primary-button type="submit" [showLoader]="submitLoader$ | async">
+    Enviar
+  </cat-primary-button>
+</form>

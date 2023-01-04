@@ -12,6 +12,17 @@
     </div>
   </ng-container>
 
+  <ng-container *ngFor="let listItem of fieldsetConfig.config?.listItems">
+    <div [attr.class]="'col-' + listItem.config?.grid" [ngClass]="{isCheckboxGroup: listItem.config?.isCheckboxGroup}">
+      <cat-form-list-item
+        [listItemConfig]="listItem"
+        [highlightInvalidFields]="highlightInvalidFields"
+        [variableTree]="getFullFieldsetName()"
+        (emitFormGroup)="addFormGroup(listItem.name, $event)">
+      </cat-form-list-item>
+    </div>
+  </ng-container>
+
   <ng-container *ngFor="let fieldConfig of fieldsetConfig.config?.fields">
     <div
       #containerField
