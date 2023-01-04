@@ -1,5 +1,5 @@
 import { Component } from "@angular/core";
-import { CatDynamicComponentDataInterface } from '../../../../../../dynamic-component/src/lib/cat-dynamic-component-data.interface';
+import { CatDynamicComponentDataInterface } from "@catrx/ui/dynamic-component";
 
 @Component({
   template: `<h2>{{data}}</h2>`

@@ -68,6 +68,13 @@ const routes: Routes = [
             (m) => m.PageAlertModule
           ),
       },
+      {
+        path: 'button',
+        loadChildren: () =>
+          import('./pages/components/button/page-button.module').then(
+            (m) => m.PageButtonModule
+          ),
+      },
     ],
   },
   {
@@ -78,6 +85,13 @@ const routes: Routes = [
         loadChildren: () =>
           import('./pages/services/csv/page-csv.module').then(
             (m) => m.PageCsvModule
+          ),
+      },
+      {
+        path: 'loader-page',
+        loadChildren: () =>
+          import('./pages/services/loader-page/page-loader-page.module').then(
+            (m) => m.PageLoaderPageModule
           ),
       },
     ],

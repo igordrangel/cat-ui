@@ -19,6 +19,20 @@ export class CatService extends CatServiceBase<CatFilter, Array<Cat>, Cat> {
           photo:
             'https://static1.patasdacasa.com.br/articles/7/49/77/@/20775-o-gato-preto-e-branco-tem-um-charme-que-articles_media_mobile-2.jpg',
         },
+        {
+          id: 1,
+          race: 'Tigrado',
+          sex: 'M',
+          photo:
+            'https://t1.ea.ltmcdn.com/pt/posts/1/2/6/4_gato_europeu_23621_3_600.jpg',
+        },
+        {
+          id: 1,
+          race: 'Branco',
+          sex: 'M',
+          photo:
+            'https://static1.patasdacasa.com.br/articles/5/29/95/@/12462-saiba-o-que-e-bolsa-primordial-e-sua-fun-articles_media_mobile-1.jpg',
+        },
       ],
     });
   }

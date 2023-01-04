@@ -18,6 +18,25 @@ class CatServiceMockup {
       CatDatabaseMockup.database[resourceName] = [];
   }
 
+  getById<EntityType = any>(id: number) {
+    return new Observable<EntityType>((observe) => {
+      setTimeout(() => {
+        const index = koala(this.getDatabase()).array().getIndex('id', id);
+        if (index >= 0) {
+          observe.next(this.getDatabase()[index]);
+        } else {
+          observe.error(
+            new HttpErrorResponse({
+              status: 404,
+              statusText: 'Not Found',
+            })
+          );
+        }
+        observe.complete();
+      }, 1000);
+    }).pipe(first());
+  }
+
   getAll<ListType = any>() {
     return new Observable<ListType>((observe) => {
       setTimeout(() => observe.next(this.getDatabase() as ListType), 1000);
@@ -129,6 +148,18 @@ export abstract class CatServiceBase<
         .get<GetAllResponseType>(`${this.host}/${this.mainResource}`, {
           params: filter ?? {},
         })
+        .pipe(first());
+    }
+  }
+
+  public getById(id: number) {
+    if (this.options?.useMockup) {
+      return new CatServiceMockup(this.mainResource)
+        .getById<EntityType>(id)
+        .pipe(debounceTime(1000), first());
+    } else {
+      return this.httpClient
+        .get<GetAllResponseType>(`${this.host}/${this.mainResource}/${id}`)
         .pipe(first());
     }
   }

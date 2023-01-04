@@ -3,10 +3,12 @@ import { CatCRUDComponentBase } from '@catrx/ui/common';
 import { CatConfirmService } from '@catrx/ui/confirm';
 import { CatDatatableService } from '@catrx/ui/datatable';
 import { CatDialogService } from '@catrx/ui/dialog';
+import { CatDynamicComponent } from '@catrx/ui/dynamic-component';
 import { CatFormService } from '@catrx/ui/form';
 import { CatLoaderPageService } from '@catrx/ui/loader-page';
 import { CatSnackbarService } from '@catrx/ui/snackbar';
 import { CatCsvService } from '@catrx/ui/utils';
+import { CatPhotoComponent } from './cat-photo.component';
 import { Cat, CatFilter, CatSexSelectOptions } from './services/cat.interface';
 import { CatService } from './services/cat.service';
 
@@ -35,7 +37,10 @@ export class PageCRUDExampleComponent extends CatCRUDComponentBase<
       this.service.getDatatable(filter)
     )
     .setColumns(['Foto', 'Sexo', 'Raça'])
-    .setItemLine({ columnIndex: 0, text: (item) => item.photo })
+    .setItemLine({
+      columnIndex: 0,
+      component: (item) => new CatDynamicComponent(CatPhotoComponent, item.photo),
+    })
     .setItemLine({ columnIndex: 1, text: (item) => item.sex })
     .setItemLine({ columnIndex: 2, text: (item) => item.race })
     .setActionButton({

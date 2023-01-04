@@ -144,8 +144,30 @@ export class AppService {
             ],
           },
           {
+            icon: 'fa-solid fa-arrow-pointer',
+            name: 'Botões',
+            tools: [
+              {
+                name: 'Button',
+                hasPermission: () => true,
+                routerLink: '/components/button',
+              },
+            ],
+          },
+          {
+            icon: 'fa-solid fa-spinner',
+            name: 'Loaders',
+            tools: [
+              {
+                name: 'Loader Page',
+                hasPermission: () => true,
+                routerLink: '/services/loader-page',
+              },
+            ],
+          },
+          {
             icon: 'fa-solid fa-book',
-            name: 'Guias',
+            name: 'Exemplos',
             tools: [
               {
                 name: 'Página de CRUD',
