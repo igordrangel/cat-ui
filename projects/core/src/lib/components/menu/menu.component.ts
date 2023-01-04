@@ -64,6 +64,16 @@ export class MenuComponent implements OnInit, OnChanges {
                 .map<CatToolbarBreadcrumb>((toolName) => {
                   pathRoute += `/${toolName}`;
                   if (toolOption.routerLink.indexOf(pathRoute) < 0) {
+                    const toolByPath = this.getToolByPath(
+                      toolOption,
+                      pathRoute
+                    );
+                    if (toolByPath) {
+                      return {
+                        name: toolByPath.name,
+                        routerLink: toolByPath.routerLink,
+                      };
+                    }
                     return { name: toolName };
                   }
                   return null;
@@ -94,10 +104,17 @@ export class MenuComponent implements OnInit, OnChanges {
 
   private buildMenu() {
     if (this.config?.modules?.length > 0)
-      this.config.modules = this.config.modules.map((module) => {
-        module.tools = this.getTools(module.tools);
-        return module;
-      });
+      this.config.modules = koala(this.config.modules)
+        .array<AppConfigMenuModule>()
+        .map((module) => {
+          if (module.hasPermission && !module.hasPermission()) {
+            return null;
+          }
+          module.tools = this.getTools(module.tools);
+          return module;
+        })
+        .clearEmptyValues()
+        .getValue();
 
     if (this.config?.tools?.length > 0)
       this.config.tools = this.getTools(this.config.tools);
@@ -109,7 +126,7 @@ export class MenuComponent implements OnInit, OnChanges {
     return koala(tools)
       .array<AppConfigMenuTool>()
       .map((tool) => {
-        if (!tool.hasPermission()) {
+        if (tool.hasPermission && !tool.hasPermission()) {
           return null;
         }
         return tool;
@@ -119,9 +136,13 @@ export class MenuComponent implements OnInit, OnChanges {
   }
 
   private getActiveModule() {
-    return this.config.modules?.find((module) =>
-      module.tools.find((tool) => this.router.url.indexOf(tool.routerLink) >= 0)
-    ) ?? null;
+    return (
+      this.config.modules?.find((module) =>
+        module.tools.find(
+          (tool) => this.router.url.indexOf(tool.routerLink) >= 0
+        )
+      ) ?? null
+    );
   }
 
   private getActiveTool() {
@@ -136,5 +157,21 @@ export class MenuComponent implements OnInit, OnChanges {
     return this.config.tools?.find(
       (tool) => this.router.url.indexOf(tool.routerLink) >= 0
     ) ?? null;
+  }
+
+  private getToolByPath(toolConfig: AppConfigMenuTool, path: string): AppConfigMenuTool | null {
+    if (toolConfig.routerLink === path) {
+      return toolConfig;
+    } else {
+      return toolConfig.tools.find(tool => {
+        if (tool.routerLink === path) {
+          return tool;
+        } else if (tool.tools?.length > 0) {
+          return tool.tools.find(subTool => this.getToolByPath(subTool, path));
+        } else {
+          return null;
+        }
+      })
+    }
   }
 }

@@ -62,14 +62,17 @@ export interface AppConfigMenu {
 export interface AppConfigMenuModule {
   icon?: string;
   name: string;
-  tools: AppConfigMenuTool[];
+  hasPermission?: () => boolean;
+  routerLink?: string;
+  tools?: AppConfigMenuTool[];
 }
 
 export interface AppConfigMenuTool {
   name: string;
-  hasPermission: () => boolean;
+  hasPermission?: () => boolean;
   icon?: string;
   routerLink?: string;
+  tools?: AppConfigMenuTool[];
   fnAction?: () => void;
 }
 

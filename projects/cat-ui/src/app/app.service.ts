@@ -69,12 +69,10 @@ export class AppService {
             tools: [
               {
                 name: 'Datatable',
-                hasPermission: () => true,
                 routerLink: '/components/datatable',
               },
               {
                 name: 'Componentes Dinâmicos',
-                hasPermission: () => true,
                 routerLink: '/components/dynamic-components',
               },
             ],
@@ -82,15 +80,10 @@ export class AppService {
           {
             icon: 'fa-brands fa-wpforms',
             name: 'Formulário',
+            routerLink: '/components/form',
             tools: [
               {
-                name: 'Formulário Dinâmico',
-                hasPermission: () => true,
-                routerLink: '/components/form',
-              },
-              {
                 name: 'Lista de Itens',
-                hasPermission: () => true,
                 routerLink: '/components/form/list-item',
               },
             ],
@@ -101,7 +94,6 @@ export class AppService {
             tools: [
               {
                 name: 'Toolbar',
-                hasPermission: () => true,
                 routerLink: '/components/toolbar',
               },
             ],
@@ -112,27 +104,22 @@ export class AppService {
             tools: [
               {
                 name: 'Side Window',
-                hasPermission: () => true,
                 routerLink: '/components/side-window',
               },
               {
                 name: 'Dialog',
-                hasPermission: () => true,
                 routerLink: '/components/dialog',
               },
               {
                 name: 'Confirm',
-                hasPermission: () => true,
                 routerLink: '/components/confirm',
               },
               {
                 name: 'Snackbar',
-                hasPermission: () => true,
                 routerLink: '/components/snackbar',
               },
               {
                 name: 'Alert',
-                hasPermission: () => true,
                 routerLink: '/components/alert',
               },
             ],
@@ -143,12 +130,10 @@ export class AppService {
             tools: [
               {
                 name: '.csv',
-                hasPermission: () => true,
                 routerLink: '/services/csv',
               },
               {
                 name: '.xlsx',
-                hasPermission: () => true,
                 routerLink: '/services/xlsx',
               },
             ],
@@ -159,7 +144,6 @@ export class AppService {
             tools: [
               {
                 name: 'Button',
-                hasPermission: () => true,
                 routerLink: '/components/button',
               },
             ],
@@ -170,7 +154,6 @@ export class AppService {
             tools: [
               {
                 name: 'Loader Page',
-                hasPermission: () => true,
                 routerLink: '/services/loader-page',
               },
             ],
@@ -181,7 +164,6 @@ export class AppService {
             tools: [
               {
                 name: 'Página de CRUD',
-                hasPermission: () => true,
                 routerLink: '/examples/crud-page',
               },
             ],
