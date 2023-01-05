@@ -22,10 +22,9 @@ export class MenuComponent implements OnInit, OnChanges {
   ngOnInit() {
     this.router.events.subscribe((event) => {
       if (event instanceof NavigationEnd) {
+        const activeModule = this.getActiveModule();
         const activeTool = this.getActiveTool();
-        if (activeTool) {
-          this.setInContext(activeTool, this.getActiveModule());
-        }
+        this.setInContext(activeTool, activeModule);
       }
     })
   }
@@ -36,13 +35,17 @@ export class MenuComponent implements OnInit, OnChanges {
     }
   }
 
-  public setInContext(toolOption: AppConfigMenuTool, moduleOption?: AppConfigMenuModule) {
+  public setInContext(toolOption?: AppConfigMenuTool, moduleOption?: AppConfigMenuModule) {
     let breadcrumb: CatToolbarBreadcrumb[];
 
-    if (moduleOption) {
+    if (moduleOption && toolOption) {
       breadcrumb = [
-        { name: moduleOption.name },
+        { name: moduleOption.name, routerLink: moduleOption.routerLink },
         { name: toolOption.name, routerLink: toolOption.routerLink },
+      ];
+    } else if (moduleOption && !toolOption) {
+      breadcrumb = [
+        { name: moduleOption.name, routerLink: moduleOption.routerLink },
       ];
     } else {
       breadcrumb = [
@@ -50,7 +53,10 @@ export class MenuComponent implements OnInit, OnChanges {
       ];
     }
 
-    if (this.router.url !== toolOption.routerLink) {
+    if (
+      this.router.url !== moduleOption?.routerLink &&
+      this.router.url !== toolOption?.routerLink
+    ) {
       breadcrumb = koala(breadcrumb)
         .array<CatToolbarBreadcrumb>()
         .pipe((klArray) => {
@@ -87,19 +93,21 @@ export class MenuComponent implements OnInit, OnChanges {
     }
 
     let title: string;
-    if (moduleOption) {
+    if (moduleOption && toolOption) {
       title = `${moduleOption.name} | ${toolOption.name}`;
+    } else if (moduleOption && !toolOption) {
+      title = moduleOption.name;
     } else {
       title = toolOption.name;
     }
 
     CatMenuContext.context = {
-      icon: moduleOption?.icon ?? toolOption.icon,
+      icon: moduleOption?.icon ?? toolOption?.icon,
       title,
       breadcrumb,
     };
 
-    document.title = `${toolOption.name} | ${this.appName}`;
+    document.title = `${title} | ${this.appName}`;
   }
 
   private buildMenu() {
@@ -139,11 +147,15 @@ export class MenuComponent implements OnInit, OnChanges {
 
   private getActiveModule() {
     return (
-      this.config.modules?.find((module) =>
-        module.tools.find(
+      this.config.modules?.find((module) => {
+        if (module.routerLink.indexOf(this.router.url) >= 0) {
+          return module;
+        }
+
+        return module.tools?.find(
           (tool) => this.router.url.indexOf(tool.routerLink) >= 0
-        )
-      ) ?? null
+        );
+      }) ?? null
     );
   }
 
@@ -151,9 +163,11 @@ export class MenuComponent implements OnInit, OnChanges {
     const activeModule = this.getActiveModule();
 
     if (activeModule) {
-      return activeModule.tools?.find(
-        (tool) => this.router.url.indexOf(tool.routerLink) >= 0
-      ) ?? null;
+      return (
+        activeModule.tools?.find(
+          (tool) => this.router.url.indexOf(tool.routerLink) >= 0
+        ) ?? null
+      );
     }
 
     return this.config.tools?.find(

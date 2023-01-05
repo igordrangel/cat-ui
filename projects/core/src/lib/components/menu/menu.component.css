@@ -20,3 +20,5 @@ nav .menu-container {
   width: 100%;
   border: var(--menu-border);
 }
+nav .menu-container cat-menu-module,
+nav .menu-container cat-menu-tool {width: 100%;}

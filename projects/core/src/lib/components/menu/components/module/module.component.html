@@ -2,9 +2,9 @@
   <ng-container *ngFor="let module of modules">
     <li
       #moduleElement
-      *ngIf="module.tools.length > 0"
       class="module"
-      routerLinkActive="active">
+      routerLinkActive="active"
+      [ngClass]="{'has-tools': module.tools?.length > 0}">
       <h2 [routerLink]="module.routerLink" routerLinkActive="active" (click)="moduleElement.classList.toggle('collapsed')">
         <i *ngIf="module.icon" [ngClass]="module.icon"></i>
         <span>{{module.name}}</span>
