@@ -24,7 +24,7 @@ ul li:active {
   background-color: var(--bg-menu-active);
   color: var(--c-menu-active);
 }
-ul li.module::after {
+ul li.has-tools::after {
   font-family: "Font Awesome 5 Free";
   font-weight: 900;
   content: '\f054';
@@ -34,7 +34,7 @@ ul li.module::after {
   font-size: 10px;
   transition: .1s;
 }
-ul li.module.collapsed::after {
+ul li.has-tools.collapsed::after {
   rotate: 90deg;
 }
 ul li.module h2 {
@@ -48,10 +48,10 @@ ul li.module h2 {
 }
 ul li.module h2 i {margin-right: 8px;}
 ul li.module.active {border-left: 4px solid var(--c-menu-border-active);color: var(--c-menu-active);}
-ul li.module cat-menu-tool {
+ul li.has-tools cat-menu-tool {
   height: 0;
   overflow: hidden;
 }
-ul li.module.collapsed cat-menu-tool {
+ul li.has-tools.collapsed cat-menu-tool {
   height: auto;
 }

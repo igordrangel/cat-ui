@@ -1,3 +1,4 @@
+import { TokenFactory } from './../../factory/token.factory';
 import {
   ChangeDetectionStrategy,
   Component,
@@ -14,7 +15,6 @@ import {
   CatTokenService,
 } from '../../services/token/cat-token.service';
 import { first, startWith } from 'rxjs/operators';
-import { TokenFactory } from '../../factory/token.factory';
 import jwtEncode from 'jwt-encode';
 import { Router } from '@angular/router';
 import { SafeUrl } from '@angular/platform-browser';
@@ -35,7 +35,7 @@ export class AppContainerComponent implements OnInit {
 
   public menuCollapsed$ = new BehaviorSubject<boolean>(true);
   public themeActive$ = new BehaviorSubject<CatThemeType>('light');
-  public logged$ = new BehaviorSubject<boolean>(false);
+  public logged$ = new BehaviorSubject<boolean>(TokenFactory.hasToken());
   public validatingScope$ = new BehaviorSubject<boolean>(false);
   public errorLoadConfig$ = new BehaviorSubject<boolean>(false);
   public sideMenuConfig$ = new BehaviorSubject<AppConfigMenu>(null);

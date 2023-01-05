@@ -1,4 +1,4 @@
-<nav class="cat-toolbar">
+<nav *ngIf="config" class="cat-toolbar">
   <div class="info-content">
     <h1>
       <i *ngIf="config.icon" [ngClass]="config.icon" class="mr-8"></i>
