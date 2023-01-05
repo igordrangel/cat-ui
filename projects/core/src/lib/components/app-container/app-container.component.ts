@@ -77,6 +77,10 @@ export class AppContainerComponent implements OnInit {
       this.notificationService.requestPermission();
     }
 
+    if (this.config.options?.menuStartState === 'closed') {
+      this.menuCollapsed$.next(false);
+    }
+
     this.startTokenFlow();
   }
 
@@ -232,7 +236,10 @@ export class AppContainerComponent implements OnInit {
 
           this.buildMenu();
 
-          if (this.config?.authSettings?.startedPage) {
+          if (
+            this.config?.authSettings?.startedPage &&
+            location.pathname === '/'
+          ) {
             this.router.navigate([this.config?.authSettings?.startedPage]);
           }
         }
@@ -256,8 +263,6 @@ export class AppContainerComponent implements OnInit {
           if (this.config.authSettings.openId) {
             this.userPicture$.next(this.oauth2Service.getPicture());
           }
-
-          this.router.navigate(['']);
 
           interval(1)
             .pipe(takeUntil(this.destroyLoggedSubscriptions$))

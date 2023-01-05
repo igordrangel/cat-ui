@@ -7,13 +7,14 @@ import { CatToolbarBreadcrumb } from '@catrx/ui/toolbar';
 import { CatMenuContext } from '@catrx/ui/common';
 
 @Component({
-  selector: 'cat-menu[appName][config]',
+  selector: 'cat-menu[appName][config][menuCollapsed]',
   templateUrl: './menu.component.html',
   styleUrls: ['./menu.component.css'],
 })
 export class MenuComponent implements OnInit, OnChanges {
   @Input() appName: string;
   @Input() config: AppConfigMenu;
+  @Input() menuCollapsed: BehaviorSubject<boolean>;
 
   public menuOptions$ = new BehaviorSubject<AppConfigMenu | null>(null);
 
@@ -26,7 +27,7 @@ export class MenuComponent implements OnInit, OnChanges {
         const activeTool = this.getActiveTool();
         this.setInContext(activeTool, activeModule);
       }
-    })
+    });
   }
 
   ngOnChanges(changes: SimpleChanges): void {
@@ -35,7 +36,10 @@ export class MenuComponent implements OnInit, OnChanges {
     }
   }
 
-  public setInContext(toolOption?: AppConfigMenuTool, moduleOption?: AppConfigMenuModule) {
+  public setInContext(
+    toolOption?: AppConfigMenuTool,
+    moduleOption?: AppConfigMenuModule
+  ) {
     let breadcrumb: CatToolbarBreadcrumb[];
 
     if (moduleOption && toolOption) {
@@ -148,7 +152,7 @@ export class MenuComponent implements OnInit, OnChanges {
   private getActiveModule() {
     return (
       this.config.modules?.find((module) => {
-        if (module.routerLink.indexOf(this.router.url) >= 0) {
+        if (module.routerLink?.indexOf(this.router.url) >= 0) {
           return module;
         }
 
@@ -170,24 +174,31 @@ export class MenuComponent implements OnInit, OnChanges {
       );
     }
 
-    return this.config.tools?.find(
-      (tool) => this.router.url.indexOf(tool.routerLink) >= 0
-    ) ?? null;
+    return (
+      this.config.tools?.find(
+        (tool) => this.router.url.indexOf(tool.routerLink) >= 0
+      ) ?? null
+    );
   }
 
-  private getToolByPath(toolConfig: AppConfigMenuTool, path: string): AppConfigMenuTool | null {
+  private getToolByPath(
+    toolConfig: AppConfigMenuTool,
+    path: string
+  ): AppConfigMenuTool | null {
     if (toolConfig.routerLink === path) {
       return toolConfig;
     } else {
-      return toolConfig.tools.find(tool => {
+      return toolConfig.tools.find((tool) => {
         if (tool.routerLink === path) {
           return tool;
         } else if (tool.tools?.length > 0) {
-          return tool.tools.find(subTool => this.getToolByPath(subTool, path));
+          return tool.tools.find((subTool) =>
+            this.getToolByPath(subTool, path)
+          );
         } else {
           return null;
         }
-      })
+      });
     }
   }
 }

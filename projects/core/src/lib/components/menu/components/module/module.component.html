@@ -1,18 +1,44 @@
-<ul *ngIf="modules?.length > 0">
-  <ng-container *ngFor="let module of modules">
+<ul *ngIf="modules?.length > 0" [ngClass]="{collapsed: menuCollapsed | async}">
+  <ng-container *ngFor="let module of modules;let i = index">
     <li
       #moduleElement
       class="module"
-      routerLinkActive="active"
-      [ngClass]="{'has-tools': module.tools?.length > 0}">
-      <h2 [routerLink]="module.routerLink" routerLinkActive="active" (click)="moduleElement.classList.toggle('collapsed')">
-        <i *ngIf="module.icon" [ngClass]="module.icon"></i>
-        <span>{{module.name}}</span>
-      </h2>
-      <cat-menu-tool
-        *ngIf="module.tools?.length > 0"
-        [tools]="module.tools">
-      </cat-menu-tool>
+      [ngClass]="{
+        'has-tools': module.tools?.length > 0,
+        'active': isActive(module)
+      }">
+      <ng-container *ngIf="menuCollapsed | async else showMenuClosed">
+        <h2 [routerLink]="module.routerLink" routerLinkActive="active" (click)="closeAllModules();moduleElement.classList.toggle('collapsed')">
+          <i *ngIf="module.icon" [ngClass]="module.icon"></i>
+          <span>{{module.name}}</span>
+        </h2>
+        <cat-menu-tool
+          *ngIf="module.tools?.length > 0"
+          [tools]="module.tools">
+        </cat-menu-tool>
+      </ng-container>
+
+      <ng-template #showMenuClosed>
+        <div dropdown container="main" placement="top right" class="dropup">
+          <h2
+            dropdownToggle
+            [attr.aria-controls]="'cat-menu-module-' + i + '-dropdown'"
+            [routerLink]="module.routerLink"
+            routerLinkActive="active"
+            (click)="closeAllModules();moduleElement.classList.toggle('collapsed')">
+            <i *ngIf="module.icon" [ngClass]="module.icon"></i>
+            <span>{{module.name}}</span>
+          </h2>
+
+          <div [id]="'cat-menu-module-' + i + '-dropdown'" *dropdownMenu class="dropdown-menu" role="menu" aria-labelledby="button-basic">
+            <cat-menu-tool
+              *ngIf="module.tools?.length > 0"
+              id="cat-app-container-notifications-dropdown"
+              [tools]="module.tools">
+            </cat-menu-tool>
+          </div>
+        </div>
+      </ng-template>
     </li>
   </ng-container>
 </ul>

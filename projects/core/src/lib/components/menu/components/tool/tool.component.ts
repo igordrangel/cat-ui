@@ -8,4 +8,9 @@ import { Component, Input } from '@angular/core';
 })
 export class ToolComponent {
   @Input() tools: AppConfigMenuTool[];
+
+  closeAllTools() {
+    const tools = document.querySelectorAll('cat-menu .tool.collapsed');
+    tools.forEach((tool) => tool.classList.remove('collapsed'));
+  }
 }

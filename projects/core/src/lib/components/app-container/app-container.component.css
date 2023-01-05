@@ -29,7 +29,11 @@ main aside .btn-group {
   border-radius: 0;
 }
 main aside:not(.show) .btn-group {justify-content: center;}
-main aside:not(.show) cat-menu {display: none;}
+main aside cat-menu {
+  height: 100%;
+  overflow: auto;
+  overflow-x: hidden;
+}
 main aside .btn-group button {
   position: relative;
   display: flex;

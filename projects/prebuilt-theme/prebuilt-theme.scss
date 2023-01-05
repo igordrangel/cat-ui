@@ -196,6 +196,7 @@ main {color: var(--font-color);}
   --bs-dropdown-link-active-bg: var(--bg-dropdown-active);
   --bs-dropdown-border-color: var(--shadow-color);
   --bs-dropdown-divider-bg: var(--shadow-color);
+  z-index: 1003;
 }
 .dropdown-menu .dropdown-item {
   color: var(--c-dropdown);

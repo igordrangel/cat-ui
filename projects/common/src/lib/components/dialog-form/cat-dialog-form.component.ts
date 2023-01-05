@@ -32,7 +32,7 @@ import { HttpErrorResponse } from "@angular/common/http";
         <cat-secondary-button
           (click)="dialogRef.close()"
           [disabled]="submitLoader$ | async"
-          class="mr-8"
+          [style.marginRight]="'5px'"
         >
           Cancelar
         </cat-secondary-button>

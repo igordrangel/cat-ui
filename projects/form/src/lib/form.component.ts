@@ -117,7 +117,24 @@ export class FormComponent implements OnInit {
         [key: string | number]: any;
       };
 
-      if (typeof valueDataByTree === 'object') {
+      if (Array.isArray(valueDataByTree)) {
+        valueDataByTree.forEach((item, indexItem) => {
+          clone(Object.keys(item)).forEach((propItem) => {
+            let prefix = name.substring(0, name.length - 3);
+            let suffix = name.substring(name.length - 3);
+            if (suffix === `[${indexItem - 1}]`) {
+              suffix = suffix.replace(`[${indexItem - 1}]`, `[${indexItem}]`);
+            } else {
+              suffix += `[${indexItem}]`;
+            }
+
+            name = this.generateAutofillDataTree(
+              item[propItem],
+              `${prefix}${suffix}.${propItem}`
+            );
+          });
+        });
+      } else if (typeof valueDataByTree === 'object') {
         clone(Object.keys(valueDataByTree)).forEach((index) => {
           name = this.generateAutofillDataTree(
             valueDataByTree[index],
@@ -142,7 +159,17 @@ export class FormComponent implements OnInit {
       }
     } else {
       clone(Object.keys(data)).map((index) => {
-        if (typeof data[index] === 'object') {
+        if (Array.isArray(data[index])) {
+          data[index].forEach((item, indexItem) => {
+            clone(Object.keys(item)).forEach((propItem) => {
+              name = this.generateAutofillDataTree(
+                item,
+                `${index}[${indexItem}].${propItem}`
+              );
+            });
+          });
+        }
+        else if (typeof data[index] === 'object') {
           clone(Object.keys(data[index])).forEach((objIndex) => {
             name = this.generateAutofillDataTree(
               data[index],
