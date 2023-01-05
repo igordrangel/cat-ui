@@ -1,36 +1,39 @@
 <ng-container *ngIf="dynamicForm">
   <form #formElement [formGroup]="dynamicForm" (ngSubmit)="submit()" onsubmit="return false" class="needs-validation">
 
-    <ng-container *ngFor="let fieldsetConfig of config?.fieldset">
-      <cat-form-fieldset
-        [fieldsetConfig]="fieldsetConfig"
-        [highlightInvalidFields]="(highlightInvalidFields$ | async) ?? false"
-        (emitFormGroup)="addFormGroup(fieldsetConfig.name, $event)">
-      </cat-form-fieldset>
-    </ng-container>
-
-    <ng-container *ngFor="let listItemConfig of config?.listItems">
-      <cat-form-list-item
-        [listItemConfig]="listItemConfig"
-        [highlightInvalidFields]="(highlightInvalidFields$ | async) ?? false"
-        (emitFormGroup)="addFormGroup(listItemConfig.name, $event)">
-      </cat-form-list-item>
-    </ng-container>
-
     <div class="fields-content">
-      <ng-container *ngFor="let fieldConfig of config?.fields">
-        <div
-          #containerField
-          [ngClass]="'col-' + fieldConfig.grid">
-          <cat-form-field
-            [fieldConfig]="fieldConfig"
+      <ng-container *ngFor="let formElement of config?.formElements">
+        <ng-container *ngIf="formElement.fieldset as fieldsetConfig">
+          <cat-form-fieldset
+            class="w-100"
+            [fieldsetConfig]="fieldsetConfig"
             [highlightInvalidFields]="(highlightInvalidFields$ | async) ?? false"
-            (isHiddenField)="hideField(containerField, $event)"
-            (emitFormControl)="addFormControl(fieldConfig.name, $event)">
-          </cat-form-field>
-        </div>
+            (emitFormGroup)="addFormGroup(fieldsetConfig.name, $event)">
+          </cat-form-fieldset>
+        </ng-container>
+
+        <ng-container *ngIf="formElement.listItem as listItemConfig">
+          <cat-form-list-item
+            class="w-100"
+            [listItemConfig]="listItemConfig"
+            [highlightInvalidFields]="(highlightInvalidFields$ | async) ?? false"
+            (emitFormGroup)="addFormGroup(listItemConfig.name, $event)">
+          </cat-form-list-item>
+        </ng-container>
+
+        <ng-container *ngIf="formElement.field as fieldConfig">
+          <div
+            #containerField
+            [ngClass]="'col-' + fieldConfig.grid">
+            <cat-form-field
+              [fieldConfig]="fieldConfig"
+              [highlightInvalidFields]="(highlightInvalidFields$ | async) ?? false"
+              (isHiddenField)="hideField(containerField, $event)"
+              (emitFormControl)="addFormControl(fieldConfig.name, $event)">
+            </cat-form-field>
+          </div>
+        </ng-container>
       </ng-container>
     </div>
-
   </form>
 </ng-container>

@@ -1,40 +1,41 @@
 <fieldset *ngIf="fieldsetConfig && formFieldset" [formGroup]="formFieldset" class="col-12">
   <legend>{{fieldsetConfig.legend}}</legend>
 
-  <ng-container *ngFor="let fieldset of fieldsetConfig.config?.fieldset">
-    <div [attr.class]="'col-' + fieldset.config?.grid" [ngClass]="{isCheckboxGroup: fieldset.config?.isCheckboxGroup}">
-      <cat-form-fieldset
-        [fieldsetConfig]="fieldset"
-        [highlightInvalidFields]="highlightInvalidFields"
-        [variableTree]="getFullFieldsetName()"
-        (emitFormGroup)="addFormGroup(fieldset.name, $event)">
-      </cat-form-fieldset>
-    </div>
-  </ng-container>
+  <ng-container *ngFor="let formElement of fieldsetConfig.config?.formElements">
+    <ng-container *ngIf="formElement.fieldset as fieldset">
+      <div [attr.class]="'col-' + fieldset.config?.grid" [ngClass]="{isCheckboxGroup: fieldset.config?.isCheckboxGroup}">
+        <cat-form-fieldset
+          [fieldsetConfig]="fieldset"
+          [highlightInvalidFields]="highlightInvalidFields"
+          [variableTree]="getFullFieldsetName()"
+          (emitFormGroup)="addFormGroup(fieldset.name, $event)">
+        </cat-form-fieldset>
+      </div>
+    </ng-container>
 
-  <ng-container *ngFor="let listItem of fieldsetConfig.config?.listItems">
-    <div [attr.class]="'col-' + listItem.config?.grid" [ngClass]="{isCheckboxGroup: listItem.config?.isCheckboxGroup}">
-      <cat-form-list-item
-        [listItemConfig]="listItem"
-        [highlightInvalidFields]="highlightInvalidFields"
-        [variableTree]="getFullFieldsetName()"
-        (emitFormGroup)="addFormGroup(listItem.name, $event)">
-      </cat-form-list-item>
-    </div>
-  </ng-container>
+    <ng-container *ngIf="formElement.listItem as listItem">
+      <div [attr.class]="'col-' + listItem.config?.grid" [ngClass]="{isCheckboxGroup: listItem.config?.isCheckboxGroup}">
+        <cat-form-list-item
+          [listItemConfig]="listItem"
+          [highlightInvalidFields]="highlightInvalidFields"
+          [variableTree]="getFullFieldsetName()"
+          (emitFormGroup)="addFormGroup(listItem.name, $event)">
+        </cat-form-list-item>
+      </div>
+    </ng-container>
 
-  <ng-container *ngFor="let fieldConfig of fieldsetConfig.config?.fields">
-    <div
-      #containerField
-      [ngClass]="'col-' + fieldConfig.grid">
-      <cat-form-field
-        [fieldConfig]="fieldConfig"
-        [variableTree]="getFullFieldsetName()"
-        [highlightInvalidFields]="highlightInvalidFields"
-        (isHiddenField)="hideField(containerField, $event)"
-        (emitFormControl)="addFormControl(fieldConfig.name, $event)">
-      </cat-form-field>
-    </div>
+    <ng-container *ngIf="formElement.field as fieldConfig">
+      <div
+        #containerField
+        [ngClass]="'col-' + fieldConfig.grid">
+        <cat-form-field
+          [fieldConfig]="fieldConfig"
+          [variableTree]="getFullFieldsetName()"
+          [highlightInvalidFields]="highlightInvalidFields"
+          (isHiddenField)="hideField(containerField, $event)"
+          (emitFormControl)="addFormControl(fieldConfig.name, $event)">
+        </cat-form-field>
+      </div>
+    </ng-container>
   </ng-container>
-
 </fieldset>

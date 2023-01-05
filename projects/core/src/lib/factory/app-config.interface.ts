@@ -15,6 +15,7 @@ export interface AppConfig {
   appName: string;
   logotype: AppConfigLogotype;
   authSettings: AppAuthSettings;
+  options?: AppOptions;
   defaultTheme?: CatThemeType;
   darkMode?: boolean;
   sideBarMenu?: AppConfigMenu;
@@ -31,6 +32,11 @@ export interface AppAuthSettings {
   jwt?: {
     loginComponent: Type<any>;
   };
+}
+
+export interface AppOptions {
+  menuStartState?: 'closed' | 'collapsed';
+  disableCollapseMenuButton?: boolean;
 }
 
 export interface AppNotificationsConfig {

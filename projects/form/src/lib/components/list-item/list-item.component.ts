@@ -9,6 +9,8 @@ import {
 import { CatFormListItemConfig } from '../../builder/form.interface';
 import { FormArray, FormBuilder, FormControl, FormGroup } from '@angular/forms';
 import { toCamelCase } from '@koalarx/utils/operators/string';
+import { Subject, takeUntil } from 'rxjs';
+import { OnDestroy } from '@angular/core';
 
 @Component({
   selector: 'cat-form-list-item[listItemConfig]',
@@ -16,7 +18,7 @@ import { toCamelCase } from '@koalarx/utils/operators/string';
   styleUrls: ['./list-item.component.css'],
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class ListItemComponent implements OnInit {
+export class ListItemComponent implements OnInit, OnDestroy {
   @Input() listItemConfig: CatFormListItemConfig;
   @Input() variableTree?: string;
   @Input() highlightInvalidFields = false;
@@ -24,7 +26,13 @@ export class ListItemComponent implements OnInit {
 
   public formListItem?: FormGroup;
 
+  private destroySubscriptions$ = new Subject<boolean>();
+
   constructor(private fb: FormBuilder) {}
+
+  ngOnDestroy(): void {
+    this.destroySubscriptions$.next(true);
+  }
 
   ngOnInit() {
     this.formListItem = this.fb.group({
@@ -35,6 +43,17 @@ export class ListItemComponent implements OnInit {
     if (this.listItemConfig.options?.minItems > 0) {
       for (let i = 1; i <= this.listItemConfig.options?.minItems; i++) {
         this.addItem();
+      }
+    }
+
+    if (this.listItemConfig.config.autofill) {
+      const value = eval(`this.listItemConfig.config.autofill.${this.getTree()}`)
+      if (Array.isArray(value)) {
+        value.forEach((item, index) => {
+          if (!this.getItemList()?.controls?.[index]) {
+            this.addItem();
+          }
+        });
       }
     }
   }
@@ -59,6 +78,17 @@ export class ListItemComponent implements OnInit {
       this.getItemList().removeAt(index);
   }
 
+  public addFormGroup(
+    index: number,
+    name: string,
+    formGroup: FormGroup | FormArray
+  ) {
+    (this.getItemList()?.controls?.[index] as FormGroup)?.addControl(
+      name,
+      formGroup
+    );
+  }
+
   public addFormControl(index: number, name: string, formControl: FormControl) {
     (this.getItemList()?.controls?.[index] as FormGroup).addControl(
       toCamelCase(name),
@@ -66,12 +96,21 @@ export class ListItemComponent implements OnInit {
     );
   }
 
-  public getFullListItemName() {
+  public getFullListItemName(index: number) {
     const name = this.listItemConfig?.name;
-    if (this.variableTree) {
-      return `${this.variableTree}.${name}`;
+
+    let prefix = name.substring(0, name.length - 3);
+    let suffix = name.substring(name.length - 3);
+    if (suffix === `[${index - 1}]`) {
+      suffix = suffix.replace(`[${index - 1}]`, `[${index}]`);
+    } else {
+      suffix += `[${index}]`;
     }
-    return name ?? '';
+
+    if (this.variableTree) {
+      return `${this.variableTree}.${prefix}${suffix}`;
+    }
+    return `${prefix}${suffix}`;
   }
 
   public hideField(el: HTMLDivElement, hide: boolean) {
@@ -84,5 +123,23 @@ export class ListItemComponent implements OnInit {
 
   public getItemList() {
     return this.formListItem.get(this.listItemConfig.name) as FormArray;
+  }
+
+  private getTree() {
+    return `${this.variableTree ? this.variableTree + '.' : ''}${
+      this.listItemConfig.name
+    }`;
+  }
+
+  private getIndexItemByTree(fieldPath: string) {
+    const tree = this.getTree();
+
+    if (fieldPath.indexOf(tree) >= 0) {
+      const partThree = fieldPath.replace(tree, '');
+      return parseInt(
+        partThree.substring(partThree.indexOf('[') + 1, partThree.indexOf(']'))
+      );
+    }
+    return -1;
   }
 }

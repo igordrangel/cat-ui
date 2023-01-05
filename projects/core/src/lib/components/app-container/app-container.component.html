@@ -5,22 +5,32 @@
         #asideElement
         [ngClass]="{show: menuCollapsed$ | async}">
         <ng-container>
-          <button type="button" class="btn-menu-collapse" (click)="collapseMenu()">
+          <button
+            *ngIf="!(config.options?.disableCollapseMenuButton ?? false)"
+            type="button"
+            class="btn-menu-collapse"
+            (click)="collapseMenu()">
             <i *ngIf="!(menuCollapsed$ | async)" class="fa-solid fa-chevron-right"></i>
             <i *ngIf="menuCollapsed$ | async" class="fa-solid fa-chevron-left"></i>
           </button>
 
           <img
+            #logotypeImage
             class="logotype"
             [src]="(themeActive$ | async) === 'dark' && config.logotype.negative
               ? config.logotype.negative
               : config.logotype.default"
             alt="Logotipo"/>
 
-          <cat-menu [appName]="config.appName" [config]="sideMenuConfig$ | async"></cat-menu>
+          <cat-menu
+            [appName]="config.appName"
+            [config]="sideMenuConfig$ | async"
+            [style.height]="'calc(100% - ' + btnGroup.style.height + ')'"
+            [menuCollapsed]="menuCollapsed$">
+          </cat-menu>
         </ng-container>
         <div class="space"></div>
-        <div class="btn-group">
+        <div #btnGroup class="btn-group">
           <button
             type="button"
             *ngIf="config.darkMode && (themeActive$ | async) as themeActive"

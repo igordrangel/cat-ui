@@ -16,14 +16,39 @@ import { Observable } from 'rxjs';
 })
 export class PageListItemComponent extends CatFormBase {
   config = this.formService
-    .build()
-    .listsItem('Contatos', 'phones', (builder) =>
-      builder
-        .text('Telefone', 'phone', (builder) =>
-          builder.setMask('(00)00000000?0').setRequired().generate()
-        )
-        .generate(),
-      {minItems: 1, maxItems: 5}
+    .build({
+      phones: [
+        {
+          phone: '(22)999999999',
+          emails: [
+            { email: 'teste@exemplo.com' },
+            { email: 'teste2@exemplo.com' },
+          ],
+        },
+        { phone: '(22)888888888' },
+      ],
+    })
+    .listsItem(
+      'Contatos',
+      'phones',
+      (builder) =>
+        builder
+          .text('Telefone', 'phone', (builder) =>
+            builder.setMask('(00)00000000?0').setRequired().generate()
+          )
+          .listsItem(
+            'Emails',
+            'emails',
+            (builder) =>
+              builder
+                .email('E-mail', 'email', (builder) =>
+                  builder.setRequired().generate()
+                )
+                .generate(),
+            { minItems: 1, maxItems: 5 }
+          )
+          .generate(),
+      { minItems: 1, maxItems: 5 }
     )
     .onSubmit(
       (data) =>

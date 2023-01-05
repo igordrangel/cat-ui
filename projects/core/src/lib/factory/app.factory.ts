@@ -1,11 +1,16 @@
-import { AppAuthSettings, AppConfig, AppConfigLogotype, AppConfigMenu, AppNotificationsConfig } from "./app-config.interface";
+import { AppAuthSettings, AppConfig, AppConfigLogotype, AppConfigMenu, AppNotificationsConfig, AppOptions } from "./app-config.interface";
 
 export class AppFactory {
   private config = {} as AppConfig;
 
-  constructor(appName: string, authSettings: AppAuthSettings) {
+  constructor(
+    appName: string,
+    authSettings: AppAuthSettings,
+    options?: AppOptions
+  ) {
     this.config.authSettings = authSettings;
     this.config.appName = appName;
+    this.config.options = options;
   }
 
   public setLogotype(options: AppConfigLogotype) {

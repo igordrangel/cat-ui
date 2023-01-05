@@ -1,8 +1,9 @@
-<nav *ngIf="menuOptions$ | async as menuOptions">
+<nav *ngIf="menuOptions$ | async as menuOptions" [ngClass]="{collapsed: menuCollapsed | async}">
   <div class="menu-container">
     <cat-menu-module
       *ngIf="menuOptions.modules?.length > 0"
-      [modules]="menuOptions.modules">
+      [modules]="menuOptions.modules"
+      [menuCollapsed]="menuCollapsed">
     </cat-menu-module>
 
     <cat-menu-tool

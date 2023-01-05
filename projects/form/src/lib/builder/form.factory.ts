@@ -39,13 +39,15 @@ export class FormFactory<DataType> {
     name: string,
     config: (builder: FormFactory<DataType>) => CatFormConfig<DataType>
   ) {
-    if (!this.config.fieldset) this.config.fieldset = [];
-    this.config.fieldset.push({
-      legend,
-      name,
-      config: config(
-        new FormFactory<DataType>(this.data?.[name], this.config.behavior)
-      ),
+    if (!this.config.formElements) this.config.formElements = [];
+    this.config.formElements.push({
+      fieldset: {
+        legend,
+        name,
+        config: config(
+          new FormFactory<DataType>(this.data?.[name], this.config.behavior)
+        ),
+      },
     });
     return this;
   }
@@ -56,14 +58,16 @@ export class FormFactory<DataType> {
     config: (builder: FormFactory<DataType>) => CatFormConfig<DataType>,
     options?: CatFormItemListOptions
   ) {
-    if (!this.config.listItems) this.config.listItems = [];
-    this.config.listItems.push({
-      legend,
-      name,
-      config: config(
-        new FormFactory<DataType>(this.data?.[name], this.config.behavior)
-      ),
-      options,
+    if (!this.config.formElements) this.config.formElements = [];
+    this.config.formElements.push({
+      listItem: {
+        legend,
+        name,
+        config: config(
+          new FormFactory<DataType>(this.data, this.config.behavior)
+        ),
+        options,
+      },
     });
     return this;
   }
@@ -257,13 +261,14 @@ export class FormFactory<DataType> {
     name: string,
     field: (builder: any) => CatFormFieldOptions
   ) {
-    if (!this.config.fields) this.config.fields = [];
-
-    this.config.fields.push({
-      ...field(this.getFieldBuilder(label, type)),
-      type,
-      name,
-      behavior: this.config.behavior,
+    if (!this.config.formElements) this.config.formElements = [];
+    this.config.formElements.push({
+      field: {
+        ...field(this.getFieldBuilder(label, type)),
+        type,
+        name,
+        behavior: this.config.behavior,
+      },
     });
   }
 

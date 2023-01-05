@@ -4,15 +4,19 @@ import { CatFormBehavior } from '../common/cat-form-behavior';
 import { Type } from '@angular/core';
 
 export interface CatFormConfig<DataType> {
-  fieldset?: CatFormFieldsetConfig[];
-  listItems?: CatFormListItemConfig[];
-  fields?: CatFormFieldConfig[];
+  formElements: CatFormElementConfig[];
   onSubmit?: (data: DataType) => Observable<any>;
   onChange?: (data: DataType) => void;
   isCheckboxGroup?: boolean;
   grid?: CatFormFieldTemplateGridType;
   behavior: CatFormBehavior;
   autofill?: DataType;
+}
+
+export interface CatFormElementConfig {
+  fieldset?: CatFormFieldsetConfig;
+  listItem?: CatFormListItemConfig;
+  field?: CatFormFieldConfig;
 }
 
 export interface CatFormFieldConfig extends CatFormFieldOptions {

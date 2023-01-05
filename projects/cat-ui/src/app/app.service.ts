@@ -64,10 +64,109 @@ export class AppService {
       observe.next({
         modules: [
           {
+            icon: 'fa-solid fa-database',
+            name: 'Exibição de Dados',
+            tools: [
+              {
+                name: 'Datatable',
+                routerLink: '/components/datatable',
+              },
+              {
+                name: 'Componentes Dinâmicos',
+                routerLink: '/components/dynamic-components',
+              },
+            ],
+          },
+          {
+            icon: 'fa-brands fa-wpforms',
+            name: 'Formulário',
+            routerLink: '/components/form',
+            tools: [
+              {
+                name: 'Lista de Itens',
+                routerLink: '/components/form/list-item',
+              },
+            ],
+          },
+          {
+            icon: 'fa-solid fa-bars-progress',
+            name: 'Menu',
+            tools: [
+              {
+                name: 'Toolbar',
+                routerLink: '/components/toolbar',
+              },
+            ],
+          },
+          {
+            icon: 'fa-regular fa-window-restore',
+            name: 'Janelas e Alertas',
+            tools: [
+              {
+                name: 'Side Window',
+                routerLink: '/components/side-window',
+              },
+              {
+                name: 'Dialog',
+                routerLink: '/components/dialog',
+              },
+              {
+                name: 'Confirm',
+                routerLink: '/components/confirm',
+              },
+              {
+                name: 'Snackbar',
+                routerLink: '/components/snackbar',
+              },
+              {
+                name: 'Alert',
+                routerLink: '/components/alert',
+              },
+            ],
+          },
+          {
+            icon: 'fa-solid fa-file-arrow-down',
+            name: 'Exportação e Download de Dados',
+            tools: [
+              {
+                name: '.csv',
+                routerLink: '/services/csv',
+              },
+              {
+                name: '.xlsx',
+                routerLink: '/services/xlsx',
+              },
+            ],
+          },
+          {
+            icon: 'fa-solid fa-arrow-pointer',
+            name: 'Botões',
+            tools: [
+              {
+                name: 'Button',
+                routerLink: '/components/button',
+              },
+            ],
+          },
+          {
+            icon: 'fa-solid fa-spinner',
+            name: 'Loaders',
+            tools: [
+              {
+                name: 'Loader Page',
+                routerLink: '/services/loader-page',
+              },
+            ],
+          },
+          {
             icon: 'fa-solid fa-book',
-            name: 'Página de CRUD',
-            routerLink: '/examples/crud-page',
-            hasPermission: () => !!decodedToken
+            name: 'Exemplos',
+            tools: [
+              {
+                name: 'Página de CRUD',
+                routerLink: '/examples/crud-page',
+              },
+            ],
           },
         ],
       });

@@ -35,3 +35,8 @@ fieldset legend .cat-btn-add-item-list:disabled {
 }
 
 .cat-list-item-size {margin-left: 8px;color: var(--font-color);font-size: 9pt;}
+
+.fields-content {
+  box-sizing: border-box;
+  width: 100%;
+}
