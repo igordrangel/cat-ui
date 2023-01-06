@@ -17,7 +17,7 @@ export class AppComponent {
         loginComponent: LoginComponent,
       },
       onAuth: (decodedToken) => this.appService.getMenu(decodedToken),
-    }, {menuStartState: 'closed', disableCollapseMenuButton: true})
+    })
     .setLogotype({
       default: '../assets/logotype.svg',
       negative: '../assets/logotype-negative.svg',
