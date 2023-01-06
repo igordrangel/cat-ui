@@ -32,13 +32,19 @@
             <span>{{module.name}}</span>
           </h2>
 
-          <div [id]="'cat-menu-module-' + i + '-dropdown'" *dropdownMenu class="dropdown-menu" role="menu" aria-labelledby="button-basic">
-            <cat-menu-tool
-              *ngIf="module.tools?.length > 0"
-              id="cat-app-container-notifications-dropdown"
-              [tools]="module.tools">
-            </cat-menu-tool>
-          </div>
+          <ng-container *ngIf="module.tools?.length > 0">
+            <div
+              *dropdownMenu
+              [id]="'cat-menu-module-' + i + '-dropdown'"
+              class="dropdown-menu"
+              role="menu"
+              aria-labelledby="button-basic">
+              <cat-menu-tool
+                id="cat-app-container-notifications-dropdown"
+                [tools]="module.tools">
+              </cat-menu-tool>
+            </div>
+          </ng-container>
         </div>
       </ng-template>
     </li>
