@@ -24,6 +24,8 @@
             dropdownToggle
             [attr.aria-controls]="'cat-menu-module-' + i + '-dropdown'"
             [routerLink]="module.routerLink"
+            [matTooltip]="module.name"
+            matTooltipPosition="right"
             routerLinkActive="active"
             (click)="closeAllModules();moduleElement.classList.toggle('collapsed')">
             <i *ngIf="module.icon" [ngClass]="module.icon"></i>
