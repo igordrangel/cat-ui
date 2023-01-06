@@ -39,4 +39,8 @@ fieldset legend .cat-btn-add-item-list:disabled {
 .fields-content {
   box-sizing: border-box;
   width: 100%;
+  display: flex;
+  justify-content: flex-start;
+  align-items: flex-start;
+  flex-wrap: wrap;
 }
