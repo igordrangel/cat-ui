@@ -43,6 +43,9 @@ main {
   --c-toolbar: #616161;
   --bg-toolbar: #fff;
 
+  --c-tooltip: #616161;
+  --bg-tooltip: #fff;
+
   --c-datatable-th: #616161;
   --bg-datatable-th: #f1f1f1;
   --bg-datatable-hover-bg: rgba(0,0,0,.1);
@@ -121,6 +124,9 @@ main.dark {
 
   --c-toolbar: #f1f1f1;
   --bg-toolbar: #212121;
+
+  --c-tooltip: #f1f1f1;
+  --bg-tooltip: #212121;
 
   --c-datatable-th: #f1f1f1;
   --bg-datatable-th: #111111;
@@ -417,8 +423,8 @@ main {color: var(--font-color);}
   color: var(--font-color);
   transition: .1s;
 }
-.btn-icon:hover {background-color: rgba(0, 0, 0, 0.4);}
-.btn-icon:active {background-color: rgba(0, 0, 0, 0.6);}
+.btn-icon:hover {background-color: var(--btn-primary-color-alpha-hover);}
+.btn-icon:active {background-color: var(--btn-primary-color-alpha-active);}
 /*#endregion */
 /*#region [Dialog] */
 .dialog-size-small .cat-dialog-content {width: 25vw;}

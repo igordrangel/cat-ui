@@ -1,0 +1,18 @@
+.cat-tooltip {
+  position: fixed;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  box-sizing: border-box;
+  background-color: var(--bg-tooltip);
+  border-radius: 4px;
+  color: var(--c-tooltip);
+  font-family: Arial;
+  padding: 8px 10px;
+  font-size: 13px;
+  line-height: 13px;
+  margin-top: 5px;
+  transform: translateX(-50%);
+  border: 1px solid var(--shadow-color);
+  z-index: 1080;
+}

@@ -6,6 +6,8 @@
   box-sizing: border-box;
   width: 100%;
   border: 1px solid var(--shadow-color);
+  border-left: none;
+  border-right: none;
   background-color: var(--bg-toolbar);
   color: var(--c-toolbar);
 }

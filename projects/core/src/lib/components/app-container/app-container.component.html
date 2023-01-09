@@ -35,8 +35,7 @@
             type="button"
             *ngIf="config.darkMode && (themeActive$ | async) as themeActive"
             (click)="switchTheme()"
-            [matTooltip]="'Ativar modo ' + ((themeActive$ | async) === 'light' ? 'escuro' : 'claro')"
-            matTooltipPosition="above">
+            [catTooltip]="'Ativar modo ' + ((themeActive$ | async) === 'light' ? 'escuro' : 'claro')">
             <i *ngIf="themeActive === 'light'" class="fa-solid fa-moon"></i>
             <i *ngIf="themeActive === 'dark'" class="fa-solid fa-sun"></i>
           </button>
@@ -48,8 +47,7 @@
             <button
               trigger
               type="button"
-              matTooltip="Notificações"
-              matTooltipPosition="above"
+              catTooltip="Notificações"
               [ngClass]="{'has-notification': notifications$ | async}">
               <i class="fa-solid fa-bell"></i>
             </button>
@@ -63,16 +61,14 @@
                   (click)="reloadNotifications()"
                   class="btn-icon"
                   type="button"
-                  matTooltip="Buscar Notificaçoes"
-                  matTooltipPosition="above">
+                  catTooltip="Buscar Notificaçoes">
                   <i class="fa-solid fa-rotate"></i>
                 </button>
                 <button
                   (click)="removeAllNotifications()"
                   class="btn-icon"
                   type="button"
-                  matTooltip="Remover todos"
-                  matTooltipPosition="above">
+                  catTooltip="Remover todos">
                   <i class="fa-solid fa-trash-can"></i>
                 </button>
               </div>
@@ -99,8 +95,7 @@
                     (click)="removeNotification(notification.id)"
                     class="ml-5 mr-10 btn-icon"
                     type="button"
-                    matTooltip="Excluir"
-                    matTooltipPosition="above">
+                    catTooltip="Excluir">
                     <i class="fa-solid fa-trash-can"></i>
                   </button>
                 </div>
@@ -125,8 +120,7 @@
             *ngIf="!(logged$ | async)"
             (click)="login()"
             type="button"
-            matTooltip="Entrar"
-            matTooltipPosition="above">
+            catTooltip="Entrar">
             <i class="fa-solid fa-arrow-right-to-bracket"></i>
           </button>
 
@@ -135,8 +129,7 @@
               trigger
               class="btn-avatar"
               type="button"
-              matTooltip="Perfil"
-              matTooltipPosition="above">
+              catTooltip="Perfil">
 
               <div class="avatar-container">
                 <img

@@ -74,6 +74,10 @@
       "@catrx/ui/dropdown": [
         "dist/dropdown",
         "projects/dropdown/src"
+      ],
+      "@catrx/ui/tooltip": [
+        "dist/tooltip",
+        "projects/tooltip/src"
       ]
     },
     "baseUrl": "./",
