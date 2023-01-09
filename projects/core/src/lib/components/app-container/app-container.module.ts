@@ -7,6 +7,7 @@ import { CatLoaderModule } from '@catrx/ui/loader';
 import { BsDropdownModule } from 'ngx-bootstrap/dropdown';
 import { CatDynamicComponentModule } from '@catrx/ui/dynamic-component';
 import { RouterModule } from '@angular/router';
+import { CatDropdownModule } from '@catrx/ui/dropdown';
 
 @NgModule({
   declarations: [AppContainerComponent],
@@ -17,7 +18,7 @@ import { RouterModule } from '@angular/router';
     CatLoaderModule,
     CatDynamicComponentModule,
     MatTooltipModule,
-    BsDropdownModule.forRoot(),
+    CatDropdownModule,
     RouterModule
   ],
 })

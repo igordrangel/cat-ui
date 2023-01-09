@@ -19,10 +19,9 @@
       </ng-container>
 
       <ng-template #showMenuClosed>
-        <div dropdown container="main" placement="top right" class="dropup">
+        <cat-dropdown [insideClick]="false" position="top right">
           <h2
-            dropdownToggle
-            [attr.aria-controls]="'cat-menu-module-' + i + '-dropdown'"
+            trigger
             [routerLink]="module.routerLink"
             [matTooltip]="module.name"
             matTooltipPosition="right"
@@ -32,20 +31,10 @@
             <span>{{module.name}}</span>
           </h2>
 
-          <ng-container *ngIf="module.tools?.length > 0">
-            <div
-              *dropdownMenu
-              [id]="'cat-menu-module-' + i + '-dropdown'"
-              class="dropdown-menu"
-              role="menu"
-              aria-labelledby="button-basic">
-              <cat-menu-tool
-                id="cat-app-container-notifications-dropdown"
-                [tools]="module.tools">
-              </cat-menu-tool>
-            </div>
+          <ng-container content *ngIf="module.tools?.length > 0">
+            <cat-menu-tool [tools]="module.tools"></cat-menu-tool>
           </ng-container>
-        </div>
+        </cat-dropdown>
       </ng-template>
     </li>
   </ng-container>

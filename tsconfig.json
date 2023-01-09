@@ -70,6 +70,10 @@
       "@catrx/ui/side-window": [
         "dist/side-window",
         "projects/side-window/src"
+      ],
+      "@catrx/ui/dropdown": [
+        "dist/dropdown",
+        "projects/dropdown/src"
       ]
     },
     "baseUrl": "./",

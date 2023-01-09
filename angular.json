@@ -125,6 +125,8 @@
               "@koalarx/utils/operators",
               "@koalarx/utils/operators/delay",
               "@koalarx/utils/operators/string",
+              "exceljs/dist/exceljs.min.js",
+              "file-saver",
               "papaparse/papaparse.min.js",
               "b64-to-blob",
               "jwt-encode"
@@ -646,6 +648,39 @@
           "builder": "@angular-devkit/build-angular:karma",
           "options": {
             "tsConfig": "projects/side-window/tsconfig.spec.json",
+            "polyfills": [
+              "zone.js",
+              "zone.js/testing"
+            ]
+          }
+        }
+      }
+    },
+    "dropdown": {
+      "projectType": "library",
+      "root": "projects/dropdown",
+      "sourceRoot": "projects/dropdown/src",
+      "prefix": "lib",
+      "architect": {
+        "build": {
+          "builder": "@angular-devkit/build-angular:ng-packagr",
+          "options": {
+            "project": "projects/dropdown/ng-package.json"
+          },
+          "configurations": {
+            "production": {
+              "tsConfig": "projects/dropdown/tsconfig.lib.prod.json"
+            },
+            "development": {
+              "tsConfig": "projects/dropdown/tsconfig.lib.json"
+            }
+          },
+          "defaultConfiguration": "production"
+        },
+        "test": {
+          "builder": "@angular-devkit/build-angular:karma",
+          "options": {
+            "tsConfig": "projects/dropdown/tsconfig.spec.json",
             "polyfills": [
               "zone.js",
               "zone.js/testing"
