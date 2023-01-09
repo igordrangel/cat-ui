@@ -171,6 +171,7 @@ main.dark {
   font-family: OpenSans, sans-serif;
   background-color: transparent;
 }
+body {overflow: hidden;}
 main {color: var(--font-color);}
 
 @font-face {
@@ -185,6 +186,13 @@ main {color: var(--font-color);}
     url(./fonts/OpenSans/OpenSans-BoldItalic.woff),
     url(./fonts/OpenSans/OpenSans-ExtraBold.woff),
     url(./fonts/OpenSans/OpenSans-ExtraBoldItalic.woff);
+}
+
+.cat-toolbar .btn-group nav {
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  width: 100%;
 }
 
 .space {flex: 1 0 0;}

@@ -75,6 +75,13 @@ const routes: Routes = [
             (m) => m.PageButtonModule
           ),
       },
+      {
+        path: 'dropdown',
+        loadChildren: () =>
+          import('./pages/components/dropdown/page-dropdown.module').then(
+            (m) => m.PageDropdownModule
+          ),
+      },
     ],
   },
   {

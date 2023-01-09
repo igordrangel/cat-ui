@@ -96,6 +96,10 @@ export class AppService {
                 name: 'Toolbar',
                 routerLink: '/components/toolbar',
               },
+              {
+                name: 'Dropdown',
+                routerLink: '/components/dropdown',
+              },
             ],
           },
           {
