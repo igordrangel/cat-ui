@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { CatTooltipPosition } from './cat-tooltip.directive';
 
 @Component({
   templateUrl: './tooltip.component.html',
@@ -8,6 +9,8 @@ export class TooltipComponent implements OnInit {
   tooltip: string = '';
   left: number = 0;
   top: number = 0;
+  position: CatTooltipPosition = 'above';
+  visible = false;
 
   constructor() {}
 

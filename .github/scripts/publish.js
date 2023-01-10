@@ -51,7 +51,6 @@ fs.writeFileSync('dist/package.json', JSON.stringify({
     "@angular/core": ">=15.0.0"
   },
   "dependencies": {
-    "@angular/material": "^15.0.3",
     "@fortawesome/fontawesome-free": "^6.2.1",
     "@koalarx/utils": "^1.0.101",
     "@ng-select/ng-select": "^10.0.1",

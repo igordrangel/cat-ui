@@ -23,8 +23,7 @@
           <h2
             trigger
             [routerLink]="module.routerLink"
-            [matTooltip]="module.name"
-            matTooltipPosition="right"
+            [catTooltip]="module.name"
             routerLinkActive="active"
             (click)="closeAllModules();moduleElement.classList.toggle('collapsed')">
             <i *ngIf="module.icon" [ngClass]="module.icon"></i>

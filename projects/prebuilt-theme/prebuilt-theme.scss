@@ -1,6 +1,5 @@
 @import "@fortawesome/fontawesome-free/css/all.min.css";
 @import "bootstrap/scss/bootstrap.scss";
-@import "@angular/material/prebuilt-themes/indigo-pink.css";
 @import "@ng-select/ng-select/themes/ant.design.theme.css";
 @import "animate.css/animate.min.css";
 
@@ -43,8 +42,8 @@ main {
   --c-toolbar: #616161;
   --bg-toolbar: #fff;
 
-  --c-tooltip: #616161;
-  --bg-tooltip: #fff;
+  --c-tooltip: #f1f1f1;
+  --bg-tooltip: #1565c0;
 
   --c-datatable-th: #616161;
   --bg-datatable-th: #f1f1f1;

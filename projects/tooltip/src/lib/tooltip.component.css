@@ -7,12 +7,35 @@
   background-color: var(--bg-tooltip);
   border-radius: 4px;
   color: var(--c-tooltip);
-  font-family: Arial;
   padding: 8px 10px;
   font-size: 13px;
   line-height: 13px;
-  margin-top: 5px;
   transform: translateX(-50%);
   border: 1px solid var(--shadow-color);
+  opacity: 0;
   z-index: 1080;
+}
+
+.cat-tooltip--visible {
+  opacity: 1;
+  transition: opacity 300ms;
+}
+
+.cat-tooltip--below {
+  transform:translateX(-50%);
+  margin-top: 7px;
+}
+
+.cat-tooltip--above {
+  transform:translate(-50%, -100%);
+  margin-bottom: 7px;
+}
+
+.cat-tooltip--left {
+  transform:translate(calc(-100% - 7px), -50%);
+}
+
+.cat-tooltip--right {
+  transform:translateY(-50%);
+  margin-left: 7px;
 }
