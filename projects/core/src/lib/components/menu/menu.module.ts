@@ -4,12 +4,12 @@ import { MenuComponent } from './menu.component';
 import { RouterModule } from '@angular/router';
 import { ToolComponent } from './components/tool/tool.component';
 import { ModuleComponent } from './components/module/module.component';
-import { BsDropdownModule } from 'ngx-bootstrap/dropdown';
-import { MatTooltipModule } from '@angular/material/tooltip';
+import { CatDropdownModule } from '@catrx/ui/dropdown';
+import { CatTooltipModule } from '@catrx/ui/tooltip';
 
 @NgModule({
   declarations: [MenuComponent, ModuleComponent, ToolComponent],
   exports: [MenuComponent],
-  imports: [CommonModule, RouterModule, BsDropdownModule.forRoot(), MatTooltipModule],
+  imports: [CommonModule, RouterModule, CatDropdownModule, CatTooltipModule],
 })
 export class MenuModule {}

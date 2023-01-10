@@ -35,50 +35,48 @@
             type="button"
             *ngIf="config.darkMode && (themeActive$ | async) as themeActive"
             (click)="switchTheme()"
-            [matTooltip]="'Ativar modo ' + ((themeActive$ | async) === 'light' ? 'escuro' : 'claro')"
-            matTooltipPosition="above">
+            [catTooltip]="'Ativar modo ' + ((themeActive$ | async) === 'light' ? 'escuro' : 'claro')">
             <i *ngIf="themeActive === 'light'" class="fa-solid fa-moon"></i>
             <i *ngIf="themeActive === 'dark'" class="fa-solid fa-sun"></i>
           </button>
 
           <ng-content select="[bottom-buttons]"></ng-content>
 
-          <div *ngIf="config.pushNotifications && (logged$ | async)" dropdown [dropup]="true" [insideClick]="true" class="dropup">
+          <cat-dropdown
+            *ngIf="config.pushNotifications && (logged$ | async)">
             <button
-              dropdownToggle
+              trigger
               type="button"
-              matTooltip="Notificações"
-              matTooltipPosition="above"
-              aria-controls="cat-app-container-notifications-dropdown"
+              catTooltip="Notificações"
               [ngClass]="{'has-notification': notifications$ | async}">
               <i class="fa-solid fa-bell"></i>
             </button>
 
-            <ul id="cat-app-container-notifications-dropdown" *dropdownMenu class="dropdown-menu" role="menu" aria-labelledby="button-basic">
-              <li class="notifications-head">
+            <div content>
+              <div class="notifications-head">
                 <span class="mr-15">Notificações</span>
                 <cat-loader *ngIf="loadingNotifications$ | async"></cat-loader>
                 <div class="space"></div>
                 <button
                   (click)="reloadNotifications()"
+                  class="btn-icon"
                   type="button"
-                  matTooltip="Buscar Notificaçoes"
-                  matTooltipPosition="above">
+                  catTooltip="Buscar Notificaçoes">
                   <i class="fa-solid fa-rotate"></i>
                 </button>
                 <button
                   (click)="removeAllNotifications()"
+                  class="btn-icon"
                   type="button"
-                  matTooltip="Remover todos"
-                  matTooltipPosition="above">
+                  catTooltip="Remover todos">
                   <i class="fa-solid fa-trash-can"></i>
                 </button>
-              </li>
+              </div>
 
-              <li><hr class="dropdown-divider"></li>
+              <hr class="dropdown-divider">
 
               <ng-container *ngIf="notifications$ | async as notifications else emptyNotifications">
-                <li
+                <div
                   *ngFor="let notification of notifications"
                   class="notification-item dropdown-item">
                   <i class="notification-icon fa-solid fa-message"></i>
@@ -95,12 +93,12 @@
 
                   <button
                     (click)="removeNotification(notification.id)"
+                    class="ml-5 mr-10 btn-icon"
                     type="button"
-                    matTooltip="Excluir"
-                    matTooltipPosition="above">
+                    catTooltip="Excluir">
                     <i class="fa-solid fa-trash-can"></i>
                   </button>
-                </li>
+                </div>
               </ng-container>
 
               <ng-template #emptyNotifications>
@@ -115,26 +113,23 @@
                   </div>
                 </ng-template>
               </ng-template>
-            </ul>
-          </div>
+            </div>
+          </cat-dropdown>
 
           <button
             *ngIf="!(logged$ | async)"
             (click)="login()"
             type="button"
-            matTooltip="Entrar"
-            matTooltipPosition="above">
+            catTooltip="Entrar">
             <i class="fa-solid fa-arrow-right-to-bracket"></i>
           </button>
 
-          <div *ngIf="logged$ | async" dropdown [dropup]="true" class="dropup">
+          <cat-dropdown *ngIf="logged$ | async">
             <button
-              dropdownToggle
+              trigger
               class="btn-avatar"
               type="button"
-              matTooltip="Perfil"
-              matTooltipPosition="above"
-              aria-controls="cat-app-container-menu-dropdown-user">
+              catTooltip="Perfil">
 
               <div class="avatar-container">
                 <img
@@ -144,35 +139,31 @@
                   referrerpolicy="no-referrer"/>
               </div>
             </button>
-            <ul id="cat-app-container-menu-dropdown-user" *dropdownMenu class="dropdown-menu" role="menu" aria-labelledby="button-basic">
-              <li>
-                <div class="avatar-container">
-                  <img
-                    *ngIf="userPicture$ | async as userPicture else loggedUserAvatar"
-                    [src]="userPicture"
-                    [alt]="'Bem-Vindo ' + username"
-                    referrerpolicy="no-referrer"/>
-                  <h2>{{username}}</h2>
-                </div>
-              </li>
-              <li><hr class="dropdown-divider"></li>
-              <li>
-                <a
-                  href="#"
-                  class="dropdown-item"
-                  (click)="logout(true)"
-                  type="button">
-                  <i class="fa-solid fa-arrow-right-from-bracket mr-8"></i>
-                  Sair
-                </a>
-              </li>
-            </ul>
+
+            <div class="dropdown-user" content>
+              <div class="avatar-container">
+                <img
+                  *ngIf="userPicture$ | async as userPicture else loggedUserAvatar"
+                  [src]="userPicture"
+                  [alt]="'Bem-Vindo ' + username"
+                  referrerpolicy="no-referrer"/>
+                <h2>{{username}}</h2>
+              </div>
+              <hr class="dropdown-divider">
+              <a
+                href="#"
+                class="dropdown-item"
+                (click)="logout(true)"
+                type="button">
+                <i class="fa-solid fa-arrow-right-from-bracket mr-8"></i>
+                Sair
+              </a>
+            </div>
 
             <ng-template #loggedUserAvatar>
               <i class="fa-solid fa-circle-user"></i>
             </ng-template>
-
-          </div>
+          </cat-dropdown>
         </div>
       </aside>
       <section id="cat-content-app">

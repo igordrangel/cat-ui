@@ -5,6 +5,8 @@ const config = JSON.parse(fs.readFileSync('package.json').toString());
 const currentVersion = config.version;
 const libs = [
   'dynamic-component',
+  'tooltip',
+  'dropdown',
   'side-window',
   'snackbar',
   'loader',
@@ -49,7 +51,6 @@ fs.writeFileSync('dist/package.json', JSON.stringify({
     "@angular/core": ">=15.0.0"
   },
   "dependencies": {
-    "@angular/material": "^15.0.3",
     "@fortawesome/fontawesome-free": "^6.2.1",
     "@koalarx/utils": "^1.0.101",
     "@ng-select/ng-select": "^10.0.1",

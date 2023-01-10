@@ -1,0 +1,15 @@
+<div
+  *ngIf="ariaControl$ | async as ariaControl"
+  dropdown
+  container="main"
+  [dropup]="position === 'top'"
+  [placement]="position"
+  [insideClick]="insideClick">
+  <div dropdownToggle [attr.aria-controls]="ariaControl">
+    <ng-content select="[trigger]"></ng-content>
+  </div>
+
+  <div [id]="ariaControl" *dropdownMenu class="dropdown-menu" role="menu" aria-labelledby="button-basic">
+    <ng-content select="[content]"></ng-content>
+  </div>
+</div>

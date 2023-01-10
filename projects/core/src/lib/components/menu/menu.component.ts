@@ -188,7 +188,7 @@ export class MenuComponent implements OnInit, OnChanges {
     if (toolConfig.routerLink === path) {
       return toolConfig;
     } else {
-      return toolConfig.tools.find((tool) => {
+      return toolConfig.tools?.find((tool) => {
         if (tool.routerLink === path) {
           return tool;
         } else if (tool.tools?.length > 0) {

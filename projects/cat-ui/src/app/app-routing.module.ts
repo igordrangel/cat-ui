@@ -75,6 +75,20 @@ const routes: Routes = [
             (m) => m.PageButtonModule
           ),
       },
+      {
+        path: 'dropdown',
+        loadChildren: () =>
+          import('./pages/components/dropdown/page-dropdown.module').then(
+            (m) => m.PageDropdownModule
+          ),
+      },
+      {
+        path: 'tooltip',
+        loadChildren: () =>
+          import('./pages/components/tooltip/page-tooltip.module').then(
+            (m) => m.PageTooltipModule
+          ),
+      },
     ],
   },
   {

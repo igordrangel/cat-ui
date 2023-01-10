@@ -1,6 +1,5 @@
 @import "@fortawesome/fontawesome-free/css/all.min.css";
 @import "bootstrap/scss/bootstrap.scss";
-@import "@angular/material/prebuilt-themes/indigo-pink.css";
 @import "@ng-select/ng-select/themes/ant.design.theme.css";
 @import "animate.css/animate.min.css";
 
@@ -42,6 +41,9 @@ main {
 
   --c-toolbar: #616161;
   --bg-toolbar: #fff;
+
+  --c-tooltip: #f1f1f1;
+  --bg-tooltip: #1565c0;
 
   --c-datatable-th: #616161;
   --bg-datatable-th: #f1f1f1;
@@ -122,6 +124,9 @@ main.dark {
   --c-toolbar: #f1f1f1;
   --bg-toolbar: #212121;
 
+  --c-tooltip: #f1f1f1;
+  --bg-tooltip: #212121;
+
   --c-datatable-th: #f1f1f1;
   --bg-datatable-th: #111111;
   --bg-datatable-hover-bg: rgba(0,0,0,.3);
@@ -171,6 +176,7 @@ main.dark {
   font-family: OpenSans, sans-serif;
   background-color: transparent;
 }
+body {overflow: hidden;}
 main {color: var(--font-color);}
 
 @font-face {
@@ -187,36 +193,14 @@ main {color: var(--font-color);}
     url(./fonts/OpenSans/OpenSans-ExtraBoldItalic.woff);
 }
 
-.dropdown-menu {
-  --bs-dropdown-bg: var(--bg-body);
-  --bs-dropdown-link-color: var(--font-color);
-  --bs-dropdown-link-hover-color: var(--c-dropdown-hover);
-  --bs-dropdown-link-hover-bg: var(--bg-dropdown-hover);
-  --bs-dropdown-link-active-color: var(--c-dropdown-active);
-  --bs-dropdown-link-active-bg: var(--bg-dropdown-active);
-  --bs-dropdown-border-color: var(--shadow-color);
-  --bs-dropdown-divider-bg: var(--shadow-color);
-  z-index: 1003;
+.cat-toolbar .btn-group nav {
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  width: 100%;
 }
-.dropdown-menu .dropdown-item {
-  color: var(--c-dropdown);
-  transition: .1s;
-}
-.dropdown-menu .dropdown-item:hover {
-  color: var(--c-dropdown-hover)!important;
-  background-color: var(--bg-dropdown-hover)!important;
-}
-.dropdown-menu .dropdown-item:active {
-  color: var(--c-dropdown-active)!important;
-  background-color: var(--bg-dropdown-active)!important;
-}
-.dropdown-menu .dropdown-item i {color: var(--c-dropdown);}
-.dropdown-menu .dropdown-item:hover i {
-  color: var(--c-dropdown-hover)!important;
-}
-.dropdown-menu .dropdown-item:active i {
-  color: var(--c-dropdown-active)!important;
-}
+
+.space {flex: 1 0 0;}
 
 .cdk-overlay-container {z-index: 1003;}
 
@@ -422,6 +406,24 @@ main {color: var(--font-color);}
   padding: 0 !important;
 }
 
+/*#endregion */
+/*#region [Button] */
+.btn-icon {
+  border: none;
+  background-color: transparent;
+  padding: 10px;
+  display: inline-flex;
+  justify-content: center;
+  align-items: center;
+  width: 35px;
+  height: 35px;
+  font-size: 20px;
+  border-radius: 50%;
+  color: var(--font-color);
+  transition: .1s;
+}
+.btn-icon:hover {background-color: var(--btn-primary-color-alpha-hover);}
+.btn-icon:active {background-color: var(--btn-primary-color-alpha-active);}
 /*#endregion */
 /*#region [Dialog] */
 .dialog-size-small .cat-dialog-content {width: 25vw;}

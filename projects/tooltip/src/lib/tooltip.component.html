@@ -1,0 +1,6 @@
+<div class="cat-tooltip"
+    [class.cat-tooltip--visible]="visible"
+    [ngClass]="['cat-tooltip--' + position]"
+    [style.left]="left + 'px'" [style.top]="top + 'px'">
+  {{tooltip}}
+</div>

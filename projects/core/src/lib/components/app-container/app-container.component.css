@@ -126,7 +126,7 @@ main section {width: 100%;height: 100vh;overflow: auto;overflow-x: hidden;box-si
   border: 1px solid var(--shadow-color);
   background-color: var(--bg-avatar-image);
 }
-.dropdown-menu .avatar-container i {
+.dropdown-user .avatar-container i {
   font-size: 80px;
   color: var(--font-color);
   margin-bottom: 10px;
@@ -148,7 +148,6 @@ main section {width: 100%;height: 100vh;overflow: auto;overflow-x: hidden;box-si
   box-sizing: border-box;
   font-weight: bold;
 }
-.notifications-head .space {flex: 1 0 0;}
 .notifications-head button {margin: 0 5px!important;}
 .notification-item {
   display: flex;

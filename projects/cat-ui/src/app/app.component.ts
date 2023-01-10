@@ -22,6 +22,13 @@ export class AppComponent {
       default: '../assets/logotype.svg',
       negative: '../assets/logotype-negative.svg',
     })
+    .pushNotifications({
+      getNotifications: this.appService.getNotifications(),
+      getPermissionToNotifyOnBrowser: true,
+      intervalToGet: 30000,
+      onDelete: (id) => this.appService.deleteNotification(id),
+      onAllDelete: (ids) => this.appService.deleteNotifications(ids),
+    })
     .enableDarkMode()
     .generate();
 
