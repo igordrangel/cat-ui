@@ -78,6 +78,10 @@
       "@catrx/ui/tooltip": [
         "dist/tooltip",
         "projects/tooltip/src"
+      ],
+      "@catrx/ui/chip": [
+        "dist/chip",
+        "projects/chip/src"
       ]
     },
     "baseUrl": "./",

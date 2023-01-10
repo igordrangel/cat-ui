@@ -89,6 +89,13 @@ const routes: Routes = [
             (m) => m.PageTooltipModule
           ),
       },
+      {
+        path: 'chip',
+        loadChildren: () =>
+          import('./pages/components/chip/page-chip.module').then(
+            (m) => m.PageChipModule
+          ),
+      },
     ],
   },
   {

@@ -5,6 +5,7 @@ const config = JSON.parse(fs.readFileSync('package.json').toString());
 const currentVersion = config.version;
 const libs = [
   'dynamic-component',
+  'chip',
   'tooltip',
   'dropdown',
   'side-window',

@@ -1,0 +1,9 @@
+<div class="cat-chip" [ngClass]="data?.color ?? color">
+  <ng-container *ngIf="data else defaultContent">
+    <span [innerHTML]="data.text"></span>
+  </ng-container>
+
+  <ng-template #defaultContent>
+    <ng-content></ng-content>
+  </ng-template>
+</div>
