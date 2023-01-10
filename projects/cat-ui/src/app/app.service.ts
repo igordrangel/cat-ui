@@ -30,6 +30,7 @@ export class AppService {
       title: 'Notificação de Push',
       message: 'Clique para ir até a tela de Formulários Dinâmicos.',
       notifyOnBrowser: true,
+      routerLink: '/components/form',
     },
   ];
 
