@@ -721,6 +721,39 @@
           }
         }
       }
+    },
+    "chip": {
+      "projectType": "library",
+      "root": "projects/chip",
+      "sourceRoot": "projects/chip/src",
+      "prefix": "lib",
+      "architect": {
+        "build": {
+          "builder": "@angular-devkit/build-angular:ng-packagr",
+          "options": {
+            "project": "projects/chip/ng-package.json"
+          },
+          "configurations": {
+            "production": {
+              "tsConfig": "projects/chip/tsconfig.lib.prod.json"
+            },
+            "development": {
+              "tsConfig": "projects/chip/tsconfig.lib.json"
+            }
+          },
+          "defaultConfiguration": "production"
+        },
+        "test": {
+          "builder": "@angular-devkit/build-angular:karma",
+          "options": {
+            "tsConfig": "projects/chip/tsconfig.spec.json",
+            "polyfills": [
+              "zone.js",
+              "zone.js/testing"
+            ]
+          }
+        }
+      }
     }
   }
 }

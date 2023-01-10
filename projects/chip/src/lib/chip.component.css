@@ -1,0 +1,37 @@
+.cat-chip {
+  display: inline-flex;
+  justify-content: center;
+  align-items: center;
+  box-sizing: border-box;
+  padding: 5px 15px;
+  border-radius: 20px;
+  font-size: 11pt;
+  line-height: 11pt;
+  font-weight: bold;
+  background-color: var(--chip-bg-default);
+  color: var(--chip-c-default);
+}
+.cat-chip.primary {
+  background-color: var(--chip-bg-primary);
+  color: var(--chip-c-primary);
+}
+.cat-chip.secondary {
+  background-color: var(--chip-bg-secondary);
+  color: var(--chip-c-secondary);
+}
+.cat-chip.success {
+  background-color: var(--chip-bg-success);
+  color: var(--chip-c-success);
+}
+.cat-chip.warning {
+  background-color: var(--chip-bg-warning);
+  color: var(--chip-c-warning);
+}
+.cat-chip.danger {
+  background-color: var(--chip-bg-danger);
+  color: var(--chip-c-danger);
+}
+.cat-chip.info {
+  background-color: var(--chip-bg-info);
+  color: var(--chip-c-info);
+}

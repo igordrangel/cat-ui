@@ -75,6 +75,10 @@ export class AppService {
                 name: 'Componentes Dinâmicos',
                 routerLink: '/components/dynamic-components',
               },
+              {
+                name: 'Chip',
+                routerLink: '/components/chip',
+              },
             ],
           },
           {
