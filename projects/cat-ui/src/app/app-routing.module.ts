@@ -96,6 +96,13 @@ const routes: Routes = [
             (m) => m.PageChipModule
           ),
       },
+      {
+        path: 'tab',
+        loadChildren: () =>
+          import('./pages/components/tab/page-tab.module').then(
+            (m) => m.PageTabModule
+          ),
+      },
     ],
   },
   {

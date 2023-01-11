@@ -82,6 +82,10 @@
       "@catrx/ui/chip": [
         "dist/chip",
         "projects/chip/src"
+      ],
+      "@catrx/ui/tab": [
+        "dist/tab",
+        "projects/tab/src"
       ]
     },
     "baseUrl": "./",
