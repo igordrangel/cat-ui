@@ -8,6 +8,7 @@ const libs = [
   'chip',
   'tooltip',
   'dropdown',
+  'tab',
   'side-window',
   'snackbar',
   'loader',
