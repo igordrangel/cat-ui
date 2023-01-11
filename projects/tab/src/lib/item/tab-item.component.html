@@ -1,0 +1,4 @@
+<div class="cat-tab-item" [ngClass]="{active: active}" [innerHTML]="label" (click)="toggle()"></div>
+<div class="cat-tab-item-content" [ngClass]="{active: active}">
+  <ng-content></ng-content>
+</div>
