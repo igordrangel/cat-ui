@@ -10,6 +10,7 @@ const libs = [
   'dropdown',
   'tab',
   'stepper',
+  'expansive-panel',
   'side-window',
   'snackbar',
   'loader',
