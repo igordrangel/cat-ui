@@ -90,6 +90,10 @@
       "@catrx/ui/stepper": [
         "dist/stepper",
         "projects/stepper/src"
+      ],
+      "@catrx/ui/expansive-panel": [
+        "dist/expansive-panel",
+        "projects/expansive-panel/src"
       ]
     },
     "baseUrl": "./",

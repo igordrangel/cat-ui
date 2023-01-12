@@ -256,6 +256,10 @@ cat-step:last-child .cat-step-item-content.active {border: none;}
 .horizontal .cat-step-item-content {left: 100%;position: absolute;}
 .horizontal .cat-step-item-content.active {left: 0;width: calc(100% - 44px);}
 
+.cat-expansive-panel-group-content cat-expansive-panel {
+  width: 100%;
+}
+
 .space {flex: 1 0 0;}
 
 .cdk-overlay-container {z-index: 1003;}
