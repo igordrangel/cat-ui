@@ -195,15 +195,6 @@ export class AppService {
     });
   }
 
-  public getClaims() {
-    return new Observable(observe => {
-      setTimeout(() => {
-        observe.next({ profile: 2 });
-        observe.complete();
-      }, 1000);
-    });
-  }
-
   private buildPolices(decodedToken: CatAppDecodedToken) {
     CatRoutePolice.police = (path: string) => {
       return (
