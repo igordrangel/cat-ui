@@ -14,7 +14,7 @@ export class AppComponent {
       autoAuth: false,
       startedPage: '/examples/crud-page',
       jwt: {
-        loginComponent: LoginComponent,
+        loginComponent: LoginComponent
       },
       onAuth: (decodedToken) => this.appService.getMenu(decodedToken),
     })

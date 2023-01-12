@@ -1,5 +1,5 @@
 <main [ngClass]="themeActive$ | async">
-  <ng-container *ngIf="!(validatingScope$ | async) else loginTemplate">
+  <ng-container *ngIf="!(validatingScope$ | async) && !(loadingClaims$ | async) else loginTemplate">
     <ng-container *ngIf="!(forceLogin$ | async) && (!this.config.authSettings.autoAuth || (logged$ | async)) else loginTemplate">
       <aside
         #asideElement
@@ -176,20 +176,20 @@
 <ng-template #loginTemplate>
   <div *ngIf="errorLoadConfig$ | async else loadingData" class="loading-info">
     <div class="loading-info">
-      <i class="icon-session-expired fa-solid fa-person-walking-arrow-right"></i>
+      <i class="icon-session-expired fa-solid fa-triangle-exclamation"></i>
       <h2>Ocorreu um erro ao tentar carregar seus dados.</h2>
       <small>Certifique-se de que esteja conectado à internet.</small>
       <div class="btn-group">
         <button
           (click)="logoutAndTryAgain()"
-          class="btn btn-primary">
+          class="btn btn-primary btn-sm">
           Tentar Novamente
         </button>
       </div>
     </div>
   </div>
   <ng-template #loadingData>
-    <ng-container *ngIf="config.authSettings.jwt?.loginComponent else templateDefault">
+    <ng-container *ngIf="config.authSettings.jwt?.loginComponent && !(loadingClaims$ | async) else templateDefault">
       <div class="content-login">
         <cat-dynamic-component [component]="getLoginComponent()"></cat-dynamic-component>
       </div>
@@ -201,7 +201,7 @@
             ? config.logotype.negative
             : config.logotype.default" alt="Logotipo"/>
         <h1>Bem-Vindo ao {{config.appName}}!</h1>
-        <small>Validando credenciais...</small>
+        <small>Validando seus dados...</small>
         <cat-loader></cat-loader>
       </div>
     </ng-template>

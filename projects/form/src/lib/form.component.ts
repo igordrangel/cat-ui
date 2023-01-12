@@ -31,6 +31,7 @@ export class FormComponent implements OnInit {
   @Input() config?: CatFormConfig<any>;
 
   @Output() isValid = new EventEmitter<boolean>();
+  @Output() submitted = new EventEmitter<boolean>();
 
   public dynamicForm?: UntypedFormGroup;
   public highlightInvalidFields$ = new BehaviorSubject<boolean>(false);
@@ -85,6 +86,12 @@ export class FormComponent implements OnInit {
     } else {
       this.elForm?.nativeElement?.classList.add('was-validated');
       this.highlightInvalidFields$.next(true);
+    }
+  }
+
+  public submitOnKeyEnter(event: KeyboardEvent) {
+    if (event.key === 'Enter') {
+      this.submitted.emit(true);
     }
   }
 

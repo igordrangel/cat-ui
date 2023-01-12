@@ -1,5 +1,5 @@
 <ng-container *ngIf="dynamicForm">
-  <form #formElement [formGroup]="dynamicForm" (ngSubmit)="submit()" onsubmit="return false" class="needs-validation">
+  <form #formElement [formGroup]="dynamicForm" (submit)="submit()" (keydown)="submitOnKeyEnter($event)" class="needs-validation">
 
     <div class="fields-content">
       <ng-container *ngFor="let formElement of config?.formElements">

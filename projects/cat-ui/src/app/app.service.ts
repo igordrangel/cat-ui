@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { AppConfigMenu, AppNotification, CatAppDecodedToken, CatRoutePolice } from '@catrx/ui/core';
+import { AppConfigMenu, AppNotification, CatAppDecodedToken, CatLoggedUser, CatRoutePolice } from '@catrx/ui/core';
 import { Observable } from 'rxjs/internal/Observable';
 
 @Injectable({ providedIn: 'any' })
@@ -192,6 +192,15 @@ export class AppService {
           },
         ],
       });
+    });
+  }
+
+  public getClaims() {
+    return new Observable(observe => {
+      setTimeout(() => {
+        observe.next({ profile: 2 });
+        observe.complete();
+      }, 1000);
     });
   }
 
