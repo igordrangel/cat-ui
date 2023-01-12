@@ -37,7 +37,7 @@ ul.collapsed li.has-tools::after {
 ul.collapsed li.has-tools.collapsed::after {
   rotate: 90deg;
 }
-ul li.module h2 {
+ul li.module a {
   font-size: 0;
   width: 100%;
   text-align: center;
@@ -45,18 +45,20 @@ ul li.module h2 {
   transition: .1s linear;
   padding: 0;
   cursor: pointer;
+  text-decoration: none;
+  color: var(--c-menu);
 }
-ul.collapsed li.module h2 {
+ul.collapsed li.module a {
   font-size: 10pt;
   padding: 10px 15px;
   text-align: left;
 }
-ul li.module h2 i {
+ul li.module a i {
   margin: 0;
   font-size: 14pt;
   padding: 20px 10px;
 }
-ul.collapsed li.module h2 i {
+ul.collapsed li.module a i {
   margin-right: 8px;
   font-size: 10pt;
   padding: 0;

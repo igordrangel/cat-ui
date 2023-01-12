@@ -5,6 +5,7 @@ import { BehaviorSubject } from 'rxjs';
 import { NavigationEnd, Router } from '@angular/router';
 import { CatToolbarBreadcrumb } from '@catrx/ui/toolbar';
 import { CatMenuContext } from '@catrx/ui/common';
+import { CatRoutePolice } from '../../guard/cat-route.police';
 
 @Component({
   selector: 'cat-menu[appName][config][menuCollapsed]',
@@ -51,7 +52,7 @@ export class MenuComponent implements OnInit, OnChanges {
       breadcrumb = [
         { name: moduleOption.name, routerLink: moduleOption.routerLink },
       ];
-    } else {
+    } else if (toolOption) {
       breadcrumb = [
         { name: toolOption.name, routerLink: toolOption.routerLink },
       ];
@@ -73,7 +74,7 @@ export class MenuComponent implements OnInit, OnChanges {
                 .clearEmptyValues()
                 .map<CatToolbarBreadcrumb>((toolName) => {
                   pathRoute += `/${toolName}`;
-                  if (toolOption.routerLink.indexOf(pathRoute) < 0) {
+                  if (toolOption?.routerLink?.indexOf(pathRoute) < 0) {
                     const toolByPath = this.getToolByPath(
                       toolOption,
                       pathRoute
@@ -101,7 +102,7 @@ export class MenuComponent implements OnInit, OnChanges {
       title = `${moduleOption.name} | ${toolOption.name}`;
     } else if (moduleOption && !toolOption) {
       title = moduleOption.name;
-    } else {
+    } else if (toolOption) {
       title = toolOption.name;
     }
 
@@ -142,6 +143,12 @@ export class MenuComponent implements OnInit, OnChanges {
       .map((tool) => {
         if (tool.hasPermission && !tool.hasPermission()) {
           return null;
+        }
+        if (tool.tools?.length > 0) {
+          tool.tools = this.getTools(tool.tools);
+        }
+        if (tool.routerLink) {
+          CatRoutePolice.enableRoutes.push(tool.routerLink);
         }
         return tool;
       })

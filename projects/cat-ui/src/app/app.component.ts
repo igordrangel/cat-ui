@@ -11,7 +11,7 @@ import { LoginComponent } from './login.component';
 export class AppComponent {
   appConfig = this.catAppService
     .build('Cat UI', {
-      autoAuth: true,
+      autoAuth: false,
       startedPage: '/examples/crud-page',
       jwt: {
         loginComponent: LoginComponent,

@@ -3,15 +3,16 @@
     <li
       #moduleElement
       class="module"
+      *ngIf="module.routerLink || module.tools?.length > 0"
       [ngClass]="{
         'has-tools': module.tools?.length > 0,
         'active': isActive(module)
       }">
       <ng-container *ngIf="menuCollapsed | async else showMenuClosed">
-        <h2 [routerLink]="module.routerLink" routerLinkActive="active" (click)="closeAllModules();moduleElement.classList.toggle('collapsed')">
+        <a [routerLink]="module.routerLink" routerLinkActive="active" (click)="closeAllModules();moduleElement.classList.toggle('collapsed')">
           <i *ngIf="module.icon" [ngClass]="module.icon"></i>
           <span>{{module.name}}</span>
-        </h2>
+        </a>
         <cat-menu-tool
           *ngIf="module.tools?.length > 0"
           [tools]="module.tools">
@@ -20,7 +21,7 @@
 
       <ng-template #showMenuClosed>
         <cat-dropdown [insideClick]="false" position="top right">
-          <h2
+          <a
             trigger
             [routerLink]="module.routerLink"
             [catTooltip]="module.name"
@@ -28,7 +29,7 @@
             (click)="closeAllModules();moduleElement.classList.toggle('collapsed')">
             <i *ngIf="module.icon" [ngClass]="module.icon"></i>
             <span>{{module.name}}</span>
-          </h2>
+          </a>
 
           <ng-container content *ngIf="module.tools?.length > 0">
             <cat-menu-tool [tools]="module.tools"></cat-menu-tool>

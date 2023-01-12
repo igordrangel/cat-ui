@@ -4,10 +4,10 @@
     *ngFor="let tool of tools"
     class="tool"
     [ngClass]="{'has-tools': tool.tools?.length > 0}">
-    <h3 [routerLink]="tool.routerLink" routerLinkActive="active" (click)="closeAllTools();toolElement.classList.toggle('collapsed')">
+    <a [routerLink]="tool.routerLink" routerLinkActive="active" (click)="closeAllTools();toolElement.classList.toggle('collapsed')">
       <i *ngIf="tool.icon" [ngClass]="tool.icon"></i>
       <span>{{tool.name}}</span>
-    </h3>
+    </a>
     <cat-menu-tool
       *ngIf="tool.tools?.length > 0"
       [tools]="tool.tools">

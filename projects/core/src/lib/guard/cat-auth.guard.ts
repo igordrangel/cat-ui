@@ -7,11 +7,11 @@ import {
 } from '@angular/router';
 import { Observable } from 'rxjs';
 import { TokenFactory } from '../factory/token.factory';
-import { CatTokenService } from '../services/token/cat-token.service';
+import { CatRoutePolice } from './cat-route.police';
 
 @Injectable()
 export class CatAuthGuard implements CanActivate {
-  constructor(private tokenService: CatTokenService) {}
+  constructor() {}
 
   canActivate(
     route: ActivatedRouteSnapshot,
@@ -23,7 +23,7 @@ export class CatAuthGuard implements CanActivate {
     | Promise<boolean | UrlTree> {
 
     if (TokenFactory.hasToken()) {
-      return true;
+      return CatRoutePolice.hasPermission(state.url);
     }
 
     return false;

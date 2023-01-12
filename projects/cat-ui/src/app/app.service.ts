@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { AppConfigMenu, AppNotification, CatAppDecodedToken } from '@catrx/ui/core';
+import { AppConfigMenu, AppNotification, CatAppDecodedToken, CatRoutePolice } from '@catrx/ui/core';
 import { Observable } from 'rxjs/internal/Observable';
 
 @Injectable({ providedIn: 'any' })
@@ -61,6 +61,7 @@ export class AppService {
   }
 
   public getMenu(decodedToken: CatAppDecodedToken) {
+    this.buildPolices(decodedToken);
     return new Observable<AppConfigMenu>((observe) => {
       observe.next({
         modules: [
@@ -192,5 +193,16 @@ export class AppService {
         ],
       });
     });
+  }
+
+  private buildPolices(decodedToken: CatAppDecodedToken) {
+    CatRoutePolice.police = (path: string) => {
+      return (
+        decodedToken &&
+        !!['/components/toolbar/'].find(
+          (validPath) => path.indexOf(validPath) >= 0
+        )
+      );
+    };
   }
 }
