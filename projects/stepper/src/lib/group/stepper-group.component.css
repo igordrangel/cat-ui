@@ -1,0 +1,11 @@
+.cat-stepper-group-content {
+  position: relative;
+  display: flex;
+  justify-content: flex-start;
+  align-items: flex-start;
+  box-sizing: border-box;
+  padding: 10px 20px;
+  width: 100%;
+}
+.cat-stepper-group-content.horizontal {flex-direction: row;}
+.cat-stepper-group-content.vertical {flex-direction: column;}

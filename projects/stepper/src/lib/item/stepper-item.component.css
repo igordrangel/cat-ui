@@ -1,0 +1,57 @@
+.cat-step-item {
+  position: relative;
+  display: inline-flex;
+  justify-content: center;
+  align-items: flex-start;
+  box-sizing: border-box;
+  padding: 5px;
+  margin: 5px;
+  background-color: var(--bg-body);
+  z-index: 1;
+}
+.cat-step-item::before {
+  content: counter(step);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 4px;
+  border-radius: 50%;
+  height: 25px;
+  width: 25px;
+  font-size: 10pt;
+  background-color: var(--step-bg);
+  color: var(--step-c);
+  margin-right: 10px;
+}
+.cat-step-item.active::before {
+  background-color: var(--step-active-bg);
+  color: var(--step-active-c);
+  font-weight: bold;
+}
+
+.cat-step-item-content {
+  display: flex;
+  flex-direction: column;
+  box-sizing: border-box;
+  margin-left: 22px;
+  padding-left: 23px;
+  height: 0;
+  width: calc(100% - 22px);
+  overflow: hidden;
+}
+.cat-step-item-content.active {
+  height: auto;
+}
+.cat-step-item-content .cat-step-actions {
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  width: 100%;
+  border-top: 1px solid var(--shadow-color);
+  box-sizing: border-box;
+  padding: 10px 0;
+}
+.cat-step-item-content .cat-step-content {
+  box-sizing: border-box;
+  padding: 10px 0;
+}

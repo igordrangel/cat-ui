@@ -1,0 +1,9 @@
+<div class="cat-step-item" [innerHTML]="label"></div>
+<div class="cat-step-item-content">
+  <div class="cat-step-content">
+    <ng-content select="[content]"></ng-content>
+  </div>
+  <div class="cat-step-actions">
+    <ng-content select="[actions]"></ng-content>
+  </div>
+</div>
