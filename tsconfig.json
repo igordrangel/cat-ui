@@ -86,6 +86,10 @@
       "@catrx/ui/tab": [
         "dist/tab",
         "projects/tab/src"
+      ],
+      "@catrx/ui/stepper": [
+        "dist/stepper",
+        "projects/stepper/src"
       ]
     },
     "baseUrl": "./",

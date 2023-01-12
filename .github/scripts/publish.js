@@ -9,6 +9,7 @@ const libs = [
   'tooltip',
   'dropdown',
   'tab',
+  'stepper',
   'side-window',
   'snackbar',
   'loader',

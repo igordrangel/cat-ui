@@ -91,6 +91,10 @@ export class AppService {
                 name: 'Lista de Itens',
                 routerLink: '/components/form/list-item',
               },
+              {
+                name: 'Stepper',
+                routerLink: '/components/stepper',
+              },
             ],
           },
           {

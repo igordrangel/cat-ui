@@ -103,6 +103,13 @@ const routes: Routes = [
             (m) => m.PageTabModule
           ),
       },
+      {
+        path: 'stepper',
+        loadChildren: () =>
+          import('./pages/components/stepper/page-stepper.module').then(
+            (m) => m.PageStepperModule
+          ),
+      },
     ],
   },
   {
