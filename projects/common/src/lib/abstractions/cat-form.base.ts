@@ -1,16 +1,37 @@
-import { Directive, ViewChild } from "@angular/core";
+import { Directive, ViewChild, OnInit, OnDestroy } from '@angular/core';
 import { FormComponent } from "@catrx/ui/form";
 import { BehaviorSubject } from 'rxjs/internal/BehaviorSubject';
+import { Subject } from 'rxjs/internal/Subject';
 import { CatComponentBase } from './cat-component.base';
+import { takeUntil } from 'rxjs';
 
 @Directive()
-export abstract class CatFormBase extends CatComponentBase {
+export abstract class CatFormBase
+  extends CatComponentBase
+  implements OnInit, OnDestroy
+{
   public submitLoader$ = new BehaviorSubject<boolean>(false);
+
+  private destroySubscriptions$ = new Subject<boolean>();
 
   @ViewChild('form', { static: true }) private elForm?: FormComponent;
 
-  public submit(event: Event) {
-    event.preventDefault();
+  ngOnDestroy(): void {
+    this.destroySubscriptions$.next(true);
+  }
+
+  ngOnInit(): void {
+    this.elForm.submitted
+      .pipe(takeUntil(this.destroySubscriptions$))
+      .subscribe(submitted => {
+        if (submitted) {
+          this.submit();
+        }
+      });
+  }
+
+  public submit(event?: Event) {
+    event?.preventDefault();
     this.elForm?.submit(
       () => this.submitLoader$.next(true),
       () => this.submitLoader$.next(false),

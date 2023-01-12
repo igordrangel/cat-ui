@@ -17,7 +17,11 @@ import { CommonModule } from '@angular/common';
 
       <cat-form #form [config]="loginFormConfig"></cat-form>
 
-      <cat-primary-button class="w-100" type="submit" [showLoader]="submitLoader$ | async">
+      <cat-primary-button
+        class="w-100"
+        type="submit"
+        [showLoader]="submitLoader$ | async"
+      >
         Entrar
       </cat-primary-button>
     </form>
@@ -51,7 +55,9 @@ export class LoginComponent
 
   loginFormConfig = this.formService
     .build()
-    .text('Usuário', 'login', (builder) => builder.setRequired().generate())
+    .text('Usuário', 'login', (builder) =>
+      builder.focus().setRequired().generate()
+    )
     .password('Senha', 'password', (builder) =>
       builder.setRequired().generate()
     )

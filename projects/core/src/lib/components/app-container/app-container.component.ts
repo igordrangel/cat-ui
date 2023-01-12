@@ -23,6 +23,7 @@ import { Subscription } from 'rxjs/internal/Subscription';
 import { LogotypeComponent } from '../logotype/logotype.component';
 import { CatDynamicComponent } from '@catrx/ui/dynamic-component';
 import { CatOAuth2ConfigInterface } from '@catrx/ui/common';
+import { CatLoggedUser } from '../../guard/cat-logged-user';
 
 @Component({
   selector: 'cat-app-container[config]',
@@ -44,6 +45,7 @@ export class AppContainerComponent implements OnInit {
   public loadingNotifications$ = new BehaviorSubject<boolean>(false);
   public notifications$ = new BehaviorSubject<AppNotification[] | null>(null);
   public forceLogin$ = new BehaviorSubject<boolean>(false);
+  public loadingClaims$ = new BehaviorSubject<boolean>(false);
 
   private intervalNotifications?: Subscription;
   private destroyLoggedSubscriptions$ = new Subject<boolean>();
@@ -234,7 +236,7 @@ export class AppContainerComponent implements OnInit {
             this.tokenService.getOAuth2Token().refreshToken
           );
 
-          this.buildMenu();
+          await this.getClaimsAndBuildMenu(true);
 
           if (
             this.config?.authSettings?.startedPage &&
@@ -245,6 +247,23 @@ export class AppContainerComponent implements OnInit {
         }
       } else {
         this.logout();
+        await this.getClaimsAndBuildMenu(false);
+      }
+    });
+  }
+
+  private getClaimsAndBuildMenu(logged: boolean) {
+    return new Promise(resolve => {
+      if (logged) {
+        this.getClaims()
+          .then(async () => {
+            this.buildMenu();
+            resolve(true);
+          })
+          .catch(() => {
+            this.validatingScope$.next(true);
+          });
+      } else {
         this.buildMenu();
       }
     });
@@ -277,6 +296,33 @@ export class AppContainerComponent implements OnInit {
           this.forceLogin$.next(false);
         }
       });
+  }
+
+  private getClaims() {
+    return new Promise((resolve, reject) => {
+      if (this.config.authSettings.openId) {
+        CatLoggedUser.claims = this.oauth2Service.getIdentityClaims();
+        resolve(true);
+      } else if (this.config.authSettings.jwt?.claims) {
+        this.loadingClaims$.next(true);
+        this.config.authSettings.jwt.claims.pipe(first()).subscribe({
+          next: (claims) => {
+            CatLoggedUser.claims = claims;
+            this.forceLogin$.next(false);
+            this.logged$.next(true);
+            this.loadingClaims$.next(false);
+            resolve(true);
+          },
+          error: (err) => {
+            this.loadingClaims$.next(false);
+            this.errorLoadConfig$.next(true);
+            reject(err);
+          },
+        });
+      } else {
+        resolve(true);
+      }
+    });
   }
 
   private validatingScope() {

@@ -31,6 +31,7 @@ export interface AppAuthSettings {
   };
   jwt?: {
     loginComponent: Type<any>;
+    claims?: Observable<any>;
   };
 }
 

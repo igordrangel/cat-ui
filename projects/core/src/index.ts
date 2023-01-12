@@ -10,3 +10,5 @@ export * from './lib/factory/app-config.interface';
 export * from './lib/services/app/cat-app.service';
 export * from './lib/services/token/cat-token.service';
 export * from './lib/guard/cat-auth.guard';
+export * from './lib/guard/cat-route.police';
+export * from './lib/guard/cat-logged-user';

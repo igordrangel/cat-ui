@@ -25,7 +25,7 @@ ul li:active {
   color: var(--c-menu-active);
 }
 ul li.tool {background-color: transparent;}
-ul li.tool h3 {
+ul li.tool a {
   font-size: 10pt;
   width: 100%;
   text-align: left;
@@ -33,8 +33,10 @@ ul li.tool h3 {
   transition: .1s linear;
   padding: 10px 15px;
   cursor: pointer;
+  text-decoration: none;
+  color: var(--c-menu);
 }
-ul li.tool h3 i {margin-right: 8px;}
+ul li.tool a i {margin-right: 8px;}
 ul li.tool .active {color: var(--c-menu-active);}
 
 ul li.has-tools::after {
