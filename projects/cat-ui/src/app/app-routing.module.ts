@@ -110,6 +110,13 @@ const routes: Routes = [
             (m) => m.PageStepperModule
           ),
       },
+      {
+        path: 'expansive-panel',
+        loadChildren: () =>
+          import('./pages/components/expansive-panel/page-expansive-panel.module').then(
+            (m) => m.PageExpansivePanelModule
+          ),
+      },
     ],
   },
   {

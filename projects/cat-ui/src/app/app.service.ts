@@ -96,6 +96,10 @@ export class AppService {
                 name: 'Stepper',
                 routerLink: '/components/stepper',
               },
+              {
+                name: 'Expansive Panel',
+                routerLink: '/components/expansive-panel',
+              },
             ],
           },
           {
