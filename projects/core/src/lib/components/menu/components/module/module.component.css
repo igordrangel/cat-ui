@@ -48,6 +48,11 @@ ul li.module a {
   text-decoration: none;
   color: var(--c-menu);
 }
+ul:not(.collapsed) li.module a {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
 ul.collapsed li.module a {
   font-size: 10pt;
   padding: 10px 15px;
