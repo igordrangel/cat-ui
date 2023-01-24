@@ -10,18 +10,14 @@ import { LoginComponent } from './login.component';
 })
 export class AppComponent {
   appConfig = this.catAppService
-    .build(
-      'Cat UI',
-      {
-        autoAuth: true,
-        startedPage: '/examples/crud-page',
-        jwt: {
-          loginComponent: LoginComponent,
-        },
-        onAuth: (decodedToken) => this.appService.getMenu(decodedToken),
+    .build('Cat UI', {
+      autoAuth: false,
+      startedPage: '/examples/crud-page',
+      jwt: {
+        loginComponent: LoginComponent,
       },
-      { menuStartState: 'closed', disableCollapseMenuButton: true }
-    )
+      onAuth: (decodedToken) => this.appService.getMenu(decodedToken),
+    })
     .setLogotype({
       default: '../assets/logotype.svg',
       negative: '../assets/logotype-negative.svg',
