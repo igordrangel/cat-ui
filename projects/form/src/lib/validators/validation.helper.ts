@@ -13,7 +13,7 @@ export class ValidationHelper {
     }
 
     function calcChecker2(cpfWithChecker1: any) {
-      let sum: number = 0;
+      let sum = 0;
 
       for (let k = 0; k < 10; ++k) {
         sum += cpfWithChecker1.toString().charAt(k) * (11 - k);
@@ -24,7 +24,7 @@ export class ValidationHelper {
       return lastSumChecker2 < 2 ? 0 : 11 - lastSumChecker2;
     }
 
-    const cleanCPF = value.replace(/\.|\-|\s/g, '');
+    const cleanCPF = value.match(/\d/g).join('');
     const firstNineDigits = cleanCPF.substring(0, 9);
     const checker = cleanCPF.substring(9, 11);
 
@@ -57,7 +57,8 @@ export class ValidationHelper {
     }
 
     // Elimina CNPJs invalidos conhecidos
-    if (value === '00000000000000' ||
+    if (
+      value === '00000000000000' ||
       value === '11111111111111' ||
       value === '22222222222222' ||
       value === '33333333333333' ||
@@ -66,7 +67,8 @@ export class ValidationHelper {
       value === '66666666666666' ||
       value === '77777777777777' ||
       value === '88888888888888' ||
-      value === '99999999999999') {
+      value === '99999999999999'
+    ) {
       return false;
     }
 
@@ -82,7 +84,7 @@ export class ValidationHelper {
         pos = 9;
       }
     }
-    let resultado = soma % 11 < 2 ? 0 : 11 - soma % 11;
+    let resultado = soma % 11 < 2 ? 0 : 11 - (soma % 11);
     if (resultado !== parseInt(digitos.charAt(0), 10)) {
       return false;
     }
@@ -97,7 +99,7 @@ export class ValidationHelper {
         pos = 9;
       }
     }
-    resultado = soma % 11 < 2 ? 0 : 11 - soma % 11;
+    resultado = soma % 11 < 2 ? 0 : 11 - (soma % 11);
 
     return !(resultado !== parseInt(digitos.charAt(1), 10));
   }

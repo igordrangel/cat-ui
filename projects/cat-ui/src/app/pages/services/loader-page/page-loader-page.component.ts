@@ -4,7 +4,7 @@ import { CatLoaderPageService } from '@catrx/ui/loader-page';
 import { delay } from '@koalarx/utils/operators/delay';
 
 @Component({
-  templateUrl: './page-loader-page.component.html'
+  templateUrl: './page-loader-page.component.html',
 })
 export class PageLoaderPageComponent extends CatComponentBase {
   constructor(private loaderPageService: CatLoaderPageService) {

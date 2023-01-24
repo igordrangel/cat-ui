@@ -1,8 +1,8 @@
-import { Type } from "@angular/core";
-import { CatDynamicComponent } from "@catrx/ui/dynamic-component";
-import { BehaviorSubject } from "rxjs/internal/BehaviorSubject";
-import { Observable } from "rxjs/internal/Observable";
-import { CatOAuth2TokenInterface } from "../services/token/cat-token.service";
+import { Type } from '@angular/core';
+import { CatDynamicComponent } from '@catrx/ui/dynamic-component';
+import { BehaviorSubject } from 'rxjs/internal/BehaviorSubject';
+import { Observable } from 'rxjs/internal/Observable';
+import { CatOAuth2TokenInterface } from '../services/token/cat-token.service';
 
 export class CatLogotypeApp extends CatDynamicComponent {}
 
@@ -85,4 +85,6 @@ export interface AppConfigMenuTool {
 }
 
 export type CatThemeType = 'light' | 'dark';
-export type CatAppDecodedToken = CatOAuth2TokenInterface | { [key: string]: any };
+export type CatAppDecodedToken =
+  | CatOAuth2TokenInterface
+  | { [key: string]: any };

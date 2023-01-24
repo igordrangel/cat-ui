@@ -1,4 +1,10 @@
-import { Component, Input, OnInit, OnChanges, SimpleChanges } from '@angular/core';
+import {
+  Component,
+  Input,
+  OnInit,
+  OnChanges,
+  SimpleChanges,
+} from '@angular/core';
 import { randomString } from '@koalarx/utils/operators/string';
 
 @Component({
@@ -41,7 +47,7 @@ export class TabGroupComponent implements OnInit, OnChanges {
           ) ||
           force
         ) {
-          tabs.forEach(tab => {
+          tabs.forEach((tab) => {
             tab.children.item(0).classList.remove('active');
             tab.children.item(1).classList.remove('active');
           });

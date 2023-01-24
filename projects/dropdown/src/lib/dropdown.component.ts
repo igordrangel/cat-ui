@@ -1,9 +1,7 @@
 import { Component, Input } from '@angular/core';
-import { CommonModule } from '@angular/common';
-import { BsDropdownModule } from 'ngx-bootstrap/dropdown';
 import { koala } from '@koalarx/utils';
 import { randomString } from '@koalarx/utils/operators/string';
-import { Observable, delay } from 'rxjs';
+import { Observable } from 'rxjs';
 
 export type CatDropdownPosition =
   | 'top'
@@ -32,7 +30,7 @@ export class CatDropdownComponent {
   });
 
   private getAriaControl() {
-    return new Promise<string>(async (resolve) => {
+    return new Promise<string>((resolve) => {
       let ariaControl: string;
 
       do {
@@ -47,7 +45,7 @@ export class CatDropdownComponent {
             })
           )
           .getValue();
-      } while (!!document.getElementById(ariaControl));
+      } while (document.getElementById(ariaControl));
 
       resolve(ariaControl);
     });

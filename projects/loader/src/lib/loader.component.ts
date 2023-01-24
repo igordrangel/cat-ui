@@ -3,7 +3,6 @@ import { Component } from '@angular/core';
 @Component({
   selector: 'cat-loader',
   templateUrl: 'loader.component.html',
-  styleUrls: ['loader.component.css']
+  styleUrls: ['loader.component.css'],
 })
-export class LoaderComponent {
-}
+export class LoaderComponent {}

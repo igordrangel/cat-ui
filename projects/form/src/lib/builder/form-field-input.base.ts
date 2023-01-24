@@ -1,11 +1,11 @@
-import {
-  CatFormFieldOptions
-} from './form.interface';
+import { CatFormFieldOptions } from './form.interface';
 import { AsyncValidatorFn, ValidatorFn, Validators } from '@angular/forms';
 import { koala } from '@koalarx/utils';
 import { FormFieldBase } from './form-field.base';
 
-export abstract class FormFieldInputBase<ConfigType extends CatFormFieldOptions> extends FormFieldBase<ConfigType> {
+export abstract class FormFieldInputBase<
+  ConfigType extends CatFormFieldOptions
+> extends FormFieldBase<ConfigType> {
   public setRequired(required = true) {
     this.config.required = required;
     this.setValidators([Validators.required]);

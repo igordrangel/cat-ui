@@ -1,46 +1,65 @@
-<div *ngIf="updateComponent$ | async" class="has-validation" [ngClass]="{invalid: control?.invalid && control?.touched}">
+<div
+  *ngIf="updateComponent$ | async"
+  class="has-validation"
+  [ngClass]="{ invalid: control?.invalid && control?.touched }"
+>
   <div
     class="file-drag-drop-area"
-    cat-drag-drop
+    catDragDrop
     *ngIf="control && fieldConfig"
-    [ngClass]="{invalid: control.invalid && control.touched}"
-    (fileDropped)="emitFiles($event)">
-
-    <input type='hidden' [formControl]="control"/>
+    [ngClass]="{ invalid: control.invalid && control.touched }"
+    (fileDropped)="emitFiles($event)"
+  >
+    <input type="hidden" [formControl]="control" />
     <input
       #inputElement
-      type='file'
-      class='d-none'
+      type="file"
+      class="d-none"
       [multiple]="fieldConfig.multiple"
       [accept]="getSupportedExtensions()"
-      (change)="emitFiles(inputElement.files)"/>
+      (change)="emitFiles(inputElement.files)"
+    />
 
     <div class="placeholder-content">
       <i class="fa-solid fa-file-circle-plus"></i>
       <h2>Arreste e Solte aqui ou clique no botão abaixo</h2>
       <span *ngIf="fieldConfig.accept" class="extensions-accepted">
         <strong>Suporta apenas os formatos</strong>
-        ({{getSupportedExtensions()}})
+        ({{ getSupportedExtensions() }})
       </span>
     </div>
 
     <div class="btn-group" role="group" [attr.aria-label]="fieldConfig.label">
-      <button *ngIf="hasCsvModel()" type="button" class="btn btn-secondary" (click)="downloadCsvModel()">
+      <button
+        *ngIf="hasCsvModel()"
+        type="button"
+        class="btn btn-secondary"
+        (click)="downloadCsvModel()"
+      >
         <i class="fa-solid fa-file-csv mr-8"></i>
         Baixar modelo
       </button>
-      <button type="button" class="btn btn-primary" (click)="inputElement.click()">
-        <i *ngIf="fieldConfig.icon" class="mr-8" [ngClass]="fieldConfig.icon"></i>
-        {{fieldConfig.btnText ?? 'Escolha um arquivo...'}}
+      <button
+        type="button"
+        class="btn btn-primary"
+        (click)="inputElement.click()"
+      >
+        <i
+          *ngIf="fieldConfig.icon"
+          class="mr-8"
+          [ngClass]="fieldConfig.icon"
+        ></i>
+        {{ fieldConfig.btnText ?? "Escolha um arquivo..." }}
       </button>
     </div>
 
     <div class="files-content">
       <div
         class="file-content"
-        *ngFor="let file of files;let i = index"
-        [ngClass]="{invalid: !hasValidExtension(file.filename)}">
-        <strong>{{file.filename}}</strong>
+        *ngFor="let file of files; let i = index"
+        [ngClass]="{ invalid: !hasValidExtension(file.filename) }"
+      >
+        <strong>{{ file.filename }}</strong>
         <button (click)="removeFile(i)" class="btn-remove" type="button">
           <i class="fa-solid fa-xmark"></i>
         </button>

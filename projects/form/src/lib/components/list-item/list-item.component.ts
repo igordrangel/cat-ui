@@ -9,7 +9,7 @@ import {
 import { CatFormListItemConfig } from '../../builder/form.interface';
 import { FormArray, FormBuilder, FormControl, FormGroup } from '@angular/forms';
 import { toCamelCase } from '@koalarx/utils/operators/string';
-import { Subject, takeUntil } from 'rxjs';
+import { Subject } from 'rxjs';
 import { OnDestroy } from '@angular/core';
 
 @Component({
@@ -47,7 +47,9 @@ export class ListItemComponent implements OnInit, OnDestroy {
     }
 
     if (this.listItemConfig.config.autofill) {
-      const value = eval(`this.listItemConfig.config.autofill.${this.getTree()}`)
+      const value = eval(
+        `this.listItemConfig.config.autofill.${this.getTree()}`
+      );
       if (Array.isArray(value)) {
         value.forEach((item, index) => {
           if (!this.getItemList()?.controls?.[index]) {
@@ -99,7 +101,7 @@ export class ListItemComponent implements OnInit, OnDestroy {
   public getFullListItemName(index: number) {
     const name = this.listItemConfig?.name;
 
-    let prefix = name.substring(0, name.length - 3);
+    const prefix = name.substring(0, name.length - 3);
     let suffix = name.substring(name.length - 3);
     if (suffix === `[${index - 1}]`) {
       suffix = suffix.replace(`[${index - 1}]`, `[${index}]`);

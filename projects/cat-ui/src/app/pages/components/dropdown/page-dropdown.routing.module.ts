@@ -6,6 +6,6 @@ const routes: Routes = [{ path: '', component: PageDropdownComponent }];
 
 @NgModule({
   imports: [RouterModule.forChild(routes)],
-  exports: [RouterModule]
+  exports: [RouterModule],
 })
 export class PageDropdownRoutingModule {}

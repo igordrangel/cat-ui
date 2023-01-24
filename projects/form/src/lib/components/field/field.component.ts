@@ -5,6 +5,7 @@ import {
   Input,
   OnChanges,
   OnDestroy,
+  OnInit,
   Output,
   SimpleChanges,
 } from '@angular/core';
@@ -28,7 +29,7 @@ import {
   templateUrl: 'field.component.html',
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class FieldComponent implements OnDestroy, OnChanges {
+export class FieldComponent implements OnInit, OnDestroy, OnChanges {
   @Input() fieldConfig?: CatFormFieldConfig;
   @Input() variableTree?: string;
   @Input() highlightInvalidFields = false;

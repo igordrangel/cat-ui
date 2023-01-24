@@ -1,7 +1,16 @@
-<div class="cat-field-container has-validation" [ngClass]="{invalid: control?.invalid && !control?.untouched}">
-  <label #labelElement [for]="config?.name" class="form-label">{{config?.label}} {{isRequired ? '*' : ''}}</label>
+<div
+  class="cat-field-container has-validation"
+  [ngClass]="{ invalid: control?.invalid && !control?.untouched }"
+>
+  <label #labelElement [for]="config?.name" class="form-label"
+    >{{ config?.label }} {{ isRequired ? "*" : "" }}</label
+  >
   <ng-content select="[field]"></ng-content>
-  <cat-form-field-hint [control]="control" [config]="config" [elInput]="elInput">
+  <cat-form-field-hint
+    [control]="control"
+    [config]="config"
+    [elInput]="elInput"
+  >
     <ng-container errors>
       <cat-form-field-common-errors [control]="control" [config]="config">
         <ng-container specificErrors>

@@ -16,10 +16,18 @@
               (change)="checkAll(checkboxAll.checked)"
               [indeterminate]="isIndeterminateSelection()"
               class="form-check-input"
-              type="checkbox"/>
+              type="checkbox"
+            />
           </div>
         </th>
-        <th scope="col" class="option" *ngIf="config?.hasAction" [style.width]="42 * (config?.actionButtons?.length ?? 1) + 'px!important'"></th>
+        <th
+          scope="col"
+          class="option"
+          *ngIf="config?.hasAction"
+          [style.width]="
+            42 * (config?.actionButtons?.length ?? 1) + 'px!important'
+          "
+        ></th>
         <th
           scope="col"
           *ngFor="let column of config?.columns; let columnIndex = index"
@@ -28,88 +36,139 @@
             activeSelection: columnIndex >= 0,
             sortable: isSortable(columnIndex),
             sorted: columnIndex === columnIndexSort
-          }">
+          }"
+        >
           <div class="content-header">
-            {{column}}
-            <i *ngIf="columnIndex !== columnIndexSort && isSortable(columnIndex)" class="fa-solid fa-sort"></i>
-            <i *ngIf="columnIndex === columnIndexSort && !reverse" class="fa-solid fa-arrow-up-a-z"></i>
-            <i *ngIf="columnIndex === columnIndexSort && reverse" class="fa-solid fa-arrow-down-z-a"></i>
+            {{ column }}
+            <i
+              *ngIf="columnIndex !== columnIndexSort && isSortable(columnIndex)"
+              class="fa-solid fa-sort"
+            ></i>
+            <i
+              *ngIf="columnIndex === columnIndexSort && !reverse"
+              class="fa-solid fa-arrow-up-a-z"
+            ></i>
+            <i
+              *ngIf="columnIndex === columnIndexSort && reverse"
+              class="fa-solid fa-arrow-down-z-a"
+            ></i>
           </div>
         </th>
       </tr>
     </thead>
     <ng-container>
-    <tbody>
-      <tr *ngIf="!(loadedList$ | async)" class="fake-line">
-        <td colspan="50">
-          <ng-container *ngIf="config?.customLoaderComponent else defaultLoader">
-            <cat-dynamic-component [component]="config?.customLoaderComponent"></cat-dynamic-component>
+      <tbody>
+        <tr *ngIf="(loadedList$ | async) === false" class="fake-line">
+          <td colspan="50">
+            <ng-container
+              *ngIf="config?.customLoaderComponent; else defaultLoader"
+            >
+              <cat-dynamic-component
+                [component]="config?.customLoaderComponent"
+              ></cat-dynamic-component>
+            </ng-container>
+
+            <ng-template #defaultLoader>
+              <div class="datatable-loader">
+                <cat-loader></cat-loader>
+              </div>
+            </ng-template>
+          </td>
+        </tr>
+
+        <ng-container *ngIf="datatableList$ | async as datatableList">
+          <ng-container
+            *ngIf="datatableList.length === 0 && loadedList$ | async"
+          >
+            <tr class="fake-line">
+              <td colspan="50">
+                <ng-container
+                  *ngIf="config?.customEmptyComponent; else defaultEmptyList"
+                >
+                  <cat-dynamic-component
+                    [component]="config?.customEmptyComponent"
+                  ></cat-dynamic-component>
+                </ng-container>
+
+                <ng-template #defaultEmptyList>
+                  <div *ngIf="loadedList$ | async" class="empty-list-container">
+                    <i class="fa-solid fa-inbox"></i>
+                    Nenhum registro encontrado
+                  </div>
+                </ng-template>
+              </td>
+            </tr>
           </ng-container>
 
-          <ng-template #defaultLoader>
-            <div class="datatable-loader">
-              <cat-loader></cat-loader>
-            </div>
-          </ng-template>
-        </td>
-      </tr>
-
-      <ng-container *ngIf="(datatableList$ | async) as datatableList">
-
-        <ng-container *ngIf="datatableList.length === 0 && loadedList$ | async">
-          <tr class="fake-line">
-            <td colspan="50">
-              <ng-container *ngIf="config?.customEmptyComponent else defaultEmptyList">
-                <cat-dynamic-component [component]="config?.customEmptyComponent"></cat-dynamic-component>
-              </ng-container>
-
-              <ng-template #defaultEmptyList>
-                <div *ngIf="loadedList$ | async" class="empty-list-container">
-                  <i class="fa-solid fa-inbox"></i>
-                  Nenhum registro encontrado
+          <ng-container *ngIf="datatableList.length > 0 && loadedList$ | async">
+            <tr
+              *ngFor="
+                let rowData of datatableList
+                  | orderBy : orderBy : reverse
+                  | paginate : getPaginateProps();
+                let i = index
+              "
+            >
+              <td class="selection" *ngIf="config?.hasSelection">
+                <div class="checkbox">
+                  <input
+                    class="form-check-input"
+                    [disabled]="
+                      config?.disableSelectionItem
+                        ? config?.disableSelectionItem(rowData) ?? false
+                        : false
+                    "
+                    [checked]="isChecked(i)"
+                    (change)="toggleItem(i, rowData)"
+                    type="checkbox"
+                  />
                 </div>
-              </ng-template>
-            </td>
-          </tr>
-        </ng-container>
-
-        <ng-container *ngIf="datatableList.length > 0 && loadedList$ | async">
-          <tr
-            *ngFor="let rowData of datatableList | orderBy: orderBy : reverse | paginate: getPaginateProps(); let i = index ">
-            <td class="selection" *ngIf="config?.hasSelection">
-              <div class="checkbox">
-                <input
-                  class="form-check-input"
-                  [disabled]="config?.disableSelectionItem ? config?.disableSelectionItem(rowData) ?? false : false"
-                  [checked]="isChecked(i)" (change)="toggleItem(i, rowData)" type="checkbox"/>
-              </div>
-            </td>
-            <td class="option"
+              </td>
+              <td
+                class="option"
                 *ngIf="config?.hasAction"
-                [style.width]="42 * (config?.actionButtons?.length ?? 1) + 'px!important'">
-              <div class="options-content">
-                <cat-icon-button
-                  *ngFor="let actionButton of getActionButtons(rowData)"
-                  [icon]="actionButton.iconName"
-                  [color]="actionButton.iconColor"
-                  [tooltip]="actionButton.tooltip"
-                  (click)="actionButton.fnAction ? actionButton.fnAction(rowData) : null">
-                </cat-icon-button>
-              </div>
-            </td>
-            <td *ngFor="let column of config?.columns; let columnIndex = index" [ngClass]="{sorted: columnIndex === columnIndexSort}">
-              <cat-dynamic-component
-                *ngIf="getItemLineComponent(columnIndex, rowData) as dynamicComponent else tableCellDateText"
-                [component]="dynamicComponent">
-              </cat-dynamic-component>
-              <ng-template #tableCellDateText>
-                {{this.getItemLineText(columnIndex, rowData)}}
-              </ng-template>
-            </td>
-          </tr>
+                [style.width]="
+                  42 * (config?.actionButtons?.length ?? 1) + 'px!important'
+                "
+              >
+                <div class="options-content">
+                  <cat-icon-button
+                    *ngFor="let actionButton of getActionButtons(rowData)"
+                    [icon]="actionButton.iconName"
+                    [color]="actionButton.iconColor"
+                    [tooltip]="actionButton.tooltip"
+                    (click)="
+                      actionButton.fnAction
+                        ? actionButton.fnAction(rowData)
+                        : null
+                    "
+                  >
+                  </cat-icon-button>
+                </div>
+              </td>
+              <td
+                *ngFor="let column of config?.columns; let columnIndex = index"
+                [ngClass]="{ sorted: columnIndex === columnIndexSort }"
+              >
+                <cat-dynamic-component
+                  *ngIf="
+                    getItemLineComponent(
+                      columnIndex,
+                      rowData
+                    ) as dynamicComponent;
+                    else tableCellDateText
+                  "
+                  [component]="dynamicComponent"
+                >
+                </cat-dynamic-component>
+                <ng-template #tableCellDateText>
+                  {{ this.getItemLineText(columnIndex, rowData) }}
+                </ng-template>
+              </td>
+            </tr>
+          </ng-container>
         </ng-container>
-      </ng-container>
-    </tbody>
+      </tbody>
     </ng-container>
     <tfoot *ngIf="config">
       <tr>
@@ -119,7 +178,8 @@
             <select
               class="form-select form-select-sm"
               [(ngModel)]="config.limitItemPerPage"
-              (change)="handlePageSizeChange()">
+              (change)="handlePageSizeChange()"
+            >
               <option selected [ngValue]="10">10</option>
               <option [ngValue]="30">30</option>
               <option [ngValue]="50">50</option>
@@ -130,10 +190,15 @@
         <td colspan="50">
           <div class="pagination-content">
             <span class="page-info">
-              {{currentPage}} - {{totalItemsPage ?? 0}} de {{getPaginateProps().totalItems}}
+              {{ currentPage }} - {{ totalItemsPage ?? 0 }} de
+              {{ getPaginateProps().totalItems }}
             </span>
-            <pagination-controls class="my-pagination" previousLabel="Anterior" nextLabel="Próximo"
-                                 (pageChange)="handlePageChange($event)"></pagination-controls>
+            <pagination-controls
+              class="my-pagination"
+              previousLabel="Anterior"
+              nextLabel="Próximo"
+              (pageChange)="handlePageChange($event)"
+            ></pagination-controls>
           </div>
         </td>
       </tr>

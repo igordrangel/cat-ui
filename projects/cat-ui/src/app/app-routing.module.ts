@@ -113,9 +113,9 @@ const routes: Routes = [
       {
         path: 'expansive-panel',
         loadChildren: () =>
-          import('./pages/components/expansive-panel/page-expansive-panel.module').then(
-            (m) => m.PageExpansivePanelModule
-          ),
+          import(
+            './pages/components/expansive-panel/page-expansive-panel.module'
+          ).then((m) => m.PageExpansivePanelModule),
       },
     ],
   },
@@ -161,6 +161,6 @@ const routes: Routes = [
 
 @NgModule({
   imports: [RouterModule.forRoot(routes)],
-  exports: [RouterModule]
+  exports: [RouterModule],
 })
-export class AppRoutingModule { }
+export class AppRoutingModule {}

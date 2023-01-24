@@ -9,7 +9,7 @@ export interface CatLoaderPageConfig {
 }
 
 @Component({
-  selector: 'lib-loader-page',
+  selector: 'cat-loader-page',
   template: `<div class="cat-loader-page-container">
     <cat-loader></cat-loader>
     <ng-container *ngIf="config?.progress$ | async as progress">

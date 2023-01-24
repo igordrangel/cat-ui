@@ -56,15 +56,39 @@ export class StepperGroupComponent implements OnInit {
   }
 
   private async animateOpen(element: Element) {
-    element.children.item(1).children.item(0).classList.add('animate__animated');
-    element.children.item(1).children.item(1).classList.add('animate__animated');
-    element.children.item(1).children.item(0).classList.add('animate__slideInDown');
-    element.children.item(1).children.item(1).classList.add('animate__slideInDown');
+    element.children
+      .item(1)
+      .children.item(0)
+      .classList.add('animate__animated');
+    element.children
+      .item(1)
+      .children.item(1)
+      .classList.add('animate__animated');
+    element.children
+      .item(1)
+      .children.item(0)
+      .classList.add('animate__slideInDown');
+    element.children
+      .item(1)
+      .children.item(1)
+      .classList.add('animate__slideInDown');
     await delay(200);
-    element.children.item(1).children.item(0).classList.remove('animate__animated');
-    element.children.item(1).children.item(1).classList.remove('animate__animated');
-    element.children.item(1).children.item(0).classList.remove('animate__slideInDown');
-    element.children.item(1).children.item(1).classList.remove('animate__slideInDown');
+    element.children
+      .item(1)
+      .children.item(0)
+      .classList.remove('animate__animated');
+    element.children
+      .item(1)
+      .children.item(1)
+      .classList.remove('animate__animated');
+    element.children
+      .item(1)
+      .children.item(0)
+      .classList.remove('animate__slideInDown');
+    element.children
+      .item(1)
+      .children.item(1)
+      .classList.remove('animate__slideInDown');
   }
 
   private async close(element: Element) {
@@ -75,15 +99,39 @@ export class StepperGroupComponent implements OnInit {
   }
 
   private async animateClose(element: Element) {
-    element.children.item(1).children.item(0).classList.add('animate__animated');
-    element.children.item(1).children.item(1).classList.add('animate__animated');
-    element.children.item(1).children.item(0).classList.add('animate__slideOutUp');
-    element.children.item(1).children.item(1).classList.add('animate__slideOutUp');
+    element.children
+      .item(1)
+      .children.item(0)
+      .classList.add('animate__animated');
+    element.children
+      .item(1)
+      .children.item(1)
+      .classList.add('animate__animated');
+    element.children
+      .item(1)
+      .children.item(0)
+      .classList.add('animate__slideOutUp');
+    element.children
+      .item(1)
+      .children.item(1)
+      .classList.add('animate__slideOutUp');
     await delay(200);
-    element.children.item(1).children.item(0).classList.remove('animate__animated');
-    element.children.item(1).children.item(1).classList.remove('animate__animated');
-    element.children.item(1).children.item(0).classList.remove('animate__slideOutUp');
-    element.children.item(1).children.item(1).classList.remove('animate__slideOutUp');
+    element.children
+      .item(1)
+      .children.item(0)
+      .classList.remove('animate__animated');
+    element.children
+      .item(1)
+      .children.item(1)
+      .classList.remove('animate__animated');
+    element.children
+      .item(1)
+      .children.item(0)
+      .classList.remove('animate__slideOutUp');
+    element.children
+      .item(1)
+      .children.item(1)
+      .classList.remove('animate__slideOutUp');
   }
 
   private getSteps() {

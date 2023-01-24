@@ -6,6 +6,6 @@ const routes: Routes = [{ path: '', component: PageTabComponent }];
 
 @NgModule({
   imports: [RouterModule.forChild(routes)],
-  exports: [RouterModule]
+  exports: [RouterModule],
 })
-export class PageTabRoutingModule { }
+export class PageTabRoutingModule {}

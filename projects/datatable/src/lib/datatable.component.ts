@@ -1,13 +1,19 @@
-import { ChangeDetectionStrategy, Component, Input, OnDestroy, OnInit } from '@angular/core';
+import {
+  ChangeDetectionStrategy,
+  Component,
+  Input,
+  OnDestroy,
+  OnInit,
+} from '@angular/core';
 import {
   DatatableActionButtonConfig,
   DatatableConfig,
   DatatableFilterResponse,
-  CatDatatableSelection
-} from "./cat-datatable.interface";
-import { BehaviorSubject, first, Subject, takeUntil } from "rxjs";
-import { koala } from "@koalarx/utils";
-import { clone } from "@koalarx/utils/operators";
+  CatDatatableSelection,
+} from './cat-datatable.interface';
+import { BehaviorSubject, first, Subject, takeUntil } from 'rxjs';
+import { koala } from '@koalarx/utils';
+import { clone } from '@koalarx/utils/operators';
 import { Ng2SearchPipe } from 'ng2-search-filter';
 
 @Component({
@@ -52,8 +58,7 @@ export class DatatableComponent implements OnInit, OnDestroy {
       this.config?.reloadList
         .pipe(takeUntil(this.destroySubscriptions$))
         .subscribe((reloadlist) => {
-          if (reloadlist.reload)
-            this.loadData(reloadlist.preservePagination);
+          if (reloadlist.reload) this.loadData(reloadlist.preservePagination);
         });
     }
   }
@@ -199,9 +204,9 @@ export class DatatableComponent implements OnInit, OnDestroy {
   public toggleItem(
     index: number,
     item: any,
-    forceCheck: boolean = false,
-    emit: boolean = true,
-    checkAll: boolean = false
+    forceCheck = false,
+    emit = true,
+    checkAll = false
   ) {
     const selection = this.selection$.getValue();
     const itemSelection = { index, item };

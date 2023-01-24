@@ -3,13 +3,7 @@ import { DynamicComponentDirective } from './dynamic-component.directive';
 import { DynamicComponentFactory } from './dynamic-component.factory';
 
 @NgModule({
-	exports: [
-		DynamicComponentFactory
-	],
-	declarations: [
-		DynamicComponentDirective,
-		DynamicComponentFactory
-	]
+  exports: [DynamicComponentFactory],
+  declarations: [DynamicComponentDirective, DynamicComponentFactory],
 })
-export class CatDynamicComponentModule {
-}
+export class CatDynamicComponentModule {}

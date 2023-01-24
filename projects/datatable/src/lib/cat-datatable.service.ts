@@ -1,8 +1,11 @@
 import { Injectable } from '@angular/core';
 import { BehaviorSubject } from 'rxjs/internal/BehaviorSubject';
 import { Observable } from 'rxjs/internal/Observable';
-import { CatDatatableDataHttpResponse, DatatableTypeDataList } from './cat-datatable.interface';
-import { DatatableFactory } from "./datatable.factory";
+import {
+  CatDatatableDataHttpResponse,
+  DatatableTypeDataList,
+} from './cat-datatable.interface';
+import { DatatableFactory } from './datatable.factory';
 
 @Injectable({
   providedIn: 'root',

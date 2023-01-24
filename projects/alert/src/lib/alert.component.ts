@@ -23,7 +23,7 @@ import { CatAlertConfig } from './cat-alert.service';
 })
 export class AlertComponent {
   constructor(
-    public dialogRef: CatDialogRef<AlertComponent>,
+    public dialogRef: CatDialogRef,
     @Inject(CAT_DIALOG_DATA) public config: CatAlertConfig
   ) {}
 

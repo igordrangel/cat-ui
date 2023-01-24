@@ -1,4 +1,11 @@
-import { AppAuthSettings, AppConfig, AppConfigLogotype, AppConfigMenu, AppNotificationsConfig, AppOptions } from "./app-config.interface";
+import {
+  AppAuthSettings,
+  AppConfig,
+  AppConfigLogotype,
+  AppConfigMenu,
+  AppNotificationsConfig,
+  AppOptions,
+} from './app-config.interface';
 
 export class AppFactory {
   private config = {} as AppConfig;

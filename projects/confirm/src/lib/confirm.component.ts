@@ -1,6 +1,10 @@
 import { Component, Inject } from '@angular/core';
 import { CatDialogRef, CAT_DIALOG_DATA } from '@catrx/ui/dialog';
-import { ConfirmData, ConfirmType, ConfirmResponse } from './cat-confirm.interface';
+import {
+  ConfirmData,
+  ConfirmType,
+  ConfirmResponse,
+} from './cat-confirm.interface';
 
 @Component({
   templateUrl: './confirm.component.html',
@@ -8,7 +12,7 @@ import { ConfirmData, ConfirmType, ConfirmResponse } from './cat-confirm.interfa
 })
 export class ConfirmComponent {
   constructor(
-    private dialogRef: CatDialogRef<ConfirmComponent>,
+    private dialogRef: CatDialogRef,
     @Inject(CAT_DIALOG_DATA) public options: ConfirmData
   ) {}
 

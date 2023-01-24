@@ -1,5 +1,9 @@
 import { Directive } from '@angular/core';
-import { CatDatatableSelection, CatDatatableService, DatatableConfig } from '@catrx/ui/datatable';
+import {
+  CatDatatableSelection,
+  CatDatatableService,
+  DatatableConfig,
+} from '@catrx/ui/datatable';
 import { CatFormConfig, CatFormService } from '@catrx/ui/form';
 import { CatComponentBase } from './cat-component.base';
 import { CatServiceBase } from './cat-service.base';

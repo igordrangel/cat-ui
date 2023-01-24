@@ -5,7 +5,7 @@ import { ConfirmComponent } from './confirm.component';
 
 @Injectable()
 export class CatConfirmService {
-  constructor(private dialogService: CatDialogService) { }
+  constructor(private dialogService: CatDialogService) {}
 
   public ask(question: string, yesCb: () => void, options?: ConfirmOptions) {
     this.dialogService.open(ConfirmComponent, {

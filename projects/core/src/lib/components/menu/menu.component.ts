@@ -1,6 +1,16 @@
-import { Component, Input, OnChanges, OnInit, SimpleChanges } from '@angular/core';
+import {
+  Component,
+  Input,
+  OnChanges,
+  OnInit,
+  SimpleChanges,
+} from '@angular/core';
 import { koala } from '@koalarx/utils';
-import { AppConfigMenu, AppConfigMenuModule, AppConfigMenuTool } from '../../factory/app-config.interface';
+import {
+  AppConfigMenu,
+  AppConfigMenuModule,
+  AppConfigMenuTool,
+} from '../../factory/app-config.interface';
 import { BehaviorSubject } from 'rxjs';
 import { NavigationEnd, Router } from '@angular/router';
 import { CatToolbarBreadcrumb } from '@catrx/ui/toolbar';

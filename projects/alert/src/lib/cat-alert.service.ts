@@ -17,7 +17,7 @@ export class CatAlertService {
   show(config: CatAlertConfig) {
     this.dialogService.open(AlertComponent, {
       size: 'small',
-      data: config
+      data: config,
     });
   }
 }

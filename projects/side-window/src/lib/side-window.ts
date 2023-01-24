@@ -2,10 +2,12 @@ import { InjectionToken, Injectable, Inject } from '@angular/core';
 import { CatSideWindowConfig } from './cat-side-window.service';
 
 export const CAT_SIDE_WINDOW_CONFIG = new InjectionToken('CatSideWindowConfig');
-export const CAT_SIDE_WINDOW_REF_TOKEN = new InjectionToken('CatSideWindowRefToken');
+export const CAT_SIDE_WINDOW_REF_TOKEN = new InjectionToken(
+  'CatSideWindowRefToken'
+);
 
 @Injectable()
-export class CatSideWindowRef<SideWindowRef> {
+export class CatSideWindowRef {
   constructor(
     @Inject(CAT_SIDE_WINDOW_CONFIG) private config: CatSideWindowConfig,
     @Inject(CAT_SIDE_WINDOW_REF_TOKEN) private elementId: string
@@ -21,8 +23,7 @@ export class CatSideWindowRef<SideWindowRef> {
       elSideWindowContent?.classList.add('animate__slideOutRight');
       setTimeout(() => elDialog.remove(), 200);
 
-      if (this.config.onClose)
-        this.config.onClose();
+      if (this.config.onClose) this.config.onClose();
     }
   }
 }

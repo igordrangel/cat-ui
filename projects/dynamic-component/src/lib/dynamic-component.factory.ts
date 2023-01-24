@@ -7,6 +7,7 @@ import { CatDynamicComponentDataInterface } from './cat-dynamic-component-data.i
   selector: 'cat-dynamic-component[component]',
   template: `<ng-template catDynamicComponent></ng-template>`,
 })
+// eslint-disable-next-line @angular-eslint/component-class-suffix
 export class DynamicComponentFactory implements OnInit {
   @Input() component?: CatDynamicComponent;
 

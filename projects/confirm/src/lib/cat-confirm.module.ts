@@ -7,11 +7,7 @@ import { CatDialogModule } from '@catrx/ui/dialog';
 
 @NgModule({
   declarations: [ConfirmComponent],
-  imports: [
-    CommonModule,
-    CatDialogModule,
-    CatDynamicComponentModule
-  ],
-  providers: [CatConfirmService]
+  imports: [CommonModule, CatDialogModule, CatDynamicComponentModule],
+  providers: [CatConfirmService],
 })
-export class CatConfirmModule { }
+export class CatConfirmModule {}

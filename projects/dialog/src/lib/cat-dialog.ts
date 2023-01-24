@@ -1,12 +1,12 @@
-import { InjectionToken, Injectable, Inject } from "@angular/core";
-import { CatDialogOptions } from "./cat-dialog.interface";
+import { InjectionToken, Injectable, Inject } from '@angular/core';
+import { CatDialogOptions } from './cat-dialog.interface';
 
 export const CAT_DIALOG_DATA = new InjectionToken('CatDialogData');
 export const CAT_DIALOG_OPTIONS = new InjectionToken('CatDialogOptions');
 export const CAT_DIALOG_REF_TOKEN = new InjectionToken('CatDialogRefToken');
 
 @Injectable()
-export class CatDialogRef<DialogRef> {
+export class CatDialogRef {
   constructor(
     @Inject(CAT_DIALOG_OPTIONS) private options: CatDialogOptions,
     @Inject(CAT_DIALOG_REF_TOKEN) private elementId: string

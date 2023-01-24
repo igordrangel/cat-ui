@@ -1,4 +1,4 @@
-import { NgModule } from "@angular/core";
+import { NgModule } from '@angular/core';
 import {
   CatPrimaryButtonComponent,
   CatSecondaryButtonComponent,
@@ -7,9 +7,9 @@ import {
   CatDangerButtonComponent,
   CatInfoButtonComponent,
 } from '@catrx/ui/button';
-import { CatToolbarModule } from "@catrx/ui/toolbar";
-import { PageButtonComponent } from "./page-button.component";
-import { PageButtonRoutingModule } from "./page-button.routing.module";
+import { CatToolbarModule } from '@catrx/ui/toolbar';
+import { PageButtonComponent } from './page-button.component';
+import { PageButtonRoutingModule } from './page-button.routing.module';
 
 @NgModule({
   declarations: [PageButtonComponent],

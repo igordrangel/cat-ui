@@ -1,6 +1,9 @@
 <cat-dialog>
   <div class="cat-confirm-content" content>
-    <cat-dynamic-component *ngIf="options.icon else defaultIcon" [component]="options.icon"></cat-dynamic-component>
+    <cat-dynamic-component
+      *ngIf="options.icon; else defaultIcon"
+      [component]="options.icon"
+    ></cat-dynamic-component>
     <p [innerHTML]="options.question" class="text-center"></p>
   </div>
   <div class="cat-confirm-actions" actions>

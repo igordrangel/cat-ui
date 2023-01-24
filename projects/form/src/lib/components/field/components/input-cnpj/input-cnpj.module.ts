@@ -12,7 +12,7 @@ import { FieldContentModule } from '../common/field-content/field-content.module
     CommonModule,
     ReactiveFormsModule,
     FieldContentModule,
-    NgxMaskModule
-  ]
+    NgxMaskModule,
+  ],
 })
 export class InputCnpjModule {}

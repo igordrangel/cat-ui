@@ -66,7 +66,7 @@ export interface CatFormBehaviorAsyncValidator {
 export interface CatFormTextOptions extends CatFormFieldOptions {
   mask?: string;
 }
-export interface CatFormPasswordOptions extends CatFormFieldOptions {}
+export type CatFormPasswordOptions = CatFormFieldOptions;
 export interface CatFormTextareaOptions extends CatFormFieldOptions {
   minRows?: number;
   maxRows?: number;
@@ -104,7 +104,7 @@ export interface CatFormFileOptions extends CatFormFieldOptions {
 export interface CatFormCsvOptions extends CatFormFileOptions {
   csvModel: CatCsvModel;
 }
-export interface CatFormCheckboxOptions extends CatFormFieldOptions {}
+export type CatFormCheckboxOptions = CatFormFieldOptions;
 export interface CatFormRadioOptions extends CatFormFieldOptions {
   options?: Array<CatFormListOptions>;
 }

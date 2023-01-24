@@ -1,5 +1,5 @@
 import { Directive, ViewChild, OnInit, OnDestroy } from '@angular/core';
-import { FormComponent } from "@catrx/ui/form";
+import { FormComponent } from '@catrx/ui/form';
 import { BehaviorSubject } from 'rxjs/internal/BehaviorSubject';
 import { Subject } from 'rxjs/internal/Subject';
 import { CatComponentBase } from './cat-component.base';
@@ -23,7 +23,7 @@ export abstract class CatFormBase
   ngOnInit(): void {
     this.elForm.submitted
       .pipe(takeUntil(this.destroySubscriptions$))
-      .subscribe(submitted => {
+      .subscribe((submitted) => {
         if (submitted) {
           this.submit();
         }

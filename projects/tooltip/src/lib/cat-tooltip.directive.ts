@@ -1,24 +1,35 @@
-import { ApplicationRef, ComponentFactoryResolver, ComponentRef, Directive, ElementRef, EmbeddedViewRef, HostListener, Injector, Input } from '@angular/core';
-import { TooltipComponent } from './tooltip.component';
-import { Subscription } from 'rxjs/internal/Subscription';
+import {
+  ApplicationRef,
+  ComponentFactoryResolver,
+  ComponentRef,
+  Directive,
+  ElementRef,
+  EmbeddedViewRef,
+  HostListener,
+  Injector,
+  Input,
+  OnDestroy,
+} from '@angular/core';
 import { interval } from 'rxjs';
+import { Subscription } from 'rxjs/internal/Subscription';
 import { startWith } from 'rxjs/operators';
+import { TooltipComponent } from './tooltip.component';
 
 export type CatTooltipPosition = 'above' | 'below' | 'left' | 'right' | 'above';
 
 @Directive({
   selector: '[catTooltip]',
 })
-export class CatTooltipDirective {
+export class CatTooltipDirective implements OnDestroy {
   @Input() catTooltip = '';
   @Input() catTooltipPosition: CatTooltipPosition = 'above';
 
-  private showTimeout: any;
-  private touchTimeout: any;
-  private hideTimeout: any;
+  private showTimeout: number;
+  private touchTimeout: number;
+  private hideTimeout: number;
   private showDelay = 0;
   private hideDelay = 0;
-  private componentRef: ComponentRef<any> = null;
+  private componentRef: ComponentRef<TooltipComponent> = null;
   private intervalObserveTriggerDestroy: Subscription;
 
   constructor(
@@ -82,7 +93,7 @@ export class CatTooltipDirective {
         this.showDelay
       );
     }
-  };
+  }
 
   private setTooltipComponentProperties() {
     if (this.componentRef !== null) {
@@ -109,7 +120,7 @@ export class CatTooltipDirective {
           break;
         }
         case 'right': {
-          calcLeft = Math.round(right + (tooltipWidth * 2));
+          calcLeft = Math.round(right + tooltipWidth * 2);
           this.componentRef.instance.left =
             calcLeft > document.body.clientWidth
               ? document.body.clientWidth - tooltipWidth

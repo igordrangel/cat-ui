@@ -1,3 +1,3 @@
 export interface CatDynamicComponentDataInterface {
-	data?: any;
+  data?: any;
 }

@@ -11,8 +11,6 @@ import { CatRoutePolice } from './cat-route.police';
 
 @Injectable()
 export class CatAuthGuard implements CanActivate {
-  constructor() {}
-
   canActivate(
     route: ActivatedRouteSnapshot,
     state: RouterStateSnapshot
@@ -21,7 +19,6 @@ export class CatAuthGuard implements CanActivate {
     | UrlTree
     | Observable<boolean | UrlTree>
     | Promise<boolean | UrlTree> {
-
     if (TokenFactory.hasToken()) {
       return CatRoutePolice.hasPermission(state.url);
     }

@@ -7,7 +7,7 @@ import {
 } from '@angular/core';
 
 @Directive({
-  selector: '[cat-drag-drop]',
+  selector: '[catDragDrop]',
 })
 export class DragDropFileUploadDirective {
   @Output() fileDropped = new EventEmitter<any>();

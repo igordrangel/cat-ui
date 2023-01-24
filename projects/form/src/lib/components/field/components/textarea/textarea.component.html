@@ -1,4 +1,9 @@
-<cat-form-field-content *ngIf="updateComponent$ | async" [control]="control" [config]="fieldConfig" [elInput]="elInput">
+<cat-form-field-content
+  *ngIf="updateComponent$ | async"
+  [control]="control"
+  [config]="fieldConfig"
+  [elInput]="elInput"
+>
   <ng-container field>
     <textarea
       #inputElement
@@ -11,10 +16,13 @@
       [required]="fieldConfig.required ?? false"
       [minlength]="fieldConfig.minLength ?? null"
       [maxlength]="fieldConfig.maxLength ?? null"
-      [ngClass]="{'is-invalid': control.invalid && !control.untouched && !control.disabled}"
+      [ngClass]="{
+        'is-invalid': control.invalid && !control.untouched && !control.disabled
+      }"
       autocomplete="off"
       class="form-control form-control-sm"
-      placeholder="">
+      placeholder=""
+    >
     </textarea>
   </ng-container>
 </cat-form-field-content>

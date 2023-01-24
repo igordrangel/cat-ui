@@ -3,7 +3,7 @@ export class CatRoutePolice {
   static police?: (routePath: string) => boolean;
 
   static hasPermission(routePath: string) {
-    if (this.enableRoutes.find(route => route === routePath)) {
+    if (this.enableRoutes.find((route) => route === routePath)) {
       return true;
     } else if (CatRoutePolice.police) {
       return CatRoutePolice.police(routePath);

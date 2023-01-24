@@ -4,7 +4,7 @@ import { CatDialogService } from '@catrx/ui/dialog';
 import { DialogExampleComponent } from './dialog-example.component';
 
 @Component({
-  templateUrl: './page-dialog.component.html'
+  templateUrl: './page-dialog.component.html',
 })
 export class PageDialogComponent extends CatComponentBase {
   constructor(private dialogService: CatDialogService) {

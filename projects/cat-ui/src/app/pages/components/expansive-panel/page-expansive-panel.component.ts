@@ -1,4 +1,4 @@
-import { CatComponentBase } from "@catrx/ui/common";
+import { CatComponentBase } from '@catrx/ui/common';
 import { Component } from '@angular/core';
 
 @Component({
@@ -10,7 +10,9 @@ import { Component } from '@angular/core';
         padding: 20px;
         box-sizing: border-box;
       }
-      h2 {padding: 0 20px;}
+      h2 {
+        padding: 0 20px;
+      }
     `,
   ],
 })

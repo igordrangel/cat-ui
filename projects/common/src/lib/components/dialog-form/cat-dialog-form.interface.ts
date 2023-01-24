@@ -1,4 +1,4 @@
-import { CatFormConfig } from "@catrx/ui/form";
+import { CatFormConfig } from '@catrx/ui/form';
 
 export interface CatDialogFormConfig {
   formConfig: CatFormConfig<any>;

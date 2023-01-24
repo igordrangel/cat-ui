@@ -1,6 +1,9 @@
-import { Injectable } from "@angular/core";
-import { CatToolbarBreadcrumb, CatToolbarConfig } from './cat-toolbar.interface';
-import { ToolbarFactory } from "./toolbar.factory";
+import { Injectable } from '@angular/core';
+import {
+  CatToolbarBreadcrumb,
+  CatToolbarConfig,
+} from './cat-toolbar.interface';
+import { ToolbarFactory } from './toolbar.factory';
 
 @Injectable()
 export class CatToolbarService {

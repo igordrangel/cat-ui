@@ -1,5 +1,5 @@
 <div class="hint">
-  <ng-container *ngIf="control?.valid else errorsContent">
+  <ng-container *ngIf="control?.valid; else errorsContent">
     <span *ngIf="config?.hint" class="text-hint">
       <i class="fa-solid fa-circle-info"></i>
       <span [innerHTML]="config?.hint"></span>
@@ -13,19 +13,28 @@
 
   <span
     *ngIf="!!config?.minLength && !!config?.maxLength && !control?.disabled"
-    class="span-length">
-    <strong class="min">{{config?.minLength ?? 0}}</strong>/{{(elInput?.nativeElement?.value?.length ?? 0)}}/<strong class="max">{{config?.maxLength ?? 0}}</strong>
+    class="span-length"
+  >
+    <strong class="min">{{ config?.minLength ?? 0 }}</strong
+    >/{{ elInput?.nativeElement?.value?.length ?? 0 }}/<strong class="max">{{
+      config?.maxLength ?? 0
+    }}</strong>
   </span>
 
   <span
     *ngIf="!!config?.minLength && !config?.maxLength && !control?.disabled"
-    class="span-length">
-    <strong class="min">{{config?.minLength ?? 0}}</strong>/{{(elInput?.nativeElement?.value?.length ?? 0)}}
+    class="span-length"
+  >
+    <strong class="min">{{ config?.minLength ?? 0 }}</strong
+    >/{{ elInput?.nativeElement?.value?.length ?? 0 }}
   </span>
 
   <span
     *ngIf="!!config?.maxLength && !config?.minLength && !control?.disabled"
-    class="span-length max">
-    {{(elInput?.nativeElement?.value?.length ?? 0)}}/<strong class="max">{{config?.maxLength ?? 0}}</strong>
+    class="span-length max"
+  >
+    {{ elInput?.nativeElement?.value?.length ?? 0 }}/<strong class="max">{{
+      config?.maxLength ?? 0
+    }}</strong>
   </span>
 </div>

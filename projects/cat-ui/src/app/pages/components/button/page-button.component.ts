@@ -1,4 +1,4 @@
-import { CatComponentBase } from "@catrx/ui/common";
+import { CatComponentBase } from '@catrx/ui/common';
 import { Component } from '@angular/core';
 
 @Component({

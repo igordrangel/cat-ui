@@ -1,26 +1,39 @@
-<cat-form-field-content *ngIf="updateComponent$ | async" [control]="control" [config]="fieldConfig" [elInput]="elInput">
+<cat-form-field-content
+  *ngIf="updateComponent$ | async"
+  [control]="control"
+  [config]="fieldConfig"
+  [elInput]="elInput"
+>
   <ng-container *ngIf="control && fieldConfig" field>
     <ng-select
-      *ngIf="(fieldConfig.options | async) as options else showLoader"
+      *ngIf="fieldConfig.options | async as options; else showLoader"
       #inputElement
       [formControl]="control"
       [labelForId]="fieldConfig.label"
       [required]="fieldConfig.required ?? false"
-      [ngClass]="{'is-invalid': control.invalid && !control.untouched && !control.disabled}"
+      [ngClass]="{
+        'is-invalid': control.invalid && !control.untouched && !control.disabled
+      }"
       [searchable]="false"
       [multiple]="fieldConfig.multiple"
       [appendTo]="'main'"
-      appearance="outline">
-
+      appearance="outline"
+    >
       <ng-option
         *ngFor="let option of options"
         [value]="option.value"
-        [innerHTML]="option.name">
+        [innerHTML]="option.name"
+      >
       </ng-option>
     </ng-select>
   </ng-container>
 </cat-form-field-content>
 
 <ng-template #showLoader>
-  <input class="form-control form-control-sm" disabled type="text" placeholder="CARREGANDO..."/>
+  <input
+    class="form-control form-control-sm"
+    disabled
+    type="text"
+    placeholder="CARREGANDO..."
+  />
 </ng-template>

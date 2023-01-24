@@ -3,14 +3,17 @@
     #toolElement
     *ngFor="let tool of tools"
     class="tool"
-    [ngClass]="{'has-tools': tool.tools?.length > 0}">
-    <a [routerLink]="tool.routerLink" routerLinkActive="active" (click)="closeAllTools();toolElement.classList.toggle('collapsed')">
+    [ngClass]="{ 'has-tools': tool.tools?.length > 0 }"
+  >
+    <a
+      [routerLink]="tool.routerLink"
+      routerLinkActive="active"
+      (click)="closeAllTools(); toolElement.classList.toggle('collapsed')"
+    >
       <i *ngIf="tool.icon" [ngClass]="tool.icon"></i>
-      <span>{{tool.name}}</span>
+      <span>{{ tool.name }}</span>
     </a>
-    <cat-menu-tool
-      *ngIf="tool.tools?.length > 0"
-      [tools]="tool.tools">
+    <cat-menu-tool *ngIf="tool.tools?.length > 0" [tools]="tool.tools">
     </cat-menu-tool>
   </li>
 </ul>

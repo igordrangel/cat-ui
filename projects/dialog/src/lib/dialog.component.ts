@@ -3,7 +3,6 @@ import { Component } from '@angular/core';
 @Component({
   selector: 'cat-dialog',
   templateUrl: './dialog.component.html',
-  styleUrls: ['./dialog.component.css']
+  styleUrls: ['./dialog.component.css'],
 })
-export class DialogComponent {
-}
+export class DialogComponent {}

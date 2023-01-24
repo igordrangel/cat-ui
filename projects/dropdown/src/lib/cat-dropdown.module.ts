@@ -1,7 +1,7 @@
-import { CommonModule } from "@angular/common";
-import { NgModule } from "@angular/core";
-import { BsDropdownModule } from "ngx-bootstrap/dropdown";
-import { CatDropdownComponent } from "./dropdown.component";
+import { CommonModule } from '@angular/common';
+import { NgModule } from '@angular/core';
+import { BsDropdownModule } from 'ngx-bootstrap/dropdown';
+import { CatDropdownComponent } from './dropdown.component';
 
 @NgModule({
   declarations: [CatDropdownComponent],

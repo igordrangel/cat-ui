@@ -18,7 +18,7 @@ import { CatTooltipModule } from '@catrx/ui/tooltip';
     CatDynamicComponentModule,
     CatTooltipModule,
     CatDropdownModule,
-    RouterModule
+    RouterModule,
   ],
 })
 export class AppContainerModule {}

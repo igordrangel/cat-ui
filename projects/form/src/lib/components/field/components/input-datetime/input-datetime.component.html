@@ -1,4 +1,9 @@
-<cat-form-field-content *ngIf="updateComponent$ | async" [control]="control" [config]="fieldConfig" [elInput]="elInput">
+<cat-form-field-content
+  *ngIf="updateComponent$ | async"
+  [control]="control"
+  [config]="fieldConfig"
+  [elInput]="elInput"
+>
   <ng-container field>
     <input
       #inputElement
@@ -9,21 +14,26 @@
       [required]="fieldConfig.required ?? false"
       [min]="fieldConfig.min ?? null"
       [max]="fieldConfig.max ?? null"
-      [ngClass]="{'is-invalid': control.invalid && !control.untouched && !control.disabled}"
+      [ngClass]="{
+        'is-invalid': control.invalid && !control.untouched && !control.disabled
+      }"
       [type]="fieldConfig.type"
       autocomplete="off"
       class="form-control form-control-sm"
-      placeholder="">
+      placeholder=""
+    />
   </ng-container>
 
   <ng-container specificErrors>
     <div *ngIf="control?.errors?.['dateMin']" class="invalid-feedback">
       <i class="fa-solid fa-triangle-exclamation"></i>
-      O valor deve ser no mínimo {{control?.errors?.['dateMin']?.min | date:getFormatTypeDate()}}.
+      O valor deve ser no mínimo
+      {{control?.errors?.['dateMin']?.min | date:getFormatTypeDate()}}.
     </div>
     <div *ngIf="control?.errors?.['dateMax']" class="invalid-feedback">
       <i class="fa-solid fa-triangle-exclamation"></i>
-      O valor deve ser no máximo {{control?.errors?.['dateMax']?.max | date:getFormatTypeDate()}}.
+      O valor deve ser no máximo
+      {{control?.errors?.['dateMax']?.max | date:getFormatTypeDate()}}.
     </div>
   </ng-container>
 </cat-form-field-content>

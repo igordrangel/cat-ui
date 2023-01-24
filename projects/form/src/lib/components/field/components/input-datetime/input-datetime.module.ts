@@ -7,6 +7,6 @@ import { FieldContentModule } from '../common/field-content/field-content.module
 @NgModule({
   imports: [CommonModule, ReactiveFormsModule, FieldContentModule],
   declarations: [InputDatetimeComponent],
-  exports: [InputDatetimeComponent]
+  exports: [InputDatetimeComponent],
 })
 export class InputDatetimeModule {}

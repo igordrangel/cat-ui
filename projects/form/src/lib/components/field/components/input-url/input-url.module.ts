@@ -7,6 +7,6 @@ import { FieldContentModule } from '../common/field-content/field-content.module
 @NgModule({
   declarations: [InputUrlComponent],
   exports: [InputUrlComponent],
-  imports: [CommonModule, ReactiveFormsModule, FieldContentModule]
+  imports: [CommonModule, ReactiveFormsModule, FieldContentModule],
 })
 export class InputUrlModule {}

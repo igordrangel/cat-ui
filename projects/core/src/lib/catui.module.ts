@@ -19,7 +19,7 @@ registerLocaleData(ptBr);
     BrowserModule,
     BrowserAnimationsModule,
     HttpClientModule,
-    AppContainerModule
+    AppContainerModule,
   ],
   providers: [
     { provide: LOCALE_ID, useValue: 'pt-BR' },
