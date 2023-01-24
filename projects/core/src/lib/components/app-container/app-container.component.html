@@ -43,8 +43,9 @@
           />
 
           <cat-menu
+            *ngIf="sideMenuConfig$ | async as sideMenuConfig"
             [appName]="config.appName"
-            [config]="sideMenuConfig$ | async"
+            [config]="sideMenuConfig"
             [style.height]="'calc(100% - ' + btnGroup.style.height + ')'"
             [menuCollapsed]="menuCollapsed$"
           >
