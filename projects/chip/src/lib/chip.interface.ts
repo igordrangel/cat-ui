@@ -3,4 +3,10 @@ export interface CatChipConfig {
   color?: CatChipColor;
 }
 
-export type CatChipColor = 'success' | 'warning' | 'danger' | 'info' | 'primary' | 'secondary';
+export type CatChipColor =
+  | 'success'
+  | 'warning'
+  | 'danger'
+  | 'info'
+  | 'primary'
+  | 'secondary';

@@ -1,7 +1,19 @@
-import { ApplicationRef, ComponentFactoryResolver, EmbeddedViewRef, Injectable, Injector, Type } from '@angular/core';
+import {
+  ApplicationRef,
+  ComponentFactoryResolver,
+  EmbeddedViewRef,
+  Injectable,
+  Injector,
+  Type,
+} from '@angular/core';
 import { CatDialogOptions } from './cat-dialog.interface';
 import { randomString } from '@koalarx/utils/operators/string';
-import { CatDialogRef, CAT_DIALOG_DATA, CAT_DIALOG_OPTIONS, CAT_DIALOG_REF_TOKEN } from './cat-dialog';
+import {
+  CatDialogRef,
+  CAT_DIALOG_DATA,
+  CAT_DIALOG_OPTIONS,
+  CAT_DIALOG_REF_TOKEN,
+} from './cat-dialog';
 
 @Injectable()
 export class CatDialogService {
@@ -31,7 +43,8 @@ export class CatDialogService {
 
     this.appRef.attachView(componentRef.hostView);
 
-    const elDialog = (componentRef.hostView as EmbeddedViewRef<any>).rootNodes[0] as HTMLElement;
+    const elDialog = (componentRef.hostView as EmbeddedViewRef<any>)
+      .rootNodes[0] as HTMLElement;
     elDialog.id = elementId;
     elDialog.children?.[0].classList.add(
       `dialog-size-${options?.size ?? 'auto'}`
@@ -60,9 +73,9 @@ export class CatDialogService {
         numbers: false,
         lowercase: true,
         uppercase: true,
-        specialCharacters: false
+        specialCharacters: false,
       });
-    } while (!!document.getElementById(elementId));
+    } while (document.getElementById(elementId));
 
     return elementId;
   }

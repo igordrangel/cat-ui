@@ -1,4 +1,7 @@
-import { CatToolbarConfig, CatToolbarBreadcrumb } from './cat-toolbar.interface';
+import {
+  CatToolbarConfig,
+  CatToolbarBreadcrumb,
+} from './cat-toolbar.interface';
 
 export class ToolbarFactory {
   private config: CatToolbarConfig;

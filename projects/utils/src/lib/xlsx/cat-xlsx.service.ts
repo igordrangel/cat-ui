@@ -18,7 +18,7 @@ export class CatXlsxService {
     const config = CatXlsxConfig.config;
     const workbook: ExcelProper.Workbook = new Excel.Workbook();
 
-    for (let tab of tabs.values()) {
+    for (const tab of tabs.values()) {
       const header = [];
       Object.keys(tab.json[0] ?? {}).forEach((name) => {
         header.push(
@@ -31,9 +31,7 @@ export class CatXlsxService {
       });
 
       if (header.length > 0) {
-        const worksheet = workbook.addWorksheet(
-          tab.sheetName
-        );
+        const worksheet = workbook.addWorksheet(tab.sheetName);
         if (config.password) {
           await worksheet.protect(config.password, {
             selectLockedCells: true,
@@ -43,7 +41,7 @@ export class CatXlsxService {
         }
 
         const headerRow = worksheet.addRow(header);
-        headerRow.eachCell((cell, number) => {
+        headerRow.eachCell((cell) => {
           if (config.headerBackgroundColor) {
             cell.fill = {
               type: 'pattern',
@@ -65,7 +63,7 @@ export class CatXlsxService {
           worksheet.addRow(data);
         });
       }
-    };
+    }
 
     workbook.xlsx.writeBuffer().then((data) => {
       const blob = new Blob([data], {

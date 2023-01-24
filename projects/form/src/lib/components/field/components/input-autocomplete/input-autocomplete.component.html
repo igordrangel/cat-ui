@@ -1,12 +1,19 @@
-<cat-form-field-content *ngIf="updateComponent$ | async" [control]="control" [config]="fieldConfig" [elInput]="elInput">
+<cat-form-field-content
+  *ngIf="updateComponent$ | async"
+  [control]="control"
+  [config]="fieldConfig"
+  [elInput]="elInput"
+>
   <ng-container *ngIf="control && fieldConfig" field>
     <ng-select
       #inputElement
       [formControl]="control"
       [labelForId]="fieldConfig.label"
       [required]="fieldConfig.required ?? false"
-      [ngClass]="{'is-invalid': control.invalid && !control.untouched && !control.disabled}"
-      [loading]="(loading$ | async)"
+      [ngClass]="{
+        'is-invalid': control.invalid && !control.untouched && !control.disabled
+      }"
+      [loading]="loading$ | async"
       [items]="options$ | async"
       [multiple]="fieldConfig.multiple"
       [addTag]="fieldConfig.add ? setNewOption(fieldConfig) : false"
@@ -17,14 +24,15 @@
       bindValue="value"
       notFoundText="Nenhum registro encontrado"
       addTagText="Adicionar:"
-      appearance="outline">
-
+      appearance="outline"
+    >
       <ng-container *ngIf="fieldConfig.addOption?.customTemplate">
         <ng-template ng-tag-tmp let-search="searchTerm">
-          <cat-dynamic-component [component]="getAddOptionDynamicComponent(search)"></cat-dynamic-component>
+          <cat-dynamic-component
+            [component]="getAddOptionDynamicComponent(search)"
+          ></cat-dynamic-component>
         </ng-template>
       </ng-container>
-
     </ng-select>
   </ng-container>
 </cat-form-field-content>

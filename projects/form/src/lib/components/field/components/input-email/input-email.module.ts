@@ -7,6 +7,6 @@ import { FieldContentModule } from '../common/field-content/field-content.module
 @NgModule({
   declarations: [InputEmailComponent],
   exports: [InputEmailComponent],
-  imports: [CommonModule, ReactiveFormsModule, FieldContentModule]
+  imports: [CommonModule, ReactiveFormsModule, FieldContentModule],
 })
 export class InputEmailModule {}

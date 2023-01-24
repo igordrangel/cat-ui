@@ -2,7 +2,11 @@ import { CommonModule } from '@angular/common';
 import { Component, Inject, OnInit } from '@angular/core';
 import { BehaviorSubject } from 'rxjs/internal/BehaviorSubject';
 import { interval } from 'rxjs/internal/observable/interval';
-import { CatSnackbarConfig, CatSnackbarRef, CAT_SNACKBAR_CONFIG } from './cat-snackbar.service';
+import {
+  CatSnackbarConfig,
+  CatSnackbarRef,
+  CAT_SNACKBAR_CONFIG,
+} from './cat-snackbar.service';
 import { Subscription } from 'rxjs/internal/Subscription';
 import { startWith } from 'rxjs/operators';
 
@@ -43,7 +47,7 @@ export class SnackbarComponent implements OnInit {
   private intervalToClose?: Subscription;
 
   constructor(
-    private snackbarRef: CatSnackbarRef<SnackbarComponent>,
+    private snackbarRef: CatSnackbarRef,
     @Inject(CAT_SNACKBAR_CONFIG) public config: CatSnackbarConfig
   ) {}
 

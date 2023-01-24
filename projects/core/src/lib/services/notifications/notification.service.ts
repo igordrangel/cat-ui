@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
-import { koala } from "@koalarx/utils";
+import { koala } from '@koalarx/utils';
 
 export declare type Permission = 'denied' | 'granted' | 'default';
 
@@ -19,13 +19,16 @@ export interface PushNotification {
   vibrate?: number[];
 }
 
-@Injectable({providedIn: 'root'})
+@Injectable({ providedIn: 'root' })
 export class NotificationService {
   private permission = false;
 
-  public notify(title: string, options: PushNotification): Observable<{
+  public notify(
+    title: string,
+    options: PushNotification
+  ): Observable<{
     notification: Notification;
-    event: Event
+    event: Event;
   }> {
     return this.create(title, options);
   }
@@ -45,29 +48,32 @@ export class NotificationService {
       }
 
       if (!document.hasFocus()) {
-        options = koala(options).object().merge({
-          requireInteraction: false,
-          renotify: false,
-          tag: 'ChatBot Alexia'
-        }).getValue();
+        options = koala(options)
+          .object()
+          .merge({
+            requireInteraction: false,
+            renotify: false,
+            tag: 'ChatBot Alexia',
+          })
+          .getValue();
         const notify = new Notification(title, options);
         notify.onshow = (e) => {
           return obs.next({
             notification: notify,
-            event: e
+            event: e,
           });
         };
         notify.onclick = (e) => {
           window.focus();
           return obs.next({
             notification: notify,
-            event: e
+            event: e,
           });
         };
         notify.onerror = (e) => {
           return obs.error({
             notification: notify,
-            event: e
+            event: e,
           });
         };
       }

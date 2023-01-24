@@ -1,8 +1,8 @@
-import { Component } from "@angular/core";
-import { CatDatatableService } from "@catrx/ui/datatable";
-import { CatFormService } from "@catrx/ui/form";
-import { BehaviorSubject } from "rxjs/internal/BehaviorSubject";
-import { PageDatatableExampleService } from "./page-datatable-example.service";
+import { Component } from '@angular/core';
+import { CatDatatableService } from '@catrx/ui/datatable';
+import { CatFormService } from '@catrx/ui/form';
+import { BehaviorSubject } from 'rxjs/internal/BehaviorSubject';
+import { PageDatatableExampleService } from './page-datatable-example.service';
 
 @Component({
   templateUrl: 'page-datatable-example.component.html',

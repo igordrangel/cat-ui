@@ -7,4 +7,4 @@ export interface CatToolbarConfig {
 export interface CatToolbarBreadcrumb {
   name: string;
   routerLink?: string;
-};
+}

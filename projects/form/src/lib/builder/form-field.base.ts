@@ -1,6 +1,6 @@
 import {
   CatFormFieldOptions,
-  CatFormFieldTemplateGridType
+  CatFormFieldTemplateGridType,
 } from './form.interface';
 import { CatFormBehavior } from '../common/cat-form-behavior';
 

@@ -42,7 +42,9 @@ export abstract class FieldBase<FormFieldType, ElInputType extends HTMLElement>
     }
   }
 
-  protected customInit() {}
+  protected customInit() {
+    return;
+  }
 
   private async focus() {
     if (this.fieldConfig?.focus) {

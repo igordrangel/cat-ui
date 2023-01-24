@@ -1,5 +1,12 @@
 import { LoaderPageComponent } from './loader-page.component';
-import { ApplicationRef, ComponentFactoryResolver, EmbeddedViewRef, Injectable, InjectionToken, Injector } from '@angular/core';
+import {
+  ApplicationRef,
+  ComponentFactoryResolver,
+  EmbeddedViewRef,
+  Injectable,
+  InjectionToken,
+  Injector,
+} from '@angular/core';
 import { randomString } from '@koalarx/utils/operators/string';
 import { BehaviorSubject } from 'rxjs/internal/BehaviorSubject';
 
@@ -23,7 +30,12 @@ export class CatLoaderPageService {
       .resolveComponentFactory(LoaderPageComponent)
       .create(
         Injector.create({
-          providers: [{ provide: CAT_LOADER_PAGE_CONFIG, useValue: {progress$: this.progress$} }],
+          providers: [
+            {
+              provide: CAT_LOADER_PAGE_CONFIG,
+              useValue: { progress$: this.progress$ },
+            },
+          ],
         })
       );
 
@@ -71,7 +83,7 @@ export class CatLoaderPageService {
         uppercase: true,
         specialCharacters: false,
       });
-    } while (!!document.getElementById(elementId));
+    } while (document.getElementById(elementId));
 
     return elementId;
   }

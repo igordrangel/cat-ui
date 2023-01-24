@@ -40,7 +40,7 @@ export class CatTokenService implements OnDestroy {
     this.setToken(jwtEncode(data, secret));
   }
 
-  public getToken(): BehaviorSubject<string|null> {
+  public getToken(): BehaviorSubject<string | null> {
     return this.token$;
   }
 

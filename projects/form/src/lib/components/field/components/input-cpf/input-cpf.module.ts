@@ -12,7 +12,7 @@ import { NgxMaskModule } from 'ngx-mask';
     CommonModule,
     ReactiveFormsModule,
     FieldContentModule,
-    NgxMaskModule
-  ]
+    NgxMaskModule,
+  ],
 })
 export class InputCpfModule {}

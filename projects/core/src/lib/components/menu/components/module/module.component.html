@@ -1,21 +1,29 @@
-<ul *ngIf="modules?.length > 0" [ngClass]="{collapsed: menuCollapsed | async}">
-  <ng-container *ngFor="let module of modules;let i = index">
+<ul
+  *ngIf="modules?.length > 0"
+  [ngClass]="{ collapsed: menuCollapsed | async }"
+>
+  <ng-container *ngFor="let module of modules; let i = index">
     <li
       #moduleElement
       class="module"
       *ngIf="module.routerLink || module.tools?.length > 0"
       [ngClass]="{
         'has-tools': module.tools?.length > 0,
-        'active': isActive(module)
-      }">
-      <ng-container *ngIf="menuCollapsed | async else showMenuClosed">
-        <a [routerLink]="module.routerLink" routerLinkActive="active" (click)="closeAllModules();moduleElement.classList.toggle('collapsed')">
+        active: isActive(module)
+      }"
+    >
+      <ng-container *ngIf="menuCollapsed | async; else showMenuClosed">
+        <a
+          [routerLink]="module.routerLink"
+          routerLinkActive="active"
+          (click)="
+            closeAllModules(); moduleElement.classList.toggle('collapsed')
+          "
+        >
           <i *ngIf="module.icon" [ngClass]="module.icon"></i>
-          <span>{{module.name}}</span>
+          <span>{{ module.name }}</span>
         </a>
-        <cat-menu-tool
-          *ngIf="module.tools?.length > 0"
-          [tools]="module.tools">
+        <cat-menu-tool *ngIf="module.tools?.length > 0" [tools]="module.tools">
         </cat-menu-tool>
       </ng-container>
 
@@ -26,9 +34,12 @@
             [routerLink]="module.routerLink"
             [catTooltip]="module.name"
             routerLinkActive="active"
-            (click)="closeAllModules();moduleElement.classList.toggle('collapsed')">
+            (click)="
+              closeAllModules(); moduleElement.classList.toggle('collapsed')
+            "
+          >
             <i *ngIf="module.icon" [ngClass]="module.icon"></i>
-            <span>{{module.name}}</span>
+            <span>{{ module.name }}</span>
           </a>
 
           <ng-container content *ngIf="module.tools?.length > 0">

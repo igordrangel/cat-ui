@@ -1,4 +1,4 @@
-import { CatDynamicComponent } from "@catrx/ui/dynamic-component";
+import { CatDynamicComponent } from '@catrx/ui/dynamic-component';
 
 export type ConfirmType = 'yes' | 'no';
 export interface ConfirmResponse {

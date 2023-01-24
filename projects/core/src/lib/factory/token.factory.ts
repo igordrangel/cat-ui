@@ -1,13 +1,11 @@
-import { CatEnvironment } from "@catrx/ui/common";
+import { CatEnvironment } from '@catrx/ui/common';
 
 // @dynamic
 export class TokenFactory {
   private static token?: string;
 
   public static init() {
-    if (
-      !!localStorage.getItem(CatEnvironment.environment?.storageTokenName)
-    ) {
+    if (localStorage.getItem(CatEnvironment.environment?.storageTokenName)) {
       TokenFactory.setToken(
         localStorage.getItem(CatEnvironment.environment?.storageTokenName)
       );

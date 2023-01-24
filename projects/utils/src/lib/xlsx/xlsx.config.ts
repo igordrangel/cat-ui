@@ -2,7 +2,7 @@ export class CatXlsxConfig {
   static config: CatXlsxConfigInterface = {
     headerBackgroundColor: '#ffffff',
     headerFontColor: '#000000',
-    normalizeHeader: true
+    normalizeHeader: true,
   };
 }
 

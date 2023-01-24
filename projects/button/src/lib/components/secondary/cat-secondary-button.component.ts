@@ -1,6 +1,6 @@
-import { CommonModule } from "@angular/common";
-import { Component, Input } from "@angular/core";
-import { CatButtonComponent, CatButtonType } from "../cat-button.component";
+import { CommonModule } from '@angular/common';
+import { Component, Input } from '@angular/core';
+import { CatButtonComponent, CatButtonType } from '../cat-button.component';
 
 @Component({
   selector: 'cat-secondary-button',

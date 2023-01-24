@@ -1,4 +1,4 @@
-import { CatToolbarConfig } from "@catrx/ui/toolbar";
+import { CatToolbarConfig } from '@catrx/ui/toolbar';
 
 export class CatMenuContext {
   static context: CatToolbarConfig;

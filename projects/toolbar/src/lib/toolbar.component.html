@@ -2,20 +2,18 @@
   <div class="info-content">
     <h1>
       <i *ngIf="config.icon" [ngClass]="config.icon" class="mr-8"></i>
-      {{config.title}}
+      {{ config.title }}
     </h1>
     <ol *ngIf="config.breadcrumb" class="breadcrumb">
-      <li
-        *ngFor="let item of config.breadcrumb"
-        class="breadcrumb-item">
-
+      <li *ngFor="let item of config.breadcrumb" class="breadcrumb-item">
         <a
           [routerLink]="item.routerLink"
           [ngClass]="{
             active: router.url === item.routerLink,
             noRoute: !item.routerLink
-          }">
-          {{item.name}}
+          }"
+        >
+          {{ item.name }}
         </a>
       </li>
     </ol>

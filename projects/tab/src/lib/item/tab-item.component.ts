@@ -1,4 +1,4 @@
-import { Component, ElementRef, Input, ComponentRef, Inject, ChangeDetectorRef, ViewRef } from '@angular/core';
+import { Component, ElementRef, Input } from '@angular/core';
 
 @Component({
   selector: 'cat-tab[label]',

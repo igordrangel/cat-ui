@@ -6,6 +6,6 @@ import { ReactiveFormsModule } from '@angular/forms';
 @NgModule({
   declarations: [InputRadioComponent],
   exports: [InputRadioComponent],
-  imports: [CommonModule, ReactiveFormsModule]
+  imports: [CommonModule, ReactiveFormsModule],
 })
 export class InputRadioModule {}

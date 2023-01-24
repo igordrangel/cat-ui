@@ -1,6 +1,17 @@
-import { ApplicationRef, ComponentFactoryResolver, EmbeddedViewRef, Injectable, Injector, Type } from '@angular/core';
+import {
+  ApplicationRef,
+  ComponentFactoryResolver,
+  EmbeddedViewRef,
+  Injectable,
+  Injector,
+  Type,
+} from '@angular/core';
 import { randomString } from '@koalarx/utils/operators/string';
-import { CatSideWindowRef, CAT_SIDE_WINDOW_CONFIG, CAT_SIDE_WINDOW_REF_TOKEN } from './side-window';
+import {
+  CatSideWindowRef,
+  CAT_SIDE_WINDOW_CONFIG,
+  CAT_SIDE_WINDOW_REF_TOKEN,
+} from './side-window';
 import { SideWindowComponent } from './side-window.component';
 
 export interface CatSideWindowConfig {
@@ -26,7 +37,7 @@ export class CatSideWindowService {
             {
               provide: CAT_SIDE_WINDOW_CONFIG,
               useValue: {
-                ...options ?? {},
+                ...(options ?? {}),
                 component,
               },
             },
@@ -64,7 +75,7 @@ export class CatSideWindowService {
         uppercase: true,
         specialCharacters: false,
       });
-    } while (!!document.getElementById(elementId));
+    } while (document.getElementById(elementId));
 
     return elementId;
   }

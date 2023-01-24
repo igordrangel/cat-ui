@@ -1,4 +1,9 @@
-<cat-form-field-content *ngIf="updateComponent$ | async" [control]="control" [config]="fieldConfig" [elInput]="elInput">
+<cat-form-field-content
+  *ngIf="updateComponent$ | async"
+  [control]="control"
+  [config]="fieldConfig"
+  [elInput]="elInput"
+>
   <ng-container field>
     <input
       #inputElement
@@ -9,9 +14,12 @@
       [required]="fieldConfig.required ?? false"
       [minlength]="fieldConfig.minLength ?? null"
       [maxlength]="fieldConfig.maxLength ?? null"
-      [ngClass]="{'is-invalid': control.invalid && !control.untouched && !control.disabled}"
+      [ngClass]="{
+        'is-invalid': control.invalid && !control.untouched && !control.disabled
+      }"
       class="form-control form-control-sm"
       type="search"
-      placeholder="">
+      placeholder=""
+    />
   </ng-container>
 </cat-form-field-content>

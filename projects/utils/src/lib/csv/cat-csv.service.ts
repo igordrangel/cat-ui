@@ -18,7 +18,7 @@ export class CatCsvService {
     }).data;
   }
 
-  public convertJsonToCsv(json: UnparseData, filename: string = 'export') {
+  public convertJsonToCsv(json: UnparseData, filename = 'export') {
     this.downloadCsv(
       new Blob(
         [
@@ -36,9 +36,9 @@ export class CatCsvService {
     );
   }
 
-  private downloadCsv(blob: Blob, filename: string = 'export') {
-    let link = document.createElement('a');
-    let url = URL.createObjectURL(blob);
+  private downloadCsv(blob: Blob, filename = 'export') {
+    const link = document.createElement('a');
+    const url = URL.createObjectURL(blob);
     link.setAttribute('href', url);
     link.setAttribute('download', filename + '.csv');
     link.style.visibility = 'hidden';

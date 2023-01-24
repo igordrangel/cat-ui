@@ -8,7 +8,10 @@ import {
   Output,
   ViewChild,
 } from '@angular/core';
-import { CatFormBehaviorSetValue, CatFormConfig } from './builder/form.interface';
+import {
+  CatFormBehaviorSetValue,
+  CatFormConfig,
+} from './builder/form.interface';
 import {
   FormBuilder,
   FormControl,
@@ -127,7 +130,7 @@ export class FormComponent implements OnInit {
       if (Array.isArray(valueDataByTree)) {
         valueDataByTree.forEach((item, indexItem) => {
           clone(Object.keys(item)).forEach((propItem) => {
-            let prefix = name.substring(0, name.length - 3);
+            const prefix = name.substring(0, name.length - 3);
             let suffix = name.substring(name.length - 3);
             if (suffix === `[${indexItem - 1}]`) {
               suffix = suffix.replace(`[${indexItem - 1}]`, `[${indexItem}]`);
@@ -175,8 +178,7 @@ export class FormComponent implements OnInit {
               );
             });
           });
-        }
-        else if (typeof data[index] === 'object') {
+        } else if (typeof data[index] === 'object') {
           clone(Object.keys(data[index])).forEach((objIndex) => {
             name = this.generateAutofillDataTree(
               data[index],

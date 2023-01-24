@@ -1,7 +1,7 @@
 import { Component, Input } from '@angular/core';
 
 export type CatIconButtonColor =
-  'primary'
+  | 'primary'
   | 'primary-inverse'
   | 'primary-bg-transparent'
   | 'danger'

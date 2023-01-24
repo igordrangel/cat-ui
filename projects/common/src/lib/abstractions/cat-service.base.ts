@@ -1,12 +1,12 @@
-import { Injectable } from "@angular/core";
+import { Injectable } from '@angular/core';
 import { HttpClient, HttpErrorResponse } from '@angular/common/http';
 import { debounceTime, first } from 'rxjs/operators';
-import { CatDatatableDataHttpResponse } from "@catrx/ui/datatable";
-import { Observable } from "rxjs/internal/Observable";
-import { koala } from "@koalarx/utils";
-import { forkJoin } from "rxjs/internal/observable/forkJoin";
-import { lastValueFrom } from "rxjs/internal/lastValueFrom";
-import { CatEnvironment } from "../environments/cat-environment";
+import { CatDatatableDataHttpResponse } from '@catrx/ui/datatable';
+import { Observable } from 'rxjs/internal/Observable';
+import { koala } from '@koalarx/utils';
+import { forkJoin } from 'rxjs/internal/observable/forkJoin';
+import { lastValueFrom } from 'rxjs/internal/lastValueFrom';
+import { CatEnvironment } from '../environments/cat-environment';
 
 class CatDatabaseMockup {
   static database: { [key: string]: any[] } = {};
@@ -44,7 +44,7 @@ class CatServiceMockup {
   }
 
   save<ListType = any>(item: ListType, id?: number) {
-    return new Observable(observe => {
+    return new Observable((observe) => {
       setTimeout(() => {
         if (id) {
           const index = koala(this.getDatabase()).array().getIndex('id', id);
@@ -78,10 +78,7 @@ class CatServiceMockup {
   private getNextId() {
     const lastId = this.getDatabase()
       .map((item) => item.id)
-      .reduce(
-        (a, b) => Math.max(a, b),
-        0
-    );
+      .reduce((a, b) => Math.max(a, b), 0);
     return lastId + 1;
   }
 }
@@ -165,7 +162,9 @@ export abstract class CatServiceBase<
   }
 
   public exportByService<ItemType = any>(
-    service: (page: number) => Observable<CatDatatableDataHttpResponse<ItemType>>,
+    service: (
+      page: number
+    ) => Observable<CatDatatableDataHttpResponse<ItemType>>
   ) {
     return new Observable<number | ItemType[]>((observe) => {
       (async () => {
@@ -196,13 +195,15 @@ export abstract class CatServiceBase<
         } else {
           throw error;
         }
-      })().then((items) => {
-        observe.next(items);
-        observe.complete();
-      }).catch(err => {
-        observe.error(err);
-        observe.complete();
-      });
+      })()
+        .then((items) => {
+          observe.next(items);
+          observe.complete();
+        })
+        .catch((err) => {
+          observe.error(err);
+          observe.complete();
+        });
     });
   }
 
@@ -210,4 +211,3 @@ export abstract class CatServiceBase<
     filter: FilterType
   ): Observable<CatDatatableDataHttpResponse<EntityType>>;
 }
-

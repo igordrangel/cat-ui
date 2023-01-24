@@ -1,5 +1,5 @@
-import { CatEnvironment, CatOAuth2ConfigInterface } from "@catrx/ui/common";
-import { BehaviorSubject } from "rxjs";
+import { CatEnvironment, CatOAuth2ConfigInterface } from '@catrx/ui/common';
+import { BehaviorSubject } from 'rxjs';
 
 // @dynamic
 export class CatOAuth2Config {
@@ -40,7 +40,7 @@ export class CatOAuth2Config {
         scope: null,
         domain: null,
         strictDiscoveryDocumentValidation: false,
-        indexLoginName: 'name'
+        indexLoginName: 'name',
       }
     );
   }

@@ -2,6 +2,6 @@ import { Component } from '@angular/core';
 import { CatComponentBase } from '@catrx/ui/common';
 
 @Component({
-  templateUrl: './page-dropdown.component.html'
+  templateUrl: './page-dropdown.component.html',
 })
-export class PageDropdownComponent extends CatComponentBase { }
+export class PageDropdownComponent extends CatComponentBase {}

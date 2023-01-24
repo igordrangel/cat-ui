@@ -31,6 +31,15 @@
             "tsConfig": "projects/datatable/tsconfig.spec.json",
             "karmaConfig": "projects/datatable/karma.conf.js"
           }
+        },
+        "lint": {
+          "builder": "@angular-eslint/builder:lint",
+          "options": {
+            "lintFilePatterns": [
+              "projects/datatable/**/*.ts",
+              "projects/datatable/**/*.html"
+            ]
+          }
         }
       }
     },
@@ -61,6 +70,15 @@
             "main": "projects/core/src/test.ts",
             "tsConfig": "projects/core/tsconfig.spec.json",
             "karmaConfig": "projects/core/karma.conf.js"
+          }
+        },
+        "lint": {
+          "builder": "@angular-eslint/builder:lint",
+          "options": {
+            "lintFilePatterns": [
+              "projects/core/**/*.ts",
+              "projects/core/**/*.html"
+            ]
           }
         }
       }
@@ -199,6 +217,15 @@
             ],
             "scripts": []
           }
+        },
+        "lint": {
+          "builder": "@angular-eslint/builder:lint",
+          "options": {
+            "lintFilePatterns": [
+              "projects/cat-ui/**/*.ts",
+              "projects/cat-ui/**/*.html"
+            ]
+          }
         }
       }
     },
@@ -230,6 +257,15 @@
             "tsConfig": "projects/dynamic-component/tsconfig.spec.json",
             "karmaConfig": "projects/dynamic-component/karma.conf.js"
           }
+        },
+        "lint": {
+          "builder": "@angular-eslint/builder:lint",
+          "options": {
+            "lintFilePatterns": [
+              "projects/dynamic-component/**/*.ts",
+              "projects/dynamic-component/**/*.html"
+            ]
+          }
         }
       }
     },
@@ -237,7 +273,7 @@
       "projectType": "library",
       "root": "projects/icon-button",
       "sourceRoot": "projects/icon-button/src",
-      "prefix": "lib",
+      "prefix": "cat",
       "architect": {
         "build": {
           "builder": "@angular-devkit/build-angular:ng-packagr",
@@ -261,6 +297,15 @@
             "tsConfig": "projects/icon-button/tsconfig.spec.json",
             "karmaConfig": "projects/icon-button/karma.conf.js"
           }
+        },
+        "lint": {
+          "builder": "@angular-eslint/builder:lint",
+          "options": {
+            "lintFilePatterns": [
+              "projects/icon-button/**/*.ts",
+              "projects/icon-button/**/*.html"
+            ]
+          }
         }
       }
     },
@@ -268,7 +313,7 @@
       "projectType": "library",
       "root": "projects/loader",
       "sourceRoot": "projects/loader/src",
-      "prefix": "lib",
+      "prefix": "cat",
       "architect": {
         "build": {
           "builder": "@angular-devkit/build-angular:ng-packagr",
@@ -292,6 +337,15 @@
             "tsConfig": "projects/loader/tsconfig.spec.json",
             "karmaConfig": "projects/loader/karma.conf.js"
           }
+        },
+        "lint": {
+          "builder": "@angular-eslint/builder:lint",
+          "options": {
+            "lintFilePatterns": [
+              "projects/loader/**/*.ts",
+              "projects/loader/**/*.html"
+            ]
+          }
         }
       }
     },
@@ -299,7 +353,7 @@
       "projectType": "library",
       "root": "projects/form",
       "sourceRoot": "projects/form/src",
-      "prefix": "lib",
+      "prefix": "cat",
       "architect": {
         "build": {
           "builder": "@angular-devkit/build-angular:ng-packagr",
@@ -323,6 +377,15 @@
             "tsConfig": "projects/form/tsconfig.spec.json",
             "karmaConfig": "projects/form/karma.conf.js"
           }
+        },
+        "lint": {
+          "builder": "@angular-eslint/builder:lint",
+          "options": {
+            "lintFilePatterns": [
+              "projects/form/**/*.ts",
+              "projects/form/**/*.html"
+            ]
+          }
         }
       }
     },
@@ -330,7 +393,7 @@
       "projectType": "library",
       "root": "projects/toolbar",
       "sourceRoot": "projects/toolbar/src",
-      "prefix": "lib",
+      "prefix": "cat",
       "architect": {
         "build": {
           "builder": "@angular-devkit/build-angular:ng-packagr",
@@ -356,6 +419,15 @@
               "zone.js/testing"
             ]
           }
+        },
+        "lint": {
+          "builder": "@angular-eslint/builder:lint",
+          "options": {
+            "lintFilePatterns": [
+              "projects/toolbar/**/*.ts",
+              "projects/toolbar/**/*.html"
+            ]
+          }
         }
       }
     },
@@ -363,7 +435,7 @@
       "projectType": "library",
       "root": "projects/dialog",
       "sourceRoot": "projects/dialog/src",
-      "prefix": "lib",
+      "prefix": "cat",
       "architect": {
         "build": {
           "builder": "@angular-devkit/build-angular:ng-packagr",
@@ -389,6 +461,15 @@
               "zone.js/testing"
             ]
           }
+        },
+        "lint": {
+          "builder": "@angular-eslint/builder:lint",
+          "options": {
+            "lintFilePatterns": [
+              "projects/dialog/**/*.ts",
+              "projects/dialog/**/*.html"
+            ]
+          }
         }
       }
     },
@@ -396,7 +477,7 @@
       "projectType": "library",
       "root": "projects/confirm",
       "sourceRoot": "projects/confirm/src",
-      "prefix": "lib",
+      "prefix": "cat",
       "architect": {
         "build": {
           "builder": "@angular-devkit/build-angular:ng-packagr",
@@ -422,6 +503,15 @@
               "zone.js/testing"
             ]
           }
+        },
+        "lint": {
+          "builder": "@angular-eslint/builder:lint",
+          "options": {
+            "lintFilePatterns": [
+              "projects/confirm/**/*.ts",
+              "projects/confirm/**/*.html"
+            ]
+          }
         }
       }
     },
@@ -429,7 +519,7 @@
       "projectType": "library",
       "root": "projects/common",
       "sourceRoot": "projects/common/src",
-      "prefix": "lib",
+      "prefix": "cat",
       "architect": {
         "build": {
           "builder": "@angular-devkit/build-angular:ng-packagr",
@@ -455,6 +545,15 @@
               "zone.js/testing"
             ]
           }
+        },
+        "lint": {
+          "builder": "@angular-eslint/builder:lint",
+          "options": {
+            "lintFilePatterns": [
+              "projects/common/**/*.ts",
+              "projects/common/**/*.html"
+            ]
+          }
         }
       }
     },
@@ -462,7 +561,7 @@
       "projectType": "library",
       "root": "projects/utils",
       "sourceRoot": "projects/utils/src",
-      "prefix": "lib",
+      "prefix": "cat",
       "architect": {
         "build": {
           "builder": "@angular-devkit/build-angular:ng-packagr",
@@ -488,6 +587,15 @@
               "zone.js/testing"
             ]
           }
+        },
+        "lint": {
+          "builder": "@angular-eslint/builder:lint",
+          "options": {
+            "lintFilePatterns": [
+              "projects/utils/**/*.ts",
+              "projects/utils/**/*.html"
+            ]
+          }
         }
       }
     },
@@ -495,7 +603,7 @@
       "projectType": "library",
       "root": "projects/button",
       "sourceRoot": "projects/button/src",
-      "prefix": "lib",
+      "prefix": "cat",
       "architect": {
         "build": {
           "builder": "@angular-devkit/build-angular:ng-packagr",
@@ -521,6 +629,15 @@
               "zone.js/testing"
             ]
           }
+        },
+        "lint": {
+          "builder": "@angular-eslint/builder:lint",
+          "options": {
+            "lintFilePatterns": [
+              "projects/button/**/*.ts",
+              "projects/button/**/*.html"
+            ]
+          }
         }
       }
     },
@@ -528,7 +645,7 @@
       "projectType": "library",
       "root": "projects/loader-page",
       "sourceRoot": "projects/loader-page/src",
-      "prefix": "lib",
+      "prefix": "cat",
       "architect": {
         "build": {
           "builder": "@angular-devkit/build-angular:ng-packagr",
@@ -554,6 +671,15 @@
               "zone.js/testing"
             ]
           }
+        },
+        "lint": {
+          "builder": "@angular-eslint/builder:lint",
+          "options": {
+            "lintFilePatterns": [
+              "projects/loader-page/**/*.ts",
+              "projects/loader-page/**/*.html"
+            ]
+          }
         }
       }
     },
@@ -561,7 +687,7 @@
       "projectType": "library",
       "root": "projects/snackbar",
       "sourceRoot": "projects/snackbar/src",
-      "prefix": "lib",
+      "prefix": "cat",
       "architect": {
         "build": {
           "builder": "@angular-devkit/build-angular:ng-packagr",
@@ -587,6 +713,15 @@
               "zone.js/testing"
             ]
           }
+        },
+        "lint": {
+          "builder": "@angular-eslint/builder:lint",
+          "options": {
+            "lintFilePatterns": [
+              "projects/snackbar/**/*.ts",
+              "projects/snackbar/**/*.html"
+            ]
+          }
         }
       }
     },
@@ -594,7 +729,7 @@
       "projectType": "library",
       "root": "projects/alert",
       "sourceRoot": "projects/alert/src",
-      "prefix": "lib",
+      "prefix": "cat",
       "architect": {
         "build": {
           "builder": "@angular-devkit/build-angular:ng-packagr",
@@ -620,6 +755,15 @@
               "zone.js/testing"
             ]
           }
+        },
+        "lint": {
+          "builder": "@angular-eslint/builder:lint",
+          "options": {
+            "lintFilePatterns": [
+              "projects/alert/**/*.ts",
+              "projects/alert/**/*.html"
+            ]
+          }
         }
       }
     },
@@ -627,7 +771,7 @@
       "projectType": "library",
       "root": "projects/side-window",
       "sourceRoot": "projects/side-window/src",
-      "prefix": "lib",
+      "prefix": "cat",
       "architect": {
         "build": {
           "builder": "@angular-devkit/build-angular:ng-packagr",
@@ -653,6 +797,15 @@
               "zone.js/testing"
             ]
           }
+        },
+        "lint": {
+          "builder": "@angular-eslint/builder:lint",
+          "options": {
+            "lintFilePatterns": [
+              "projects/side-window/**/*.ts",
+              "projects/side-window/**/*.html"
+            ]
+          }
         }
       }
     },
@@ -660,7 +813,7 @@
       "projectType": "library",
       "root": "projects/dropdown",
       "sourceRoot": "projects/dropdown/src",
-      "prefix": "lib",
+      "prefix": "cat",
       "architect": {
         "build": {
           "builder": "@angular-devkit/build-angular:ng-packagr",
@@ -686,6 +839,15 @@
               "zone.js/testing"
             ]
           }
+        },
+        "lint": {
+          "builder": "@angular-eslint/builder:lint",
+          "options": {
+            "lintFilePatterns": [
+              "projects/dropdown/**/*.ts",
+              "projects/dropdown/**/*.html"
+            ]
+          }
         }
       }
     },
@@ -693,7 +855,7 @@
       "projectType": "library",
       "root": "projects/tooltip",
       "sourceRoot": "projects/tooltip/src",
-      "prefix": "lib",
+      "prefix": "cat",
       "architect": {
         "build": {
           "builder": "@angular-devkit/build-angular:ng-packagr",
@@ -719,6 +881,15 @@
               "zone.js/testing"
             ]
           }
+        },
+        "lint": {
+          "builder": "@angular-eslint/builder:lint",
+          "options": {
+            "lintFilePatterns": [
+              "projects/tooltip/**/*.ts",
+              "projects/tooltip/**/*.html"
+            ]
+          }
         }
       }
     },
@@ -726,7 +897,7 @@
       "projectType": "library",
       "root": "projects/chip",
       "sourceRoot": "projects/chip/src",
-      "prefix": "lib",
+      "prefix": "cat",
       "architect": {
         "build": {
           "builder": "@angular-devkit/build-angular:ng-packagr",
@@ -752,6 +923,15 @@
               "zone.js/testing"
             ]
           }
+        },
+        "lint": {
+          "builder": "@angular-eslint/builder:lint",
+          "options": {
+            "lintFilePatterns": [
+              "projects/chip/**/*.ts",
+              "projects/chip/**/*.html"
+            ]
+          }
         }
       }
     },
@@ -759,7 +939,7 @@
       "projectType": "library",
       "root": "projects/tab",
       "sourceRoot": "projects/tab/src",
-      "prefix": "lib",
+      "prefix": "cat",
       "architect": {
         "build": {
           "builder": "@angular-devkit/build-angular:ng-packagr",
@@ -785,6 +965,15 @@
               "zone.js/testing"
             ]
           }
+        },
+        "lint": {
+          "builder": "@angular-eslint/builder:lint",
+          "options": {
+            "lintFilePatterns": [
+              "projects/tab/**/*.ts",
+              "projects/tab/**/*.html"
+            ]
+          }
         }
       }
     },
@@ -792,7 +981,7 @@
       "projectType": "library",
       "root": "projects/stepper",
       "sourceRoot": "projects/stepper/src",
-      "prefix": "lib",
+      "prefix": "cat",
       "architect": {
         "build": {
           "builder": "@angular-devkit/build-angular:ng-packagr",
@@ -818,6 +1007,15 @@
               "zone.js/testing"
             ]
           }
+        },
+        "lint": {
+          "builder": "@angular-eslint/builder:lint",
+          "options": {
+            "lintFilePatterns": [
+              "projects/stepper/**/*.ts",
+              "projects/stepper/**/*.html"
+            ]
+          }
         }
       }
     },
@@ -825,7 +1023,7 @@
       "projectType": "library",
       "root": "projects/expansive-panel",
       "sourceRoot": "projects/expansive-panel/src",
-      "prefix": "lib",
+      "prefix": "cat",
       "architect": {
         "build": {
           "builder": "@angular-devkit/build-angular:ng-packagr",
@@ -851,8 +1049,22 @@
               "zone.js/testing"
             ]
           }
+        },
+        "lint": {
+          "builder": "@angular-eslint/builder:lint",
+          "options": {
+            "lintFilePatterns": [
+              "projects/expansive-panel/**/*.ts",
+              "projects/expansive-panel/**/*.html"
+            ]
+          }
         }
       }
     }
+  },
+  "cli": {
+    "schematicCollections": [
+      "@angular-eslint/schematics"
+    ]
   }
 }

@@ -2,10 +2,10 @@
 // `ng build` replaces `environment.ts` with `environment.prod.ts`.
 // The list of file replacements can be found in `angular.json`.
 
-import { CatEnvironmentInterface } from "@catrx/ui/common";
+import { CatEnvironmentInterface } from '@catrx/ui/common';
 
 export const environment: CatEnvironmentInterface = {
-  production: false
+  production: false,
 };
 
 /*

@@ -7,7 +7,13 @@ import {
 } from '@angular/core';
 import { delay } from '@koalarx/utils/operators/delay';
 import { BehaviorSubject, interval, Subject, takeUntil } from 'rxjs';
-import { AppConfig, CatThemeType, AppConfigMenu, AppNotification, AppContainerConfig } from '../../factory/app-config.interface';
+import {
+  AppConfig,
+  CatThemeType,
+  AppConfigMenu,
+  AppNotification,
+  AppContainerConfig,
+} from '../../factory/app-config.interface';
 import { CatOAuth2Config } from '../../services/openid/cat-oauth2.config';
 import { CatOAuth2Service } from '../../services/openid/cat-oauth2.service';
 import {
@@ -184,7 +190,9 @@ export class AppContainerComponent implements OnInit {
     if (!CatOAuth2Config.hasConfig()) {
       setTimeout(() => {
         if (this.config.authSettings.autoAuth) {
-          this.oauth2Service.initLoginFlow(this.config.authSettings.openId.service);
+          this.oauth2Service.initLoginFlow(
+            this.config.authSettings.openId.service
+          );
         }
       }, 3000);
     }
@@ -253,7 +261,7 @@ export class AppContainerComponent implements OnInit {
   }
 
   private getClaimsAndBuildMenu(logged: boolean) {
-    return new Promise(resolve => {
+    return new Promise((resolve) => {
       if (logged) {
         this.getClaims()
           .then(async () => {

@@ -1,5 +1,8 @@
 import { Injectable } from '@angular/core';
-import { AppAuthSettings, AppOptions } from '../../factory/app-config.interface';
+import {
+  AppAuthSettings,
+  AppOptions,
+} from '../../factory/app-config.interface';
 import { AppFactory } from '../../factory/app.factory';
 
 @Injectable()

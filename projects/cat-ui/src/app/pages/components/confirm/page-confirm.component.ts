@@ -3,7 +3,7 @@ import { CatConfirmService } from '@catrx/ui/confirm';
 import { CatComponentBase } from '@catrx/ui/common';
 
 @Component({
-  templateUrl: './page-confirm.component.html'
+  templateUrl: './page-confirm.component.html',
 })
 export class PageConfirmComponent extends CatComponentBase {
   constructor(private confirmService: CatConfirmService) {
@@ -14,7 +14,7 @@ export class PageConfirmComponent extends CatComponentBase {
     this.confirmService.ask(
       'Você deseja mesmo continuar?',
       () => alert('Clicou em Sim'),
-      {noCb: () => alert('Clicou em Não')}
+      { noCb: () => alert('Clicou em Não') }
     );
   }
 }

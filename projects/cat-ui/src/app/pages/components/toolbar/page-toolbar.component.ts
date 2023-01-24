@@ -3,7 +3,7 @@ import { ActivatedRoute } from '@angular/router';
 import { CatComponentBase } from '@catrx/ui/common';
 
 @Component({
-  templateUrl: './page-toolbar.component.html'
+  templateUrl: './page-toolbar.component.html',
 })
 export class PageToolbarComponent extends CatComponentBase implements OnInit {
   isSubpage: boolean;
@@ -13,8 +13,8 @@ export class PageToolbarComponent extends CatComponentBase implements OnInit {
   }
 
   ngOnInit(): void {
-    this.activatedRoute.paramMap.subscribe(map => {
+    this.activatedRoute.paramMap.subscribe((map) => {
       this.isSubpage = !!map?.['params']?.['subpage'];
-    })
+    });
   }
 }

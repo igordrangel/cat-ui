@@ -6,9 +6,7 @@ import { DialogComponent } from './dialog.component';
 @NgModule({
   declarations: [DialogComponent],
   exports: [DialogComponent],
-  imports: [
-    CommonModule
-  ],
-  providers: [CatDialogService]
+  imports: [CommonModule],
+  providers: [CatDialogService],
 })
-export class CatDialogModule { }
+export class CatDialogModule {}

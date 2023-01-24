@@ -1,4 +1,4 @@
-import { CatFormListOptions } from "@catrx/ui/form";
+import { CatFormListOptions } from '@catrx/ui/form';
 
 export interface CatFilter {
   filter?: string;

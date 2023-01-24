@@ -1,4 +1,7 @@
-import { AppConfigMenuModule, AppConfigMenuTool } from './../../../../factory/app-config.interface';
+import {
+  AppConfigMenuModule,
+  AppConfigMenuTool,
+} from './../../../../factory/app-config.interface';
 import { Component, Input } from '@angular/core';
 import { BehaviorSubject } from 'rxjs/internal/BehaviorSubject';
 

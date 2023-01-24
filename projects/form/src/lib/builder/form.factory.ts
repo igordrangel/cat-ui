@@ -6,7 +6,7 @@ import {
   CatFormFieldTemplateGridType,
   CatFormFieldType,
   CatFormItemListOptions,
-  CatFormTextareaOptions
+  CatFormTextareaOptions,
 } from './form.interface';
 import { FormFieldService } from './form-field.service';
 import { Subject, Observable } from 'rxjs';

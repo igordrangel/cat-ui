@@ -7,10 +7,6 @@ import { PageSideWindowRoutingModule } from './page-side-window.routing.module';
 
 @NgModule({
   declarations: [PageSideWindowComponent, SideWindowExampleComponent],
-  imports: [
-    CommonModule,
-    CatToolbarModule,
-    PageSideWindowRoutingModule
-  ],
+  imports: [CommonModule, CatToolbarModule, PageSideWindowRoutingModule],
 })
 export class PageSideWindowModule {}

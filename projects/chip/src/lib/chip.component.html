@@ -1,5 +1,5 @@
 <div class="cat-chip" [ngClass]="data?.color ?? color">
-  <ng-container *ngIf="data else defaultContent">
+  <ng-container *ngIf="data; else defaultContent">
     <span [innerHTML]="data.text"></span>
   </ng-container>
 

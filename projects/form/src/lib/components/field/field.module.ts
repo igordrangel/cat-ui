@@ -19,7 +19,7 @@ import { InputPasswordModule } from './components/input-password/input-password.
 import { InputSearchModule } from './components/input-search/input-search.module';
 
 const maskOptions: Partial<IConfig> | (() => Partial<IConfig>) = {
-  validation: false
+  validation: false,
 };
 
 @NgModule({
@@ -42,7 +42,7 @@ const maskOptions: Partial<IConfig> | (() => Partial<IConfig>) = {
     InputFileModule,
     InputSelectModule,
     InputAutocompleteModule,
-    NgxMaskModule.forRoot(maskOptions)
-  ]
+    NgxMaskModule.forRoot(maskOptions),
+  ],
 })
 export class FieldModule {}

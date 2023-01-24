@@ -1,5 +1,10 @@
 import { Component, Inject } from '@angular/core';
-import { CatDialogRef, CatDialogService, CatDialogSize, CAT_DIALOG_DATA } from '@catrx/ui/dialog';
+import {
+  CatDialogRef,
+  CatDialogService,
+  CatDialogSize,
+  CAT_DIALOG_DATA,
+} from '@catrx/ui/dialog';
 import { CatFormService } from '@catrx/ui/form';
 
 interface FormData {
@@ -31,7 +36,7 @@ export class DialogExampleComponent {
 
   constructor(
     @Inject(CAT_DIALOG_DATA) public data: string,
-    private dialogRef: CatDialogRef<DialogExampleComponent>,
+    private dialogRef: CatDialogRef,
     private dialogService: CatDialogService,
     private formService: CatFormService
   ) {}

@@ -9,7 +9,8 @@
     <cat-icon-button
       (click)="deleteSelected()"
       icon="fa-solid fa-trash-can"
-      tooltip="Excluir Selecionados">
+      tooltip="Excluir Selecionados"
+    >
     </cat-icon-button>
   </nav>
 
@@ -18,7 +19,8 @@
       *ngIf="datasource?.length > 0"
       (click)="export('Lista de Gatos')"
       icon="fa-solid fa-download"
-      tooltip="Exportar Lista">
+      tooltip="Exportar Lista"
+    >
     </cat-icon-button>
   </nav>
 </cat-datatable>

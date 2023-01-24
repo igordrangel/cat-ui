@@ -1,12 +1,19 @@
-import { CommonModule } from "@angular/common";
+import { CommonModule } from '@angular/common';
 import { Component, Inject, ViewChild } from '@angular/core';
-import { CatPrimaryButtonComponent, CatSecondaryButtonComponent } from "@catrx/ui/button";
-import { CatDialogModule, CatDialogRef, CAT_DIALOG_DATA } from "@catrx/ui/dialog";
-import { CatFormModule, FormComponent } from "@catrx/ui/form";
-import { CatDialogFormConfig } from "./cat-dialog-form.interface";
+import {
+  CatPrimaryButtonComponent,
+  CatSecondaryButtonComponent,
+} from '@catrx/ui/button';
+import {
+  CatDialogModule,
+  CatDialogRef,
+  CAT_DIALOG_DATA,
+} from '@catrx/ui/dialog';
+import { CatFormModule, FormComponent } from '@catrx/ui/form';
+import { CatDialogFormConfig } from './cat-dialog-form.interface';
 import { BehaviorSubject } from 'rxjs';
-import { CatSnackbarService } from "@catrx/ui/snackbar";
-import { HttpErrorResponse } from "@angular/common/http";
+import { CatSnackbarService } from '@catrx/ui/snackbar';
+import { HttpErrorResponse } from '@angular/common/http';
 
 @Component({
   template: `<form (submit)="$event.preventDefault(); submit()">
@@ -57,7 +64,7 @@ export class CatDialogFormComponent {
 
   constructor(
     @Inject(CAT_DIALOG_DATA) public config: CatDialogFormConfig,
-    public dialogRef: CatDialogRef<CatDialogFormComponent>,
+    public dialogRef: CatDialogRef,
     private snackbarService: CatSnackbarService
   ) {}
 

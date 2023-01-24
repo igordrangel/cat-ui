@@ -1,4 +1,12 @@
-import { ApplicationRef, ComponentFactoryResolver, EmbeddedViewRef, Inject, Injectable, InjectionToken, Injector } from '@angular/core';
+import {
+  ApplicationRef,
+  ComponentFactoryResolver,
+  EmbeddedViewRef,
+  Inject,
+  Injectable,
+  InjectionToken,
+  Injector,
+} from '@angular/core';
 import { randomString } from '@koalarx/utils/operators/string';
 import { SnackbarComponent } from './snackbar.component';
 
@@ -14,7 +22,7 @@ export interface CatSnackbarConfig {
 }
 
 @Injectable()
-export class CatSnackbarRef<SnackbarRef> {
+export class CatSnackbarRef {
   constructor(
     @Inject(CAT_SNACKBAR_CONFIG) private config: CatSnackbarConfig,
     @Inject(CAT_SNACKBAR_REF_TOKEN) private elementId: string
@@ -60,7 +68,8 @@ export class CatSnackbarService {
 
     this.appRef.attachView(componentRef.hostView);
 
-    const elDialog = (componentRef.hostView as EmbeddedViewRef<any>).rootNodes[0] as HTMLElement;
+    const elDialog = (componentRef.hostView as EmbeddedViewRef<any>)
+      .rootNodes[0] as HTMLElement;
     elDialog.id = elementId;
 
     main.appendChild(elDialog);
@@ -82,7 +91,7 @@ export class CatSnackbarService {
         uppercase: true,
         specialCharacters: false,
       });
-    } while (!!document.getElementById(elementId));
+    } while (document.getElementById(elementId));
 
     return elementId;
   }

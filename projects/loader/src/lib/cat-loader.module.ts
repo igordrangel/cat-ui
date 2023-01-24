@@ -3,6 +3,6 @@ import { LoaderComponent } from './loader.component';
 
 @NgModule({
   declarations: [LoaderComponent],
-  exports: [LoaderComponent]
+  exports: [LoaderComponent],
 })
-export class CatLoaderModule { }
+export class CatLoaderModule {}

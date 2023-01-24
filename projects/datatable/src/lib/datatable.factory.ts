@@ -1,12 +1,14 @@
 import {
   DatatableActionButtonConfig,
   DatatableConfig,
-  DatatableData, CatDatatableDataHttpResponse, CatDatatableSelection,
-  DatatableTypeDataList
-} from "./cat-datatable.interface";
-import { CatDynamicComponent } from "@catrx/ui/dynamic-component";
-import { Observable } from "rxjs/internal/Observable";
-import { BehaviorSubject } from "rxjs/internal/BehaviorSubject";
+  DatatableData,
+  CatDatatableDataHttpResponse,
+  CatDatatableSelection,
+  DatatableTypeDataList,
+} from './cat-datatable.interface';
+import { CatDynamicComponent } from '@catrx/ui/dynamic-component';
+import { Observable } from 'rxjs/internal/Observable';
+import { BehaviorSubject } from 'rxjs/internal/BehaviorSubject';
 
 export class DatatableFactory<FilterType = any, DataType = any> {
   private config: DatatableConfig<DataType>;
@@ -23,7 +25,7 @@ export class DatatableFactory<FilterType = any, DataType = any> {
       service,
       typeDataList: loadType,
       limitItemPerPage: 30,
-      reloadList: new BehaviorSubject({reload: false})
+      reloadList: new BehaviorSubject({ reload: false }),
     } as DatatableConfig<DataType>;
   }
 

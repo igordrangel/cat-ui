@@ -7,14 +7,17 @@ import { environment } from '../environments/environment';
 
 @NgModule({
   declarations: [AppComponent],
-  imports: [CatUiModule.forRoot(environment, {
-    xlsxConfig: {
-      headerBackgroundColor: '#212121',
-      headerFontColor: '#f1f1f1',
-      normalizeHeader: true,
-      password: '123'
-    }
-  }), AppRoutingModule],
+  imports: [
+    CatUiModule.forRoot(environment, {
+      xlsxConfig: {
+        headerBackgroundColor: '#212121',
+        headerFontColor: '#f1f1f1',
+        normalizeHeader: true,
+        password: '123',
+      },
+    }),
+    AppRoutingModule,
+  ],
   bootstrap: [AppComponent],
 })
 export class AppModule {}

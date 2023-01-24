@@ -1,4 +1,9 @@
-import { CatFormBehaviorAsyncValidator, CatFormBehaviorOptions, CatFormBehaviorSetValue, CatFormBehaviorValidator } from '../builder/form.interface';
+import {
+  CatFormBehaviorAsyncValidator,
+  CatFormBehaviorOptions,
+  CatFormBehaviorSetValue,
+  CatFormBehaviorValidator,
+} from '../builder/form.interface';
 import { Subject } from 'rxjs';
 export class CatFormBehavior {
   private options: CatFormBehaviorOptions = {};

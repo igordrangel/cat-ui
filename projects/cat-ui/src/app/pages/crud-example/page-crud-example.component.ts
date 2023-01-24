@@ -39,7 +39,8 @@ export class PageCRUDExampleComponent extends CatCRUDComponentBase<
     .setColumns(['Foto', 'Sexo', 'Raça'])
     .setItemLine({
       columnIndex: 0,
-      component: (item) => new CatDynamicComponent(CatPhotoComponent, item.photo),
+      component: (item) =>
+        new CatDynamicComponent(CatPhotoComponent, item.photo),
     })
     .setItemLine({ columnIndex: 1, text: (item) => item.sex })
     .setItemLine({ columnIndex: 2, text: (item) => item.race })
@@ -78,7 +79,10 @@ export class PageCRUDExampleComponent extends CatCRUDComponentBase<
   }
 
   export(filename: string): void {
-    this.exportByService({ xlsx: { filename, sheetName: 'Gatos' } }, this.service.export());
+    this.exportByService(
+      { xlsx: { filename, sheetName: 'Gatos' } },
+      this.service.export()
+    );
   }
 
   openDialog(data?: Cat) {
