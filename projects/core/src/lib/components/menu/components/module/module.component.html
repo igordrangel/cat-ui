@@ -28,11 +28,13 @@
       </ng-container>
 
       <ng-template #showMenuClosed>
-        <cat-dropdown [insideClick]="false" position="top right">
+        <ng-container
+          *ngIf="module.tools?.length ?? 0 === 0; else menuWithDropdown"
+        >
           <a
-            trigger
             [routerLink]="module.routerLink"
             [catTooltip]="module.name"
+            catTooltipPosition="right"
             routerLinkActive="active"
             (click)="
               closeAllModules(); moduleElement.classList.toggle('collapsed')
@@ -41,11 +43,29 @@
             <i *ngIf="module.icon" [ngClass]="module.icon"></i>
             <span>{{ module.name }}</span>
           </a>
+        </ng-container>
 
-          <ng-container content *ngIf="module.tools?.length > 0">
-            <cat-menu-tool [tools]="module.tools"></cat-menu-tool>
-          </ng-container>
-        </cat-dropdown>
+        <ng-template #menuWithDropdown>
+          <cat-dropdown [insideClick]="false" position="top right">
+            <a
+              trigger
+              [routerLink]="module.routerLink"
+              [catTooltip]="module.name"
+              catTooltipPosition="right"
+              routerLinkActive="active"
+              (click)="
+                closeAllModules(); moduleElement.classList.toggle('collapsed')
+              "
+            >
+              <i *ngIf="module.icon" [ngClass]="module.icon"></i>
+              <span>{{ module.name }}</span>
+            </a>
+
+            <ng-container content>
+              <cat-menu-tool [tools]="module.tools"></cat-menu-tool>
+            </ng-container>
+          </cat-dropdown>
+        </ng-template>
       </ng-template>
     </li>
   </ng-container>
