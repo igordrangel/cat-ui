@@ -136,6 +136,9 @@ export class MenuComponent implements OnInit, OnChanges {
           if (module.tools?.length > 0) {
             module.tools = this.getTools(module.tools);
           }
+          if (module.routerLink) {
+            CatRoutePolice.enableRoutes.push(module.routerLink);
+          }
           return module;
         })
         .clearEmptyValues()
