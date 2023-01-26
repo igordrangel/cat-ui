@@ -56,7 +56,7 @@ fs.writeFileSync('dist/package.json', JSON.stringify({
   },
   "dependencies": {
     "@fortawesome/fontawesome-free": "^6.2.1",
-    "@koalarx/utils": "^1.0.101",
+    "@koalarx/utils": "^1.1.0",
     "@ng-select/ng-select": "^10.0.1",
     "animate.css": "^4.1.1",
     "b64-to-blob": "^1.2.19",
