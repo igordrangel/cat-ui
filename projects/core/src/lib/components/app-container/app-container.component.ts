@@ -71,6 +71,8 @@ export class AppContainerComponent implements OnInit {
       } else {
         this.themeActive$.next('light');
       }
+    } else {
+      this.themeActive$.next(this.config.defaultTheme ?? 'light');
     }
 
     if (this.config.authSettings.openId) {
