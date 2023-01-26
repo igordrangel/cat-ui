@@ -62,7 +62,9 @@ export class AppContainerComponent implements OnInit {
     private oauth2Service: CatOAuth2Service,
     private tokenService: CatTokenService,
     private notificationService: NotificationService
-  ) {
+  ) {}
+
+  ngOnInit() {
     if (window.matchMedia && this.config.darkMode) {
       if (window.matchMedia('(prefers-color-scheme: dark)').matches) {
         this.themeActive$.next('dark');
@@ -70,9 +72,7 @@ export class AppContainerComponent implements OnInit {
         this.themeActive$.next('light');
       }
     }
-  }
 
-  ngOnInit() {
     if (this.config.authSettings.openId) {
       this.startOpenID();
     }
