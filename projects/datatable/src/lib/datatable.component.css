@@ -29,10 +29,10 @@ table tr .checkbox label::before {margin-left: -19px!important;}
 table .fake-line td {padding: 0;border: none;}
 table .fake-line {border: none;--bs-table-hover-bg: transparent;--bs-table-hover-color: var(--font-color);}
 .page-size-content {display: flex;justify-content: flex-start;align-items: center;padding: 0;box-sizing: border-box;}
-.page-size-content label {white-space: nowrap;font-size: 8pt;text-transform: uppercase;color: var(--font-color);}
+.page-size-content label {white-space: nowrap;font-size: 8pt;text-transform: uppercase;color: var(--c-datatable-th);}
 .page-size-content select {margin-left: 8px;width: fit-content;}
 .pagination-content {display: flex;align-items: center;justify-content: flex-end;padding-right: 10px;white-space: nowrap;}
-.pagination-content span.page-info {font-size: 9pt;line-height: 10pt;color: var(--font-color);border-radius: 50px;padding: 5px 10px;margin-right: 10px;box-sizing: border-box;}
+.pagination-content span.page-info {font-size: 9pt;line-height: 10pt;color: var(--c-datatable-th);border-radius: 50px;padding: 5px 10px;margin-right: 10px;box-sizing: border-box;}
 
 .datatable-loader {display: flex;justify-content: center;align-items: center;width: calc(100% - 1px);height: 474px;background-color: rgba(0,0,0,.2);z-index: 1;box-sizing: border-box;}
 
