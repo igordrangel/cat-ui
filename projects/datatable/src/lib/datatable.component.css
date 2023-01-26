@@ -3,27 +3,24 @@
   justify-content: flex-start;
   align-items: center;
   padding: 0 8px;
-  border: 1px solid var(--shadow-color);
-  border-left: none;
-  border-right: none;
 }
 
-.table-container {overflow: auto;height: 553px;width: 100%;position: relative;}
+.table-container {overflow: auto;max-height: 553px;width: 100%;position: relative;}
 table {position: relative;border-collapse: collapse;margin-bottom: 0;color: var(--font-color);}
 table thead,
 table tfoot {position: relative;z-index: 1;}
 table .sorted {background: var(--bg-datatable-th);}
-table th {position: sticky;top: -1px;background: var(--bg-datatable-th);color: var(--c-datatable-th);font-weight: normal;box-shadow: inset 0 1px 0 var(--border-color-datatable-th), inset 0 -1px 0 var(--border-color-datatable-th);border: none;height: 35px;}
+table th {position: sticky;top: -1px;background: var(--bg-datatable-th);color: var(--c-datatable-th);font-weight: normal;border: none;height: 35px;}
 table th.sorted {color: var(--primary-color);font-weight: bold;}
 table th i {margin-left: 8px;}
 table th .content-header {display: flex;justify-content: flex-start;align-items: center;}
 table th:not(.selection) {font-size: 9pt;line-height: 9px;}
 table th.sortable {cursor: pointer;}
 table tfoot {position: sticky;bottom: -1px;border: none;}
-table tfoot td {background: var(--bg-datatable-th);padding: 0;box-shadow: inset 0 1px 0 var(--border-color-datatable-th), inset 0 -1px 0 var(--border-color-datatable-th);border: none;}
-table tr {border: 1px solid var(--border-color-datatable-th);}
+table tfoot td {background: var(--bg-datatable-th);padding: 0;border: none;}
+table tr {border: none;}
 table tr th,
-table tr td {padding: 5px 15px;vertical-align: middle;}
+table tr td {padding: 5px 15px;vertical-align: middle;border-color: var(--border-color-datatable-th);}
 table tr th.selection,
 table tr td.selection {width: 40px;text-align: center;}
 table tr td.option .options-content {display: flex;justify-content: space-between;align-items: center;}
