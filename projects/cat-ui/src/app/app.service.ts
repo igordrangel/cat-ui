@@ -109,12 +109,13 @@ export class AppService {
           },
           {
             icon: 'fa-solid fa-bars-progress',
+            name: 'Toolbar',
+            routerLink: '/components/toolbar',
+          },
+          {
+            icon: 'fa-solid fa-bars-progress',
             name: 'Menu',
             tools: [
-              {
-                name: 'Toolbar',
-                routerLink: '/components/toolbar',
-              },
               {
                 name: 'Dropdown',
                 routerLink: '/components/dropdown',

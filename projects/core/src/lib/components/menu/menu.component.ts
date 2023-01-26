@@ -84,7 +84,10 @@ export class MenuComponent implements OnInit, OnChanges {
                 .clearEmptyValues()
                 .map<CatToolbarBreadcrumb>((toolName) => {
                   pathRoute += `/${toolName}`;
-                  if (toolOption?.routerLink?.indexOf(pathRoute) < 0) {
+                  if (
+                    toolOption?.routerLink &&
+                    toolOption.routerLink.indexOf(pathRoute) < 0
+                  ) {
                     const toolByPath = this.getToolByPath(
                       toolOption,
                       pathRoute
@@ -93,6 +96,21 @@ export class MenuComponent implements OnInit, OnChanges {
                       return {
                         name: toolByPath.name,
                         routerLink: toolByPath.routerLink,
+                      };
+                    }
+                    return { name: toolName };
+                  } else if (
+                    moduleOption?.routerLink &&
+                    moduleOption.routerLink.indexOf(pathRoute) < 0
+                  ) {
+                    const moduleByPath = this.getToolByPath(
+                      moduleOption,
+                      pathRoute
+                    );
+                    if (moduleByPath) {
+                      return {
+                        name: moduleByPath.name,
+                        routerLink: moduleByPath.routerLink,
                       };
                     }
                     return { name: toolName };
@@ -172,7 +190,7 @@ export class MenuComponent implements OnInit, OnChanges {
   private getActiveModule() {
     return (
       this.config.modules?.find((module) => {
-        if (module.routerLink?.indexOf(this.router.url) >= 0) {
+        if (this.router.url.indexOf(module.routerLink) >= 0) {
           return module;
         }
 
