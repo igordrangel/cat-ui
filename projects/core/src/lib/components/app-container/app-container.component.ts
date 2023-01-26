@@ -63,7 +63,7 @@ export class AppContainerComponent implements OnInit {
     private tokenService: CatTokenService,
     private notificationService: NotificationService
   ) {
-    if (window.matchMedia) {
+    if (window.matchMedia && this.config.darkMode) {
       if (window.matchMedia('(prefers-color-scheme: dark)').matches) {
         this.themeActive$.next('dark');
       } else {
