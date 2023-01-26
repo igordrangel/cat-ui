@@ -23,6 +23,7 @@ export class AppFactory {
 
   public setDefaultTheme(theme: CatThemeType) {
     this.config.defaultTheme = theme;
+    return this;
   }
 
   public setLogotype(options: AppConfigLogotype) {
