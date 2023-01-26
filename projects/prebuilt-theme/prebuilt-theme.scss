@@ -554,7 +554,8 @@ cat-step:last-child .cat-step-item-content.active {border: none;}
 .btn-icon:active {background-color: var(--btn-primary-color-alpha-active);}
 
 .btn-primary,
-.btn-outline-primary:hover {
+.btn-outline-primary:hover,
+.btn-primary:disabled {
   background-color: var(--btn-bg-primary);
   color: var(--btn-c-primary);
   border-color: var(--btn-bg-primary);
@@ -575,7 +576,8 @@ cat-step:last-child .cat-step-item-content.active {border: none;}
 }
 
 .btn-secondary,
-.btn-outline-secondary:hover {
+.btn-outline-secondary:hover,
+.btn-secondary:disabled {
   background-color: var(--btn-bg-secondary);
   color: var(--btn-c-secondary);
   border-color: var(--btn-bg-secondary);
@@ -596,7 +598,8 @@ cat-step:last-child .cat-step-item-content.active {border: none;}
 }
 
 .btn-success,
-.btn-outline-success:hover {
+.btn-outline-success:hover,
+.btn-success:disabled {
   background-color: var(--btn-bg-success);
   color: var(--btn-c-success);
   border-color: var(--btn-bg-success);
@@ -617,7 +620,8 @@ cat-step:last-child .cat-step-item-content.active {border: none;}
 }
 
 .btn-warning,
-.btn-outline-warning:hover {
+.btn-outline-warning:hover,
+.btn-warning:disabled {
   background-color: var(--btn-bg-warning);
   color: var(--btn-c-warning);
   border-color: var(--btn-bg-warning);
@@ -638,7 +642,8 @@ cat-step:last-child .cat-step-item-content.active {border: none;}
 }
 
 .btn-danger,
-.btn-outline-danger:hover {
+.btn-outline-danger:hover,
+.btn-danger:disabled {
   background-color: var(--btn-bg-danger);
   color: var(--btn-c-danger);
   border-color: var(--btn-bg-danger);
@@ -659,7 +664,8 @@ cat-step:last-child .cat-step-item-content.active {border: none;}
 }
 
 .btn-info,
-.btn-outline-info:hover {
+.btn-outline-info:hover,
+.btn-info:disabled {
   background-color: var(--btn-bg-info);
   color: var(--btn-c-info);
   border-color: var(--btn-bg-info);
