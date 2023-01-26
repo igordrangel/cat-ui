@@ -5,6 +5,7 @@ import {
   AppConfigMenu,
   AppNotificationsConfig,
   AppOptions,
+  CatThemeType,
 } from './app-config.interface';
 
 export class AppFactory {
@@ -18,6 +19,10 @@ export class AppFactory {
     this.config.authSettings = authSettings;
     this.config.appName = appName;
     this.config.options = options;
+  }
+
+  public setDefaultTheme(theme: CatThemeType) {
+    this.config.defaultTheme = theme;
   }
 
   public setLogotype(options: AppConfigLogotype) {
