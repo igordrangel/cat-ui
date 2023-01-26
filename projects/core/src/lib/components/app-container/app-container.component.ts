@@ -265,45 +265,51 @@ export class AppContainerComponent implements OnInit {
       if (logged) {
         this.getClaims()
           .then(async () => {
-            this.buildMenu();
+            await this.buildMenu();
             resolve(true);
           })
           .catch(() => {
             this.validatingScope$.next(true);
           });
       } else {
-        this.buildMenu();
+        this.buildMenu().then();
       }
     });
   }
 
   private buildMenu() {
-    this.config.authSettings
-      .onAuth(this.tokenService.getDecodedToken<CatOAuth2TokenInterface>())
-      .pipe(first())
-      .subscribe(async (sideMenuConfig) => {
-        this.sideMenuConfig$.next(sideMenuConfig);
+    return new Promise((resolve, reject) => {
+      this.config.authSettings
+        .onAuth(this.tokenService.getDecodedToken<CatOAuth2TokenInterface>())
+        .pipe(first())
+        .subscribe({
+          next: async (sideMenuConfig) => {
+            this.sideMenuConfig$.next(sideMenuConfig);
 
-        if (TokenFactory.hasToken()) {
-          this.username = this.tokenService.getOAuth2Token()?.login;
+            if (TokenFactory.hasToken()) {
+              this.username = this.tokenService.getOAuth2Token()?.login;
 
-          if (this.config.authSettings.openId) {
-            this.userPicture$.next(this.oauth2Service.getPicture());
-          }
+              if (this.config.authSettings.openId) {
+                this.userPicture$.next(this.oauth2Service.getPicture());
+              }
 
-          interval(1)
-            .pipe(takeUntil(this.destroyLoggedSubscriptions$))
-            .subscribe(() => this.verifyToken());
+              interval(1)
+                .pipe(takeUntil(this.destroyLoggedSubscriptions$))
+                .subscribe(() => this.verifyToken());
 
-          if (this.config.pushNotifications) {
-            this.observeNotifications();
-          }
+              if (this.config.pushNotifications) {
+                this.observeNotifications();
+              }
 
-          await delay(300);
-          this.logged$.next(true);
-          this.forceLogin$.next(false);
-        }
-      });
+              await delay(300);
+              this.logged$.next(true);
+              this.forceLogin$.next(false);
+              resolve(true);
+            }
+          },
+          error: reject,
+        });
+    });
   }
 
   private getClaims() {
