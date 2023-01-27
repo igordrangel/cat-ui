@@ -1,6 +1,6 @@
 <div
   class="cat-expansive-panel-header"
-  [ngClass]="{ disabled: disabled, active: expanded }"
+  [ngClass]="{ disabled: disabled }"
   (click)="toggle()"
 >
   <div class="cat-expansive-panel-header-title">
@@ -10,6 +10,6 @@
     <ng-content select="[description]"></ng-content>
   </div>
 </div>
-<div class="cat-expansive-panel-content" [ngClass]="{ active: expanded }">
+<div class="cat-expansive-panel-content">
   <ng-content></ng-content>
 </div>

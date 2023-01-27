@@ -21,6 +21,7 @@ export type CatDropdownPosition =
 export class CatDropdownComponent {
   @Input() position: CatDropdownPosition = 'top';
   @Input() insideClick = true;
+  @Input() disabled = false;
 
   ariaControl$ = new Observable<string>((observe) => {
     this.getAriaControl().then((ariaControl) => {

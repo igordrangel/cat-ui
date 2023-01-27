@@ -149,6 +149,7 @@
               <td
                 *ngFor="let column of config?.columns; let columnIndex = index"
                 [ngClass]="{ sorted: columnIndex === columnIndexSort }"
+                [style.width]="getItemLine(columnIndex).customWidthColumn"
               >
                 <cat-dynamic-component
                   *ngIf="
