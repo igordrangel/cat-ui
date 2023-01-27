@@ -60,6 +60,7 @@ export interface DatatableData<DataType> {
   sortColumn?: string;
   text?: (itemLine: DataType) => string;
   component?: (itemLine: DataType) => CatDynamicComponent;
+  customWidthColumn?: string;
 }
 
 export interface CatDatatableDataHttpResponse<ListType> {
