@@ -39,6 +39,11 @@ export class DatatableFactory<FilterType = any, DataType = any> {
     return this;
   }
 
+  disableSelectionLineByRule(rule: (itemLine: DataType) => boolean) {
+    this.config.disableSelectionItem = rule;
+    return this;
+  }
+
   setActionButton(options: DatatableActionButtonConfig<DataType>) {
     if (!this.config.actionButtons) this.config.actionButtons = [];
     this.config.actionButtons.push(options);

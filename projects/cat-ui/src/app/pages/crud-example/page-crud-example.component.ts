@@ -51,6 +51,7 @@ export class PageCRUDExampleComponent extends CatCRUDComponentBase<
     })
     .getSelection((selection) => (this.selection = selection))
     .getDatasource((datasource) => (this.datasource = datasource))
+    .disableSelectionLineByRule((item) => item.race === 'Frajola')
     .hasSelection()
     .hasActions()
     .generate();

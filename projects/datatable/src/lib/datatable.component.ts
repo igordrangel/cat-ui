@@ -208,28 +208,33 @@ export class DatatableComponent implements OnInit, OnDestroy {
     emit = true,
     checkAll = false
   ) {
-    const selection = this.selection$.getValue();
-    const itemSelection = { index, item };
-    selection.emit = emit;
-    selection.checkAll = checkAll;
-    selection.lastSelected = itemSelection;
+    if (
+      this.config?.disableSelectionItem &&
+      !(this.config?.disableSelectionItem(item) ?? false)
+    ) {
+      const selection = this.selection$.getValue();
+      const itemSelection = { index, item };
+      selection.emit = emit;
+      selection.checkAll = checkAll;
+      selection.lastSelected = itemSelection;
 
-    if (this.isChecked(index) && !forceCheck) {
-      selection.selected = koala(selection.selected)
-        .array<any>()
-        .map((selectItem) => {
-          if (selectItem.index === index) {
-            return null;
-          }
-          return selectItem;
-        })
-        .clearEmptyValues()
-        .getValue();
-    } else if (!this.isChecked(index)) {
-      selection.selected.push(itemSelection);
+      if (this.isChecked(index) && !forceCheck) {
+        selection.selected = koala(selection.selected)
+          .array<any>()
+          .map((selectItem) => {
+            if (selectItem.index === index) {
+              return null;
+            }
+            return selectItem;
+          })
+          .clearEmptyValues()
+          .getValue();
+      } else if (!this.isChecked(index)) {
+        selection.selected.push(itemSelection);
+      }
+
+      this.selection$.next(selection);
     }
-
-    this.selection$.next(selection);
   }
 
   public checkAll(checked: boolean) {
