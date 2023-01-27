@@ -1,4 +1,3 @@
-import { CatFormBase } from '@catrx/ui/common';
 import { CommonModule } from '@angular/common';
 import { Component, Inject } from '@angular/core';
 import {
@@ -14,6 +13,7 @@ import { CatFormModule } from '@catrx/ui/form';
 import { CatDialogFormConfig } from './cat-dialog-form.interface';
 import { CatSnackbarService } from '@catrx/ui/snackbar';
 import { HttpErrorResponse } from '@angular/common/http';
+import { CatFormBase } from '../../abstractions/cat-form.base';
 
 @Component({
   template: `<form (submit)="submit($event)">
