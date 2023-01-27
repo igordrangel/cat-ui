@@ -114,7 +114,7 @@ export class AppContainerComponent implements OnInit {
       this.username = null;
       this.userPicture$.next(null);
 
-      this.router.navigate(['']);
+      this.router.navigate(['/']);
     }
   }
 
@@ -250,7 +250,8 @@ export class AppContainerComponent implements OnInit {
 
           if (
             this.config?.authSettings?.startedPage &&
-            location.pathname === '/'
+            ((!location.hash && location.pathname === '/') ||
+              (!!location.hash && location.hash === '#/'))
           ) {
             this.router.navigate([this.config?.authSettings?.startedPage]);
           }
