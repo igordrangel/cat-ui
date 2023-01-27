@@ -156,7 +156,7 @@ export abstract class CatServiceBase<
         .pipe(debounceTime(1000), first());
     } else {
       return this.httpClient
-        .get<GetAllResponseType>(`${this.host}/${this.mainResource}/${id}`)
+        .get<EntityType>(`${this.host}/${this.mainResource}/${id}`)
         .pipe(first());
     }
   }
