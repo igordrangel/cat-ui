@@ -1,4 +1,10 @@
-import { Component, ElementRef, Input, OnChanges } from '@angular/core';
+import {
+  Component,
+  ElementRef,
+  Input,
+  OnChanges,
+  SimpleChanges,
+} from '@angular/core';
 
 @Component({
   selector: 'cat-expansive-panel',
@@ -11,14 +17,19 @@ export class ExpansivePanelComponent implements OnChanges {
 
   constructor(private element: ElementRef<HTMLElement>) {}
 
-  ngOnChanges(): void {
-    if (this.expanded) {
-      this.toggle();
+  ngOnChanges(changes: SimpleChanges): void {
+    if (changes['expanded']) {
+      if (this.expanded) {
+        this.removeActiveTabs();
+        this.openThisTab();
+      } else {
+        this.closeThisTab();
+      }
     }
   }
 
   toggle() {
-    if (!this.disabled || this.expanded) {
+    if (!this.disabled) {
       this.removeActiveTabs();
       this.toggleThisTab();
     }
@@ -27,6 +38,16 @@ export class ExpansivePanelComponent implements OnChanges {
   private toggleThisTab() {
     this.element.nativeElement.children.item(0).classList.toggle('active');
     this.element.nativeElement.children.item(1).classList.toggle('active');
+  }
+
+  private openThisTab() {
+    this.element.nativeElement.children.item(0).classList.add('active');
+    this.element.nativeElement.children.item(1).classList.add('active');
+  }
+
+  private closeThisTab() {
+    this.element.nativeElement.children.item(0).classList.remove('active');
+    this.element.nativeElement.children.item(1).classList.remove('active');
   }
 
   private getTabs() {
