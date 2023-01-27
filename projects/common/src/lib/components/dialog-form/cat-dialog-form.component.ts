@@ -1,5 +1,6 @@
+import { CatFormBase } from '@catrx/ui/common';
 import { CommonModule } from '@angular/common';
-import { Component, Inject, ViewChild } from '@angular/core';
+import { Component, Inject } from '@angular/core';
 import {
   CatPrimaryButtonComponent,
   CatSecondaryButtonComponent,
@@ -9,14 +10,13 @@ import {
   CatDialogRef,
   CAT_DIALOG_DATA,
 } from '@catrx/ui/dialog';
-import { CatFormModule, FormComponent } from '@catrx/ui/form';
+import { CatFormModule } from '@catrx/ui/form';
 import { CatDialogFormConfig } from './cat-dialog-form.interface';
-import { BehaviorSubject } from 'rxjs';
 import { CatSnackbarService } from '@catrx/ui/snackbar';
 import { HttpErrorResponse } from '@angular/common/http';
 
 @Component({
-  template: `<form (submit)="$event.preventDefault(); submit()">
+  template: `<form (submit)="submit($event)">
     <cat-dialog>
       <div header>
         <i
@@ -58,17 +58,17 @@ import { HttpErrorResponse } from '@angular/common/http';
     CatSecondaryButtonComponent,
   ],
 })
-export class CatDialogFormComponent {
-  submitLoader$ = new BehaviorSubject<boolean>(false);
-  @ViewChild('form', { static: true }) private elForm?: FormComponent;
-
+export class CatDialogFormComponent extends CatFormBase {
   constructor(
     @Inject(CAT_DIALOG_DATA) public config: CatDialogFormConfig,
     public dialogRef: CatDialogRef,
     private snackbarService: CatSnackbarService
-  ) {}
+  ) {
+    super();
+  }
 
-  public submit() {
+  public override submit(event?: Event) {
+    event?.preventDefault();
     this.elForm?.submit(
       () => this.submitLoader$.next(true),
       () => {
