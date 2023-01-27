@@ -209,8 +209,9 @@ export class DatatableComponent implements OnInit, OnDestroy {
     checkAll = false
   ) {
     if (
-      this.config?.disableSelectionItem &&
-      !(this.config?.disableSelectionItem(item) ?? false)
+      (this.config?.disableSelectionItem &&
+        !(this.config?.disableSelectionItem(item) ?? false)) ||
+      !this.config?.disableSelectionItem
     ) {
       const selection = this.selection$.getValue();
       const itemSelection = { index, item };

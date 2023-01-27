@@ -113,8 +113,9 @@
                 <div class="checkbox">
                   <input
                     *ngIf="
-                      config?.disableSelectionItem &&
-                      !(config?.disableSelectionItem(rowData) ?? false)
+                      (config?.disableSelectionItem &&
+                        !(config?.disableSelectionItem(rowData) ?? false)) ||
+                      !config?.disableSelectionItem
                     "
                     class="form-check-input"
                     [checked]="isChecked(i)"
