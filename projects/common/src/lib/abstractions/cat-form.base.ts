@@ -32,10 +32,12 @@ export abstract class CatFormBase
 
   public submit(event?: Event) {
     event?.preventDefault();
-    this.elForm?.submit(
-      () => this.submitLoader$.next(true),
-      () => this.submitLoader$.next(false),
-      () => this.submitLoader$.next(false)
-    );
+    if (!this.submitLoader$.getValue()) {
+      this.elForm?.submit(
+        () => this.submitLoader$.next(true),
+        () => this.submitLoader$.next(false),
+        () => this.submitLoader$.next(false)
+      );
+    }
   }
 }
