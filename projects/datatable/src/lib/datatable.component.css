@@ -1,5 +1,4 @@
-.cat-datatable-menu:has(nav),
-.cat-datatable-menu:has(nav) > nav {
+.cat-datatable-menu:has(nav) {
   display: flex;
   justify-content: flex-start;
   align-items: center;

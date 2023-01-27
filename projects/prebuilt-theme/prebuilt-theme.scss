@@ -860,6 +860,12 @@ select:disabled {
   --bs-table-hover-bg: var(--bg-datatable-hover-bg);
   --bs-table-hover-color: var(--bg-datatable-hover-color);
 }
+.cat-datatable-menu:has(nav)>nav {
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  padding: 0 8px;
+}
 /*#endregion */
 /*#region [Paginator] */
 .ngx-pagination {
