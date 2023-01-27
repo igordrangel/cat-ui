@@ -1,17 +1,17 @@
-import { Component, ElementRef, Input, OnInit } from '@angular/core';
+import { Component, ElementRef, Input, OnChanges } from '@angular/core';
 
 @Component({
   selector: 'cat-expansive-panel',
   templateUrl: './expansive-panel.component.html',
   styleUrls: ['./expansive-panel.component.css'],
 })
-export class ExpansivePanelComponent implements OnInit {
+export class ExpansivePanelComponent implements OnChanges {
   @Input() disabled = false;
   @Input() expanded = false;
 
   constructor(private element: ElementRef<HTMLElement>) {}
 
-  ngOnInit(): void {
+  ngOnChanges(): void {
     if (this.expanded) {
       this.toggle();
     }
