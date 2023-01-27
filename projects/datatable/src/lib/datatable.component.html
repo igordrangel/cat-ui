@@ -112,12 +112,11 @@
               <td class="selection" *ngIf="config?.hasSelection">
                 <div class="checkbox">
                   <input
-                    class="form-check-input"
-                    [disabled]="
-                      config?.disableSelectionItem
-                        ? config?.disableSelectionItem(rowData) ?? false
-                        : false
+                    *ngIf="
+                      config?.disableSelectionItem &&
+                      !(config?.disableSelectionItem(rowData) ?? false)
                     "
+                    class="form-check-input"
                     [checked]="isChecked(i)"
                     (change)="toggleItem(i, rowData)"
                     type="checkbox"
