@@ -44,7 +44,7 @@ export class FormComponent implements OnInit {
 
   private autofillValues: CatFormBehaviorSetValue[] = [];
 
-  constructor(private fb: FormBuilder) {}
+  constructor(private fb: FormBuilder) { }
 
   ngOnInit(): void {
     this.dynamicForm = this.fb.group({});
