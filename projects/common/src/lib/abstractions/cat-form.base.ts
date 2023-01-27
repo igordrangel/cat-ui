@@ -14,6 +14,8 @@ export abstract class CatFormBase
 
   private destroySubscriptions$ = new Subject<boolean>();
 
+  protected formSubmitted = false;
+
   @ViewChild('form', { static: true }) protected elForm?: FormComponent;
 
   ngOnDestroy(): void {
@@ -32,11 +34,18 @@ export abstract class CatFormBase
 
   public submit(event?: Event) {
     event?.preventDefault();
-    if (!this.submitLoader$.getValue()) {
+    if (!this.formSubmitted) {
+      this.formSubmitted = true;
       this.elForm?.submit(
         () => this.submitLoader$.next(true),
-        () => this.submitLoader$.next(false),
-        () => this.submitLoader$.next(false)
+        () => {
+          this.submitLoader$.next(false);
+          setTimeout(() => (this.formSubmitted = false), 300);
+        },
+        () => {
+          this.submitLoader$.next(false);
+          this.formSubmitted = false;
+        }
       );
     }
   }

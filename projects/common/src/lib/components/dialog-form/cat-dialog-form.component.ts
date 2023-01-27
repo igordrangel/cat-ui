@@ -69,7 +69,8 @@ export class CatDialogFormComponent extends CatFormBase {
 
   public override submit(event?: Event) {
     event?.preventDefault();
-    if (!this.submitLoader$.getValue()) {
+    if (!this.formSubmitted) {
+      this.formSubmitted = true;
       this.elForm?.submit(
         () => this.submitLoader$.next(true),
         () => {
@@ -81,8 +82,10 @@ export class CatDialogFormComponent extends CatFormBase {
             } com sucesso!`,
           });
           this.dialogRef.close('reloadList');
+          setTimeout(() => (this.formSubmitted = false), 300);
         },
         (err: HttpErrorResponse) => {
+          this.formSubmitted = false;
           this.submitLoader$.next(false);
           this.snackbarService.open({
             type: err?.statusText?.startsWith('4') ? 'warning' : 'error',
