@@ -69,31 +69,26 @@ export class CatDialogFormComponent extends CatFormBase {
 
   public override submit(event?: Event) {
     event?.preventDefault();
-    if (!this.formSubmitted) {
-      this.formSubmitted = true;
-      this.elForm?.submit(
-        () => this.submitLoader$.next(true),
-        () => {
-          this.snackbarService.open({
-            type: 'success',
-            openedTime: 5000,
-            title: `Registro ${
-              this.config.isEdit ? 'atualizado' : 'incluído'
-            } com sucesso!`,
-          });
-          this.dialogRef.close('reloadList');
-          setTimeout(() => (this.formSubmitted = false), 300);
-        },
-        (err: HttpErrorResponse) => {
-          this.formSubmitted = false;
-          this.submitLoader$.next(false);
-          this.snackbarService.open({
-            type: err?.statusText?.startsWith('4') ? 'warning' : 'error',
-            title: 'Algo inesperado ocorreu...',
-            message: err?.message ?? 'Ocorreu um problema desconhecido.',
-          });
-        }
-      );
-    }
+    this.elForm?.submit(
+      () => this.submitLoader$.next(true),
+      () => {
+        this.snackbarService.open({
+          type: 'success',
+          openedTime: 5000,
+          title: `Registro ${
+            this.config.isEdit ? 'atualizado' : 'incluído'
+          } com sucesso!`,
+        });
+        this.dialogRef.close('reloadList');
+      },
+      (err: HttpErrorResponse) => {
+        this.submitLoader$.next(false);
+        this.snackbarService.open({
+          type: err?.statusText?.startsWith('4') ? 'warning' : 'error',
+          title: 'Algo inesperado ocorreu...',
+          message: err?.message ?? 'Ocorreu um problema desconhecido.',
+        });
+      }
+    );
   }
 }

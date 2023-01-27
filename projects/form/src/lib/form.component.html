@@ -3,7 +3,7 @@
     #formElement
     [formGroup]="dynamicForm"
     (submit)="submit()"
-    (keydown)="submitOnKeyEnter($event)"
+    (keyup)="submitOnKeyEnter($event)"
     class="needs-validation"
   >
     <div class="fields-content">
