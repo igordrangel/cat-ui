@@ -34,7 +34,7 @@ export interface CatLoaderPageConfig {
         justify-content: center;
         align-items: center;
         background-color: rgba(0, 0, 0, 0.2);
-        z-index: 1004;
+        z-index: 1041;
       }
       .cat-progress-bar-container {
         position: relative;
