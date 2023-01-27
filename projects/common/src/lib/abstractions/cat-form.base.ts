@@ -14,7 +14,7 @@ export abstract class CatFormBase
 
   private destroySubscriptions$ = new Subject<boolean>();
 
-  @ViewChild('form', { static: true }) private elForm?: FormComponent;
+  @ViewChild('form', { static: true }) protected elForm?: FormComponent;
 
   ngOnDestroy(): void {
     this.destroySubscriptions$.next(true);
