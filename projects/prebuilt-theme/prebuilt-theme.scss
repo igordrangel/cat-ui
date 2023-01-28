@@ -868,6 +868,7 @@ select:disabled {
 .cat-datatable-menu:has(nav) > nav[list-checked-actions] {
   border-radius: 4px;
   background-color: var(--shadow-color);
+  margin-right: 8px;
 }
 /*#endregion */
 /*#region [Paginator] */
