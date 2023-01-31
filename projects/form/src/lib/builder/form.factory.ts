@@ -2,6 +2,7 @@ import { FormSelectFactory } from './select/form-select.factory';
 import { FormCpfFactory } from './cpf/form-cpf.factory';
 import {
   CatFormConfig,
+  CatFormCustomFieldOptions,
   CatFormFieldOptions,
   CatFormFieldTemplateGridType,
   CatFormFieldType,
@@ -23,6 +24,8 @@ import { FormCsvFactory } from './csv/form-csv.factory';
 import { FormAutocompleteFactory } from './autocomplete/form-autocomplete.factory';
 import { FormPasswordFactory } from './password/form-password.factory';
 import { FormSearchFactory } from './search/form-search.factory';
+import { FormCustomFieldFactory } from './customField/form-custom-field.factory';
+import { Type } from '@angular/core';
 
 export class FormFactory<DataType> {
   private readonly config: CatFormConfig<DataType>;
@@ -238,6 +241,27 @@ export class FormFactory<DataType> {
     field: (builder: FormAutocompleteFactory) => CatFormFieldOptions
   ) {
     this.field('autocomplete', label, name, field);
+    return this;
+  }
+
+  public customField<PropsType = any>(
+    label: string,
+    name: string,
+    component: Type<any>,
+    field: (
+      builder: FormCustomFieldFactory<PropsType>
+    ) => CatFormCustomFieldOptions<PropsType>,
+    props?: PropsType
+  ) {
+    if (!this.config.formElements) this.config.formElements = [];
+    this.config.formElements.push({
+      field: {
+        ...field(new FormFieldService().customField(label, props, component)),
+        type: 'customField',
+        name,
+        behavior: this.config.behavior,
+      },
+    });
     return this;
   }
 

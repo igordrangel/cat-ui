@@ -13,6 +13,8 @@ import { FormCsvFactory } from './csv/form-csv.factory';
 import { FormSelectFactory } from './select/form-select.factory';
 import { FormAutocompleteFactory } from './autocomplete/form-autocomplete.factory';
 import { FormSearchFactory } from './search/form-search.factory';
+import { FormCustomFieldFactory } from './customField/form-custom-field.factory';
+import { Type } from '@angular/core';
 
 export class FormFieldService {
   public text(label: string) {
@@ -77,5 +79,13 @@ export class FormFieldService {
 
   public autocomplete(label: string) {
     return new FormAutocompleteFactory(label);
+  }
+
+  public customField<PropsType = any>(
+    label: string,
+    props: PropsType,
+    component: Type<any>
+  ) {
+    return new FormCustomFieldFactory<PropsType>(label, props, component);
   }
 }

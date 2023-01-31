@@ -108,5 +108,12 @@
       [fieldConfig]="fieldConfig"
     >
     </cat-field-autocomplete>
+
+    <cat-field-custom
+      *ngIf="fieldConfig.type === 'customField'"
+      [control]="control"
+      [fieldConfig]="fieldConfig"
+    >
+    </cat-field-custom>
   </ng-container>
 </ng-container>

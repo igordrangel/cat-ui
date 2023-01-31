@@ -1,7 +1,8 @@
-import { AsyncValidatorFn, ValidatorFn } from '@angular/forms';
-import { Observable } from 'rxjs';
+import { AsyncValidatorFn, FormControl, ValidatorFn } from '@angular/forms';
+import { Observable, BehaviorSubject } from 'rxjs';
 import { CatFormBehavior } from '../common/cat-form-behavior';
 import { Type } from '@angular/core';
+import { CatFormCustomField } from '../common/cat-form-custom-field';
 
 export interface CatFormConfig<DataType> {
   formElements: CatFormElementConfig[];
@@ -114,6 +115,13 @@ export interface CatFormListOptions {
   value: any;
 }
 
+export interface CatFormCustomFieldOptions<PropsType = any>
+  extends CatFormFieldOptions {
+  fieldComponent?: CatFormCustomField<PropsType>;
+  fieldProps?: PropsType;
+  control$?: BehaviorSubject<FormControl>;
+}
+
 export interface CatFormFieldsetConfig {
   legend: string;
   name: string;
@@ -167,4 +175,5 @@ export type CatFormFieldType =
   | 'file'
   | 'csv'
   | 'select'
-  | 'autocomplete';
+  | 'autocomplete'
+  | 'customField';

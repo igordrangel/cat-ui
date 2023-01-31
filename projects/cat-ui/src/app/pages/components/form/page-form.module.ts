@@ -7,9 +7,14 @@ import { PageListItemComponent } from './list-item/page-list-item.component';
 import { CatPrimaryButtonComponent } from '@catrx/ui/button';
 import { CommonModule } from '@angular/common';
 import { CatToolbarModule } from '@catrx/ui/toolbar';
+import { PageCustomFieldComponent } from './custom-field/page-custom-field.component';
 
 @NgModule({
-  declarations: [PageFormComponent, PageListItemComponent],
+  declarations: [
+    PageFormComponent,
+    PageListItemComponent,
+    PageCustomFieldComponent,
+  ],
   imports: [
     CommonModule,
     CatToolbarModule,
