@@ -1,0 +1,13 @@
+<div
+  class="cat-field-container has-validation"
+  [ngClass]="{ invalid: control?.invalid && !control?.untouched }"
+>
+  <cat-dynamic-component
+    [component]="fieldConfig.fieldComponent"
+  ></cat-dynamic-component>
+  <cat-form-field-common-errors [control]="control" [config]="fieldConfig">
+    <ng-container specificErrors>
+      <ng-content select="[specificErrors]"></ng-content>
+    </ng-container>
+  </cat-form-field-common-errors>
+</div>

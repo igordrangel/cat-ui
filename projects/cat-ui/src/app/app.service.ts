@@ -98,6 +98,10 @@ export class AppService {
                 routerLink: '/components/form/list-item',
               },
               {
+                name: 'Campos personalizados',
+                routerLink: '/components/form/custom-field',
+              },
+              {
                 name: 'Stepper',
                 routerLink: '/components/stepper',
               },

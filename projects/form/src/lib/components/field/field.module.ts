@@ -17,6 +17,7 @@ import { InputFileModule } from './components/input-file/input-file.module';
 import { InputAutocompleteModule } from './components/input-autocomplete/input-autocomplete.module';
 import { InputPasswordModule } from './components/input-password/input-password.module';
 import { InputSearchModule } from './components/input-search/input-search.module';
+import { InputCustomFieldModule } from './components/input-custom-field/input-custom-field.module';
 
 const maskOptions: Partial<IConfig> | (() => Partial<IConfig>) = {
   validation: false,
@@ -42,6 +43,7 @@ const maskOptions: Partial<IConfig> | (() => Partial<IConfig>) = {
     InputFileModule,
     InputSelectModule,
     InputAutocompleteModule,
+    InputCustomFieldModule,
     NgxMaskModule.forRoot(maskOptions),
   ],
 })

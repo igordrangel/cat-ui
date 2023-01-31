@@ -1,0 +1,4 @@
+<div *ngIf="getConfig().control$ | async as control" class="">
+  <label>{{ getConfig().label }}</label>
+  <input type="text" [formControl]="control" />
+</div>
