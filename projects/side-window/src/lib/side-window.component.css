@@ -8,6 +8,7 @@
   padding-left: 22px;
   background-color: var(--bg-body);
 }
+
 .cat-side-window-content .btn-close-side-window {
   position: absolute;
   top: calc(50vh - 20px);

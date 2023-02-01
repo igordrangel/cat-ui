@@ -137,26 +137,15 @@
               "projects/cat-ui/src/styles.css",
               "projects/prebuilt-theme/prebuilt-theme.scss"
             ],
-            "scripts": [],
-            "allowedCommonJsDependencies": [
-              "@koalarx/utils",
-              "@koalarx/utils/operators",
-              "@koalarx/utils/operators/delay",
-              "@koalarx/utils/operators/string",
-              "exceljs",
-              "file-saver",
-              "papaparse/papaparse.min.js",
-              "b64-to-blob",
-              "jwt-encode"
-            ]
+            "scripts": []
           },
           "configurations": {
             "production": {
               "budgets": [
                 {
                   "type": "initial",
-                  "maximumWarning": "4mb",
-                  "maximumError": "6mb"
+                  "maximumWarning": "2mb",
+                  "maximumError": "5mb"
                 },
                 {
                   "type": "anyComponentStyle",

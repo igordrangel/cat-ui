@@ -2,7 +2,6 @@
  * Public API Surface of utils
  */
 
-export * from './lib/csv/cat-csv.service';
-export * from './lib/file/cat-file.service';
-export * from './lib/file/cat-file.interface';
-export * from './lib/xlsx/xlsx.config';
+export * from 'projects/utils/src/lib/csv';
+export * from 'projects/utils/src/lib/file';
+export * from 'projects/utils/src/lib/xlsx';

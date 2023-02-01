@@ -7,8 +7,10 @@ import {
   ViewChild,
 } from '@angular/core';
 import { FormControl, Validators } from '@angular/forms';
+import { interval } from 'rxjs/internal/observable/interval';
+import { takeUntil } from 'rxjs/internal/operators/takeUntil';
+import { Subject } from 'rxjs/internal/Subject';
 import { CatFormFieldConfig } from '../../../../../builder/form.interface';
-import { interval, Subject, takeUntil } from 'rxjs';
 
 @Component({
   selector: 'cat-form-field-content[control][config][elInput]',

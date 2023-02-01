@@ -9,7 +9,10 @@ import { CatOAuth2Service } from './services/openid/cat-oauth2.service';
 import { CatAuthGuard } from './guard/cat-auth.guard';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { CatEnvironment, CatEnvironmentInterface } from '@catrx/ui/common';
-import { CatXlsxConfig, CatXlsxConfigInterface } from '@catrx/ui/utils';
+import {
+  CatXlsxConfig,
+  CatXlsxConfigInterface,
+} from './interfaces/xlsx.config';
 
 registerLocaleData(ptBr);
 

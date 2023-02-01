@@ -9,6 +9,7 @@
   background-color: var(--bg-body);
   z-index: 1;
 }
+
 .cat-step-item::before {
   content: counter(step);
   display: flex;
@@ -23,6 +24,7 @@
   color: var(--step-c);
   margin-right: 10px;
 }
+
 .cat-step-item.active::before {
   background-color: var(--step-active-bg);
   color: var(--step-active-c);
@@ -39,9 +41,11 @@
   width: calc(100% - 22px);
   overflow: hidden;
 }
+
 .cat-step-item-content.active {
   height: auto;
 }
+
 .cat-step-item-content .cat-step-actions {
   display: flex;
   justify-content: flex-end;
@@ -51,6 +55,7 @@
   box-sizing: border-box;
   padding: 10px 0;
 }
+
 .cat-step-item-content .cat-step-content {
   box-sizing: border-box;
   padding: 10px 0;

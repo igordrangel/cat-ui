@@ -4,7 +4,7 @@ import { CommonModule } from '@angular/common';
 import { CatToolbarModule } from '@catrx/ui/toolbar';
 import { CatDropdownModule } from '@catrx/ui/dropdown';
 import { PageDropdownRoutingModule } from './page-dropdown.routing.module';
-import { CatPrimaryButtonComponent } from '@catrx/ui/button';
+import { CatPrimaryButtonComponent } from '@catrx/ui/button/src/lib/components/primary';
 
 @NgModule({
   declarations: [PageDropdownComponent],

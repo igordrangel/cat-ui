@@ -1,10 +1,6 @@
 import { CommonModule } from '@angular/common';
 import { Component, Inject } from '@angular/core';
 import {
-  CatPrimaryButtonComponent,
-  CatSecondaryButtonComponent,
-} from '@catrx/ui/button';
-import {
   CatDialogModule,
   CatDialogRef,
   CAT_DIALOG_DATA,
@@ -14,6 +10,8 @@ import { CatDialogFormConfig } from './cat-dialog-form.interface';
 import { CatSnackbarService } from '@catrx/ui/snackbar';
 import { HttpErrorResponse } from '@angular/common/http';
 import { CatFormBase } from '../../abstractions/cat-form.base';
+import { CatPrimaryButtonComponent } from '@catrx/ui/button/src/lib/components/primary';
+import { CatSecondaryButtonComponent } from '@catrx/ui/button/src/lib/components/secondary';
 
 @Component({
   template: `<form (submit)="submit($event)">

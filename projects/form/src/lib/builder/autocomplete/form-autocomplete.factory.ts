@@ -1,4 +1,4 @@
-import { Observable } from 'rxjs';
+import { Observable } from 'rxjs/internal/Observable';
 import { FormFieldInputBase } from '../form-field-input.base';
 import {
   CatFormListOptions,

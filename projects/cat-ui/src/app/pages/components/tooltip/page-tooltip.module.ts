@@ -1,6 +1,6 @@
 import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
-import { CatPrimaryButtonComponent } from '@catrx/ui/button';
+import { CatPrimaryButtonComponent } from '@catrx/ui/button/src/lib/components/primary';
 import { CatToolbarModule } from '@catrx/ui/toolbar';
 import { CatTooltipModule } from '@catrx/ui/tooltip';
 import { PageTooltipComponent } from './page-tooltip.component';

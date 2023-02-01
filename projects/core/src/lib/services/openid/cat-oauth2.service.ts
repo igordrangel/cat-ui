@@ -1,13 +1,15 @@
 import { Injectable, OnDestroy } from '@angular/core';
-import { BehaviorSubject, interval, Subscription } from 'rxjs';
 import { HttpClient } from '@angular/common/http';
-import { koala } from '@koalarx/utils';
 import { Router } from '@angular/router';
-import { delay } from '@koalarx/utils/operators/delay';
+import { klDelay } from '@koalarx/utils/operators/delay';
 import { randomString } from '@koalarx/utils/operators/string';
 import { CatTokenService } from '../token/cat-token.service';
 import { CatOAuth2Config } from './cat-oauth2.config';
 import { DomSanitizer, SafeUrl } from '@angular/platform-browser';
+import { klObject } from '@koalarx/utils/operators/object';
+import { BehaviorSubject } from 'rxjs/internal/BehaviorSubject';
+import { Subscription } from 'rxjs/internal/Subscription';
+import { interval } from 'rxjs/internal/observable/interval';
 
 export interface CatOpenIDConfigInterface {
   redirectUri: string;
@@ -154,7 +156,7 @@ export class CatOAuth2Service implements OnDestroy {
   public async initLoginFlow(name?: string) {
     if (name) {
       CatOAuth2Config.setConfig(name);
-      await delay(1000);
+      await klDelay(1000);
     }
 
     this.events.next('authenticate');
@@ -236,21 +238,17 @@ export class CatOAuth2Service implements OnDestroy {
     }
 
     const formData = new URLSearchParams();
-    let data = koala({
+    let data = klObject({
       grant_type: refreshToken ? 'refresh_token' : 'authorization_code',
       code,
       redirect_uri: this.config.redirectUri,
       client_id: this.config.clientId,
     })
-      .object()
       .merge(this.config.customQueryParams ?? {})
       .getValue();
 
     if (refreshToken) {
-      data = koala(data)
-        .object()
-        .merge({ refresh_token: refreshToken })
-        .getValue();
+      data = klObject(data).merge({ refresh_token: refreshToken }).getValue();
     }
 
     if (!this.code) {

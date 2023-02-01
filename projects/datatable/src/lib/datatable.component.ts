@@ -11,10 +11,13 @@ import {
   DatatableFilterResponse,
   CatDatatableSelection,
 } from './cat-datatable.interface';
-import { BehaviorSubject, first, Subject, takeUntil } from 'rxjs';
-import { koala } from '@koalarx/utils';
-import { clone } from '@koalarx/utils/operators';
+import { clone } from '@koalarx/utils/operators/object';
 import { Ng2SearchPipe } from 'ng2-search-filter';
+import { klArray } from '@koalarx/utils/operators/array';
+import { BehaviorSubject } from 'rxjs/internal/BehaviorSubject';
+import { Subject } from 'rxjs/internal/Subject';
+import { takeUntil } from 'rxjs/internal/operators/takeUntil';
+import { first } from 'rxjs/internal/operators/first';
 
 @Component({
   selector: 'cat-datatable[config]',
@@ -136,8 +139,7 @@ export class DatatableComponent implements OnInit, OnDestroy {
             this.datatableList$.next(listData);
             this.datatableBackupList$.next(clone(listData));
             this.totalItemsBd = response.count;
-            this.totalItemsPage = koala(listData)
-              .array()
+            this.totalItemsPage = klArray(listData)
               .split(this.config?.limitItemPerPage ?? 30)
               .getValue()[0]?.length;
 
@@ -220,8 +222,7 @@ export class DatatableComponent implements OnInit, OnDestroy {
       selection.lastSelected = itemSelection;
 
       if (this.isChecked(index) && !forceCheck) {
-        selection.selected = koala(selection.selected)
-          .array<any>()
+        selection.selected = klArray(selection.selected)
           .map((selectItem) => {
             if (selectItem.index === index) {
               return null;
@@ -270,8 +271,7 @@ export class DatatableComponent implements OnInit, OnDestroy {
     let page = this.currentPage - 1;
     if (page < 0) page = 0;
 
-    return koala(this.datatableList$.getValue())
-      .array<any>()
+    return klArray(this.datatableList$.getValue())
       .split(this.config?.limitItemPerPage ?? 30)
       .getValue()[page];
   }

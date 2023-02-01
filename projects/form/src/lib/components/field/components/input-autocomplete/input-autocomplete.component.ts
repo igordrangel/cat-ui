@@ -4,14 +4,12 @@ import {
   CatFormListOptions,
   CatFormAutocompleteOptions,
 } from '../../../../builder/form.interface';
-import {
-  BehaviorSubject,
-  Observable,
-  first,
-  debounceTime,
-  Subject,
-} from 'rxjs';
 import { CatDynamicComponent } from '@catrx/ui/dynamic-component';
+import { BehaviorSubject } from 'rxjs/internal/BehaviorSubject';
+import { Subject } from 'rxjs/internal/Subject';
+import { Observable } from 'rxjs/internal/Observable';
+import { first } from 'rxjs/internal/operators/first';
+import { debounceTime } from 'rxjs/internal/operators/debounceTime';
 
 @Component({
   selector: 'cat-field-autocomplete[control][fieldConfig]',

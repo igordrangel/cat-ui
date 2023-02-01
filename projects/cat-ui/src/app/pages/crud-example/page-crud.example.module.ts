@@ -7,9 +7,9 @@ import { CatDatatableModule } from '@catrx/ui/datatable';
 import { CatDialogModule } from '@catrx/ui/dialog';
 import { CatConfirmModule } from '@catrx/ui/confirm';
 import { PageCRUDExampleRoutingModule } from './page-crud-example.routing.module';
-import { CatPrimaryButtonComponent } from '@catrx/ui/button';
 import { CatIconButtonModule } from '@catrx/ui/icon-button';
 import { CatPhotoComponent } from './cat-photo.component';
+import { CatPrimaryButtonComponent } from '@catrx/ui/button/src/lib/components/primary';
 
 @NgModule({
   declarations: [PageCRUDExampleComponent, CatPhotoComponent],

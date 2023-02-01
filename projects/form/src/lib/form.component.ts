@@ -18,11 +18,14 @@ import {
   FormGroup,
   UntypedFormGroup,
 } from '@angular/forms';
-import { toCamelCase } from '@koalarx/utils/operators/string';
-import { BehaviorSubject, debounceTime, Subject, takeUntil, first } from 'rxjs';
-import { clone } from '@koalarx/utils/operators';
-import { koala } from '@koalarx/utils';
+import { klString, toCamelCase } from '@koalarx/utils/operators/string';
+import { clone } from '@koalarx/utils/operators/object';
 import { FormArray } from '@angular/forms';
+import { BehaviorSubject } from 'rxjs/internal/BehaviorSubject';
+import { Subject } from 'rxjs/internal/Subject';
+import { takeUntil } from 'rxjs/internal/operators/takeUntil';
+import { debounceTime } from 'rxjs/internal/operators/debounceTime';
+import { first } from 'rxjs/internal/operators/first';
 
 @Component({
   selector: 'cat-form[config]',
@@ -44,7 +47,7 @@ export class FormComponent implements OnInit {
 
   private autofillValues: CatFormBehaviorSetValue[] = [];
 
-  constructor(private fb: FormBuilder) { }
+  constructor(private fb: FormBuilder) {}
 
   ngOnInit(): void {
     this.dynamicForm = this.fb.group({});
@@ -156,8 +159,7 @@ export class FormComponent implements OnInit {
           name,
           value: valueDataByTree,
         });
-        name = koala(name)
-          .string()
+        name = klString(name)
           .split('.')
           .pipe((KlName) => {
             const arrName = KlName.getValue();

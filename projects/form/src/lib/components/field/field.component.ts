@@ -16,13 +16,11 @@ import {
   CatFormFieldConfig,
 } from '../../builder/form.interface';
 import { FormBuilder, FormControl } from '@angular/forms';
-import {
-  BehaviorSubject,
-  debounceTime,
-  skipWhile,
-  Subject,
-  takeUntil,
-} from 'rxjs';
+import { BehaviorSubject } from 'rxjs/internal/BehaviorSubject';
+import { Subject } from 'rxjs/internal/Subject';
+import { skipWhile } from 'rxjs/internal/operators/skipWhile';
+import { takeUntil } from 'rxjs/internal/operators/takeUntil';
+import { debounceTime } from 'rxjs/internal/operators/debounceTime';
 
 @Component({
   selector: 'cat-form-field[fieldConfig]',

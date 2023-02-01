@@ -6,9 +6,9 @@ import {
   CatDynamicComponentModule,
 } from '@catrx/ui/dynamic-component';
 import { Observable } from 'rxjs';
-import { CatPrimaryButtonComponent } from '@catrx/ui/button';
 import { CatFormBase } from '@catrx/ui/common';
 import { CommonModule } from '@angular/common';
+import { CatPrimaryButtonComponent } from '@catrx/ui/button/src/lib/components/primary';
 
 @Component({
   template: `

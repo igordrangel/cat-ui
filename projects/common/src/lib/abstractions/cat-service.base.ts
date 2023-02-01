@@ -3,10 +3,10 @@ import { HttpClient, HttpErrorResponse } from '@angular/common/http';
 import { debounceTime, first } from 'rxjs/operators';
 import { CatDatatableDataHttpResponse } from '@catrx/ui/datatable';
 import { Observable } from 'rxjs/internal/Observable';
-import { koala } from '@koalarx/utils';
 import { forkJoin } from 'rxjs/internal/observable/forkJoin';
 import { lastValueFrom } from 'rxjs/internal/lastValueFrom';
 import { CatEnvironment } from '../environments/cat-environment';
+import { klArray } from '@koalarx/utils/operators/array';
 
 class CatDatabaseMockup {
   static database: { [key: string]: any[] } = {};
@@ -21,7 +21,7 @@ class CatServiceMockup {
   getById<EntityType = any>(id: number) {
     return new Observable<EntityType>((observe) => {
       setTimeout(() => {
-        const index = koala(this.getDatabase()).array().getIndex('id', id);
+        const index = klArray(this.getDatabase()).getIndex('id', id);
         if (index >= 0) {
           observe.next(this.getDatabase()[index]);
         } else {
@@ -47,7 +47,7 @@ class CatServiceMockup {
     return new Observable((observe) => {
       setTimeout(() => {
         if (id) {
-          const index = koala(this.getDatabase()).array().getIndex('id', id);
+          const index = klArray(this.getDatabase()).getIndex('id', id);
           item['id'] = id;
           if (index >= 0) this.getDatabase()[index] = item;
         } else {
@@ -63,7 +63,7 @@ class CatServiceMockup {
   delete(id: number) {
     return new Observable((observe) => {
       setTimeout(() => {
-        const index = koala(this.getDatabase()).array().getIndex('id', id);
+        const index = klArray(this.getDatabase()).getIndex('id', id);
         if (index >= 0) this.getDatabase().splice(index, 1);
         observe.next();
         observe.complete();
@@ -181,10 +181,7 @@ export abstract class CatServiceBase<
 
           if (response) {
             if (!totalItems) totalItems = response.count;
-            items = koala(items)
-              .array<ItemType>()
-              .merge(response.items)
-              .getValue();
+            items = klArray(items).merge(response.items).getValue();
             observe.next(Math.ceil((items.length * 100) / totalItems));
             page++;
           }

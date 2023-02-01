@@ -1,7 +1,7 @@
 import { Type } from '@angular/core';
 import { ValidatorFn, Validators, FormControl } from '@angular/forms';
-import { koala } from '@koalarx/utils';
-import { BehaviorSubject } from 'rxjs';
+import { klArray } from '@koalarx/utils/operators/array';
+import { BehaviorSubject } from 'rxjs/internal/BehaviorSubject';
 import { CatFormCustomField } from '../../common/cat-form-custom-field';
 import { FormFieldBase } from '../form-field.base';
 import { CatFormCustomFieldOptions } from '../form.interface';
@@ -24,8 +24,7 @@ export class FormCustomFieldFactory<PropsType> extends FormFieldBase<
 
   private setValidators(validators: ValidatorFn[]) {
     if (!this.config.validators) this.config.validators = [];
-    this.config.validators = koala(this.config.validators)
-      .array<ValidatorFn>()
+    this.config.validators = klArray(this.config.validators)
       .merge(validators)
       .getValue();
     return this;

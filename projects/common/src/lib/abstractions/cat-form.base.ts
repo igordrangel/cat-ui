@@ -1,9 +1,9 @@
 import { Directive, ViewChild, OnInit, OnDestroy } from '@angular/core';
 import { FormComponent } from '@catrx/ui/form';
 import { BehaviorSubject } from 'rxjs/internal/BehaviorSubject';
+import { takeUntil } from 'rxjs/internal/operators/takeUntil';
 import { Subject } from 'rxjs/internal/Subject';
 import { CatComponentBase } from './cat-component.base';
-import { takeUntil } from 'rxjs';
 
 @Directive()
 export abstract class CatFormBase

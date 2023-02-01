@@ -5,8 +5,7 @@ import {
   Input,
   OnInit,
 } from '@angular/core';
-import { delay } from '@koalarx/utils/operators/delay';
-import { BehaviorSubject, interval, Subject, takeUntil } from 'rxjs';
+import { klDelay } from '@koalarx/utils/operators/delay';
 import {
   AppConfig,
   CatThemeType,
@@ -20,7 +19,6 @@ import {
   CatOAuth2TokenInterface,
   CatTokenService,
 } from '../../services/token/cat-token.service';
-import { first, startWith } from 'rxjs/operators';
 import jwtEncode from 'jwt-encode';
 import { Router } from '@angular/router';
 import { SafeUrl } from '@angular/platform-browser';
@@ -30,6 +28,12 @@ import { LogotypeComponent } from '../logotype/logotype.component';
 import { CatDynamicComponent } from '@catrx/ui/dynamic-component';
 import { CatOAuth2ConfigInterface } from '@catrx/ui/common';
 import { CatLoggedUser } from '../../guard/cat-logged-user';
+import { BehaviorSubject } from 'rxjs/internal/BehaviorSubject';
+import { Subject } from 'rxjs/internal/Subject';
+import { interval } from 'rxjs/internal/observable/interval';
+import { first } from 'rxjs/internal/operators/first';
+import { takeUntil } from 'rxjs/internal/operators/takeUntil';
+import { startWith } from 'rxjs/internal/operators/startWith';
 
 @Component({
   selector: 'cat-app-container[config]',
@@ -217,7 +221,7 @@ export class AppContainerComponent implements OnInit {
           ) {
             if (this.config.authSettings.autoAuth) {
               if (event === 'logout') {
-                await delay(3000);
+                await klDelay(3000);
                 this.oauth2Service.events.next('authenticate');
               } else {
                 this.oauth2Service.events.next('authenticate');
@@ -304,7 +308,7 @@ export class AppContainerComponent implements OnInit {
                 this.observeNotifications();
               }
 
-              await delay(300);
+              await klDelay(300);
               this.logged$.next(true);
               this.forceLogin$.next(false);
               resolve(true);

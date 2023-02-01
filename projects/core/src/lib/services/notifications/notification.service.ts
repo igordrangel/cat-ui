@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
-import { Observable } from 'rxjs';
-import { koala } from '@koalarx/utils';
+import { Observable } from 'rxjs/internal/Observable';
+import { klObject } from '@koalarx/utils/operators/object';
 
 export declare type Permission = 'denied' | 'granted' | 'default';
 
@@ -48,8 +48,7 @@ export class NotificationService {
       }
 
       if (!document.hasFocus()) {
-        options = koala(options)
-          .object()
+        options = klObject(options)
           .merge({
             requireInteraction: false,
             renotify: false,

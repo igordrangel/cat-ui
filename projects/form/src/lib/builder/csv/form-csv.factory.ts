@@ -1,5 +1,5 @@
 import { ValidatorFn, Validators } from '@angular/forms';
-import { koala } from '@koalarx/utils';
+import { klArray } from '@koalarx/utils/operators/array';
 import { CatFileValidator } from '../../validators/cat-file.validator';
 import { FormFieldBase } from '../form-field.base';
 import { CatCsvModel, CatFormCsvOptions } from '../form.interface';
@@ -34,8 +34,7 @@ export class FormCsvFactory extends FormFieldBase<CatFormCsvOptions> {
 
   private setValidators(validators: ValidatorFn[]) {
     if (!this.config.validators) this.config.validators = [];
-    this.config.validators = koala(this.config.validators)
-      .array<ValidatorFn>()
+    this.config.validators = klArray(this.config.validators)
       .merge(validators)
       .getValue();
     return this;

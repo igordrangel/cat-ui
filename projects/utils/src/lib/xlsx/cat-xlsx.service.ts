@@ -1,9 +1,9 @@
 import { Workbook } from 'exceljs';
 import * as fs from 'file-saver';
 
-import { koala } from '@koalarx/utils';
 import { Injectable } from '@angular/core';
 import { CatXlsxConfig } from './xlsx.config';
+import { klString } from '@koalarx/utils/operators/string';
 
 @Injectable({ providedIn: 'any' })
 export class CatXlsxService {
@@ -24,7 +24,7 @@ export class CatXlsxService {
           config.normalizeHeader === true ||
             config.normalizeHeader === null ||
             config.normalizeHeader === undefined
-            ? koala(name).string().normalize().getValue().toUpperCase()
+            ? klString(name).normalize().getValue().toUpperCase()
             : name
         );
       });

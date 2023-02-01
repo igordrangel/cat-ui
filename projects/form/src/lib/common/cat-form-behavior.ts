@@ -4,7 +4,7 @@ import {
   CatFormBehaviorSetValue,
   CatFormBehaviorValidator,
 } from '../builder/form.interface';
-import { Subject } from 'rxjs';
+import { Subject } from 'rxjs/internal/Subject';
 export class CatFormBehavior {
   private options: CatFormBehaviorOptions = {};
 

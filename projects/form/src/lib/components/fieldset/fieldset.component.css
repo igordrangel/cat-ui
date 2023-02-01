@@ -9,6 +9,7 @@ fieldset {
   align-items: flex-start;
   flex-wrap: wrap;
 }
+
 fieldset legend {
   float: none;
   width: fit-content;

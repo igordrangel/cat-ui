@@ -5,17 +5,18 @@ import {
   OnInit,
   SimpleChanges,
 } from '@angular/core';
-import { koala } from '@koalarx/utils';
 import {
   AppConfigMenu,
   AppConfigMenuModule,
   AppConfigMenuTool,
 } from '../../factory/app-config.interface';
-import { BehaviorSubject } from 'rxjs';
 import { NavigationEnd, Router } from '@angular/router';
 import { CatToolbarBreadcrumb } from '@catrx/ui/toolbar';
 import { CatMenuContext } from '@catrx/ui/common';
 import { CatRoutePolice } from '../../guard/cat-route.police';
+import { klArray } from '@koalarx/utils/operators/array';
+import { klString } from '@koalarx/utils/operators/string';
+import { BehaviorSubject } from 'rxjs/internal/BehaviorSubject';
 
 @Component({
   selector: 'cat-menu[appName][config][menuCollapsed]',
@@ -72,14 +73,12 @@ export class MenuComponent implements OnInit, OnChanges {
       this.router.url !== moduleOption?.routerLink &&
       this.router.url !== toolOption?.routerLink
     ) {
-      breadcrumb = koala(breadcrumb)
-        .array<CatToolbarBreadcrumb>()
+      breadcrumb = klArray(breadcrumb)
         .pipe((klArray) => {
           let pathRoute = '';
           return klArray
             .merge(
-              koala(this.router.url)
-                .string()
+              klString(this.router.url)
                 .split('/')
                 .clearEmptyValues()
                 .map<CatToolbarBreadcrumb>((toolName) => {
@@ -145,8 +144,7 @@ export class MenuComponent implements OnInit, OnChanges {
 
   private buildMenu() {
     if (this.config?.modules?.length > 0)
-      this.config.modules = koala(this.config.modules)
-        .array<AppConfigMenuModule>()
+      this.config.modules = klArray(this.config.modules)
         .map((module) => {
           if (module.hasPermission && !module.hasPermission()) {
             return null;
@@ -169,8 +167,7 @@ export class MenuComponent implements OnInit, OnChanges {
   }
 
   private getTools(tools: AppConfigMenuTool[]) {
-    return koala(tools)
-      .array<AppConfigMenuTool>()
+    return klArray(tools)
       .map((tool) => {
         if (tool.hasPermission && !tool.hasPermission()) {
           return null;

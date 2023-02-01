@@ -1,7 +1,6 @@
 import { Component, Input } from '@angular/core';
-import { koala } from '@koalarx/utils';
-import { randomString } from '@koalarx/utils/operators/string';
-import { Observable } from 'rxjs';
+import { randomString, klString } from '@koalarx/utils/operators/string';
+import { Observable } from 'rxjs/internal/Observable';
 
 export type CatDropdownPosition =
   | 'top'
@@ -35,8 +34,7 @@ export class CatDropdownComponent {
       let ariaControl: string;
 
       do {
-        ariaControl = koala('cat-dropdown-')
-          .string()
+        ariaControl = klString('cat-dropdown-')
           .concat(
             randomString(10, {
               lowercase: true,

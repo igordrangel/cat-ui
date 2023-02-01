@@ -47,17 +47,17 @@
         "dist/common",
         "projects/common/src"
       ],
-      "@catrx/ui/utils": [
+      "@catrx/ui/utils/*": [
+        "projects/utils/*",
+        "projects/utils",
+        "dist/utils/*",
         "dist/utils",
-        "projects/utils/src"
       ],
-      "@catrx/ui/utils/xlsx": [
-        "dist/utils/xlsx",
-        "projects/utils/src/lib/xlsx"
-      ],
-      "@catrx/ui/button": [
+      "@catrx/ui/button/*": [
+        "projects/button/*",
+        "projects/button",
+        "dist/button/*",
         "dist/button",
-        "projects/button/src"
       ],
       "@catrx/ui/loader-page": [
         "dist/loader-page",

@@ -1,9 +1,9 @@
 import { Component } from '@angular/core';
 import { CatFormBehavior, CatFormService } from '@catrx/ui/form';
-import { CatFileInterface } from '@catrx/ui/utils';
+import { CatFileInterface } from '@catrx/ui/utils/src/lib/file';
 import { PageFormService } from './page-form.service';
 import { nameValidator } from './validators/name.validator';
-import { Observable } from 'rxjs';
+import { Observable } from 'rxjs/internal/Observable';
 
 @Component({
   templateUrl: 'page-form.component.html',

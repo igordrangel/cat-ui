@@ -1,8 +1,9 @@
 import { AsyncValidatorFn, FormControl, ValidatorFn } from '@angular/forms';
-import { Observable, BehaviorSubject } from 'rxjs';
 import { CatFormBehavior } from '../common/cat-form-behavior';
 import { Type } from '@angular/core';
 import { CatFormCustomField } from '../common/cat-form-custom-field';
+import { Observable } from 'rxjs/internal/Observable';
+import { BehaviorSubject } from 'rxjs/internal/BehaviorSubject';
 
 export interface CatFormConfig<DataType> {
   formElements: CatFormElementConfig[];

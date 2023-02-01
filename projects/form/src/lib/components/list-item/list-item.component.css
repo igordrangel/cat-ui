@@ -9,6 +9,7 @@ fieldset {
   align-items: flex-start;
   flex-wrap: wrap;
 }
+
 fieldset legend {
   float: none;
   width: fit-content;
@@ -22,6 +23,7 @@ fieldset legend {
   justify-items: center;
   align-items: center;
 }
+
 fieldset legend .cat-btn-add-item-list,
 fieldset legend .cat-btn-remove-item-list {
   display: flex;
@@ -41,24 +43,31 @@ fieldset legend .cat-btn-remove-item-list {
   border: 1px solid var(--btn-icon-bg-primary);
   overflow: hidden;
 }
+
 fieldset legend .cat-btn-add-item-list i,
 fieldset legend .cat-btn-remove-item-list i {
   background-color: var(--btn-icon-c-primary);
   border-radius: 50%;
   line-height: 0.5;
 }
+
 fieldset legend .cat-btn-remove-item-list {
   border: 1px solid var(--btn-icon-bg-danger);
   color: var(--btn-icon-bg-danger);
   background-color: var(--btn-icon-bg-danger);
 }
+
 fieldset legend .cat-btn-add-item-list:disabled,
 fieldset legend .cat-btn-remove-item-list:disabled {
   cursor: not-allowed;
   color: var(--disable-color);
 }
 
-.cat-list-item-size {margin-left: 8px;color: var(--font-color);font-size: 9pt;}
+.cat-list-item-size {
+  margin-left: 8px;
+  color: var(--font-color);
+  font-size: 9pt;
+}
 
 .fields-content {
   box-sizing: border-box;

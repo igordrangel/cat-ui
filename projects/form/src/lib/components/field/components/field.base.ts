@@ -8,8 +8,10 @@ import {
 } from '@angular/core';
 import { FormControl } from '@angular/forms';
 import { CatFormFieldConfig } from '../../../builder/form.interface';
-import { delay } from '@koalarx/utils/operators/delay';
-import { Subject, takeUntil, BehaviorSubject } from 'rxjs';
+import { klDelay } from '@koalarx/utils/operators/delay';
+import { BehaviorSubject } from 'rxjs/internal/BehaviorSubject';
+import { Subject } from 'rxjs/internal/Subject';
+import { takeUntil } from 'rxjs/internal/operators/takeUntil';
 
 @Directive()
 export abstract class FieldBase<FormFieldType, ElInputType extends HTMLElement>
@@ -48,7 +50,7 @@ export abstract class FieldBase<FormFieldType, ElInputType extends HTMLElement>
 
   private async focus() {
     if (this.fieldConfig?.focus) {
-      while (!this.elInput) await delay(300);
+      while (!this.elInput) await klDelay(300);
       this.elInput?.nativeElement?.focus();
     }
   }

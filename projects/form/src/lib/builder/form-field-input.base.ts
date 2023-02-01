@@ -1,7 +1,7 @@
 import { CatFormFieldOptions } from './form.interface';
 import { AsyncValidatorFn, ValidatorFn, Validators } from '@angular/forms';
-import { koala } from '@koalarx/utils';
 import { FormFieldBase } from './form-field.base';
+import { klArray } from '@koalarx/utils/operators/array';
 
 export abstract class FormFieldInputBase<
   ConfigType extends CatFormFieldOptions
@@ -24,8 +24,7 @@ export abstract class FormFieldInputBase<
 
   public setValidators(validators: ValidatorFn[]) {
     if (!this.config.validators) this.config.validators = [];
-    this.config.validators = koala(this.config.validators)
-      .array<ValidatorFn>()
+    this.config.validators = klArray(this.config.validators)
       .merge(validators)
       .getValue();
     return this;
@@ -33,8 +32,7 @@ export abstract class FormFieldInputBase<
 
   public setAsyncValidators(asyncValidators: AsyncValidatorFn[]) {
     if (!this.config.asyncValidators) this.config.asyncValidators = [];
-    this.config.asyncValidators = koala(this.config.asyncValidators)
-      .array<AsyncValidatorFn>()
+    this.config.asyncValidators = klArray(this.config.asyncValidators)
       .merge(asyncValidators)
       .getValue();
     return this;

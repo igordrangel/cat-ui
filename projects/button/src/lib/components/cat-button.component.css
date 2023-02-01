@@ -4,4 +4,7 @@ button {
   align-items: center;
   padding: .25rem 15px;
 }
-button.loading {padding: .25rem 15px .25rem 13px;}
+
+button.loading {
+  padding: .25rem 15px .25rem 13px;
+}

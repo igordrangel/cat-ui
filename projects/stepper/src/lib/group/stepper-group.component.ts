@@ -1,5 +1,5 @@
 import { Component, Input, OnInit } from '@angular/core';
-import { delay } from '@koalarx/utils/operators/delay';
+import { klDelay } from '@koalarx/utils/operators/delay';
 import { randomString } from '@koalarx/utils/operators/string';
 
 @Component({
@@ -72,7 +72,7 @@ export class StepperGroupComponent implements OnInit {
       .item(1)
       .children.item(1)
       .classList.add('animate__slideInDown');
-    await delay(200);
+    await klDelay(200);
     element.children
       .item(1)
       .children.item(0)
@@ -115,7 +115,7 @@ export class StepperGroupComponent implements OnInit {
       .item(1)
       .children.item(1)
       .classList.add('animate__slideOutUp');
-    await delay(200);
+    await klDelay(200);
     element.children
       .item(1)
       .children.item(0)

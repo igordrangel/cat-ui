@@ -1,5 +1,5 @@
 import { CatEnvironment, CatOAuth2ConfigInterface } from '@catrx/ui/common';
-import { BehaviorSubject } from 'rxjs';
+import { BehaviorSubject } from 'rxjs/internal/BehaviorSubject';
 
 // @dynamic
 export class CatOAuth2Config {

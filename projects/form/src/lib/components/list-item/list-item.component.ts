@@ -9,8 +9,8 @@ import {
 import { CatFormListItemConfig } from '../../builder/form.interface';
 import { FormArray, FormBuilder, FormControl, FormGroup } from '@angular/forms';
 import { toCamelCase } from '@koalarx/utils/operators/string';
-import { Subject } from 'rxjs';
 import { OnDestroy } from '@angular/core';
+import { Subject } from 'rxjs/internal/Subject';
 
 @Component({
   selector: 'cat-form-list-item[listItemConfig]',

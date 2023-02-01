@@ -11,8 +11,15 @@
   cursor: pointer;
   transition: .1s;
 }
-.cat-tab-item:first-child {margin-left: 0;}
-.cat-tab-item:last-child {margin-right: 0;}
+
+.cat-tab-item:first-child {
+  margin-left: 0;
+}
+
+.cat-tab-item:last-child {
+  margin-right: 0;
+}
+
 .cat-tab-item:hover,
 .cat-tab-item.active {
   background-color: var(--tab-bg);
@@ -28,6 +35,7 @@
   width: 100%;
   transition: .1s;
 }
+
 .cat-tab-item-content.active {
   left: 0;
 }

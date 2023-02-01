@@ -10,7 +10,6 @@ import {
   CatFormTextareaOptions,
 } from './form.interface';
 import { FormFieldService } from './form-field.service';
-import { Subject, Observable } from 'rxjs';
 import { FormTextareaFactory } from './textarea/form-textarea.factory';
 import { FormTextFactory } from './text/form-text.factory';
 import { FormNumberFactory } from './number/form-number.factory';
@@ -26,6 +25,8 @@ import { FormPasswordFactory } from './password/form-password.factory';
 import { FormSearchFactory } from './search/form-search.factory';
 import { FormCustomFieldFactory } from './customField/form-custom-field.factory';
 import { Type } from '@angular/core';
+import { Subject } from 'rxjs/internal/Subject';
+import { Observable } from 'rxjs/internal/Observable';
 
 export class FormFactory<DataType> {
   private readonly config: CatFormConfig<DataType>;

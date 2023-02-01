@@ -10,9 +10,9 @@ import {
   Input,
   OnDestroy,
 } from '@angular/core';
-import { interval } from 'rxjs';
+import { interval } from 'rxjs/internal/observable/interval';
+import { startWith } from 'rxjs/internal/operators/startWith';
 import { Subscription } from 'rxjs/internal/Subscription';
-import { startWith } from 'rxjs/operators';
 import { TooltipComponent } from './tooltip.component';
 
 export type CatTooltipPosition = 'above' | 'below' | 'left' | 'right' | 'above';

@@ -26,9 +26,15 @@
   font-weight: bold;
   width: calc(100% - 30px);
 }
-.cat-snackbar-container .cat-snackbar-content .title i {margin-right: 5px;}
 
-.cat-snackbar-container .cat-snackbar-content .message {margin: 0;padding: 3px 0 0;}
+.cat-snackbar-container .cat-snackbar-content .title i {
+  margin-right: 5px;
+}
+
+.cat-snackbar-container .cat-snackbar-content .message {
+  margin: 0;
+  padding: 3px 0 0;
+}
 
 .cat-snackbar-container .cat-snackbar-content .btn-snackbar-close {
   position: absolute;
@@ -39,7 +45,10 @@
   color: var(--disable-color);
   transition: .1s;
 }
-.cat-snackbar-container .cat-snackbar-content .btn-snackbar-close:hover {color: var(--font-color);}
+
+.cat-snackbar-container .cat-snackbar-content .btn-snackbar-close:hover {
+  color: var(--font-color);
+}
 
 .cat-snackbar-progress-container {
   position: absolute;
@@ -51,6 +60,7 @@
   background-color: transparent;
   overflow: hidden;
 }
+
 .cat-snackbar-progress-container .cat-snackbar-progress-bar {
   position: absolute;
   top: 0;
@@ -61,12 +71,34 @@
   transition: 0.2s;
 }
 
-.cat-snackbar-container .cat-snackbar-content.success { border-top: 4px solid #43A047; }
-.cat-snackbar-container .cat-snackbar-content.warning { border-top: 4px solid #FFA000; }
-.cat-snackbar-container .cat-snackbar-content.error { border-top: 4px solid #C62828; }
-.cat-snackbar-container .cat-snackbar-content.info { border-top: 4px solid #00BCD4; }
+.cat-snackbar-container .cat-snackbar-content.success {
+  border-top: 4px solid #43A047;
+}
 
-.cat-snackbar-container .cat-snackbar-content.success .title { color: #43A047; }
-.cat-snackbar-container .cat-snackbar-content.warning .title { color: #FFA000; }
-.cat-snackbar-container .cat-snackbar-content.error .title { color: #C62828; }
-.cat-snackbar-container .cat-snackbar-content.info .title { color: #00BCD4; }
+.cat-snackbar-container .cat-snackbar-content.warning {
+  border-top: 4px solid #FFA000;
+}
+
+.cat-snackbar-container .cat-snackbar-content.error {
+  border-top: 4px solid #C62828;
+}
+
+.cat-snackbar-container .cat-snackbar-content.info {
+  border-top: 4px solid #00BCD4;
+}
+
+.cat-snackbar-container .cat-snackbar-content.success .title {
+  color: #43A047;
+}
+
+.cat-snackbar-container .cat-snackbar-content.warning .title {
+  color: #FFA000;
+}
+
+.cat-snackbar-container .cat-snackbar-content.error .title {
+  color: #C62828;
+}
+
+.cat-snackbar-container .cat-snackbar-content.info .title {
+  color: #00BCD4;
+}

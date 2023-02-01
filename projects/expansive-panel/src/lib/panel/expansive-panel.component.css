@@ -13,13 +13,16 @@
   cursor: pointer;
   z-index: 1;
 }
+
 .cat-expansive-panel-header.active {
   margin-top: 10px;
 }
+
 .cat-expansive-panel-header.disabled {
   cursor: default;
   color: var(--disable-color);
 }
+
 .cat-expansive-panel-header:not(.disabled):before {
   font-family: "Font Awesome 5 Free";
   font-weight: 900;
@@ -33,11 +36,14 @@
   padding: 0 10px;
   transition: .2s;
 }
+
 .cat-expansive-panel-header.active::before {
   rotate: 90deg;
 }
 
-.cat-expansive-panel-header-title {padding: 0 20px 0 10px;}
+.cat-expansive-panel-header-title {
+  padding: 0 20px 0 10px;
+}
 
 .cat-expansive-panel-content {
   display: flex;
@@ -52,6 +58,7 @@
   border-radius: 0 0 5px 5px;
   transition: .2s;
 }
+
 .cat-expansive-panel-content.active {
   height: auto;
   padding: 10px 15px;

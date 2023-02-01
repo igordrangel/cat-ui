@@ -4,8 +4,9 @@ import {
   CatFormCsvOptions,
   CatFormFileOptions,
 } from '../../../../builder/form.interface';
-import { koala } from '@koalarx/utils';
-import { CatCsvService, CatFileInterface } from '@catrx/ui/utils';
+import { CatCsvService } from '@catrx/ui/utils/src/lib/csv';
+import { CatFileInterface } from '@catrx/ui/utils/src/lib/file';
+import { klArray } from '@koalarx/utils/operators/array';
 
 @Component({
   selector: 'cat-field-file[control][fieldConfig]',
@@ -38,9 +39,10 @@ export class InputFileComponent extends FieldBase<
           if (file) {
             const fileResult = await this.convertFile(file);
             if (fileResult) {
-              const indexFile = koala(this.files)
-                .array()
-                .getIndex('filename', fileResult.filename);
+              const indexFile = klArray(this.files).getIndex(
+                'filename',
+                fileResult.filename
+              );
               if (indexFile >= 0) {
                 this.files[indexFile] = fileResult;
               } else {
@@ -62,8 +64,7 @@ export class InputFileComponent extends FieldBase<
   }
 
   public getSupportedExtensions() {
-    return koala(this.fieldConfig?.accept ?? [])
-      .array<string>()
+    return klArray(this.fieldConfig?.accept ?? [])
       .toString()
       .getValue();
   }

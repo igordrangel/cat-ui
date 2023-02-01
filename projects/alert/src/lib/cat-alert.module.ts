@@ -1,6 +1,6 @@
 import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
-import { CatPrimaryButtonComponent } from '@catrx/ui/button';
+import { CatPrimaryButtonComponent } from '@catrx/ui/button/src/lib/components/primary';
 import { CatDialogModule } from '@catrx/ui/dialog';
 import { CatDynamicComponentModule } from '@catrx/ui/dynamic-component';
 import { AlertComponent } from './alert.component';
