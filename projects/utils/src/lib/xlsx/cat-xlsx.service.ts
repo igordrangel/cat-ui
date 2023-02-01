@@ -1,5 +1,4 @@
-import * as Excel from 'exceljs/dist/exceljs.min.js';
-import * as ExcelProper from 'exceljs';
+import { Workbook } from 'exceljs';
 import * as fs from 'file-saver';
 
 import { koala } from '@koalarx/utils';
@@ -16,7 +15,7 @@ export class CatXlsxService {
     filename: string
   ) {
     const config = CatXlsxConfig.config;
-    const workbook: ExcelProper.Workbook = new Excel.Workbook();
+    const workbook: Workbook = new Workbook();
 
     for (const tab of tabs.values()) {
       const header = [];
