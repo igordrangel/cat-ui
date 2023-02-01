@@ -51,6 +51,10 @@
         "dist/utils",
         "projects/utils/src"
       ],
+      "@catrx/ui/utils/xlsx": [
+        "dist/utils/xlsx",
+        "projects/utils/src/lib/xlsx"
+      ],
       "@catrx/ui/button": [
         "dist/button",
         "projects/button/src"

@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { CatComponentBase } from '@catrx/ui/common';
-import { CatXlsxService } from '@catrx/ui/utils';
+import { CatXlsxService } from '@catrx/ui/utils/xlsx';
 
 @Component({ templateUrl: './page.xlsx.component.html' })
 export class PageXlsxComponent extends CatComponentBase {
