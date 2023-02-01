@@ -139,7 +139,11 @@ export class MenuComponent implements OnInit, OnChanges {
       breadcrumb,
     };
 
-    document.title = `${title} | ${this.appName}`;
+    if (title) {
+      document.title = `${title} | ${this.appName}`;
+    } else {
+      document.title = `${this.appName}`;
+    }
   }
 
   private buildMenu() {
