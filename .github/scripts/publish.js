@@ -14,7 +14,7 @@ fs.writeFileSync('dist/@catrx/ui/package.json', JSON.stringify({
   "description": config.description,
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/igordrangel/koala-angular-template.git"
+    "url": "git+https://github.com/igordrangel/cat-ui.git"
   },
   "keywords": config.keywords,
   "author": "Igor D. Rangel",
