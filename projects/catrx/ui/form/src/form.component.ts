@@ -26,6 +26,7 @@ import { Subject } from 'rxjs/internal/Subject';
 import { takeUntil } from 'rxjs/internal/operators/takeUntil';
 import { debounceTime } from 'rxjs/internal/operators/debounceTime';
 import { first } from 'rxjs/internal/operators/first';
+import { getValueByTree } from './common/cat-object.helper';
 
 @Component({
   selector: 'cat-form[config]',
@@ -126,7 +127,10 @@ export class FormComponent implements OnInit {
     name?: string
   ) {
     if (name) {
-      const valueDataByTree = eval(`this.config.autofill.${name}`) as {
+      const valueDataByTree = getValueByTree(
+        this.config.autofill,
+        name
+      ) as {
         [key: string | number]: any;
       };
 

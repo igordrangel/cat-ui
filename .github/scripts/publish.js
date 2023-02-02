@@ -18,7 +18,7 @@ fs.writeFileSync('dist/@catrx/ui/package.json', JSON.stringify({
   },
   "keywords": config.keywords,
   "author": "Igor D. Rangel",
-  "license": "MIT",
+  "license": config.license,
   "bugs": {
     "url": "https://github.com/igordrangel/cat-ui/issues"
   },
