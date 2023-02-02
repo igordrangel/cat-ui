@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { CatLogotypeApp, CatTokenService } from '@catrx/ui/core';
+import { CatLogotypeApp, CatTokenService } from '@catrx/ui';
 import { CatFormModule, CatFormService } from '@catrx/ui/form';
 import {
   CatDynamicComponentDataInterface,
@@ -8,7 +8,7 @@ import {
 import { Observable } from 'rxjs';
 import { CatFormBase } from '@catrx/ui/common';
 import { CommonModule } from '@angular/common';
-import { CatPrimaryButtonComponent } from '@catrx/ui/button/src/lib/components/primary';
+import { CatPrimaryButtonComponent } from '@catrx/ui/button/primary';
 
 @Component({
   template: `

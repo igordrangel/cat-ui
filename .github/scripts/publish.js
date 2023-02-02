@@ -3,38 +3,13 @@ const fsExtra = require("fs-extra");
 const {execSync} = require("child_process");
 const config = JSON.parse(fs.readFileSync('package.json').toString());
 const currentVersion = config.version;
-const libs = [
-  'dynamic-component',
-  'chip',
-  'tooltip',
-  'dropdown',
-  'tab',
-  'stepper',
-  'expansive-panel',
-  'side-window',
-  'snackbar',
-  'loader',
-  'loader-page',
-  'icon-button',
-  'button',
-  'toolbar',
-  'dialog',
-  'confirm',
-  'alert',
-  'utils',
-  'datatable',
-  'form',
-  'common',
-  'core'
-];
 
-for (const [index, lib] of libs.entries()) {
-  execSync(`ng build ${lib}`, {stdio: 'ignore'});
-  console.log(`[${index + 1} of ${libs.length}] ${lib} built with successfully.`);
-}
+execSync(`ng build @catrx/ui`, {stdio: 'inherit'});
 
-fs.writeFileSync('dist/package.json', JSON.stringify({
-  "name": "@catrx/ui",
+const packageJson = JSON.parse(fs.readFileSync('dist/@catrx/ui/package.json', {encoding: 'utf8'}).toString());
+
+fs.writeFileSync('dist/@catrx/ui/package.json', JSON.stringify({
+  ...packageJson,
   "version": currentVersion,
   "description": config.description,
   "repository": {
@@ -74,7 +49,7 @@ fs.writeFileSync('dist/package.json', JSON.stringify({
     "tslib": "^2.3.0",
   }
 }), 'utf8');
-fs.writeFileSync('dist/README.md', fs.readFileSync('README.md').toString(), 'utf8');
-fsExtra.copySync('projects/prebuilt-theme', 'dist/prebuilt-theme')
+fs.writeFileSync('dist/@catrx/ui/README.md', fs.readFileSync('README.md').toString(), 'utf8');
+fsExtra.copySync('projects/prebuilt-theme', 'dist/@catrx/ui/prebuilt-theme')
 
 console.log('Build completed');

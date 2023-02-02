@@ -1,5 +1,5 @@
 import { NgModule } from '@angular/core';
-import { CatPrimaryButtonComponent } from '@catrx/ui/button/src/lib/components/primary';
+import { CatPrimaryButtonComponent } from '@catrx/ui/button/primary';
 import { CatToolbarModule } from '@catrx/ui/toolbar';
 import { PageLoaderPageComponent } from './page-loader-page.component';
 import { PageLoaderPageRoutingModule } from './page-loader-page.routing.module';

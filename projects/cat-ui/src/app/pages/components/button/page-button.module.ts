@@ -1,10 +1,10 @@
 import { NgModule } from '@angular/core';
-import { CatDangerButtonComponent } from '@catrx/ui/button/src/lib/components/danger';
-import { CatInfoButtonComponent } from '@catrx/ui/button/src/lib/components/info';
-import { CatPrimaryButtonComponent } from '@catrx/ui/button/src/lib/components/primary';
-import { CatSecondaryButtonComponent } from '@catrx/ui/button/src/lib/components/secondary';
-import { CatSuccessButtonComponent } from '@catrx/ui/button/src/lib/components/success';
-import { CatWarningButtonComponent } from '@catrx/ui/button/src/lib/components/warning';
+import { CatDangerButtonComponent } from '@catrx/ui/button/danger';
+import { CatInfoButtonComponent } from '@catrx/ui/button/info';
+import { CatPrimaryButtonComponent } from '@catrx/ui/button/primary';
+import { CatSecondaryButtonComponent } from '@catrx/ui/button/secondary';
+import { CatSuccessButtonComponent } from '@catrx/ui/button/success';
+import { CatWarningButtonComponent } from '@catrx/ui/button/warning';
 import { CatToolbarModule } from '@catrx/ui/toolbar';
 import { PageButtonComponent } from './page-button.component';
 import { PageButtonRoutingModule } from './page-button.routing.module';

@@ -1,0 +1,7 @@
+{
+  "$schema": "../../../../../node_modules/ng-packagr/ng-package.schema.json",
+  "dest": "../../../../../dist/@catrx/ui/button/primary",
+  "lib": {
+    "entryFile": "public-api.ts"
+  }
+}

@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { CatAppService } from '@catrx/ui/core';
+import { CatAppService } from '@catrx/ui';
 import { AppService } from './app.service';
 import { LoginComponent } from './login.component';
 

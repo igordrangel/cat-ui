@@ -4,7 +4,7 @@ import {
   AppNotification,
   CatAppDecodedToken,
   CatRoutePolice,
-} from '@catrx/ui/core';
+} from '@catrx/ui';
 import { Observable } from 'rxjs/internal/Observable';
 
 @Injectable({ providedIn: 'any' })

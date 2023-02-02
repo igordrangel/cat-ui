@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 import { CatFormBase } from '@catrx/ui/common';
 import { CatFormService } from '@catrx/ui/form';
-import { Observable } from 'rxjs';
+import { Observable } from 'rxjs/internal/Observable';
 
 @Component({
   templateUrl: './page-list-item.component.html',
