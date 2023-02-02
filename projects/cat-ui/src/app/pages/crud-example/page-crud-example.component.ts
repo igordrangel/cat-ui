@@ -7,7 +7,7 @@ import { CatDynamicComponent } from '@catrx/ui/dynamic-component';
 import { CatFormService } from '@catrx/ui/form';
 import { CatLoaderPageService } from '@catrx/ui/loader-page';
 import { CatSnackbarService } from '@catrx/ui/snackbar';
-import { CatCsvService } from '@catrx/ui/utils';
+import { CatCsvService } from '@catrx/ui/utils/csv';
 import { CatXlsxService } from '@catrx/ui/utils/xlsx';
 import { CatPhotoComponent } from './cat-photo.component';
 import { Cat, CatFilter, CatSexSelectOptions } from './services/cat.interface';

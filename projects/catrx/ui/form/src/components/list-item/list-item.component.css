@@ -1,0 +1,79 @@
+fieldset {
+  border: 1px solid var(--fieldset-border-color);
+  border-radius: 10px;
+  box-sizing: border-box;
+  padding: 5px 10px;
+  margin-bottom: 10px;
+  display: flex;
+  justify-content: flex-start;
+  align-items: flex-start;
+  flex-wrap: wrap;
+}
+
+fieldset legend {
+  float: none;
+  width: fit-content;
+  padding: 0 5px;
+  margin-bottom: 3px;
+  font-size: 8pt;
+  font-weight: bold;
+  text-transform: uppercase;
+  color: var(--fieldset-legend-color);
+  display: flex;
+  justify-items: center;
+  align-items: center;
+}
+
+fieldset legend .cat-btn-add-item-list,
+fieldset legend .cat-btn-remove-item-list {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  box-sizing: border-box;
+  border: none;
+  padding: 0;
+  font-size: 14pt;
+  color: var(--btn-icon-bg-primary);
+  background-color: var(--btn-icon-bg-primary);
+  margin-right: 5px;
+  overflow: hidden;
+  width: 14pt;
+  height: 14pt;
+  border-radius: 50%;
+  border: 1px solid var(--btn-icon-bg-primary);
+  overflow: hidden;
+}
+
+fieldset legend .cat-btn-add-item-list i,
+fieldset legend .cat-btn-remove-item-list i {
+  background-color: var(--btn-icon-c-primary);
+  border-radius: 50%;
+  line-height: 0.5;
+}
+
+fieldset legend .cat-btn-remove-item-list {
+  border: 1px solid var(--btn-icon-bg-danger);
+  color: var(--btn-icon-bg-danger);
+  background-color: var(--btn-icon-bg-danger);
+}
+
+fieldset legend .cat-btn-add-item-list:disabled,
+fieldset legend .cat-btn-remove-item-list:disabled {
+  cursor: not-allowed;
+  color: var(--disable-color);
+}
+
+.cat-list-item-size {
+  margin-left: 8px;
+  color: var(--font-color);
+  font-size: 9pt;
+}
+
+.fields-content {
+  box-sizing: border-box;
+  width: 100%;
+  display: flex;
+  justify-content: flex-start;
+  align-items: flex-start;
+  flex-wrap: wrap;
+}

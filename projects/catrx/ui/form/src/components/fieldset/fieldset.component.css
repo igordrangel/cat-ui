@@ -1,0 +1,22 @@
+fieldset {
+  border: 1px solid var(--fieldset-border-color);
+  border-radius: 10px;
+  box-sizing: border-box;
+  padding: 5px 10px;
+  margin-bottom: 10px;
+  display: flex;
+  justify-content: flex-start;
+  align-items: flex-start;
+  flex-wrap: wrap;
+}
+
+fieldset legend {
+  float: none;
+  width: fit-content;
+  padding: 0 5px;
+  margin-bottom: 3px;
+  font-size: 8pt;
+  font-weight: bold;
+  text-transform: uppercase;
+  color: var(--fieldset-legend-color);
+}

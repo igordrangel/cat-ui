@@ -1,14 +1,14 @@
 import { Component } from '@angular/core';
-import { CatLogotypeApp, CatTokenService } from '@catrx/ui/core';
+import { CatLogotypeApp, CatTokenService } from '@catrx/ui';
 import { CatFormModule, CatFormService } from '@catrx/ui/form';
 import {
   CatDynamicComponentDataInterface,
   CatDynamicComponentModule,
 } from '@catrx/ui/dynamic-component';
 import { Observable } from 'rxjs';
-import { CatPrimaryButtonComponent } from '@catrx/ui/button';
 import { CatFormBase } from '@catrx/ui/common';
 import { CommonModule } from '@angular/common';
+import { CatPrimaryButtonComponent } from '@catrx/ui/button/primary';
 
 @Component({
   template: `

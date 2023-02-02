@@ -1,8 +1,11 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { delay, first, map, Observable } from 'rxjs';
 import { CatServiceBase } from '@catrx/ui/common';
 import { CatDatatableDataHttpResponse } from '@catrx/ui/datatable';
+import { map } from 'rxjs/internal/operators/map';
+import { delay } from 'rxjs/internal/operators/delay';
+import { first } from 'rxjs/internal/operators/first';
+import { Observable } from 'rxjs/internal/Observable';
 
 @Injectable({ providedIn: 'root' })
 export class PageDatatableExampleService extends CatServiceBase {

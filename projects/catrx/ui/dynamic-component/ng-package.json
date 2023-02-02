@@ -1,0 +1,7 @@
+{
+  "$schema": "../../../../node_modules/ng-packagr/ng-package.schema.json",
+  "dest": "../../../../dist/@catrx/ui/dynamic-component",
+  "lib": {
+    "entryFile": "public-api.ts"
+  }
+}

@@ -1,7 +1,9 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { CatFormListOptions } from '@catrx/ui/form';
-import { delay, first, map } from 'rxjs/operators';
+import { delay } from 'rxjs/internal/operators/delay';
+import { first } from 'rxjs/internal/operators/first';
+import { map } from 'rxjs/internal/operators/map';
 
 @Injectable({
   providedIn: 'root',

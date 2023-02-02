@@ -2,7 +2,7 @@ import { NgModule } from '@angular/core';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { CatUiModule } from '@catrx/ui/core';
+import { CatUiModule } from '@catrx/ui';
 import { environment } from '../environments/environment';
 
 @NgModule({
