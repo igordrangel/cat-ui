@@ -11,6 +11,7 @@ import { FormArray, FormBuilder, FormControl, FormGroup } from '@angular/forms';
 import { toCamelCase } from '@koalarx/utils/operators/string';
 import { OnDestroy } from '@angular/core';
 import { Subject } from 'rxjs/internal/Subject';
+import { getValueByTree } from '../../common/cat-object.helper';
 
 @Component({
   selector: 'cat-form-list-item[listItemConfig]',
@@ -47,8 +48,9 @@ export class ListItemComponent implements OnInit, OnDestroy {
     }
 
     if (this.listItemConfig.config.autofill) {
-      const value = eval(
-        `this.listItemConfig.config.autofill.${this.getTree()}`
+      const value = getValueByTree(
+        this.listItemConfig.config.autofill,
+        this.getTree()
       );
       if (Array.isArray(value)) {
         value.forEach((item, index) => {

@@ -1,3 +1,5 @@
+[![Socket Badge](https://socket.dev/api/badge/npm/package/@catrx/ui)](https://socket.dev/npm/package/@catrx/ui)
+
 # Cat UI - Um Design System Angular
 
 > Cat UI é um Design System para projetos Angular, onde seu maior objetivo é abstrair ao máximo a criação de sistemas, permitindo mais produtividade.

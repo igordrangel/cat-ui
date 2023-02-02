@@ -1,6 +1,7 @@
 {
   "name": "cat-ui",
   "version": "1.0.26",
+  "license": "ISC",
   "scripts": {
     "ng": "ng",
     "start": "ng serve",
