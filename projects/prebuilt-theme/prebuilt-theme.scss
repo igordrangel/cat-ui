@@ -292,6 +292,18 @@ main.dark {
 }
 body {overflow: hidden;}
 main {color: var(--font-color);}
+.template-content aside:not(.show) .btn-group {
+  flex-direction: column!important;
+  justify-content: center!important;
+}
+.template-content aside:not(.show) .btn-group div[menu-toolbar] {
+  display: flex!important;
+  flex-direction: column!important;
+  align-items: center!important;
+  justify-content: center!important;
+  gap: 10px!important;
+  padding: 10px 0!important;
+}
 
 @font-face {
   font-family: OpenSans;

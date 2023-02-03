@@ -1,69 +1,40 @@
 <main [ngClass]="themeActive$ | async">
-  <ng-container
-    *ngIf="
-      (validatingScope$ | async) === false &&
+  <ng-container *ngIf="(validatingScope$ | async) === false &&
         (loadingClaims$ | async) === false;
-      else loginTemplate
-    "
-  >
-    <ng-container
-      *ngIf="
-        (forceLogin$ | async) === false &&
+      else loginTemplate">
+
+    <ng-container *ngIf="(forceLogin$ | async) === false &&
           (!this.config.authSettings.autoAuth || (logged$ | async));
-        else loginTemplate
-      "
-    >
-      <aside #asideElement [ngClass]="{ show: menuCollapsed$ | async }">
-        <ng-container>
-          <button
-            *ngIf="!(config.options?.disableCollapseMenuButton ?? false)"
-            type="button"
-            class="btn-menu-collapse"
-            (click)="collapseMenu()"
-          >
-            <i
-              *ngIf="(menuCollapsed$ | async) === false"
-              class="fa-solid fa-chevron-right"
-            ></i>
-            <i
-              *ngIf="menuCollapsed$ | async"
-              class="fa-solid fa-chevron-left"
-            ></i>
-          </button>
+        else loginTemplate">
 
-          <img
-            #logotypeImage
-            class="logotype"
-            [src]="
-              (themeActive$ | async) === 'dark' && config.logotype.negative
-                ? config.logotype.negative
-                : config.logotype.default
-            "
-            alt="Logotipo"
-          />
-
+      <cat-template-container
+        #templateContainer
+        [appConfig]="config"
+        [themeActive]="themeActive$"
+        (menuCollapse)="menuCollapsed$.next($event)">
+        <div menu-content>
           <cat-menu
             *ngIf="sideMenuConfig$ | async as sideMenuConfig"
             [appName]="config.appName"
             [config]="sideMenuConfig"
-            [style.height]="'calc(100% - ' + btnGroup.style.height + ')'"
-            [menuCollapsed]="menuCollapsed$"
-          >
+            [style.height]="'calc(100% - ' + templateContainer?.desktopTemplate?.menuToolbar?.nativeElement?.style?.height + ')'"
+            [menuCollapsed]="menuCollapsed$">
           </cat-menu>
-        </ng-container>
-        <div class="space"></div>
-        <div #btnGroup class="btn-group">
+        </div>
+
+        <div menu-toolbar>
           <button
             type="button"
             *ngIf="config.darkMode && (themeActive$ | async) as themeActive"
             (click)="switchTheme()"
-            [catTooltip]="
-              'Ativar modo ' +
-              ((themeActive$ | async) === 'light' ? 'escuro' : 'claro')
-            "
-          >
-            <i *ngIf="themeActive === 'light'" class="fa-solid fa-moon"></i>
-            <i *ngIf="themeActive === 'dark'" class="fa-solid fa-sun"></i>
+            [catTooltip]="'Ativar modo ' +
+              ((themeActive$ | async) === 'light' ? 'escuro' : 'claro')">
+            <i
+              *ngIf="themeActive === 'light'"
+              class="fa-solid fa-moon"></i>
+            <i
+              *ngIf="themeActive === 'dark'"
+              class="fa-solid fa-sun"></i>
           </button>
 
           <ng-content select="[bottom-buttons]"></ng-content>
@@ -73,8 +44,7 @@
               trigger
               type="button"
               catTooltip="Notificações"
-              [ngClass]="{ 'has-notification': notifications$ | async }"
-            >
+              [ngClass]="{ 'has-notification': notifications$ | async }">
               <i class="fa-solid fa-bell"></i>
             </button>
 
@@ -87,39 +57,31 @@
                   (click)="reloadNotifications()"
                   class="btn-icon"
                   type="button"
-                  catTooltip="Buscar Notificaçoes"
-                >
+                  catTooltip="Buscar Notificaçoes">
                   <i class="fa-solid fa-rotate"></i>
                 </button>
                 <button
                   (click)="removeAllNotifications()"
                   class="btn-icon"
                   type="button"
-                  catTooltip="Remover todos"
-                >
+                  catTooltip="Remover todos">
                   <i class="fa-solid fa-trash-can"></i>
                 </button>
               </div>
 
-              <hr class="dropdown-divider" />
+              <hr class="dropdown-divider">
 
-              <ng-container
-                *ngIf="
-                  notifications$ | async as notifications;
-                  else emptyNotifications
-                "
-              >
+              <ng-container *ngIf="notifications$ | async as notifications;
+                  else emptyNotifications">
                 <div
                   *ngFor="let notification of notifications"
-                  class="notification-item dropdown-item"
-                >
+                  class="notification-item dropdown-item">
                   <i class="notification-icon fa-solid fa-message"></i>
 
                   <div
                     class="notification-item-message"
                     [routerLink]="notification.routerLink"
-                    [ngClass]="{ noAction: !notification.routerLink }"
-                  >
+                    [ngClass]="{ noAction: !notification.routerLink }">
                     <small>{{ notification.title }}</small>
                     <p>{{ notification.message }}</p>
                   </div>
@@ -130,23 +92,16 @@
                     (click)="removeNotification(notification.id)"
                     class="ml-5 mr-10 btn-icon"
                     type="button"
-                    catTooltip="Excluir"
-                  >
+                    catTooltip="Excluir">
                     <i class="fa-solid fa-trash-can"></i>
                   </button>
                 </div>
               </ng-container>
 
               <ng-template #emptyNotifications>
-                <ng-container
-                  *ngIf="
-                    config.pushNotifications.emptyTemplate;
-                    else emptyNotificationsDefaultTemplate
-                  "
-                >
-                  <cat-dynamic-component
-                    [component]="config.pushNotifications.emptyTemplate"
-                  ></cat-dynamic-component>
+                <ng-container *ngIf="config.pushNotifications.emptyTemplate;
+                    else emptyNotificationsDefaultTemplate">
+                  <cat-dynamic-component [component]="config.pushNotifications.emptyTemplate"></cat-dynamic-component>
                 </ng-container>
 
                 <ng-template #emptyNotificationsDefaultTemplate>
@@ -163,8 +118,7 @@
             *ngIf="(logged$ | async) === false"
             (click)="login()"
             type="button"
-            catTooltip="Entrar"
-          >
+            catTooltip="Entrar">
             <i class="fa-solid fa-arrow-right-to-bracket"></i>
           </button>
 
@@ -173,41 +127,35 @@
               trigger
               class="btn-avatar"
               type="button"
-              catTooltip="Perfil"
-            >
+              catTooltip="Perfil">
               <div class="avatar-container">
                 <img
-                  *ngIf="
-                    userPicture$ | async as userPicture;
-                    else loggedUserAvatar
-                  "
+                  *ngIf="userPicture$ | async as userPicture;
+                    else loggedUserAvatar"
                   [src]="userPicture"
                   [alt]="'Bem-Vindo ' + username"
-                  referrerpolicy="no-referrer"
-                />
+                  referrerpolicy="no-referrer">
               </div>
             </button>
 
-            <div class="dropdown-user" content>
+            <div
+              class="dropdown-user"
+              content>
               <div class="avatar-container">
                 <img
-                  *ngIf="
-                    userPicture$ | async as userPicture;
-                    else loggedUserAvatar
-                  "
+                  *ngIf="userPicture$ | async as userPicture;
+                    else loggedUserAvatar"
                   [src]="userPicture"
                   [alt]="'Bem-Vindo ' + username"
-                  referrerpolicy="no-referrer"
-                />
+                  referrerpolicy="no-referrer">
                 <h2>{{ username }}</h2>
               </div>
-              <hr class="dropdown-divider" />
+              <hr class="dropdown-divider">
               <a
                 href="#"
                 class="dropdown-item"
                 (click)="logout(true)"
-                type="button"
-              >
+                type="button">
                 <i class="fa-solid fa-arrow-right-from-bracket mr-8"></i>
                 Sair
               </a>
@@ -218,52 +166,50 @@
             </ng-template>
           </cat-dropdown>
         </div>
-      </aside>
-      <section id="cat-content-app">
-        <ng-content select="[router-container]"></ng-content>
-      </section>
+
+        <ng-container router-container>
+          <ng-content select="[router-container]"></ng-content>
+        </ng-container>
+      </cat-template-container>
     </ng-container>
   </ng-container>
 </main>
 
 <ng-template #loginTemplate>
-  <div *ngIf="errorLoadConfig$ | async; else loadingData" class="loading-info">
+  <div
+    *ngIf="errorLoadConfig$ | async; else loadingData"
+    class="loading-info">
     <div class="loading-info">
       <i class="icon-session-expired fa-solid fa-triangle-exclamation"></i>
       <h2>Ocorreu um erro ao tentar carregar seus dados.</h2>
-      <small>Certifique-se de que esteja conectado à internet.</small>
+      <small>
+        Certifique-se de que esteja conectado à internet.
+      </small>
       <div class="btn-group">
-        <button (click)="logoutAndTryAgain()" class="btn btn-primary btn-sm">
+        <button
+          (click)="logoutAndTryAgain()"
+          class="btn btn-primary btn-sm">
           Tentar Novamente
         </button>
       </div>
     </div>
   </div>
   <ng-template #loadingData>
-    <ng-container
-      *ngIf="
-        config.authSettings.jwt?.loginComponent &&
+    <ng-container *ngIf="config.authSettings.jwt?.loginComponent &&
           (loadingClaims$ | async) === false;
-        else templateDefault
-      "
-    >
+        else templateDefault">
       <div class="content-login">
-        <cat-dynamic-component
-          [component]="getLoginComponent()"
-        ></cat-dynamic-component>
+        <cat-dynamic-component [component]="getLoginComponent()"></cat-dynamic-component>
       </div>
     </ng-container>
 
     <ng-template #templateDefault>
       <div class="loading-info">
         <img
-          [src]="
-            (themeActive$ | async) === 'dark' && config.logotype.negative
+          [src]="(themeActive$ | async) === 'dark' && config.logotype.negative
               ? config.logotype.negative
-              : config.logotype.default
-          "
-          alt="Logotipo"
-        />
+              : config.logotype.default"
+          alt="Logotipo">
         <h1>Bem-Vindo ao {{ config.appName }}!</h1>
         <small>Validando seus dados...</small>
         <cat-loader></cat-loader>

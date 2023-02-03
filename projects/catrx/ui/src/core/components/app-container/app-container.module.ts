@@ -7,9 +7,15 @@ import { CatDynamicComponentModule } from '@catrx/ui/dynamic-component';
 import { RouterModule } from '@angular/router';
 import { CatDropdownModule } from '@catrx/ui/dropdown';
 import { CatTooltipModule } from '@catrx/ui/tooltip';
+import { TemplateDesktopComponent } from './templates/desktop/template-desktop.component';
+import { TemplateContainerComponent } from './templates/template-container.component';
 
 @NgModule({
-  declarations: [AppContainerComponent],
+  declarations: [
+    AppContainerComponent,
+    TemplateContainerComponent,
+    TemplateDesktopComponent
+  ],
   exports: [AppContainerComponent],
   imports: [
     CommonModule,
@@ -21,4 +27,4 @@ import { CatTooltipModule } from '@catrx/ui/tooltip';
     RouterModule,
   ],
 })
-export class AppContainerModule {}
+export class AppContainerModule { }
