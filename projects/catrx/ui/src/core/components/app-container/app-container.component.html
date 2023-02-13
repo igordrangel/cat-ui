@@ -17,7 +17,9 @@
             *ngIf="sideMenuConfig$ | async as sideMenuConfig"
             [appName]="config.appName"
             [config]="sideMenuConfig"
-            [style.height]="'calc(100% - ' + templateContainer?.desktopTemplate?.menuToolbar?.nativeElement?.style?.height + ')'"
+            [style.height]="templateContainer.desktopTemplate
+              ? 'calc(100% - ' + this.templateContainer?.desktopTemplate?.menuToolbar?.nativeElement?.style?.height + ')'
+              : '100%'"
             [menuCollapsed]="menuCollapsed$">
           </cat-menu>
         </div>

@@ -9,12 +9,14 @@ import { CatDropdownModule } from '@catrx/ui/dropdown';
 import { CatTooltipModule } from '@catrx/ui/tooltip';
 import { TemplateDesktopComponent } from './templates/desktop/template-desktop.component';
 import { TemplateContainerComponent } from './templates/template-container.component';
+import { TemplateMobileComponent } from './templates/mobile/template-mobile.component';
 
 @NgModule({
   declarations: [
     AppContainerComponent,
     TemplateContainerComponent,
-    TemplateDesktopComponent
+    TemplateDesktopComponent,
+    TemplateMobileComponent
   ],
   exports: [AppContainerComponent],
   imports: [

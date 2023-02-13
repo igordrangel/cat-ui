@@ -16,4 +16,20 @@
   </cat-template-desktop>
 </ng-container>
 
-<ng-template #templateMobile></ng-template>
+<ng-template #templateMobile>
+  <cat-template-mobile
+    #mobileTemplate
+    [appConfig]="appConfig"
+    [themeActive]="themeActive"
+    (menuCollapse)="menuCollapse.emit($event)">
+    <ng-container menu-content>
+      <ng-content select="[menu-content]"></ng-content>
+    </ng-container>
+    <ng-container menu-toolbar>
+      <ng-content select="[menu-toolbar]"></ng-content>
+    </ng-container>
+    <ng-container router-container>
+      <ng-content select="[router-container]"></ng-content>
+    </ng-container>
+  </cat-template-mobile>
+</ng-template>
