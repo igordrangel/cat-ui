@@ -14,7 +14,7 @@ export class TemplateMobileComponent implements OnInit {
 
   @ViewChild('menuToolbar') menuToolbar: ElementRef<HTMLDivElement>
 
-  public menuCollapsed$ = new BehaviorSubject<boolean>(true)
+  public menuCollapsed$ = new BehaviorSubject<boolean>(false)
 
   ngOnInit() {
     if (this.appConfig.options?.menuStartState === 'closed') {

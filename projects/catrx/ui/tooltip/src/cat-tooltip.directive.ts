@@ -37,7 +37,7 @@ export class CatTooltipDirective implements OnDestroy {
     private appRef: ApplicationRef,
     private componentFactoryResolver: ComponentFactoryResolver,
     private injector: Injector
-  ) {}
+  ) { }
 
   @HostListener('mouseenter')
   onMouseEnter(): void {
@@ -51,7 +51,7 @@ export class CatTooltipDirective implements OnDestroy {
 
   @HostListener('touchstart', ['$event'])
   onTouchStart($event: TouchEvent): void {
-    $event.preventDefault();
+    if ($event.cancelable) $event.preventDefault();
     window.clearTimeout(this.touchTimeout);
     this.touchTimeout = window.setTimeout(
       this.initializeTooltip.bind(this),

@@ -1,35 +1,45 @@
-<ng-container *ngIf="(template$ | async) === 'desktop' else templateMobile">
-  <cat-template-desktop
-    #desktopTemplate
-    [appConfig]="appConfig"
-    [themeActive]="themeActive"
-    (menuCollapse)="menuCollapse.emit($event)">
-    <ng-container menu-content>
-      <ng-content select="[menu-content]"></ng-content>
-    </ng-container>
-    <ng-container menu-toolbar>
-      <ng-content select="[menu-toolbar]"></ng-content>
-    </ng-container>
-    <ng-container router-container>
-      <ng-content select="[router-container]"></ng-content>
-    </ng-container>
-  </cat-template-desktop>
-</ng-container>
+<cat-template-desktop
+  *ngIf="(template$ | async) === 'desktop'"
+  #desktopTemplate
+  [appConfig]="appConfig"
+  [themeActive]="themeActive"
+  (menuCollapse)="menuCollapse.emit($event)">
+  <ng-container menu-content>
+    <ng-container *ngTemplateOutlet="menuContent"></ng-container>
+  </ng-container>
+  <ng-container menu-toolbar>
+    <ng-container *ngTemplateOutlet="menuToolbar"></ng-container>
+  </ng-container>
+  <ng-container router-container>
+    <ng-container *ngTemplateOutlet="routerContainer"></ng-container>
+  </ng-container>
+</cat-template-desktop>
 
-<ng-template #templateMobile>
-  <cat-template-mobile
-    #mobileTemplate
-    [appConfig]="appConfig"
-    [themeActive]="themeActive"
-    (menuCollapse)="menuCollapse.emit($event)">
-    <ng-container menu-content>
-      <ng-content select="[menu-content]"></ng-content>
-    </ng-container>
-    <ng-container menu-toolbar>
-      <ng-content select="[menu-toolbar]"></ng-content>
-    </ng-container>
-    <ng-container router-container>
-      <ng-content select="[router-container]"></ng-content>
-    </ng-container>
-  </cat-template-mobile>
+<cat-template-mobile
+  *ngIf="(template$ | async) === 'mobile'"
+  #mobileTemplate
+  [appConfig]="appConfig"
+  [themeActive]="themeActive"
+  (menuCollapse)="menuCollapse.emit($event)">
+  <ng-container menu-content>
+    <ng-container *ngTemplateOutlet="menuContent"></ng-container>
+  </ng-container>
+  <ng-container menu-toolbar>
+    <ng-container *ngTemplateOutlet="menuToolbar"></ng-container>
+  </ng-container>
+  <ng-container router-container>
+    <ng-container *ngTemplateOutlet="routerContainer"></ng-container>
+  </ng-container>
+</cat-template-mobile>
+
+<ng-template #menuContent>
+  <ng-content select="[menu-content]"></ng-content>
+</ng-template>
+
+<ng-template #menuToolbar>
+  <ng-content select="[menu-toolbar]"></ng-content>
+</ng-template>
+
+<ng-template #routerContainer>
+  <ng-content select="[router-container]"></ng-content>
 </ng-template>

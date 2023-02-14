@@ -8,9 +8,9 @@
 .template-content aside {
   position: absolute;
   height: 100vh;
-  width: 90vw;
-  left: -90vw;
-  max-width: 90vw;
+  width: calc(100vw - 20px);
+  left: calc((100vw - 20px) * -1);
+  max-width: calc(100vw - 20px);
   padding: 40px 0 0;
   transition: ease-in-out .2s;
   display: flex;
@@ -19,6 +19,8 @@
   flex-direction: column;
   box-sizing: border-box;
   border-right: 1px solid var(--primary-color-alpha);
+  background-color: var(--bg-body);
+  z-index: 99999;
 }
 
 .template-content aside.show {
@@ -48,7 +50,7 @@
 
 .template-content section#cat-content-app {
   width: 100%;
-  height: 100vh;
+  height: calc(100vh - 40px);
   overflow: auto;
   overflow-x: hidden;
   box-sizing: border-box;
@@ -79,4 +81,26 @@
 .btn-menu-collapse:hover {
   background-color: var(--btn-icon-bg-primary);
   color: var(--btn-icon-c-primary);
+}
+
+.toolbar-content {
+  position: absolute;
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  box-sizing: border-box;
+  padding: 10px 0 10px 15px;
+  width: 100%;
+  height: 40px;
+  left: 0;
+  bottom: 0;
+  border-top: 1px solid var(--shadow-color);
+  background-color: var(--bg-body);
+}
+
+.toolbar-content button {
+  background-color: transparent;
+  color: var(--font-color);
+  border: none;
+  margin-right: 2.5rem;
 }
