@@ -1,0 +1,17 @@
+.cat-dropdown-content {
+  position: absolute;
+  width: fit-content;
+  height: fit-content;
+  min-width: 10rem;
+  box-sizing: border-box;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: flex-start;
+  border: 1px solid var(--shadow-color);
+  border-radius: 8px;
+  background-color: var(--bg-body);
+  color: var(--c-dropdown);
+  z-index: 1003;
+}

@@ -1,13 +1,9 @@
-import { Component, Input } from '@angular/core';
-import { randomString, klString } from '@koalarx/utils/operators/string';
-import { Observable } from 'rxjs/internal/Observable';
+import { DropdownConfig } from './cat-dropdown.directive';
+import { Component, Input, ViewChild, TemplateRef } from '@angular/core';
 
 export type CatDropdownPosition =
   | 'top'
-  | 'top right'
-  | 'top left'
-  | 'bottom right'
-  | 'bottom left'
+  | 'bottom'
   | 'left'
   | 'right';
 
@@ -21,31 +17,14 @@ export class CatDropdownComponent {
   @Input() insideClick = true;
   @Input() disabled = false;
 
-  ariaControl$ = new Observable<string>((observe) => {
-    this.getAriaControl().then((ariaControl) => {
-      observe.next(ariaControl);
-      observe.complete();
-    });
-  });
+  @ViewChild('dropdownContent') dropdownContent: TemplateRef<any>
 
-  private getAriaControl() {
-    return new Promise<string>((resolve) => {
-      let ariaControl: string;
-
-      do {
-        ariaControl = klString('cat-dropdown-')
-          .concat(
-            randomString(10, {
-              lowercase: true,
-              uppercase: true,
-              numbers: false,
-              specialCharacters: false,
-            })
-          )
-          .getValue();
-      } while (document.getElementById(ariaControl));
-
-      resolve(ariaControl);
-    });
+  getDropdownConfig() {
+    return {
+      templateRef: this.dropdownContent,
+      disabled: this.disabled,
+      insideClick: this.insideClick,
+      position: this.position
+    } as DropdownConfig;
   }
 }

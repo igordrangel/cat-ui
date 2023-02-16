@@ -954,3 +954,27 @@ button .spinner-border-bg {
   --primary-color: #f1f1f1;
 }
 /*#endregion*/
+/*#region [Dropdown]*/
+.cat-dropdown-content div[content] {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+}
+.cat-dropdown-content .dropdown-item {
+  position: relative;
+  display: block;
+  width: 100%;
+  padding: 5px 10px;
+  box-sizing: border-box;
+  cursor: pointer;
+  transition: .1s;
+}
+.cat-dropdown-content .dropdown-item:hover {
+  background-color: var(--bg-dropdown-hover);
+  color: var(--c-dropdown-hover);
+}
+.cat-dropdown-content .dropdown-item:active {
+  background-color: var(--bg-dropdown-active);
+  color: var(--c-dropdown-active);
+}
+/*#endregion*/
