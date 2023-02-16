@@ -1,6 +1,7 @@
 import { Component, Input, OnInit, ViewChild, ElementRef, Output, EventEmitter } from '@angular/core';
 import { AppConfig, CatThemeType } from '../../../../factory/app-config.interface';
 import { BehaviorSubject } from 'rxjs/internal/BehaviorSubject';
+import { NavigationEnd, Router } from '@angular/router';
 
 @Component({
   selector: 'cat-template-mobile[themeActive]',
@@ -16,7 +17,15 @@ export class TemplateMobileComponent implements OnInit {
 
   public menuCollapsed$ = new BehaviorSubject<boolean>(false)
 
+  constructor(private router: Router) { }
+
   ngOnInit() {
+    this.router.events.subscribe((event) => {
+      if (event instanceof NavigationEnd) {
+        this.menuCollapsed$.next(false);
+      }
+    });
+
     if (this.appConfig.options?.menuStartState === 'closed') {
       this.menuCollapsed$.next(false)
     }

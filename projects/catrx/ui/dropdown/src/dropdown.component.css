@@ -9,22 +9,30 @@
   --bs-dropdown-divider-bg: var(--shadow-color);
   z-index: 1003;
 }
+
 .dropdown-menu .dropdown-item {
   color: var(--c-dropdown);
   transition: .1s;
 }
+
 .dropdown-menu .dropdown-item:hover {
-  color: var(--c-dropdown-hover)!important;
-  background-color: var(--bg-dropdown-hover)!important;
+  color: var(--c-dropdown-hover) !important;
+  background-color: var(--bg-dropdown-hover) !important;
 }
+
 .dropdown-menu .dropdown-item:active {
-  color: var(--c-dropdown-active)!important;
-  background-color: var(--bg-dropdown-active)!important;
+  color: var(--c-dropdown-active) !important;
+  background-color: var(--bg-dropdown-active) !important;
 }
-.dropdown-menu .dropdown-item i {color: var(--c-dropdown);}
+
+.dropdown-menu .dropdown-item i {
+  color: var(--c-dropdown);
+}
+
 .dropdown-menu .dropdown-item:hover i {
-  color: var(--c-dropdown-hover)!important;
+  color: var(--c-dropdown-hover) !important;
 }
+
 .dropdown-menu .dropdown-item:active i {
-  color: var(--c-dropdown-active)!important;
+  color: var(--c-dropdown-active) !important;
 }

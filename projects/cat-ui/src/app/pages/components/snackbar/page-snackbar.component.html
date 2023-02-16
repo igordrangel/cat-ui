@@ -1,14 +1,12 @@
 <cat-toolbar [config]="getToolbarInfo()">
   <nav buttons>
-    <cat-success-button class="mr-8" (click)="openSnackbar('success')"
+    <cat-success-button (click)="openSnackbar('success')"
       >Sucesso</cat-success-button
     >
-    <cat-warning-button class="mr-8" (click)="openSnackbar('warning')"
+    <cat-warning-button (click)="openSnackbar('warning')"
       >Atenção</cat-warning-button
     >
-    <cat-danger-button class="mr-8" (click)="openSnackbar('error')"
-      >Error</cat-danger-button
-    >
+    <cat-danger-button (click)="openSnackbar('error')">Error</cat-danger-button>
     <cat-info-button (click)="openSnackbar('info')">Informação</cat-info-button>
   </nav>
 </cat-toolbar>

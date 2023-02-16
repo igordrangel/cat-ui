@@ -5,9 +5,10 @@
   [dropup]="position === 'top'"
   [placement]="position"
   [insideClick]="insideClick"
-  [isDisabled]="disabled"
->
-  <div dropdownToggle [attr.aria-controls]="ariaControl">
+  [isDisabled]="disabled">
+  <div
+    dropdownToggle
+    [attr.aria-controls]="ariaControl">
     <ng-content select="[trigger]"></ng-content>
   </div>
 
@@ -16,8 +17,7 @@
     *dropdownMenu
     class="dropdown-menu"
     role="menu"
-    aria-labelledby="button-basic"
-  >
+    aria-labelledby="button-basic">
     <ng-content select="[content]"></ng-content>
   </div>
 </div>

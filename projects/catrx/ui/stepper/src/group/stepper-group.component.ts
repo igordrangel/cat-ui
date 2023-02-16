@@ -30,6 +30,10 @@ export class StepperGroupComponent implements OnInit {
         }
       }
     }, 50);
+
+    if (document.body.clientWidth <= 980) {
+      this.direction = 'vertical';
+    }
   }
 
   async next() {
