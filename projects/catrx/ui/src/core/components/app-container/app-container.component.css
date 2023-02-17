@@ -220,6 +220,7 @@ main cat-template-container div[menu-toolbar] button:active {
   margin: 0;
   font-size: 12pt;
   color: var(--font-color);
+  white-space: break-spaces;
 }
 
 .cat-empty-notifications-content {
@@ -244,4 +245,10 @@ main cat-template-container div[menu-toolbar] button:active {
   text-align: center;
   font-size: 12pt;
   color: var(--font-color);
+}
+
+@media (max-width: 980px) {
+  .notification-item .notification-item-message {
+    min-width: auto;
+  }
 }
