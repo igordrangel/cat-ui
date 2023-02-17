@@ -960,6 +960,9 @@ button .spinner-border-bg {
   flex-direction: column;
   width: 100%;
 }
+.cat-dropdown-content div[content] > * {
+  width: 100%;
+}
 .cat-dropdown-content .dropdown-item {
   position: relative;
   display: block;

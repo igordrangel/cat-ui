@@ -1,11 +1,6 @@
 import { DropdownConfig } from './cat-dropdown.directive';
 import { Component, Input, ViewChild, TemplateRef } from '@angular/core';
-
-export type CatDropdownPosition =
-  | 'top'
-  | 'bottom'
-  | 'left'
-  | 'right';
+import { CatDropdownPosition } from './dropdown.interface';
 
 @Component({
   selector: 'cat-dropdown',

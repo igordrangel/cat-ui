@@ -1,6 +1,7 @@
 <div
   class="cat-dropdown-content"
   [style.left]="left + 'px'"
-  [style.top]="top + 'px'">
+  [style.top]="top + 'px'"
+  [style.visibility]="visible ? 'visible' : 'hidden'">
   <ng-component *ngTemplateOutlet="dropdownContent"></ng-component>
 </div>

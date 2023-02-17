@@ -16,7 +16,7 @@ import { interval } from 'rxjs/internal/observable/interval';
 import { startWith } from 'rxjs/internal/operators/startWith';
 import { Subscription } from 'rxjs/internal/Subscription';
 import { DropdownContentComponent } from './content/dropdown-content.component';
-import { CatDropdownPosition } from './dropdown.component';
+import { CatDropdownPosition } from './dropdown.interface';
 
 export interface DropdownConfig {
   insideClick: boolean;
@@ -97,8 +97,9 @@ export class CatDropdownDirective implements OnDestroy {
       setTimeout(() => {
         const position = this.calcPosition();
 
-        this.componentRef.instance.left = position.leftPosition;
-        this.componentRef.instance.top = position.topPosition;
+        if (this.componentRef) this.componentRef.instance.left = position.leftPosition;
+        if (this.componentRef) this.componentRef.instance.top = position.topPosition;
+        this.componentRef.instance.visible = true;
 
         this.observeTriggerDestroy();
 
@@ -123,37 +124,47 @@ export class CatDropdownDirective implements OnDestroy {
 
   private calcPosition() {
     const bodyWidth = document.body.clientWidth;
+    const bodyHeigth = document.body.clientHeight;
     let topPosition = 0;
     let leftPosition = 0;
 
     const { left, right, bottom, top, width, height } =
       this.elementRef.nativeElement.getBoundingClientRect();
-    const dropdownWidth = document.querySelector('.cat-dropdown-content').clientWidth;
-    const dropdownHeigth = document.querySelector('.cat-dropdown-content').clientHeight;
+    const elDropdownContent = document.querySelector('.cat-dropdown-content');
+    const dropdownWidth = elDropdownContent?.clientWidth;
+    const dropdownHeigth = elDropdownContent?.clientHeight;
     const absoluteHorizontalPosition = left + width + dropdownWidth;
     const absoluteVerticalPosition = top + height + dropdownHeigth;
+    const isMobile = bodyWidth <= 980;
 
     if ((top - dropdownHeigth - 5) < 0 && this.catDropdown.position === 'top')
       this.catDropdown.position = 'bottom';
     if (absoluteHorizontalPosition > bodyWidth && this.catDropdown.position === 'right')
       this.catDropdown.position = 'left';
+    if ((left - dropdownWidth - 5) < 0 && this.catDropdown.position === 'left')
+      this.catDropdown.position = 'right';
+    if (absoluteVerticalPosition > bodyHeigth && this.catDropdown.position === 'bottom')
+      this.catDropdown.position = 'top';
+
+    if (isMobile) {
+      leftPosition = 5
+    }
 
     switch (this.catDropdown.position) {
       case 'top':
-        leftPosition = left;
+        if (!isMobile) leftPosition = left;
         topPosition = top - dropdownHeigth - 5;
         break;
       case 'bottom':
-        leftPosition = absoluteHorizontalPosition > bodyWidth ? left - width : left
+        if (!isMobile) leftPosition = absoluteHorizontalPosition > bodyWidth ? left - width : left
         topPosition = bottom + 5;
         break;
       case 'left':
-        console.log(left, width)
-        leftPosition = left + width;
+        if (!isMobile) leftPosition = left - dropdownWidth - 5;
         topPosition = top;
         break;
       case 'right':
-        leftPosition = right + 5;
+        if (!isMobile) leftPosition = right + 5;
         topPosition = top;
         break;
     }
