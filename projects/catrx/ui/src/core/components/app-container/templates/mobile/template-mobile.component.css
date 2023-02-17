@@ -8,9 +8,9 @@
 .template-content aside {
   position: absolute;
   height: 100vh;
-  width: calc(100vw - 20px);
-  left: calc((100vw - 20px) * -1);
-  max-width: calc(100vw - 20px);
+  width: calc(100vw - 30px);
+  left: calc((100vw - 30px) * -1);
+  max-width: calc(100vw - 30px);
   padding: 40px 0 0;
   transition: ease-in-out .2s;
   display: flex;
@@ -65,12 +65,12 @@
 .btn-menu-collapse {
   position: absolute;
   top: 60px;
-  right: -10px;
+  right: -15px;
   background-color: var(--bg-body);
   border: 1px solid var(--primary-color-alpha);
-  width: 20px;
-  height: 20px;
-  font-size: 10px;
+  width: 30px;
+  height: 30px;
+  font-size: 15px;
   border-radius: 50%;
   transition: ease-in-out .2s;
   padding: 0;
