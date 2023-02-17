@@ -8,6 +8,7 @@
     <a
       [routerLink]="tool.routerLink"
       routerLinkActive="active"
+      class="dropdown-item"
       (click)="closeAllTools(); toolElement.classList.toggle('collapsed')"
     >
       <i *ngIf="tool.icon" [ngClass]="tool.icon"></i>

@@ -4,6 +4,7 @@ import {
   Component,
   Input,
   OnInit,
+  ViewChild,
 } from '@angular/core';
 import { klDelay } from '@koalarx/utils/operators/delay';
 import {
@@ -34,6 +35,7 @@ import { interval } from 'rxjs/internal/observable/interval';
 import { first } from 'rxjs/internal/operators/first';
 import { takeUntil } from 'rxjs/internal/operators/takeUntil';
 import { startWith } from 'rxjs/internal/operators/startWith';
+import { TemplateContainerComponent } from './templates/template-container.component';
 
 @Component({
   selector: 'cat-app-container[config]',
@@ -61,12 +63,14 @@ export class AppContainerComponent implements OnInit {
   private destroyLoggedSubscriptions$ = new Subject<boolean>();
   private destroySubscriptions$ = new Subject<boolean>();
 
+  @ViewChild('templateContainer') templateContainer: TemplateContainerComponent
+
   constructor(
     private router: Router,
     private oauth2Service: CatOAuth2Service,
     private tokenService: CatTokenService,
     private notificationService: NotificationService
-  ) {}
+  ) { }
 
   ngOnInit() {
     if (window.matchMedia && this.config.darkMode) {
@@ -96,10 +100,6 @@ export class AppContainerComponent implements OnInit {
     }
 
     this.startTokenFlow();
-  }
-
-  public collapseMenu() {
-    this.menuCollapsed$.next(!this.menuCollapsed$.getValue());
   }
 
   public switchTheme() {

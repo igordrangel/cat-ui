@@ -30,7 +30,7 @@ export class MenuComponent implements OnInit, OnChanges {
 
   public menuOptions$ = new BehaviorSubject<AppConfigMenu | null>(null);
 
-  constructor(private router: Router) {}
+  constructor(private router: Router) { }
 
   ngOnInit() {
     this.router.events.subscribe((event) => {

@@ -2,18 +2,20 @@ nav {
   display: flex;
   justify-content: center;
   align-items: flex-start;
-  width: 257px;
+  width: 100%;
   height: auto;
   box-sizing: border-box;
   padding: 50px 20px 10px 0;
   position: relative;
   left: -1px;
 }
+
 nav:not(.collapsed) {
   width: 56px;
   padding: 50px 5px 10px 5px;
   align-items: center;
 }
+
 nav .menu-container {
   display: flex;
   justify-content: center;
@@ -24,8 +26,12 @@ nav .menu-container {
   width: 100%;
   border: var(--menu-border);
 }
+
 nav:not(.collapsed) .menu-container {
   border-radius: 15px;
 }
+
 nav .menu-container cat-menu-module,
-nav .menu-container cat-menu-tool {width: 100%;}
+nav .menu-container cat-menu-tool {
+  width: 100%;
+}

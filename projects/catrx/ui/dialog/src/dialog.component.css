@@ -32,6 +32,13 @@
   max-height: 75vh;
 }
 
+@media (max-width: 980px) {
+  .cat-dialog .cat-dialog-content .cat-modal-content:has(div) {
+    max-width: 100vw;
+    max-height: 100vh;
+  }
+}
+
 .cat-dialog .cat-dialog-content .cat-modal-actions:has(div) {
   display: flex;
   justify-content: flex-end;

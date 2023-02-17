@@ -12,7 +12,7 @@
         active: isActive(module)
       }"
     >
-      <ng-container *ngIf="menuCollapsed | async; else showMenuClosed">
+      <ng-container *ngIf="menuCollapsed | async else showMenuClosed">
         <a
           [routerLink]="module.routerLink"
           routerLinkActive="active"
@@ -29,7 +29,7 @@
 
       <ng-template #showMenuClosed>
         <ng-container
-          *ngIf="module.tools?.length ?? 0 === 0; else menuWithDropdown"
+          *ngIf="(module.tools?.length ?? 0) === 0 else menuWithDropdown"
         >
           <a
             [routerLink]="module.routerLink"
@@ -46,16 +46,14 @@
         </ng-container>
 
         <ng-template #menuWithDropdown>
-          <cat-dropdown [insideClick]="false" position="top right">
+          <cat-dropdown [insideClick]="false" position="right">
             <a
               trigger
               [routerLink]="module.routerLink"
               [catTooltip]="module.name"
               catTooltipPosition="right"
               routerLinkActive="active"
-              (click)="
-                closeAllModules(); moduleElement.classList.toggle('collapsed')
-              "
+              (click)="closeAllModules(); moduleElement.classList.toggle('collapsed')"
             >
               <i *ngIf="module.icon" [ngClass]="module.icon"></i>
               <span>{{ module.name }}</span>

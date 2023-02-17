@@ -40,7 +40,7 @@ export interface CatLoaderPageConfig {
         position: relative;
         margin: 20px 0;
         border-radius: 5px;
-        width: 10vw;
+        width: 15rem;
         height: 10px;
         background-color: var(--bg-progress-bar-container);
         overflow: hidden;
@@ -61,5 +61,5 @@ export interface CatLoaderPageConfig {
 export class LoaderPageComponent {
   constructor(
     @Inject(CAT_LOADER_PAGE_CONFIG) public config?: CatLoaderPageConfig
-  ) {}
+  ) { }
 }

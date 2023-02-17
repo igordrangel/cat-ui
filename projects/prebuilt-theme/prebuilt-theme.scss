@@ -292,6 +292,24 @@ main.dark {
 }
 body {overflow: hidden;}
 main {color: var(--font-color);}
+.btn-group {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  width: 100%;
+}
+.template-content aside:not(.show) .btn-group {
+  flex-direction: column!important;
+  justify-content: center!important;
+}
+.template-content aside:not(.show) .btn-group div[menu-toolbar] {
+  display: flex!important;
+  flex-direction: column!important;
+  align-items: center!important;
+  justify-content: center!important;
+  gap: 10px!important;
+  padding: 10px 0!important;
+}
 
 @font-face {
   font-family: OpenSans;
@@ -311,6 +329,8 @@ main {color: var(--font-color);}
   display: flex;
   justify-content: flex-end;
   align-items: center;
+  flex-wrap: wrap;
+  gap: 8px;
   width: 100%;
 }
 
@@ -689,6 +709,9 @@ cat-step:last-child .cat-step-item-content.active {border: none;}
 .dialog-size-small .cat-dialog-content {width: 25vw;}
 .dialog-size-medium .cat-dialog-content {width: 50vw;}
 .dialog-size-big .cat-dialog-content {width: 75vw;}
+@media (max-width: 980px) {
+  .cat-dialog-content {width: 95vw!important;}
+}
 /*#endregion */
 /*#region [Grid] */
 [class*="col-"] {
@@ -745,6 +768,12 @@ cat-step:last-child .cat-step-item-content.active {border: none;}
 .col-12 {
   flex: 0 0 100%;
   max-width: 100%;
+}
+@media (max-width: 980px) {
+  .col-1,.col-2,.col-3,.col-4,.col-5,.col-6,.col-7,.col-8,.col-9,.col-10,.col-11,.col-12 {
+    flex: 0 0 100%;
+    max-width: 100%;
+  }
 }
 /*#endregion*/
 /*#region [Forms] */
@@ -923,5 +952,32 @@ button .spinner-border-bg {
   --spinner-height: 1.2rem;
   --primary-color-alpha: #ccc;
   --primary-color: #f1f1f1;
+}
+/*#endregion*/
+/*#region [Dropdown]*/
+.cat-dropdown-content div[content] {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+}
+.cat-dropdown-content div[content] > * {
+  width: 100%;
+}
+.cat-dropdown-content .dropdown-item {
+  position: relative;
+  display: block;
+  width: 100%;
+  padding: 5px 10px;
+  box-sizing: border-box;
+  cursor: pointer;
+  transition: .1s;
+}
+.cat-dropdown-content .dropdown-item:hover {
+  background-color: var(--bg-dropdown-hover);
+  color: var(--c-dropdown-hover);
+}
+.cat-dropdown-content .dropdown-item:active {
+  background-color: var(--bg-dropdown-active);
+  color: var(--c-dropdown-active);
 }
 /*#endregion*/
