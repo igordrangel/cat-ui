@@ -80,3 +80,14 @@
   display: inline-block;
   width: auto;
 }
+
+@media (max-width: 980px) {
+  .btn-group {
+    display: flex;
+    width: 100%;
+  }
+
+  .btn-group button {
+    border-radius: 6px !important;
+  }
+}

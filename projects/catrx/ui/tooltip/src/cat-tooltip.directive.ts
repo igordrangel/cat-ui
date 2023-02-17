@@ -41,28 +41,12 @@ export class CatTooltipDirective implements OnDestroy {
 
   @HostListener('mouseenter')
   onMouseEnter(): void {
-    this.initializeTooltip();
+    if (document.body.clientWidth > 980) this.initializeTooltip();
   }
 
   @HostListener('mouseleave')
   onMouseLeave(): void {
     this.destroy();
-  }
-
-  @HostListener('touchstart', ['$event'])
-  onTouchStart($event: TouchEvent): void {
-    if ($event.cancelable) $event.preventDefault();
-    window.clearTimeout(this.touchTimeout);
-    this.touchTimeout = window.setTimeout(
-      this.initializeTooltip.bind(this),
-      500
-    );
-  }
-
-  @HostListener('touchend')
-  onTouchEnd(): void {
-    window.clearTimeout(this.touchTimeout);
-    this.setHideTooltipTimeout();
   }
 
   ngOnDestroy(): void {

@@ -96,6 +96,7 @@
   bottom: 0;
   border-top: 1px solid var(--shadow-color);
   background-color: var(--bg-body);
+  z-index: 1080;
 }
 
 .toolbar-content button {
