@@ -41,7 +41,7 @@ main cat-template-container div[menu-toolbar] button {
   background-color: transparent;
   width: 36px;
   height: 36px;
-  font-size: 20px;
+  font-size: 1.25rem;
   border: none;
   border-radius: 50%;
   transition: ease-in-out .2s;
@@ -107,7 +107,7 @@ main cat-template-container div[menu-toolbar] button:active {
 }
 
 .loading-info small {
-  font-size: 16px;
+  font-size: 1rem;
   padding: 5px;
 }
 
@@ -126,7 +126,7 @@ main cat-template-container div[menu-toolbar] button:active {
 }
 
 .loading-info .icon-session-expired {
-  font-size: 60px;
+  font-size: 3.75rem;
   margin-bottom: 20px;
 }
 
@@ -158,7 +158,7 @@ main cat-template-container div[menu-toolbar] button:active {
 }
 
 .dropdown-user .avatar-container i {
-  font-size: 80px;
+  font-size: 5rem;
   color: var(--font-color);
   margin-bottom: 10px;
 }
@@ -167,7 +167,7 @@ main cat-template-container div[menu-toolbar] button:active {
   padding: 5px;
   margin: 0;
   text-align: center;
-  font-size: 10pt;
+  font-size: 0.8360rem;
   color: var(--font-color);
 }
 
@@ -193,7 +193,7 @@ main cat-template-container div[menu-toolbar] button:active {
 }
 
 .notification-item i.notification-icon {
-  font-size: 18px;
+  font-size: 1.125rem;
   margin: 0 25px 0 15px;
 }
 
@@ -211,14 +211,14 @@ main cat-template-container div[menu-toolbar] button:active {
 }
 
 .notification-item .notification-item-message small {
-  font-size: 10pt;
+  font-size: 0.8360rem;
   color: var(--font-color);
 }
 
 .notification-item .notification-item-message p {
   padding: 5px 0;
   margin: 0;
-  font-size: 12pt;
+  font-size: 1rem;
   color: var(--font-color);
   white-space: break-spaces;
 }
@@ -234,7 +234,7 @@ main cat-template-container div[menu-toolbar] button:active {
 }
 
 .cat-empty-notifications-content i {
-  font-size: 50px;
+  font-size: 3.125rem;
   color: var(--font-color);
   margin-bottom: 10px;
 }
@@ -243,7 +243,7 @@ main cat-template-container div[menu-toolbar] button:active {
   padding: 5px;
   margin: 0;
   text-align: center;
-  font-size: 12pt;
+  font-size: 1rem;
   color: var(--font-color);
 }
 

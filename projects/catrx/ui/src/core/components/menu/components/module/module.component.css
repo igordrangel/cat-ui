@@ -5,6 +5,7 @@ ul {
   font-size: 0;
   width: 100%;
 }
+
 ul li {
   position: relative;
   display: flex;
@@ -16,14 +17,17 @@ ul li {
   background-color: var(--bg-menu);
   transition: .1s;
 }
+
 ul li:hover {
   background-color: var(--bg-menu-hover);
   color: var(--c-menu-hover);
 }
+
 ul li:active {
   background-color: var(--bg-menu-active);
   color: var(--c-menu-active);
 }
+
 ul.collapsed li.has-tools::after {
   font-family: "Font Awesome 5 Free";
   font-weight: 900;
@@ -31,12 +35,14 @@ ul.collapsed li.has-tools::after {
   position: absolute;
   right: 15px;
   top: 10px;
-  font-size: 10px;
+  font-size: 0.625rem;
   transition: .1s;
 }
+
 ul.collapsed li.has-tools.collapsed::after {
   rotate: 90deg;
 }
+
 ul li.module a {
   font-size: 0;
   width: 100%;
@@ -48,32 +54,46 @@ ul li.module a {
   text-decoration: none;
   color: var(--c-menu);
 }
+
 ul:not(.collapsed) li.module a {
   display: flex;
   justify-content: center;
   align-items: center;
 }
+
 ul.collapsed li.module a {
-  font-size: 10pt;
+  font-size: 0.8360rem;
   padding: 10px 15px;
   text-align: left;
 }
+
 ul li.module a i {
   margin: 0;
-  font-size: 14pt;
+  font-size: 1.170rem;
   padding: 20px 10px;
 }
+
 ul.collapsed li.module a i {
   margin-right: 8px;
-  font-size: 10pt;
+  font-size: 0.8360rem;
   padding: 0;
 }
-ul.collapsed li.module.active {border-left: 4px solid var(--c-menu-border-active);color: var(--c-menu-active);}
-ul li.module.active {border: none;color: var(--c-menu-active);}
+
+ul.collapsed li.module.active {
+  border-left: 4px solid var(--c-menu-border-active);
+  color: var(--c-menu-active);
+}
+
+ul li.module.active {
+  border: none;
+  color: var(--c-menu-active);
+}
+
 ul li.has-tools cat-menu-tool {
   height: 0;
   overflow: hidden;
 }
+
 ul.collapsed li.has-tools.collapsed cat-menu-tool {
   height: auto;
 }

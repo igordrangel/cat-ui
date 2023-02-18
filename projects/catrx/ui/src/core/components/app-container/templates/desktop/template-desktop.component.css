@@ -67,7 +67,7 @@
   border: 1px solid var(--primary-color-alpha);
   width: 20px;
   height: 20px;
-  font-size: 10px;
+  font-size: 0.625rem;
   border-radius: 50%;
   transition: ease-in-out .2s;
   padding: 0;

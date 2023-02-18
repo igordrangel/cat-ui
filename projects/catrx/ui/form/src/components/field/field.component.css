@@ -3,15 +3,17 @@
   border-radius: 5px;
   padding: 0 2px 5px;
 }
+
 .cat-field-container {
   position: relative;
   margin-bottom: 10px;
 }
+
 .cat-field-container label {
   position: absolute;
   top: -8px;
   left: 8px;
-  font-size: 8pt;
+  font-size: 0.668rem;
   margin: 0;
   font-weight: bold;
   background-color: var(--bg-body);
@@ -25,6 +27,7 @@
   max-width: calc(100% - 15px);
   overflow: hidden;
 }
+
 .hint {
   display: flex;
   align-items: flex-start;
@@ -32,42 +35,51 @@
   box-sizing: border-box;
   background-color: transparent;
 }
+
 .hint .text-hint {
-  font-size: 0.8em;
+  font-size: 0.8rem;
   padding: 0 5px;
   word-break: break-all;
 }
+
 .hint .text-hint i {
-  font-size: 0.8em;
+  font-size: 0.8rem;
 }
+
 .hint .text-hint span {
   margin-left: 5px;
 }
+
 .hint .spacer {
   flex: 1 0 0;
 }
+
 .span-length {
   display: flex;
   align-items: center;
   justify-content: flex-end;
   color: var(--disable-color);
-  font-size: 0.8em;
+  font-size: 0.8rem;
   padding: 0 5px;
 }
+
 .span-length .min {
   color: var(--c-form-valid-field);
 }
+
 .span-length .max {
   color: var(--c-form-invalid-field);
 }
+
 .invalid-feedback {
   display: flex;
   align-items: center;
   padding: 0 5px;
   font-weight: bold;
-  font-size: 0.8em;
+  font-size: 0.8rem;
 }
+
 .invalid-feedback i {
-  font-size: 0.8em;
+  font-size: 0.8rem;
   margin-right: 5px;
 }
