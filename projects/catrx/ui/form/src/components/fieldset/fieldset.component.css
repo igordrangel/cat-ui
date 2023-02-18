@@ -15,7 +15,7 @@ fieldset legend {
   width: fit-content;
   padding: 0 5px;
   margin-bottom: 3px;
-  font-size: 8pt;
+  font-size: 0.668rem;
   font-weight: bold;
   text-transform: uppercase;
   color: var(--fieldset-legend-color);

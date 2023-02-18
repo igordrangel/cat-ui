@@ -5,6 +5,7 @@ ul {
   font-size: 0;
   width: 100%;
 }
+
 ul li {
   position: relative;
   display: flex;
@@ -16,17 +17,23 @@ ul li {
   background-color: var(--bg-menu);
   transition: .1s;
 }
+
 ul li:hover {
   background-color: var(--bg-menu-hover);
   color: var(--c-menu-hover);
 }
+
 ul li:active {
   background-color: var(--bg-menu-active);
   color: var(--c-menu-active);
 }
-ul li.tool {background-color: transparent;}
+
+ul li.tool {
+  background-color: transparent;
+}
+
 ul li.tool a {
-  font-size: 10pt;
+  font-size: 0.8360rem;
   width: 100%;
   text-align: left;
   margin: 0;
@@ -36,8 +43,14 @@ ul li.tool a {
   text-decoration: none;
   color: var(--c-menu);
 }
-ul li.tool a i {margin-right: 8px;}
-ul li.tool .active {color: var(--c-menu-active);}
+
+ul li.tool a i {
+  margin-right: 8px;
+}
+
+ul li.tool .active {
+  color: var(--c-menu-active);
+}
 
 ul li.has-tools::after {
   font-family: "Font Awesome 5 Free";
@@ -46,9 +59,10 @@ ul li.has-tools::after {
   position: absolute;
   right: 15px;
   top: 10px;
-  font-size: 10px;
+  font-size: 0.625rem;
   transition: .1s;
 }
+
 ul li.has-tools.collapsed::after {
   rotate: 90deg;
 }
@@ -57,6 +71,7 @@ ul li.has-tools cat-menu-tool {
   height: 0;
   overflow: hidden;
 }
+
 ul li.has-tools.collapsed cat-menu-tool {
   height: auto;
 }

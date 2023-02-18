@@ -70,7 +70,7 @@
   border: 1px solid var(--primary-color-alpha);
   width: 30px;
   height: 30px;
-  font-size: 15px;
+  font-size: 1rem;
   border-radius: 50%;
   transition: ease-in-out .2s;
   padding: 0;
@@ -104,5 +104,5 @@
   color: var(--font-color);
   border: none;
   margin: 0 10px;
-  font-size: 20px;
+  font-size: 1.25rem;
 }

@@ -55,8 +55,8 @@ table th .content-header {
 }
 
 table th:not(.selection) {
-  font-size: 9pt;
-  line-height: 9px;
+  font-size: 0.7524rem;
+  line-height: 0.562rem;
 }
 
 table th.sortable {
@@ -127,7 +127,7 @@ table .fake-line {
 
 .page-size-content label {
   white-space: nowrap;
-  font-size: 8pt;
+  font-size: 0.668rem;
   text-transform: uppercase;
   color: var(--c-datatable-th);
 }
@@ -146,8 +146,8 @@ table .fake-line {
 }
 
 .pagination-content span.page-info {
-  font-size: 9pt;
-  line-height: 10pt;
+  font-size: 0.752rem;
+  line-height: 0.8360rem;
   color: var(--c-datatable-th);
   border-radius: 50px;
   padding: 5px 10px;
@@ -178,6 +178,6 @@ table .fake-line {
 }
 
 .empty-list-container i {
-  font-size: 40px;
+  font-size: 2.5rem;
   opacity: .8;
 }

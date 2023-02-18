@@ -5,7 +5,7 @@
   box-sizing: border-box;
   padding: 5px 15px;
   border-radius: 20px;
-  font-size: 11pt;
+  font-size: 0.9196rem;
   line-height: 11pt;
   font-weight: bold;
   background-color: var(--chip-bg-default);
