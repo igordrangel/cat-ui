@@ -898,11 +898,17 @@ select:disabled {
   display: flex;
   justify-content: flex-start;
   align-items: center;
+  padding: 3px 8px;
 }
 .cat-datatable-menu:has(nav) > nav[list-checked-actions] {
   border-radius: 4px;
   background-color: var(--shadow-color);
-  margin-right: 8px;
+  margin-right: 0.5rem;
+}
+@media (max-width: 980px) {
+  .cat-datatable-menu:has(nav) > nav {
+    gap: 0.6rem;
+  }
 }
 /*#endregion */
 /*#region [Paginator] */
