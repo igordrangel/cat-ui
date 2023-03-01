@@ -11,7 +11,7 @@
   align-items: flex-start;
   border: 1px solid var(--shadow-color);
   border-radius: 8px;
-  background-color: var(--bg-body);
+  background-color: var(--bg-dropdown);
   color: var(--c-dropdown);
   z-index: 1003;
 }

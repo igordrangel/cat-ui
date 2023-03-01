@@ -26,15 +26,15 @@
 .cat-expansive-panel-header:not(.disabled):before {
   font-family: "Font Awesome 5 Free";
   font-weight: 900;
-  content: '\f054';
+  content: "\f054";
   display: flex;
   justify-content: center;
   align-items: center;
-  font-size: 0.8360rem;
-  line-height: 0.8360rem;
+  font-size: 0.836rem;
+  line-height: 0.836rem;
   color: var(--font-color);
   padding: 0 10px;
-  transition: .2s;
+  transition: 0.2s;
 }
 
 .cat-expansive-panel-header.active::before {
@@ -50,13 +50,13 @@
   flex-direction: column;
   box-sizing: border-box;
   overflow: hidden;
-  padding: 0 15px;
+  padding: 5px 15px 0;
   height: 5px;
   width: 100%;
   border: 1px solid var(--shadow-color);
   border-top: none;
   border-radius: 0 0 5px 5px;
-  transition: .2s;
+  transition: 0.2s;
 }
 
 .cat-expansive-panel-content.active {
