@@ -44,14 +44,14 @@ main cat-template-container div[menu-toolbar] button {
   font-size: 1.25rem;
   border: none;
   border-radius: 50%;
-  transition: ease-in-out .2s;
+  transition: ease-in-out 0.2s;
   padding: 5px;
   color: var(--primary-color);
   margin: 0 10px;
 }
 
 main cat-template-container div[menu-toolbar] button.has-notification::before {
-  content: '';
+  content: "";
   width: 12px;
   height: 12px;
   border-radius: 50%;
@@ -146,7 +146,7 @@ main cat-template-container div[menu-toolbar] button:active {
   align-items: center;
   box-sizing: border-box;
   padding: 40px 15px;
-  width: 300px;
+  width: 300px !important;
 }
 
 .avatar-container img {
@@ -167,7 +167,7 @@ main cat-template-container div[menu-toolbar] button:active {
   padding: 5px;
   margin: 0;
   text-align: center;
-  font-size: 0.8360rem;
+  font-size: 0.836rem;
   color: var(--font-color);
 }
 
@@ -211,7 +211,7 @@ main cat-template-container div[menu-toolbar] button:active {
 }
 
 .notification-item .notification-item-message small {
-  font-size: 0.8360rem;
+  font-size: 0.836rem;
   color: var(--font-color);
 }
 
@@ -250,5 +250,8 @@ main cat-template-container div[menu-toolbar] button:active {
 @media (max-width: 980px) {
   .notification-item .notification-item-message {
     min-width: auto;
+  }
+  .avatar-container {
+    width: 100% !important;
   }
 }
