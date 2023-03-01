@@ -134,7 +134,7 @@ main {
   --c-dropdown: rgba(0, 0, 0, 0.6);
   --c-dropdown-hover: rgba(0, 0, 0, 0.8);
   --c-dropdown-active: rgba(0, 0, 0, 1);
-  --bg-dropdown: rgba(0, 0, 0, 0.1);
+  --bg-dropdown: #fff;
   --bg-dropdown-hover: rgba(0, 0, 0, 0.2);
   --bg-dropdown-active: rgba(0, 0, 0, 0.3);
 
@@ -982,6 +982,7 @@ button .spinner-border-bg {
   box-sizing: border-box;
   cursor: pointer;
   transition: .1s;
+  color: var(--c-dropdown)!important;
 }
 .cat-dropdown-content .dropdown-item:hover {
   background-color: var(--bg-dropdown-hover);
