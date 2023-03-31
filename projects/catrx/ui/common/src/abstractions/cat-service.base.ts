@@ -128,10 +128,12 @@ export abstract class CatServiceBase<
     if (this.options?.useMockup) {
       return new CatServiceMockup(this.mainResource).save(data, id);
     } else {
-      return (id ? this.httpClient.put : this.httpClient.post)(
-        `${this.host}/${this.mainResource}${id ? '/' + id : ''}`,
-        data
-      ).pipe(first());
+      const url = `${this.host}/${this.mainResource}${id ? '/' + id : ''}`;
+      if (id) {
+        return this.httpClient.put(url, data).pipe(first());
+      } else {
+        return this.httpClient.post(url, data).pipe(first());
+      }
     }
   }
 
