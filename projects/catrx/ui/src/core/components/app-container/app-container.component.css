@@ -101,6 +101,10 @@ main cat-template-container div[menu-toolbar] button:active {
   text-align: center;
 }
 
+.loading-info .btn-group {
+  width: auto;
+}
+
 .loading-info h1 {
   margin: 0;
   padding: 15px 15px 0;

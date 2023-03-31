@@ -4,6 +4,7 @@
   left: calc(50vw - 150px);
   width: 300px;
   height: auto;
+  z-index: 10000;
 }
 
 .cat-snackbar-container .cat-snackbar-content {
@@ -22,7 +23,7 @@
 .cat-snackbar-container .cat-snackbar-content .title {
   margin: 0;
   padding: 0 0 2px;
-  font-size: 0.8360rem;
+  font-size: 0.836rem;
   font-weight: bold;
   width: calc(100% - 30px);
 }
@@ -43,7 +44,7 @@
   border: none;
   background-color: transparent;
   color: var(--disable-color);
-  transition: .1s;
+  transition: 0.1s;
 }
 
 .cat-snackbar-container .cat-snackbar-content .btn-snackbar-close:hover {
@@ -66,39 +67,39 @@
   top: 0;
   left: 0;
   background-color: var(--font-color);
-  opacity: .1;
+  opacity: 0.1;
   height: 5px;
   transition: 0.2s;
 }
 
 .cat-snackbar-container .cat-snackbar-content.success {
-  border-top: 4px solid #43A047;
+  border-top: 4px solid #43a047;
 }
 
 .cat-snackbar-container .cat-snackbar-content.warning {
-  border-top: 4px solid #FFA000;
+  border-top: 4px solid #ffa000;
 }
 
 .cat-snackbar-container .cat-snackbar-content.error {
-  border-top: 4px solid #C62828;
+  border-top: 4px solid #c62828;
 }
 
 .cat-snackbar-container .cat-snackbar-content.info {
-  border-top: 4px solid #00BCD4;
+  border-top: 4px solid #00bcd4;
 }
 
 .cat-snackbar-container .cat-snackbar-content.success .title {
-  color: #43A047;
+  color: #43a047;
 }
 
 .cat-snackbar-container .cat-snackbar-content.warning .title {
-  color: #FFA000;
+  color: #ffa000;
 }
 
 .cat-snackbar-container .cat-snackbar-content.error .title {
-  color: #C62828;
+  color: #c62828;
 }
 
 .cat-snackbar-container .cat-snackbar-content.info .title {
-  color: #00BCD4;
+  color: #00bcd4;
 }
