@@ -848,6 +848,7 @@ textarea {
   font-size: 0.752rem;
 }
 .ng-select .ng-select-container .ng-value-container .ng-value {color: var(--font-color);}
+.ng-dropdown-panel .ng-dropdown-panel-items .ng-option.ng-option-disabled {color: var(--font-color);}
 input:disabled,
 select:disabled {
   border-style: dashed;
