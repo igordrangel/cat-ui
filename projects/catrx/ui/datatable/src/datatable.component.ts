@@ -96,14 +96,25 @@ export class DatatableComponent implements OnInit, OnDestroy {
               const dataFiltered = [];
               Object.keys(filter).forEach((indexNameFilter) => {
                 if (filter[indexNameFilter] && indexNameFilter !== 'filter') {
-                  dataFiltered.push(
-                    JSON.stringify(itemLine[indexNameFilter]) ===
-                      JSON.stringify(filter[indexNameFilter]) ||
-                      (itemLine[indexNameFilter]?.['id'] ?? 0) ===
-                        (filter[indexNameFilter]?.['id'] ?? -1) ||
-                      (itemLine[indexNameFilter]?.['codigo'] ?? 0) ===
-                        (filter[indexNameFilter]?.['codigo'] ?? -1)
-                  );
+                  if (
+                    typeof itemLine[indexNameFilter] === 'string' &&
+                    typeof filter[indexNameFilter] === 'string'
+                  ) {
+                    dataFiltered.push(
+                      itemLine[indexNameFilter].includes(
+                        filter[indexNameFilter]
+                      )
+                    );
+                  } else {
+                    dataFiltered.push(
+                      JSON.stringify(itemLine[indexNameFilter]) ===
+                        JSON.stringify(filter[indexNameFilter]) ||
+                        (itemLine[indexNameFilter]?.['id'] ?? 0) ===
+                          (filter[indexNameFilter]?.['id'] ?? -1) ||
+                        (itemLine[indexNameFilter]?.['codigo'] ?? 0) ===
+                          (filter[indexNameFilter]?.['codigo'] ?? -1)
+                    );
+                  }
                 }
               });
 
@@ -359,7 +370,7 @@ export class DatatableComponent implements OnInit, OnDestroy {
     this.currentPage = page;
     if (this.config?.typeDataList === 'onDemand') {
       this.datatableList$.next([]);
-      this.loadData();
+      this.loadData(true);
     } else {
       this.checkAll(false);
     }
