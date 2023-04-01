@@ -847,7 +847,7 @@ textarea {
   line-height: 20px;
   font-size: 0.752rem;
 }
-.ng-select .ng-select-container .ng-value-container .ng-value {color: var(--font-color);}
+.ng-select .ng-select-container .ng-value-container .ng-value {color: var(--font-color);z-index: 1;}
 .ng-dropdown-panel .ng-dropdown-panel-items .ng-option.ng-option-disabled {color: var(--font-color);}
 input:disabled,
 select:disabled {
