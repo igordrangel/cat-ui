@@ -12,7 +12,7 @@ export class AppComponent {
   appConfig = this.catAppService
     .build('Cat UI', {
       autoAuth: false,
-      startedPage: '/examples/crud-page',
+      startedPage: () => '/examples/crud-page',
       jwt: {
         loginComponent: LoginComponent,
       },
