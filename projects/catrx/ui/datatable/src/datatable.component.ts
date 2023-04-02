@@ -101,9 +101,11 @@ export class DatatableComponent implements OnInit, OnDestroy {
                     typeof filter[indexNameFilter] === 'string'
                   ) {
                     dataFiltered.push(
-                      itemLine[indexNameFilter].includes(
-                        filter[indexNameFilter]
-                      )
+                      (itemLine[indexNameFilter] as string)
+                        .toLowerCase()
+                        .includes(
+                          (filter[indexNameFilter] as string).toLowerCase()
+                        )
                     );
                   } else {
                     dataFiltered.push(
