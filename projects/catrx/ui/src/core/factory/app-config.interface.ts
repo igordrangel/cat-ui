@@ -25,7 +25,7 @@ export interface AppConfig {
 export interface AppAuthSettings {
   autoAuth: boolean;
   onAuth: (decodedToken: CatAppDecodedToken) => Observable<AppConfigMenu>;
-  startedPage?: string;
+  startedPage?: () => string;
   openId?: {
     service: string;
   };

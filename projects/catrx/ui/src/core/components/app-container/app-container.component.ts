@@ -63,14 +63,14 @@ export class AppContainerComponent implements OnInit {
   private destroyLoggedSubscriptions$ = new Subject<boolean>();
   private destroySubscriptions$ = new Subject<boolean>();
 
-  @ViewChild('templateContainer') templateContainer: TemplateContainerComponent
+  @ViewChild('templateContainer') templateContainer: TemplateContainerComponent;
 
   constructor(
     private router: Router,
     private oauth2Service: CatOAuth2Service,
     private tokenService: CatTokenService,
     private notificationService: NotificationService
-  ) { }
+  ) {}
 
   ngOnInit() {
     if (window.matchMedia && this.config.darkMode) {
@@ -257,7 +257,7 @@ export class AppContainerComponent implements OnInit {
             ((!location.hash && location.pathname === '/') ||
               (!!location.hash && location.hash === '#/'))
           ) {
-            this.router.navigate([this.config?.authSettings?.startedPage]);
+            this.router.navigate([this.config?.authSettings?.startedPage()]);
           }
         }
       } else {
