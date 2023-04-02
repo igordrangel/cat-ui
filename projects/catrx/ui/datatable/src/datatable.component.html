@@ -194,9 +194,9 @@
               {{ currentPage > 1
                 ? ((totalItemsPage ?? 0) * (currentPage - 1)) + 1
                 : currentPage}} -
-              {{ getPaginateProps().totalItems > ((totalItemsPage ?? 0) * currentPage
+              {{ getPaginateProps().totalItems > ((totalItemsPage ?? 0) * currentPage)
                 ? (totalItemsPage ?? 0) * currentPage
-                : getPaginateProps().totalItems) }} de
+                : getPaginateProps().totalItems }} de
               {{ getPaginateProps().totalItems }}
             </span>
             <pagination-controls
