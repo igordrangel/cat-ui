@@ -1,0 +1,249 @@
+cat-menu nav {
+  display: flex;
+  justify-content: center;
+  align-items: flex-end;
+  width: 100%;
+  height: auto;
+  box-sizing: border-box;
+  padding: 50px 0 10px 8px;
+  position: relative;
+}
+
+cat-menu nav:not(.collapsed) {
+  width: 62px;
+  padding: 50px 0 10px;
+  margin-left: 8px;
+  align-items: flex-end;
+  box-sizing: border-box;
+}
+
+cat-menu nav .menu-container {
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  border-radius: 8px 0 0 8px;
+  overflow: auto;
+  overflow-x: hidden;
+  padding: 31px 0;
+  box-sizing: border-box;
+  width: 100%;
+}
+
+cat-menu nav .menu-container cat-menu-module,
+cat-menu nav .menu-container cat-menu-tool {
+  width: 100%;
+}
+
+cat-menu cat-menu-module ul {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  font-size: 0;
+  width: 100%;
+}
+
+cat-menu cat-menu-module ul li {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  color: var(--c-menu);
+  text-align: left;
+  width: 100%;
+  box-sizing: border-box;
+  border-radius: 28px 0 0 28px;
+  padding-right: 8px;
+}
+
+cat-menu cat-menu-module ul li:hover {
+  background-color: var(--bg-menu-hover);
+  color: var(--c-menu-hover);
+}
+
+cat-menu cat-menu-module ul li:active {
+  background-color: var(--bg-menu-active);
+  color: var(--c-menu-active);
+}
+
+cat-menu cat-menu-module ul.collapsed li.has-tools a::after {
+  font-family: "Font Awesome 5 Free";
+  font-weight: 900;
+  content: '\f054';
+  position: absolute;
+  right: 15px;
+  top: 10px;
+  font-size: 0.625rem;
+}
+
+cat-menu cat-menu-module ul.collapsed li.has-tools.collapsed a::after {
+  rotate: 90deg;
+}
+
+cat-menu cat-menu-module ul li.module a {
+  font-size: 0;
+  width: 100%;
+  text-align: center;
+  margin: 0;
+  transition: .1s linear;
+  padding: 0;
+  cursor: pointer;
+  text-decoration: none;
+  color: var(--c-menu);
+}
+
+cat-menu cat-menu-module ul:not(.collapsed) li.module a {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+cat-menu cat-menu-module ul.collapsed li.module a {
+  font-size: 0.8360rem;
+  padding: 10px 15px;
+  text-align: left;
+}
+
+cat-menu cat-menu-module ul li.module a i {
+  margin: 0;
+  font-size: 1.170rem;
+  padding: 20px 10px;
+}
+
+cat-menu cat-menu-module ul.collapsed li.module a i {
+  margin-right: 8px;
+  font-size: 0.8360rem;
+  padding: 0;
+}
+
+cat-menu cat-menu-module ul.collapsed li.module.active {
+  color: var(--c-menu-active);
+}
+
+cat-menu cat-menu-module ul li.module.active {
+  border: none;
+  color: var(--c-menu-active);
+  background-color: var(--bg-menu-active);
+  z-index: 1;
+}
+cat-menu cat-menu-module ul li.module:hover::after,
+cat-menu cat-menu-module ul li.module.active::after {
+  content: '';
+  position: absolute;
+  bottom: -20px;
+  right: 0;
+  width: 20px;
+  height: 20px;
+  background-color: transparent;
+  border-top-right-radius: 20px;
+  box-shadow: 7.5px -7.5px 0 7.5px var(--bg-menu-active);
+}
+cat-menu cat-menu-module ul li.module:hover::before,
+cat-menu cat-menu-module ul li.module.active::before {
+  content: '';
+  position: absolute;
+  top: -20px;
+  right: 0;
+  width: 20px;
+  height: 20px;
+  background-color: transparent;
+  border-bottom-right-radius: 20px;
+  box-shadow: 7.5px 7.5px 0 7.5px var(--bg-menu-active);
+}
+cat-menu cat-menu-module ul li.module:not(.active):hover::after {
+  box-shadow: 7.5px -7.5px 0 7.5px var(--bg-menu-hover);
+}
+cat-menu cat-menu-module ul li.module:not(.active):hover::before {
+  box-shadow: 7.5px 7.5px 0 7.5px var(--bg-menu-hover);
+}
+cat-menu cat-menu-module ul li.module:not(.active):active::after,
+cat-menu cat-menu-module ul li.module:not(.active):active::before {
+  border-color: var(--bg-menu-active);
+}
+
+cat-menu cat-menu-module ul li.has-tools cat-menu-tool {
+  height: 0;
+  overflow: hidden;
+}
+
+cat-menu cat-menu-module ul.collapsed li.has-tools.collapsed cat-menu-tool {
+  height: auto;
+}
+
+cat-menu cat-menu-tool ul {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  font-size: 0;
+  width: 100%;
+}
+
+cat-menu cat-menu-tool ul li {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  color: var(--c-menu);
+  text-align: left;
+  width: 100%;
+  box-sizing: border-box;
+  background-color: var(--bg-menu);
+  transition: .1s;
+}
+
+cat-menu cat-menu-tool ul li:hover {
+  background-color: var(--bg-menu-hover);
+  color: var(--c-menu-hover);
+}
+
+cat-menu cat-menu-tool ul li:active {
+  background-color: var(--bg-menu-active);
+  color: var(--c-menu-active);
+}
+
+cat-menu cat-menu-tool ul li.tool {
+  background-color: transparent;
+}
+
+cat-menu cat-menu-tool ul li.tool a {
+  font-size: 0.8360rem;
+  width: 100%;
+  text-align: left;
+  margin: 0;
+  transition: .1s linear;
+  padding: 10px 15px;
+  cursor: pointer;
+  text-decoration: none;
+  color: var(--c-menu);
+}
+
+cat-menu cat-menu-tool ul li.tool a::after {content: ''!important;}
+
+cat-menu cat-menu-tool ul li.tool a i {
+  margin-right: 8px;
+}
+
+cat-menu cat-menu-tool ul li.tool .active {
+  color: var(--c-menu-active);
+}
+
+cat-menu cat-menu-tool ul li.has-tools a::after {
+  font-family: "Font Awesome 5 Free";
+  font-weight: 900;
+  content: '\f054';
+  position: absolute;
+  right: 15px;
+  top: 10px;
+  font-size: 0.625rem;
+  transition: .1s;
+}
+
+cat-menu cat-menu-tool ul li.has-tools.collapsed::after {
+  rotate: 90deg;
+}
+
+cat-menu cat-menu-tool ul li.has-tools cat-menu-tool {
+  height: 0;
+  overflow: hidden;
+}
+
+cat-menu cat-menu-tool ul li.has-tools.collapsed cat-menu-tool {
+  height: auto;
+}

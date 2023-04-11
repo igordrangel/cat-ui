@@ -21,7 +21,6 @@ import { BehaviorSubject } from 'rxjs/internal/BehaviorSubject';
 @Component({
   selector: 'cat-menu[appName][config][menuCollapsed]',
   templateUrl: './menu.component.html',
-  styleUrls: ['./menu.component.css'],
 })
 export class MenuComponent implements OnInit, OnChanges {
   @Input() appName: string;
@@ -30,7 +29,7 @@ export class MenuComponent implements OnInit, OnChanges {
 
   public menuOptions$ = new BehaviorSubject<AppConfigMenu | null>(null);
 
-  constructor(private router: Router) { }
+  constructor(private router: Router) {}
 
   ngOnInit() {
     this.router.events.subscribe((event) => {

@@ -22,7 +22,6 @@ import { first } from 'rxjs/internal/operators/first';
 @Component({
   selector: 'cat-datatable[config]',
   templateUrl: 'datatable.component.html',
-  styleUrls: ['datatable.component.css'],
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class DatatableComponent implements OnInit, OnDestroy {

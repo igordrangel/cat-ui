@@ -10,7 +10,6 @@ import { randomString } from '@koalarx/utils/operators/string';
 @Component({
   selector: 'cat-tab-group',
   templateUrl: './tab-group.component.html',
-  styleUrls: ['./tab-group.component.css'],
 })
 export class TabGroupComponent implements OnInit, OnChanges {
   @Input() selectedIndex = 0;

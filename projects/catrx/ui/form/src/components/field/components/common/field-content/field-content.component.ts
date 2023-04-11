@@ -15,7 +15,6 @@ import { CatFormFieldConfig } from '../../../../../builder/form.interface';
 @Component({
   selector: 'cat-form-field-content[control][config][elInput]',
   templateUrl: 'field-content.component.html',
-  styleUrls: ['../../../field.component.css'],
 })
 export class FieldContentComponent implements OnInit, OnDestroy {
   @Input() control?: FormControl;

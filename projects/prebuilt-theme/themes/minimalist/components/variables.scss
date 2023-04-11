@@ -1,0 +1,295 @@
+$select-icon-color-dark: "%23f1f1f1";
+$checkbox-radio-icon-color-dark: "%23212121";
+$checkbox-radio-icon-color-light: "%23f1f1f1";
+$breadcrumb-divider-color-dark: "%23f1f1f1";
+$breadcrumb-divider-color-light: "%23212121";
+
+:root,
+main {
+  --bg-body: #fff;
+  --font-color: #616161;
+  --light-font-color: #f1f1f1;
+  --disable-color: #9a9a9a;
+  --primary-color: #212121;
+  --primary-color-alpha: rgba(33, 33, 33, 0.2);
+
+  --btn-icon-bg-default: transparent;
+  --btn-icon-c-default: #212121;
+  --btn-icon-bg-primary: #1565c0;
+  --btn-icon-c-primary: #f1f1f1;
+  --btn-icon-bg-warning: #ffb300;
+  --btn-icon-c-warning: #ffecb3;
+  --btn-icon-bg-danger: #c62828;
+  --btn-icon-c-danger: #ffcdd2;
+
+  --btn-bg-primary: #2196F3;
+  --btn-bg-primary-hover: #1E88E5;
+  --btn-bg-primary-active: #1976D2;
+  --btn-c-primary: #fff;
+  --btn-c-primary-hover: #fff;
+  --btn-c-primary-active: #fff;
+
+  --btn-bg-secondary: #757575;
+  --btn-bg-secondary-hover: #616161;
+  --btn-bg-secondary-active: #424242;
+  --btn-c-secondary: #fff;
+  --btn-c-secondary-hover: #fff;
+  --btn-c-secondary-active: #fff;
+
+  --btn-bg-success: #43A047;
+  --btn-bg-success-hover: #388E3C;
+  --btn-bg-success-active: #2E7D32;
+  --btn-c-success: #fff;
+  --btn-c-success-hover: #fff;
+  --btn-c-success-active: #fff;
+
+  --btn-bg-warning: #FFB300;
+  --btn-bg-warning-hover: #FFA000;
+  --btn-bg-warning-active: #FF8F00;
+  --btn-c-warning: #212121;
+  --btn-c-warning-hover: #212121;
+  --btn-c-warning-active: #212121;
+
+  --btn-bg-danger: #E53935;
+  --btn-bg-danger-hover: #D32F2F;
+  --btn-bg-danger-active: #C62828;
+  --btn-c-danger: #fff;
+  --btn-c-danger-hover: #fff;
+  --btn-c-danger-active: #fff;
+
+  --btn-bg-info: #00ACC1;
+  --btn-bg-info-hover: #0097A7;
+  --btn-bg-info-active: #00838F;
+  --btn-c-info: #212121;
+  --btn-c-info-hover: #212121;
+  --btn-c-info-active: #212121;
+
+  --chip-bg-default: #212121;
+  --chip-c-default: #f1f1f1;
+  --chip-bg-success: #198754;
+  --chip-c-success: #f1f1f1;
+  --chip-bg-warning: #ffc107;
+  --chip-c-warning: #212121;
+  --chip-bg-danger: #dc3545;
+  --chip-c-danger: #ffcdd2;
+  --chip-bg-info: #0dcaf0;
+  --chip-c-info: #616161;
+  --chip-bg-primary: #0d6efd;
+  --chip-c-primary: #f1f1f1;
+  --chip-bg-secondary: #6c757d;
+  --chip-c-secondary: #f1f1f1;
+
+  --tab-bg: #0d6efd;
+  --tab-c: #f1f1f1;
+
+  --step-active-bg: #0d6efd;
+  --step-active-c: #f1f1f1;
+  --step-bg: #616161;
+  --step-c: #f1f1f1;
+
+  --spinner-width: 1.5rem;
+  --spinner-height: 1.5rem;
+
+  --c-toolbar: #616161;
+  --bg-toolbar: #fff;
+
+  --c-tooltip: #f1f1f1;
+  --bg-tooltip: #1565c0;
+
+  --c-datatable-th: #616161;
+  --bg-datatable-th: #f1f1f1;
+  --border-color-datatable-th: #ddd;
+  --bg-datatable-hover-bg: rgba(0, 0, 0, .1);
+  --bg-datatable-hover-color: #000;
+
+  --c-form-valid-field: #1976d2;
+  --c-form-invalid-field: #d32f2f;
+  --bg-form-invalid-field: rgba(255, 0, 0, 0.1);
+
+  --c-tag: #f1f1f1;
+  --bg-tag: #212121;
+
+  --btn-primary-color-alpha-hover: rgba(33, 33, 33, 0.2);
+  --btn-primary-color-alpha-active: rgba(33, 33, 33, 0.4);
+
+  --fieldset-border-color: rgba(0, 0, 0, 0.1);
+  --fieldset-legend-color: rgba(0, 0, 0, 0.8);
+
+  --bg-select-option-hover-active: rgba(0, 0, 0, 0.1);
+
+  --menu-border: none;
+  --c-menu: rgba(255, 255, 255, 0.6);
+  --c-menu-hover: rgba(255, 255, 255, 0.8);
+  --c-menu-active: rgba(255, 255, 255, 1);
+  --c-menu-border-active: rgba(255, 255, 255, 1);
+  --bg-menu: rgba(0, 0, 0, 0.8);
+  --bg-menu-hover: rgba(0, 0, 0, 0.9);
+  --bg-menu-active: rgba(0, 0, 0, 1);
+
+  --c-dropdown: rgba(0, 0, 0, 0.6);
+  --c-dropdown-hover: rgba(0, 0, 0, 0.8);
+  --c-dropdown-active: rgba(0, 0, 0, 1);
+  --bg-dropdown: #fff;
+  --bg-dropdown-hover: rgba(0, 0, 0, 0.2);
+  --bg-dropdown-active: rgba(0, 0, 0, 0.3);
+
+  --bg-avatar-image: #fff;
+
+  --shadow-color: rgba(0, 0, 0, .15);
+
+  --bg-progress-bar-container: #212121;
+  --bg-progress-bar: #f1f1f1;
+
+  --animate-duration: 200ms;
+  --animate-delay: 0s;
+}
+
+main.dark {
+  --bg-body: #212121;
+  --font-color: #f1f1f1;
+  --light-font-color: #ddd;
+  --disable-color: #9a9a9a;
+  --primary-color: #f1f1f1;
+  --primary-color-alpha: rgba(255, 255, 255, 0.2);
+
+  --btn-icon-bg-default: transparent;
+  --btn-icon-c-default: #f1f1f1;
+  --btn-icon-bg-primary: #1565c0;
+  --btn-icon-c-primary: #f1f1f1;
+  --btn-icon-bg-warning: #ffb300;
+  --btn-icon-c-warning: #ffecb3;
+  --btn-icon-bg-danger: #c62828;
+  --btn-icon-c-danger: #ffcdd2;
+
+  --btn-bg-primary: #1E88E5;
+  --btn-bg-primary-hover: #1976D2;
+  --btn-bg-primary-active: #1565C0;
+  --btn-c-primary: #fff;
+  --btn-c-primary-hover: #fff;
+  --btn-c-primary-active: #fff;
+
+  --btn-bg-secondary: #757575;
+  --btn-bg-secondary-hover: #616161;
+  --btn-bg-secondary-active: #424242;
+  --btn-c-secondary: #fff;
+  --btn-c-secondary-hover: #fff;
+  --btn-c-secondary-active: #fff;
+
+  --btn-bg-success: #43A047;
+  --btn-bg-success-hover: #388E3C;
+  --btn-bg-success-active: #2E7D32;
+  --btn-c-success: #fff;
+  --btn-c-success-hover: #fff;
+  --btn-c-success-active: #fff;
+
+  --btn-bg-warning: #FFB300;
+  --btn-bg-warning-hover: #FFA000;
+  --btn-bg-warning-active: #FF8F00;
+  --btn-c-warning: #212121;
+  --btn-c-warning-hover: #212121;
+  --btn-c-warning-active: #212121;
+
+  --btn-bg-danger: #E53935;
+  --btn-bg-danger-hover: #D32F2F;
+  --btn-bg-danger-active: #C62828;
+  --btn-c-danger: #fff;
+  --btn-c-danger-hover: #fff;
+  --btn-c-danger-active: #fff;
+
+  --btn-bg-info: #26C6DA;
+  --btn-bg-info-hover: #00BCD4;
+  --btn-bg-info-active: #00ACC1;
+  --btn-c-info: #212121;
+  --btn-c-info-hover: #212121;
+  --btn-c-info-active: #212121;
+
+  --chip-bg-default: #212121;
+  --chip-c-default: #f1f1f1;
+  --chip-bg-success: #198754;
+  --chip-c-success: #f1f1f1;
+  --chip-bg-warning: #ffc107;
+  --chip-c-warning: #212121;
+  --chip-bg-danger: #dc3545;
+  --chip-c-danger: #ffcdd2;
+  --chip-bg-info: #0dcaf0;
+  --chip-c-info: #616161;
+  --chip-bg-primary: #0d6efd;
+  --chip-c-primary: #f1f1f1;
+  --chip-bg-secondary: #6c757d;
+  --chip-c-secondary: #f1f1f1;
+
+  --tab-bg: #0d6efd;
+  --tab-c: #f1f1f1;
+
+  --step-active-bg: #0d6efd;
+  --step-active-c: #f1f1f1;
+  --step-bg: #cccccc;
+  --step-c: #212121;
+
+  --spinner-width: 1.5rem;
+  --spinner-height: 1.5rem;
+
+  --c-toolbar: #f1f1f1;
+  --bg-toolbar: #212121;
+
+  --c-tooltip: #f1f1f1;
+  --bg-tooltip: #212121;
+
+  --c-datatable-th: #9a9a9a;
+  --bg-datatable-th: #111111;
+  --border-color-datatable-th: #484848;
+  --bg-datatable-hover-bg: rgba(0, 0, 0, .3);
+  --bg-datatable-hover-color: #fff;
+
+  --c-form-valid-field: #1976d2;
+  --c-form-invalid-field: #d32f2f;
+  --bg-form-invalid-field: rgba(255, 0, 0, 0.2);
+
+  --c-tag: #212121;
+  --bg-tag: #f1f1f1;
+
+  --btn-primary-color-alpha-hover: rgba(255, 255, 255, 0.2);
+  --btn-primary-color-alpha-active: rgba(255, 255, 255, 0.4);
+
+  --fieldset-border-color: rgba(255, 255, 255, 0.4);
+  --fieldset-legend-color: rgba(255, 255, 255, 0.6);
+
+  --bg-select-option-hover-active: rgba(0, 0, 0, 0.2);
+
+  --menu-border: none;
+  --c-menu: rgba(255, 255, 255, 0.6);
+  --c-menu-hover: rgba(255, 255, 255, 0.8);
+  --c-menu-active: rgba(255, 255, 255, 1);
+  --c-menu-border-active: rgba(255, 255, 255, 1);
+  --bg-menu: rgba(0, 0, 0, 0.6);
+  --bg-menu-hover: rgba(0, 0, 0, 0.8);
+  --bg-menu-active: rgba(0, 0, 0, 1);
+
+  --c-dropdown: rgba(255, 255, 255, 0.6);
+  --c-dropdown-hover: rgba(255, 255, 255, 0.8);
+  --c-dropdown-active: rgba(255, 255, 255, 1);
+  --bg-dropdown: rgba(0, 0, 0, 0.6);
+  --bg-dropdown-hover: rgba(0, 0, 0, 0.8);
+  --bg-dropdown-active: rgba(0, 0, 0, 1);
+
+  --bg-avatar-image: #000;
+
+  --shadow-color: rgba(255, 255, 255, .15);
+
+  --bg-progress-bar-container: #f1f1f1;
+  --bg-progress-bar: #616161;
+}
+
+@font-face {
+  font-family: OpenSans;
+  src: url(../fonts/OpenSans/OpenSans-Light.woff),
+    url(../fonts/OpenSans/OpenSans-LightItalic.woff),
+    url(../fonts/OpenSans/OpenSans-Medium.woff),
+    url(../fonts/OpenSans/OpenSans-MediumItalic.woff),
+    url(../fonts/OpenSans/OpenSans-SemiBold.woff),
+    url(../fonts/OpenSans/OpenSans-SemiBoldItalic.woff),
+    url(../fonts/OpenSans/OpenSans-Bold.woff),
+    url(../fonts/OpenSans/OpenSans-BoldItalic.woff),
+    url(../fonts/OpenSans/OpenSans-ExtraBold.woff),
+    url(../fonts/OpenSans/OpenSans-ExtraBoldItalic.woff);
+}

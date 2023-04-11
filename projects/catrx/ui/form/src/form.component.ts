@@ -31,7 +31,6 @@ import { getValueByTree } from './common/cat-object.helper';
 @Component({
   selector: 'cat-form[config]',
   templateUrl: 'form.component.html',
-  styleUrls: ['form.component.css'],
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class FormComponent implements OnInit {
@@ -127,10 +126,7 @@ export class FormComponent implements OnInit {
     name?: string
   ) {
     if (name) {
-      const valueDataByTree = getValueByTree(
-        this.config.autofill,
-        name
-      ) as {
+      const valueDataByTree = getValueByTree(this.config.autofill, name) as {
         [key: string | number]: any;
       };
 

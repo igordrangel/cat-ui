@@ -14,7 +14,6 @@ export type CatIconButtonColor =
 @Component({
   selector: 'cat-icon-button[icon]',
   templateUrl: 'icon-button.component.html',
-  styleUrls: ['icon-button.component.css'],
 })
 export class IconButtonComponent {
   @Input() icon: string;

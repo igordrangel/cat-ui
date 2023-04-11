@@ -8,7 +8,6 @@ import { BehaviorSubject } from 'rxjs/internal/BehaviorSubject';
 @Component({
   selector: 'cat-menu-module[modules][menuCollapsed]',
   templateUrl: './module.component.html',
-  styleUrls: ['./module.component.css'],
 })
 export class ModuleComponent {
   @Input() modules: AppConfigMenuModule[];

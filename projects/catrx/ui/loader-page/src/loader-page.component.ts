@@ -21,45 +21,11 @@ export interface CatLoaderPageConfig {
       </div>
     </ng-container>
   </div>`,
-  styles: [
-    `
-      .cat-loader-page-container {
-        position: fixed;
-        top: 0;
-        left: 0;
-        width: 100%;
-        height: 100%;
-        display: flex;
-        flex-direction: column;
-        justify-content: center;
-        align-items: center;
-        background-color: rgba(0, 0, 0, 0.2);
-        z-index: 1041;
-      }
-      .cat-progress-bar-container {
-        position: relative;
-        margin: 20px 0;
-        border-radius: 5px;
-        width: 15rem;
-        height: 10px;
-        background-color: var(--bg-progress-bar-container);
-        overflow: hidden;
-      }
-      .cat-progress-bar-container .cat-progress-bar {
-        position: absolute;
-        top: 0;
-        left: 0;
-        background-color: var(--bg-progress-bar);
-        height: 10px;
-        transition: 0.1s;
-      }
-    `,
-  ],
   standalone: true,
   imports: [CommonModule, CatLoaderModule],
 })
 export class LoaderPageComponent {
   constructor(
     @Inject(CAT_LOADER_PAGE_CONFIG) public config?: CatLoaderPageConfig
-  ) { }
+  ) {}
 }

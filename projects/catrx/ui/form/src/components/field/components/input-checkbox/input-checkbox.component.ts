@@ -5,7 +5,6 @@ import { CatFormCheckboxOptions } from '../../../../builder/form.interface';
 @Component({
   selector: 'cat-field-checkbox[control][fieldConfig]',
   templateUrl: 'input-checkbox.component.html',
-  styleUrls: ['../../field.component.css', './input-checkbox.component.css'],
 })
 export class InputCheckboxComponent extends FieldBase<
   CatFormCheckboxOptions,

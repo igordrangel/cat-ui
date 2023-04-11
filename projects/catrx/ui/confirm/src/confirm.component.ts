@@ -8,7 +8,6 @@ import {
 
 @Component({
   templateUrl: './confirm.component.html',
-  styleUrls: ['./confirm.component.css'],
 })
 export class ConfirmComponent {
   constructor(

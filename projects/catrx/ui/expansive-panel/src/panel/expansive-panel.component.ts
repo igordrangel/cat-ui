@@ -9,7 +9,6 @@ import {
 @Component({
   selector: 'cat-expansive-panel',
   templateUrl: './expansive-panel.component.html',
-  styleUrls: ['./expansive-panel.component.css'],
 })
 export class ExpansivePanelComponent implements OnChanges {
   @Input() disabled = false;

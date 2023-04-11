@@ -25,7 +25,6 @@ interface SideWindowConfig extends CatSideWindowConfig {
     </button>
     <cat-dynamic-component [component]="getComponent()"></cat-dynamic-component>
   </div>`,
-  styleUrls: ['./side-window.component.css'],
   standalone: true,
   imports: [CatDynamicComponentModule, CatTooltipModule],
 })

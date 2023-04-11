@@ -1,0 +1,108 @@
+cat-template-mobile .template-content {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  width: 100vw;
+}
+
+cat-template-mobile .template-content aside {
+  position: absolute;
+  height: 100vh;
+  width: calc(100vw - 30px);
+  left: calc((100vw - 30px) * -1);
+  max-width: calc(100vw - 30px);
+  padding: 40px 0 0;
+  transition: ease-in-out .2s;
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  flex-direction: column;
+  box-sizing: border-box;
+  border-right: 1px solid var(--primary-color-alpha);
+  background-color: var(--bg-body);
+  z-index: 99999;
+}
+
+cat-template-mobile .template-content aside.show {
+  left: 0;
+}
+
+cat-template-mobile .template-content aside:not(.show) {
+  padding: 15px 0 0;
+}
+
+cat-template-mobile .template-content aside:not(.show) .logotype {
+  width: 40px;
+}
+
+cat-template-mobile .template-content aside .space {
+  flex: 1 0 0;
+}
+
+cat-template-mobile .template-content aside .btn-group {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+  box-sizing: border-box;
+  border-radius: 0;
+}
+
+cat-template-mobile .template-content section#cat-content-app {
+  width: 100%;
+  height: calc(100vh - 60px);
+  overflow: auto;
+  overflow-x: hidden;
+  box-sizing: border-box;
+  position: relative;
+}
+
+cat-template-mobile .logotype {
+  width: 80px;
+  transition: ease-in-out .2s;
+}
+
+cat-template-mobile .btn-menu-collapse {
+  position: absolute;
+  top: 60px;
+  right: -15px;
+  background-color: var(--bg-body);
+  border: 1px solid var(--primary-color-alpha);
+  width: 30px;
+  height: 30px;
+  font-size: 1rem;
+  border-radius: 50%;
+  transition: ease-in-out .2s;
+  padding: 0;
+  color: var(--primary-color);
+  z-index: 1;
+}
+
+cat-template-mobile .btn-menu-collapse:hover {
+  background-color: var(--btn-icon-bg-primary);
+  color: var(--btn-icon-c-primary);
+}
+
+cat-template-mobile .toolbar-content {
+  position: absolute;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  box-sizing: border-box;
+  padding: 10px 0 10px 5px;
+  width: 100%;
+  height: 60px;
+  left: 0;
+  bottom: 0;
+  border-top: 1px solid var(--shadow-color);
+  background-color: var(--bg-body);
+  z-index: 1003;
+}
+
+cat-template-mobile .toolbar-content button {
+  background-color: transparent;
+  color: var(--font-color);
+  border: none;
+  margin: 0 10px;
+  font-size: 1.25rem;
+}

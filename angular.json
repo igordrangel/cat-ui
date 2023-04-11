@@ -66,7 +66,7 @@
             ],
             "styles": [
               "projects/cat-ui/src/styles.css",
-              "projects/prebuilt-theme/prebuilt-theme.scss"
+              "projects/prebuilt-theme/themes/modern/modern-theme.scss"
             ],
             "scripts": []
           },

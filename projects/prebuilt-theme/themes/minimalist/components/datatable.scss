@@ -1,0 +1,231 @@
+cat-datatable .cat-datatable-menu:has(nav)>nav {
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  padding: 3px 8px;
+}
+
+cat-datatable .cat-datatable-menu:has(nav)>nav[list-checked-actions] {
+  border-radius: 4px;
+  background-color: var(--shadow-color);
+  margin-right: 0.5rem;
+}
+
+cat-datatable .cat-datatable-menu:has(nav) {
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  padding: 3px 8px;
+}
+
+cat-datatable .table-container {
+  overflow: auto;
+  max-height: 500px;
+  width: 100%;
+  position: relative;
+}
+
+cat-datatable .table {
+  position: relative;
+  border-collapse: collapse;
+  margin-bottom: 0;
+  color: var(--font-color);
+  --bs-table-hover-bg: var(--bg-datatable-hover-bg);
+  --bs-table-hover-color: var(--bg-datatable-hover-color);
+}
+
+cat-datatable .table thead,
+cat-datatable table tfoot {
+  position: relative;
+  z-index: 1;
+}
+
+cat-datatable .table .sorted {
+  background: var(--bg-datatable-th);
+}
+
+cat-datatable .table th {
+  position: sticky;
+  top: -1px;
+  background: var(--bg-datatable-th);
+  color: var(--c-datatable-th);
+  font-weight: normal;
+  border: none;
+  height: 35px;
+}
+
+cat-datatable .table th.sorted {
+  color: var(--primary-color);
+  font-weight: bold;
+}
+
+cat-datatable .table th i {
+  margin-left: 8px;
+}
+
+cat-datatable .table th .content-header {
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+}
+
+cat-datatable .table th:not(.selection) {
+  font-size: 0.7524rem;
+  line-height: 0.562rem;
+}
+
+cat-datatable .table th.sortable {
+  cursor: pointer;
+}
+
+cat-datatable .table tfoot {
+  position: sticky;
+  bottom: -1px;
+  border: none;
+}
+
+cat-datatable .table tfoot td {
+  background: var(--bg-datatable-th);
+  padding: 0;
+  border: none;
+}
+
+cat-datatable .table tr {
+  border: none;
+}
+
+cat-datatable .table tr th,
+cat-datatable .table tr td {
+  padding: 5px 15px;
+  vertical-align: middle;
+  border-color: var(--border-color-datatable-th);
+}
+
+cat-datatable .table tr th.selection,
+cat-datatable .table tr td.selection {
+  width: 40px;
+  text-align: center;
+}
+
+cat-datatable .table tr td.option .options-content {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+cat-datatable .table tr .checkbox {
+  margin: 0;
+}
+
+cat-datatable .table tr .checkbox label::before {
+  margin-left: -19px !important;
+}
+
+cat-datatable .table .fake-line td {
+  padding: 0;
+  border: none;
+}
+
+cat-datatable .table .fake-line {
+  border: none;
+  --bs-table-hover-bg: transparent;
+  --bs-table-hover-color: var(--font-color);
+}
+
+cat-datatable .page-size-content {
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+cat-datatable .page-size-content label {
+  white-space: nowrap;
+  font-size: 0.668rem;
+  text-transform: uppercase;
+  color: var(--c-datatable-th);
+}
+
+cat-datatable .page-size-content select {
+  margin-left: 8px;
+  width: fit-content;
+}
+
+cat-datatable .pagination-content {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  padding-right: 10px;
+  white-space: nowrap;
+}
+
+cat-datatable .pagination-content span.page-info {
+  font-size: 0.752rem;
+  line-height: 0.8360rem;
+  color: var(--c-datatable-th);
+  border-radius: 50px;
+  padding: 5px 10px;
+  margin-right: 10px;
+  box-sizing: border-box;
+}
+
+cat-datatable .datatable-loader {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: calc(100% - 1px);
+  height: 421px;
+  background-color: rgba(0, 0, 0, .2);
+  z-index: 1;
+  box-sizing: border-box;
+}
+
+cat-datatable .empty-list-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  width: calc(100% - 1px);
+  height: 421px;
+  font-weight: bold;
+  box-sizing: border-box;
+}
+
+cat-datatable .empty-list-container i {
+  font-size: 2.5rem;
+  opacity: .8;
+}
+
+@media (max-width: 980px) {
+  cat-datatable .cat-datatable-menu:has(nav)>nav {
+    gap: 0.6rem;
+  }
+}
+
+.ngx-pagination {
+  display: flex;
+  justify-content: flex-end;
+  align-items: flex-start;
+  margin-bottom: 0 !important;
+  padding: 0;
+}
+
+.ngx-pagination li {
+  display: inline;
+  border: none !important;
+  font-size: 0.8360rem;
+  border-radius: 5px !important;
+  margin: 0 2px;
+}
+
+.ngx-pagination li a {
+  padding: 0.1875rem 0.625rem !important;
+  border-radius: 5px !important;
+}
+
+.ngx-pagination li a:hover,
+.ngx-pagination .current {
+  background: var(--btn-bg-primary) !important;
+  color: var(--btn-c-primary) !important;
+}

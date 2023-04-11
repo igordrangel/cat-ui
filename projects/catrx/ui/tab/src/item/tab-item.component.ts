@@ -3,7 +3,6 @@ import { Component, ElementRef, Input } from '@angular/core';
 @Component({
   selector: 'cat-tab[label]',
   templateUrl: './tab-item.component.html',
-  styleUrls: ['./tab-item.component.css'],
 })
 export class TabItemComponent {
   @Input() label: string;

@@ -11,7 +11,6 @@ import { klArray } from '@koalarx/utils/operators/array';
 @Component({
   selector: 'cat-field-file[control][fieldConfig]',
   templateUrl: './input-file.component.html',
-  styleUrls: ['../../field.component.css', './input-file.component.css'],
 })
 export class InputFileComponent extends FieldBase<
   CatFormFileOptions | CatFormCsvOptions,

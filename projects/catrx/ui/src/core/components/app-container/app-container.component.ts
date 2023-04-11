@@ -40,7 +40,6 @@ import { TemplateContainerComponent } from './templates/template-container.compo
 @Component({
   selector: 'cat-app-container[config]',
   templateUrl: './app-container.component.html',
-  styleUrls: ['./app-container.component.css'],
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class AppContainerComponent implements OnInit {

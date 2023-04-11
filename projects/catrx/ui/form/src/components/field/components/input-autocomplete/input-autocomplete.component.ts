@@ -14,7 +14,6 @@ import { debounceTime } from 'rxjs/internal/operators/debounceTime';
 @Component({
   selector: 'cat-field-autocomplete[control][fieldConfig]',
   templateUrl: 'input-autocomplete.component.html',
-  styleUrls: ['../../field.component.css'],
 })
 export class InputAutocompleteComponent extends FieldBase<
   CatFormAutocompleteOptions,

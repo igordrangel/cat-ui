@@ -5,7 +5,6 @@ import { FieldBase } from '../field.base';
 @Component({
   selector: 'cat-field-custom[control][fieldConfig]',
   templateUrl: './input-custom-field.component.html',
-  styleUrls: ['../../field.component.css'],
 })
 export class InputCustomFieldComponent extends FieldBase<
   CatFormCustomFieldOptions,

@@ -5,7 +5,6 @@ import { FormControl } from '@angular/forms';
 @Component({
   selector: 'cat-form-field-hint[control][config][elInput]',
   templateUrl: 'hint.component.html',
-  styleUrls: ['../../../field.component.css'],
 })
 export class HintComponent {
   @Input() control?: FormControl;

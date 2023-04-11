@@ -3,7 +3,6 @@ import { CatTooltipPosition } from './cat-tooltip.directive';
 
 @Component({
   templateUrl: './tooltip.component.html',
-  styleUrls: ['./tooltip.component.css'],
 })
 export class TooltipComponent {
   tooltip = '';

@@ -16,7 +16,6 @@ export type CatButtonType = 'button' | 'submit';
     <ng-content select="[icon]"></ng-content>
     <ng-content></ng-content>
   </button>`,
-  styleUrls: ['./cat-button.component.css'],
   standalone: true,
   imports: [CommonModule, CatLoaderModule],
 })

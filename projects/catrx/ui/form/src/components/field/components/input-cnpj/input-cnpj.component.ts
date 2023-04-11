@@ -5,7 +5,6 @@ import { FieldBase } from '../field.base';
 @Component({
   selector: 'cat-field-cnpj[control][fieldConfig]',
   templateUrl: './input-cnpj.component.html',
-  styleUrls: ['../../field.component.css'],
 })
 export class InputCnpjComponent extends FieldBase<
   CatFormTextOptions,

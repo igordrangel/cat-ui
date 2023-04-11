@@ -38,7 +38,6 @@ import { startWith } from 'rxjs/operators';
       </div>
     </ng-container>
   </div>`,
-  styleUrls: ['./snackbar.component.css'],
   standalone: true,
   imports: [CommonModule],
 })

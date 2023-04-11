@@ -5,7 +5,6 @@ import { randomString } from '@koalarx/utils/operators/string';
 @Component({
   selector: 'cat-stepper',
   templateUrl: './stepper-group.component.html',
-  styleUrls: ['./stepper-group.component.css'],
 })
 export class StepperGroupComponent implements OnInit {
   @Input() direction: 'vertical' | 'horizontal' = 'horizontal';

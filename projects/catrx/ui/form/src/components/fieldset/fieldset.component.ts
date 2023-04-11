@@ -13,7 +13,6 @@ import { toCamelCase } from '@koalarx/utils/operators/string';
 @Component({
   selector: 'cat-form-fieldset',
   templateUrl: 'fieldset.component.html',
-  styleUrls: ['fieldset.component.css'],
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class FieldsetComponent implements OnInit {

@@ -5,7 +5,6 @@ import { FieldBase } from '../field.base';
 @Component({
   selector: 'cat-field-datetime[control][fieldConfig]',
   templateUrl: './input-datetime.component.html',
-  styleUrls: ['../../field.component.css'],
 })
 export class InputDatetimeComponent extends FieldBase<
   CatFormDatetimeOptions,

@@ -5,7 +5,6 @@ import { CatFormTextareaOptions } from '../../../../builder/form.interface';
 @Component({
   selector: 'cat-field-textarea[control][fieldConfig]',
   templateUrl: 'textarea.component.html',
-  styleUrls: ['textarea.component.css', '../../field.component.css'],
 })
 export class TextareaComponent extends FieldBase<
   CatFormTextareaOptions,

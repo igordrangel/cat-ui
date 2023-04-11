@@ -19,7 +19,6 @@ import { CatAlertConfig } from './cat-alert.service';
     <ng-template #defaultIcon>
       <i [ngClass]="getIcon()"></i>
     </ng-template>`,
-  styleUrls: ['./alert.component.css'],
 })
 export class AlertComponent {
   constructor(

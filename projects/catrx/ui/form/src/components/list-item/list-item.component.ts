@@ -16,7 +16,6 @@ import { getValueByTree } from '../../common/cat-object.helper';
 @Component({
   selector: 'cat-form-list-item[listItemConfig]',
   templateUrl: './list-item.component.html',
-  styleUrls: ['./list-item.component.css'],
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class ListItemComponent implements OnInit, OnDestroy {
