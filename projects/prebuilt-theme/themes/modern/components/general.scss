@@ -3,6 +3,18 @@
   background-color: transparent;
 }
 
+.fa-classic,
+.fa-regular,
+.fa-solid,
+.far,
+.fas {
+  font-family: "Font Awesome 6 Free" !important;
+}
+
+.fa-brands {
+  font-family: "Font Awesome 6 Brands" !important;
+}
+
 *::-webkit-scrollbar {
   background-clip: padding-box;
   border-radius: 8px;

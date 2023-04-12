@@ -245,3 +245,7 @@ cat-datatable .empty-list-container i {
   background: var(--btn-bg-primary) !important;
   color: var(--btn-c-primary) !important;
 }
+
+.ngx-pagination .small-screen {
+  display: none;
+}

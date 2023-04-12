@@ -14,7 +14,7 @@ export class ModuleComponent {
   @Input() menuCollapsed: BehaviorSubject<boolean>;
 
   isActive(module: AppConfigMenuModule) {
-    if (module.routerLink === location.pathname) {
+    if (location.pathname.includes(module.routerLink)) {
       return true;
     } else if (module.tools?.length > 0) {
       return this.hasActiveTool(module.tools);
@@ -28,7 +28,7 @@ export class ModuleComponent {
 
   private hasActiveTool(tools: AppConfigMenuTool[]) {
     return !!tools.find((tool) => {
-      if (tool.routerLink === location.pathname) {
+      if (location.pathname.includes(tool.routerLink)) {
         return true;
       } else if (tool.tools?.length > 0) {
         return this.hasActiveTool(tool.tools);

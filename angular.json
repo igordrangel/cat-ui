@@ -60,13 +60,14 @@
             "main": "projects/cat-ui/src/main.ts",
             "polyfills": "projects/cat-ui/src/polyfills.ts",
             "tsConfig": "projects/cat-ui/tsconfig.app.json",
+            "inlineStyleLanguage": "scss",
             "assets": [
               "projects/cat-ui/src/favicon.ico",
               "projects/cat-ui/src/assets"
             ],
             "styles": [
-              "projects/cat-ui/src/styles.css",
-              "projects/prebuilt-theme/themes/modern/modern-theme.scss"
+              "projects/prebuilt-theme/themes/default-lib-styles.scss",
+              "projects/cat-ui/src/styles.scss"
             ],
             "scripts": []
           },

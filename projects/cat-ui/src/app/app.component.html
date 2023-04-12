@@ -1,4 +1,25 @@
 <cat-app-container [config]="appConfig">
+  <ng-container bottom-buttons>
+    <cat-dropdown position="right">
+      <button trigger type="button" catTooltip="Temas">
+        <i class="fa-solid fa-fill-drip"></i>
+      </button>
+      <div content>
+        <a
+          #themeMinimalist
+          class="dropdown-item active"
+          (click)="applyTheme('minimalist', themeMinimalist)"
+          >Minimalista</a
+        >
+        <a
+          #themeModern
+          class="dropdown-item"
+          (click)="applyTheme('modern', themeModern)"
+          >Moderno</a
+        >
+      </div>
+    </cat-dropdown>
+  </ng-container>
   <ng-container router-container>
     <router-outlet></router-outlet>
   </ng-container>

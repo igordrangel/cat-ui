@@ -17,6 +17,7 @@
   cursor: pointer;
   transition: .1s;
   color: var(--c-dropdown) !important;
+  border-radius: 8px;
 }
 
 .cat-dropdown-content .dropdown-item:hover {
@@ -45,6 +46,16 @@
   background-color: var(--bg-dropdown);
   color: var(--c-dropdown);
   z-index: 1003;
+}
+
+.cat-dropdown-content ul {
+  list-style: none;
+  margin: 0;
+  padding: 10px 20px;
+}
+
+cat-menu-tool {
+  width: 100%;
 }
 
 @media (max-width: 980px) {

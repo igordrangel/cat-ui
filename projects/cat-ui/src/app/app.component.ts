@@ -25,7 +25,7 @@ export class AppComponent {
       }
     )
     .setLogotype({
-      default: '../assets/logotype-negative.svg',
+      default: '../assets/logotype.svg',
       negative: '../assets/logotype-negative.svg',
     })
     .pushNotifications({
@@ -41,5 +41,37 @@ export class AppComponent {
   constructor(
     private catAppService: CatAppService,
     private appService: AppService
-  ) {}
+  ) {
+    this.applyTheme('minimalist');
+  }
+
+  applyTheme(name: 'minimalist' | 'modern', btnElement?: HTMLAnchorElement) {
+    document.body.classList.remove('minimalist');
+    document.body.classList.remove('modern');
+
+    document.body.classList.add(name);
+
+    if (name === 'modern') {
+      this.appConfig.logotype = {
+        default: '../assets/logotype-negative.svg',
+        negative: '../assets/logotype-negative.svg',
+      };
+    } else {
+      this.appConfig.logotype = {
+        default: '../assets/logotype.svg',
+        negative: '../assets/logotype-negative.svg',
+      };
+    }
+
+    if (btnElement) {
+      const totalChild = btnElement.parentElement.children.length;
+      for (let indexChild = 0; indexChild < totalChild; indexChild++) {
+        btnElement.parentElement.children
+          .item(indexChild)
+          .classList.remove('active');
+      }
+
+      btnElement.classList.add('active');
+    }
+  }
 }

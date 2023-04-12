@@ -1,11 +1,11 @@
-input,
-select,
-textarea {
+cat-form input,
+cat-form select,
+cat-form textarea {
   background-color: var(--bg-body) !important;
   color: var(--font-color) !important;
 }
 
-.dark input {
+.dark cat-form input {
   color-scheme: dark;
 }
 
@@ -81,8 +81,8 @@ textarea {
   color: var(--font-color);
 }
 
-input:disabled,
-select:disabled {
+cat-form input:disabled,
+cat-form select:disabled {
   border-style: dashed;
   background-color: rgba(0, 0, 0, .2) !important;
 }
@@ -117,28 +117,28 @@ select:disabled {
   box-shadow: 0 0 0 0.25rem var(--primary-color-alpha);
 }
 
-.isCheckboxGroup fieldset {
+cat-form .isCheckboxGroup fieldset {
   flex-wrap: nowrap !important;
 }
 
-.isCheckboxGroup fieldset legend {
+cat-form .isCheckboxGroup fieldset legend {
   line-height: 0;
   margin: 0;
 }
 
-.isCheckboxGroup fieldset div {
+cat-form .isCheckboxGroup fieldset div {
   width: auto !important;
   flex: initial;
   padding-right: 5px;
 }
 
-form {
+cat-form form {
   padding: 0;
   box-sizing: border-box;
   width: 100%;
 }
 
-.fields-content {
+cat-form .fields-content {
   box-sizing: border-box;
   display: flex;
   justify-content: flex-start;
@@ -146,18 +146,18 @@ form {
   flex-wrap: wrap;
 }
 
-.has-validation.invalid {
+cat-form .has-validation.invalid {
   background-color: var(--bg-form-invalid-field);
   border-radius: 5px;
   padding: 0 2px 5px;
 }
 
-.cat-field-container {
+cat-form .cat-field-container {
   position: relative;
   margin-bottom: 10px;
 }
 
-.cat-field-container label {
+cat-form .cat-field-container label {
   position: absolute;
   top: -8px;
   left: 8px;
@@ -176,7 +176,7 @@ form {
   overflow: hidden;
 }
 
-.hint {
+cat-form .hint {
   display: flex;
   align-items: flex-start;
   justify-content: flex-start;
@@ -184,25 +184,25 @@ form {
   background-color: transparent;
 }
 
-.hint .text-hint {
+cat-form .hint .text-hint {
   font-size: 0.8rem;
   padding: 0 5px;
   word-break: break-all;
 }
 
-.hint .text-hint i {
+cat-form .hint .text-hint i {
   font-size: 0.8rem;
 }
 
-.hint .text-hint span {
+cat-form .hint .text-hint span {
   margin-left: 5px;
 }
 
-.hint .spacer {
+cat-form .hint .spacer {
   flex: 1 0 0;
 }
 
-.span-length {
+cat-form .span-length {
   display: flex;
   align-items: center;
   justify-content: flex-end;
@@ -211,15 +211,15 @@ form {
   padding: 0 5px;
 }
 
-.span-length .min {
+cat-form .span-length .min {
   color: var(--c-form-valid-field);
 }
 
-.span-length .max {
+cat-form .span-length .max {
   color: var(--c-form-invalid-field);
 }
 
-.invalid-feedback {
+cat-form .invalid-feedback {
   display: flex;
   align-items: center;
   padding: 0 5px;
@@ -227,19 +227,19 @@ form {
   font-size: 0.8rem;
 }
 
-.invalid-feedback i {
+cat-form .invalid-feedback i {
   font-size: 0.8rem;
   margin-right: 5px;
 }
 
-.form-check-label {
+cat-form .form-check-label {
   font-size: 0.752rem;
   line-height: 0.6688rem;
   vertical-align: middle;
   color: var(--primary-color);
 }
 
-.file-drag-drop-area {
+cat-form .file-drag-drop-area {
   display: flex;
   align-items: center;
   justify-content: center;
@@ -252,30 +252,30 @@ form {
   background: transparent;
 }
 
-.file-drag-drop-area.invalid {
+cat-form .file-drag-drop-area.invalid {
   border: 3px dashed var(--c-form-invalid-field);
 }
 
-.file-drag-drop-area .placeholder-content {
+cat-form .file-drag-drop-area .placeholder-content {
   color: var(--disable-color);
   text-align: center;
   padding: 10px 0;
 }
 
-.file-drag-drop-area .placeholder-content i {
+cat-form .file-drag-drop-area .placeholder-content i {
   font-size: 2.5rem;
   margin-bottom: 10px;
 }
 
-.file-drag-drop-area .placeholder-content h2 {
+cat-form .file-drag-drop-area .placeholder-content h2 {
   font-size: 1.5rem;
 }
 
-.file-drag-drop-area .placeholder-content .extensions-accepted strong {
+cat-form .file-drag-drop-area .placeholder-content .extensions-accepted strong {
   font-size: 0.8360rem;
 }
 
-.file-drag-drop-area .files-content {
+cat-form .file-drag-drop-area .files-content {
   display: flex;
   align-items: center;
   justify-content: center;
@@ -285,7 +285,7 @@ form {
   padding: 5px;
 }
 
-.file-drag-drop-area .files-content .file-content {
+cat-form .file-drag-drop-area .files-content .file-content {
   display: flex;
   align-items: center;
   justify-content: space-between;
@@ -296,7 +296,7 @@ form {
   margin: 5px;
 }
 
-.file-drag-drop-area .files-content .file-content .btn-remove {
+cat-form .file-drag-drop-area .files-content .file-content .btn-remove {
   background-color: transparent;
   border: none;
   margin-left: 5px;
@@ -307,43 +307,43 @@ form {
   line-height: 0.875rem;
 }
 
-.file-drag-drop-area .files-content .file-content .btn-remove:hover {
+cat-form .file-drag-drop-area .files-content .file-content .btn-remove:hover {
   color: var(--btn-icon-bg-danger);
   background-color: var(--btn-icon-c-danger);
 }
 
-.file-drag-drop-area .files-content .file-content.invalid {
+cat-form .file-drag-drop-area .files-content .file-content.invalid {
   color: var(--c-form-invalid-field);
   background-color: var(--bg-form-invalid-field);
 }
 
-.btn-group {
+cat-form .btn-group {
   display: inline-block;
   width: auto;
 }
 
 @media (max-width: 980px) {
-  .btn-group {
+  cat-form .btn-group {
     display: flex;
     width: 100%;
   }
 
-  .btn-group button {
+  cat-form .btn-group button {
     border-radius: 6px !important;
   }
 }
 
-.input-password-content {
+cat-form .input-password-content {
   position: relative;
 }
 
-.input-password-content input {
+cat-form .input-password-content input {
   display: block;
   width: 100%;
   padding-right: 34px;
 }
 
-.input-password-content button {
+cat-form .input-password-content button {
   position: absolute;
   top: 4px;
   right: 7px;
@@ -360,27 +360,27 @@ form {
   color: var(--font-color);
 }
 
-.input-password-content button i {
+cat-form .input-password-content button i {
   font-size: 0.875rem;
 }
 
-textarea {
+cat-form textarea {
   resize: none;
 }
 
-fieldset {
+cat-form-fieldset fieldset {
   border: 1px solid var(--fieldset-border-color);
   border-radius: 10px;
   box-sizing: border-box;
   padding: 5px 10px;
   margin-bottom: 10px;
-  display: flex;
+  display: flex!important;
   justify-content: flex-start;
   align-items: flex-start;
   flex-wrap: wrap;
 }
 
-fieldset legend {
+cat-form-fieldset fieldset legend {
   float: none;
   width: fit-content;
   padding: 0 5px;
@@ -391,78 +391,68 @@ fieldset legend {
   color: var(--fieldset-legend-color);
 }
 
-fieldset {
+cat-form-list-item fieldset {
   border: 1px solid var(--fieldset-border-color);
-  border-radius: 10px;
+  border-radius: 8px;
   box-sizing: border-box;
-  padding: 5px 10px;
+  padding: 15px 20px 7px!important;
   margin-bottom: 10px;
-  display: flex;
+  display: flex!important;
   justify-content: flex-start;
   align-items: flex-start;
   flex-wrap: wrap;
 }
 
-fieldset legend {
-  float: none;
-  width: fit-content;
-  padding: 0 5px;
-  margin-bottom: 3px;
-  font-size: 0.668rem;
-  font-weight: bold;
-  text-transform: uppercase;
-  color: var(--fieldset-legend-color);
+cat-form-list-item fieldset .title {
   display: flex;
-  justify-items: center;
+  justify-content: space-between;
   align-items: center;
+  width: 100%;
+  padding: 0 5px 15px;
 }
 
-fieldset legend .cat-btn-add-item-list,
-fieldset legend .cat-btn-remove-item-list {
+cat-form-list-item fieldset .title h2 {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 0;
+  margin: 0;
+  font-size: 0.875rem;
+  line-height: 0.8;
+}
+
+cat-form-list-item fieldset .title h2 span {
+  font-weight: bold;
+}
+
+cat-form-list-item fieldset .cat-btn-remove-item-list {
   display: flex;
   justify-content: center;
   align-items: center;
   box-sizing: border-box;
   border: none;
-  padding: 0;
-  font-size: 1.170rem;
-  color: var(--btn-icon-bg-primary);
-  background-color: var(--btn-icon-bg-primary);
-  margin-right: 5px;
-  overflow: hidden;
-  width: 1.170rem;
-  height: 1.170rem;
-  border-radius: 50%;
-  border: 1px solid var(--btn-icon-bg-primary);
-  overflow: hidden;
+  color: var(--font-color);
+  background-color: transparent;
+  margin: 5px 0 8px auto;
+  font-size: 1.2rem;
 }
 
-fieldset legend .cat-btn-add-item-list i,
-fieldset legend .cat-btn-remove-item-list i {
-  background-color: var(--btn-icon-c-primary);
-  border-radius: 50%;
-  line-height: 0.5;
-}
-
-fieldset legend .cat-btn-remove-item-list {
-  border: 1px solid var(--btn-icon-bg-danger);
-  color: var(--btn-icon-bg-danger);
-  background-color: var(--btn-icon-bg-danger);
-}
-
-fieldset legend .cat-btn-add-item-list:disabled,
-fieldset legend .cat-btn-remove-item-list:disabled {
+cat-form-list-item fieldset .cat-btn-add-item-list:disabled {
   cursor: not-allowed;
   color: var(--disable-color);
 }
 
-.cat-list-item-size {
+cat-form-list-item fieldset .cat-btn-add-item-list {
+  gap: 8px;
+}
+
+cat-form-list-item .cat-list-item-size {
   margin-left: 8px;
   color: var(--font-color);
   font-size: 0.752rem;
 }
 
-.fields-content {
+cat-form-list-item .fields-content {
   box-sizing: border-box;
   width: 100%;
   display: flex;
