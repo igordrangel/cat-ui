@@ -3,44 +3,29 @@
   [formGroup]="formListItem"
   class="col-12"
 >
-  <legend>
+  <div class="title">
+    <h2>
+      {{ listItemConfig.legend }}
+      <span *ngIf="listItemConfig.options" class="cat-list-item-size">
+        (Min: {{ listItemConfig.options.minItems ?? 0 }} | Max:
+        {{ listItemConfig.options.maxItems ?? "&#8734;" }})
+      </span>
+    </h2>
+
     <button
-      [disabled]="
-        getItemList().controls.length === listItemConfig.options?.maxItems
-      "
+      [disabled]="getItemList().controls.length === listItemConfig.options?.maxItems"
       (click)="addItem()"
       type="button"
-      class="cat-btn-add-item-list"
-    >
+      class="btn btn-primary">
       <i class="fa-solid fa-circle-plus"></i>
+      Adicionar
     </button>
-
-    {{ listItemConfig.legend }}
-
-    <span *ngIf="listItemConfig.options" class="cat-list-item-size">
-      (Min: {{ listItemConfig.options.minItems ?? 0 }} | Max:
-      {{ listItemConfig.options.maxItems ?? "&#8734;" }})
-    </span>
-  </legend>
+  </div>
 
   <ng-container
     *ngFor="let item of getItemList().controls; let itemIndex = index"
   >
     <fieldset class="col-12">
-      <legend>
-        <button
-          *ngIf="
-            getItemList().controls.length > listItemConfig.options?.minItems
-          "
-          (click)="removeItem(itemIndex)"
-          type="button"
-          class="cat-btn-remove-item-list"
-        >
-          <i class="fa-solid fa-circle-minus"></i>
-        </button>
-        Item #{{ itemIndex + 1 }}
-      </legend>
-
       <div class="fields-content">
         <ng-container
           *ngFor="let formElement of listItemConfig.config?.formElements"
@@ -78,6 +63,17 @@
           </ng-container>
         </ng-container>
       </div>
+
+      <button
+        *ngIf="
+          getItemList().controls.length > listItemConfig.options?.minItems
+        "
+        (click)="removeItem(itemIndex)"
+        type="button"
+        class="cat-btn-remove-item-list"
+      >
+        <i class="fa-solid fa-trash-can"></i>
+      </button>
     </fieldset>
   </ng-container>
 </fieldset>

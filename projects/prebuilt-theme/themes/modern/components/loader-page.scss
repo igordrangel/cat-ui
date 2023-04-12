@@ -1,0 +1,37 @@
+.cat-loader-page-container {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  background-color: rgba(0, 0, 0, 0.2);
+  -webkit-backdrop-filter: blur(2px);
+  backdrop-filter: blur(13.5px);
+  box-shadow: 0 8px 32px 0 var(--shadow-color);
+  z-index: 1041;
+}
+
+.cat-progress-bar-container {
+  position: relative;
+  margin: 20px 0;
+  border-radius: 8px;
+  width: 15rem;
+  height: 16px;
+  background-color: var(--bg-progress-bar-container);
+  box-shadow: 0 1px 16px 0 rgba(0, 0, 0, .2);
+}
+
+.cat-progress-bar-container .cat-progress-bar {
+  position: absolute;
+  top: 0;
+  left: -2px;
+  background-color: var(--bg-progress-bar);
+  border-radius: 8px;
+  width: calc(100% + 2px);
+  height: 16px;
+  transition: 0.1s;
+}

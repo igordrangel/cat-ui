@@ -10,7 +10,7 @@ main {
   --font-color: #616161;
   --light-font-color: #f1f1f1;
   --disable-color: #9a9a9a;
-  --primary-color: #212121;
+  --primary-color: #673AB7;
   --primary-color-alpha: rgba(255, 255, 255, 0.2);
 
   --btn-icon-bg-default: transparent;
@@ -122,33 +122,38 @@ main {
   --c-menu-hover: #9575CD;
   --c-menu-active: #7E57C2;
   --c-menu-border-active: rgba(255, 255, 255, 1);
-  --bg-menu: rgba(255, 255, 255, 0.8);
-  --bg-menu-hover: rgba(255, 255, 255, 0.9);
+  --bg-menu: #eee;
+  --bg-menu-hover: #ddd;
   --bg-menu-active: #fff;
 
-  --c-dropdown: rgba(0, 0, 0, 0.6);
-  --c-dropdown-hover: rgba(0, 0, 0, 0.8);
-  --c-dropdown-active: rgba(0, 0, 0, 1);
-  --bg-dropdown: #fff;
-  --bg-dropdown-hover: rgba(0, 0, 0, 0.2);
-  --bg-dropdown-active: rgba(0, 0, 0, 0.3);
+  --c-dropdown: rgba(255, 255, 255, 0.8);
+  --c-dropdown-hover: rgba(255, 255, 255, 0.9);
+  --c-dropdown-active: rgba(255, 255, 255, 1);
+  --bg-dropdown: rgba(94, 53, 177, 0.5);
+  --bg-dropdown-hover: rgba(94, 53, 177, 0.7);
+  --bg-dropdown-active: rgba(94, 53, 177, 0.9);
+
+  --bg-dialog: #fff;
 
   --bg-avatar-image: #fff;
 
   --shadow-color: rgba(0, 0, 0, .1);
 
-  --bg-progress-bar-container: #212121;
-  --bg-progress-bar: #f1f1f1;
+  --bg-progress-bar-container: #f1f1f1;
+  --bg-progress-bar: #5e35b1;
 
   --animate-duration: 200ms;
   --animate-delay: 0s;
+
+  --c-scrollbar: #5e35b1;
+  --menu-c-scrollbar: #fff;
 }
 
 main.dark {
-  --bg-body: #5E35B1;
+  --bg-body: #5e35b1;
   --font-color: #f1f1f1;
   --light-font-color: #ddd;
-  --disable-color: #9a9a9a;
+  --disable-color: #bbb;
   --primary-color: #f1f1f1;
   --primary-color-alpha: rgba(255, 255, 255, 0.2);
 
@@ -161,12 +166,12 @@ main.dark {
   --btn-icon-bg-danger: #c62828;
   --btn-icon-c-danger: #ffcdd2;
 
-  --btn-bg-primary: #1E88E5;
-  --btn-bg-primary-hover: #1976D2;
-  --btn-bg-primary-active: #1565C0;
-  --btn-c-primary: #fff;
-  --btn-c-primary-hover: #fff;
-  --btn-c-primary-active: #fff;
+  --btn-bg-primary: #f1f1f1;
+  --btn-bg-primary-hover: #ddd;
+  --btn-bg-primary-active: #bbb;
+  --btn-c-primary: #5e35b1;
+  --btn-c-primary-hover: #5e35b1;
+  --btn-c-primary-active: #5e35b1;
 
   --btn-bg-secondary: #757575;
   --btn-bg-secondary-hover: #616161;
@@ -218,10 +223,10 @@ main.dark {
   --chip-bg-secondary: #6c757d;
   --chip-c-secondary: #f1f1f1;
 
-  --tab-bg: #0d6efd;
+  --tab-bg: rgb(94, 53, 177, 0.9);
   --tab-c: #f1f1f1;
 
-  --step-active-bg: #0d6efd;
+  --step-active-bg: #7040d0;
   --step-active-c: #f1f1f1;
   --step-bg: #cccccc;
   --step-c: #212121;
@@ -230,13 +235,13 @@ main.dark {
   --spinner-height: 1.5rem;
 
   --c-toolbar: #f1f1f1;
-  --bg-toolbar: #512DA8;
+  --bg-toolbar: var(--bg-body).6;
 
   --c-tooltip: #f1f1f1;
-  --bg-tooltip: #212121;
+  --bg-tooltip: rgba(94, 53, 177, 0.6);
 
   --c-datatable-th: #9a9a9a;
-  --bg-datatable-th: #111111;
+  --bg-datatable-th: #3a206f;
   --border-color-datatable-th: #484848;
   --bg-datatable-hover-bg: rgba(0, 0, 0, .3);
   --bg-datatable-hover-color: #fff;
@@ -261,23 +266,28 @@ main.dark {
   --c-menu-hover: rgba(255, 255, 255, 0.8);
   --c-menu-active: rgba(255, 255, 255, 1);
   --c-menu-border-active: rgba(255, 255, 255, 1);
-  --bg-menu: #512DA8;
-  --bg-menu-hover: #4527A0;
-  --bg-menu-active: #311B92;
+  --bg-menu: #4f2b97;
+  --bg-menu-hover: #4f2b97;
+  --bg-menu-active: #402379;
 
   --c-dropdown: rgba(255, 255, 255, 0.6);
   --c-dropdown-hover: rgba(255, 255, 255, 0.8);
   --c-dropdown-active: rgba(255, 255, 255, 1);
-  --bg-dropdown: rgba(0, 0, 0, 0.6);
-  --bg-dropdown-hover: rgba(0, 0, 0, 0.8);
-  --bg-dropdown-active: rgba(0, 0, 0, 1);
+  --bg-dropdown: rgba(94, 53, 177, 0.3);
+  --bg-dropdown-hover: rgba(94, 53, 177, 0.6);
+  --bg-dropdown-active: rgba(94, 53, 177, 0.9);
+
+  --bg-dialog: #5e35b1;
 
   --bg-avatar-image: #000;
 
-  --shadow-color: rgba(0, 0, 0, .1);
+  --shadow-color: rgba(255, 255, 255, .1);
 
   --bg-progress-bar-container: #f1f1f1;
-  --bg-progress-bar: #616161;
+  --bg-progress-bar: #5e35b1;
+
+  --c-scrollbar: #fff;
+  --menu-c-scrollbar: #fff;
 }
 
 @font-face {

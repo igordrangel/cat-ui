@@ -27,6 +27,10 @@ main cat-template-container div[menu-content] {
   overflow-x: hidden;
 }
 
+main cat-template-container div[menu-content]::-webkit-scrollbar-thumb {
+  background: var(--menu-c-scrollbar);
+}
+
 main cat-template-container div[menu-toolbar] {
   display: flex;
   justify-content: space-between;
@@ -180,7 +184,6 @@ main cat-template-container div[menu-toolbar] button:active {
 
 .dropdown-user .avatar-container i {
   font-size: 5rem;
-  color: var(--font-color);
   margin-bottom: 10px;
 }
 
@@ -189,7 +192,6 @@ main cat-template-container div[menu-toolbar] button:active {
   margin: 0;
   text-align: center;
   font-size: 0.836rem;
-  color: var(--font-color);
 }
 
 .notifications-head {
@@ -204,13 +206,18 @@ main cat-template-container div[menu-toolbar] button:active {
 
 .notifications-head button {
   margin: 0 5px !important;
+  color: var(--c-dropdown);
 }
 
 .notification-item {
-  display: flex;
+  display: flex!important;
   justify-content: flex-start;
   align-items: center;
   padding: 5px 0;
+}
+
+.notification-item button {
+  color: var(--c-dropdown);
 }
 
 .notification-item i.notification-icon {
@@ -233,14 +240,12 @@ main cat-template-container div[menu-toolbar] button:active {
 
 .notification-item .notification-item-message small {
   font-size: 0.836rem;
-  color: var(--font-color);
 }
 
 .notification-item .notification-item-message p {
   padding: 5px 0;
   margin: 0;
   font-size: 1rem;
-  color: var(--font-color);
   white-space: break-spaces;
 }
 
@@ -256,7 +261,6 @@ main cat-template-container div[menu-toolbar] button:active {
 
 .cat-empty-notifications-content i {
   font-size: 3.125rem;
-  color: var(--font-color);
   margin-bottom: 10px;
 }
 
@@ -265,7 +269,6 @@ main cat-template-container div[menu-toolbar] button:active {
   margin: 0;
   text-align: center;
   font-size: 1rem;
-  color: var(--font-color);
 }
 
 @media (max-width: 980px) {

@@ -2,7 +2,7 @@
   position: relative;
   display: flex;
   justify-content: flex-start;
-  align-items: flex-start;
+  align-items: flex-end;
   box-sizing: border-box;
   padding: 10px;
   width: 100%;
@@ -16,10 +16,11 @@
   padding: 5px 30px;
   margin: 0 5px;
   border: 1px solid var(--shadow-color);
-  border-radius: 5px 5px 0 0;
+  background-color: var(--bg-body).6;
+  box-shadow: 0 1px 8px 0 rgba(0, 0, 0, .2);
+  border-radius: 8px 8px 0 0;
   border-bottom: none;
   cursor: pointer;
-  transition: .1s;
 }
 
 .cat-tab-item:first-child {
@@ -32,18 +33,25 @@
 
 .cat-tab-item:hover,
 .cat-tab-item.active {
+  border: 0;
   background-color: var(--tab-bg);
   color: var(--tab-c);
   font-weight: bold;
+  transition: 0.2s;
 }
 
 .cat-tab-item-content {
   position: absolute;
   display: block;
   left: calc(100% + 40px);
-  border-top: 1px solid var(--shadow-color);
+  border: 1px solid var(--shadow-color);
+  box-shadow: 0 1px 16px 0 rgba(0, 0, 0, .2);
+  border-radius: 8px;
   width: 100%;
   transition: .1s;
+  box-sizing: border-box;
+  padding: 10px;
+  z-index: 1;
 }
 
 .cat-tab-item-content.active {

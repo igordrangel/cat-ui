@@ -3,6 +3,23 @@
   background-color: transparent;
 }
 
+*::-webkit-scrollbar {
+  background-clip: padding-box;
+  border-radius: 8px;
+  width: 8px;
+  border: 1px solid var(--shadow-color);
+}
+
+*::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+*::-webkit-scrollbar-thumb {
+  background: var(--c-scrollbar);
+  border-radius: 8px;
+  width: 2px;
+}
+
 @media (max-width: 980px) {
   * {
     font-size: 20px;

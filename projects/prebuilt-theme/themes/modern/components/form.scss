@@ -1,0 +1,474 @@
+cat-form input,
+cat-form select,
+cat-form textarea {
+  background-color: var(--bg-menu-active) !important;
+  color: var(--font-color) !important;
+}
+
+.cat-dialog input,
+.cat-dialog select,
+.cat-dialog textarea {
+  background-color: var(--bg-dialog) !important;
+  color: var(--font-color) !important;
+}
+
+.dark cat-form input {
+  color-scheme: dark;
+}
+
+.cat-dialog .ng-select .ng-select-container {
+  background-color: var(--bg-dialog) !important;
+}
+
+.ng-select .ng-select-container {
+  background-color: var(--bg-menu-active) !important;
+}
+
+.ng-select.is-invalid .ng-select-container {
+  border-color: #dc3545;
+  padding-right: calc(1.5em + 0.75rem);
+  background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 12 12' width='12' height='12' fill='none' stroke='%23dc3545'%3e%3ccircle cx='6' cy='6' r='4.5'/%3e%3cpath stroke-linejoin='round' d='M5.8 3.6h.4L6 6.5z'/%3e%3ccircle cx='6' cy='8.2' r='.6' fill='%23dc3545' stroke='none'/%3e%3c/svg%3e");
+  background-repeat: no-repeat;
+  background-position: right calc(0.375em + 0.1875rem) center;
+  background-size: calc(0.75em + 0.375rem) calc(0.75em + 0.375rem);
+  transition: none;
+}
+
+.ng-dropdown-panel {
+  background-color: var(--bg-menu-active).6;
+  -webkit-backdrop-filter: blur(2px);
+  backdrop-filter: blur(13.5px);
+  box-shadow: 0 8px 32px 0 var(--shadow-color);
+}
+
+.ng-select .ng-arrow-wrapper .ng-arrow {
+  width: 8px !important;
+  height: 8px !important;
+  color: var(--font-color);
+}
+
+.ng-dropdown-panel .ng-dropdown-panel-items .ng-option {
+  background-color: transparent;
+  color: var(--font-color);
+}
+
+.ng-dropdown-panel .ng-dropdown-panel-items .ng-option.ng-option-marked,
+.ng-dropdown-panel .ng-dropdown-panel-items .ng-option.ng-option-selected {
+  background-color: var(--bg-select-option-hover-active) !important;
+  color: var(--font-color) !important;
+}
+
+.ng-select .ng-clear-wrapper {
+  cursor: pointer;
+  position: relative;
+  width: 17px;
+  height: 17px;
+  user-select: none;
+  display: none;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  padding: 5px;
+  box-sizing: border-box;
+}
+
+.ng-select.ng-select-clearable .ng-select-container.ng-has-value:hover .ng-clear-wrapper {
+  display: flex;
+}
+
+.ng-select.ng-select-multiple .ng-select-container .ng-value-container .ng-value {
+  border-radius: 5px;
+  color: var(--c-tag);
+  background-color: var(--bg-tag);
+  margin-top: 7px;
+  height: 20px;
+  line-height: 20px;
+  font-size: 0.752rem;
+}
+
+.ng-select .ng-select-container .ng-value-container .ng-value {
+  color: var(--font-color);
+  z-index: 1;
+}
+
+.ng-dropdown-panel .ng-dropdown-panel-items .ng-option.ng-option-disabled {
+  color: var(--font-color);
+}
+
+cat-form input:disabled,
+cat-form select:disabled {
+  border-style: dashed;
+  background-color: rgba(0, 0, 0, .2) !important;
+}
+
+.form-check-input {
+  border-color: var(--font-color);
+  background-color: transparent !important;
+}
+
+.form-check-input[type="checkbox"]:indeterminate,
+.form-check-input:checked {
+  background-color: var(--primary-color) !important;
+  border-color: var(--primary-color) !important;
+}
+
+.dark .form-check-input:checked[type="checkbox"] {
+  background-image: url("data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 20 20'><path fill='none' stroke='#{$checkbox-radio-icon-color-dark}' stroke-linecap='round' stroke-linejoin='round' stroke-width='3' d='m6 10 3 3 6-6'/></svg>") !important;
+}
+
+.dark .form-check-input:checked[type="radio"] {
+  background-image: url("data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='-4 -4 8 8'><circle r='2' fill='#{$checkbox-radio-icon-color-dark}'/></svg>");
+}
+
+.dark .form-check-input:indeterminate[type="checkbox"] {
+  background-image: url("data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 20 20'><path fill='none' stroke='#{$checkbox-radio-icon-color-dark}' stroke-linecap='round' stroke-linejoin='round' stroke-width='3' d='M6 10h8'/></svg>") !important;
+}
+
+.dark .form-select {
+  background-image: url("data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'><path fill='none' stroke='#{$select-icon-color-dark}' stroke-linecap='round' stroke-linejoin='round' stroke-width='2' d='m2 5 6 6 6-6'/></svg>") !important;
+}
+
+cat-form .form-check-input:focus {
+  box-shadow: 0 0 0 0.25rem var(--primary-color-alpha);
+}
+
+cat-form .isCheckboxGroup fieldset {
+  flex-wrap: nowrap !important;
+}
+
+cat-form .isCheckboxGroup fieldset legend {
+  line-height: 0;
+  margin: 0;
+}
+
+cat-form .isCheckboxGroup fieldset div {
+  width: auto !important;
+  flex: initial;
+  padding-right: 5px;
+}
+
+cat-form form {
+  padding: 0;
+  box-sizing: border-box;
+  width: 100%;
+  display: contents!important;
+}
+
+cat-form .fields-content {
+  box-sizing: border-box;
+  display: flex;
+  justify-content: flex-start;
+  align-items: flex-start;
+  flex-wrap: wrap;
+}
+
+cat-form .has-validation.invalid {
+  background-color: var(--bg-form-invalid-field);
+  border-radius: 5px;
+  padding: 0 2px 5px;
+}
+
+cat-form .cat-field-container {
+  position: relative;
+  margin-bottom: 10px;
+}
+
+cat-form .cat-field-container label {
+  position: absolute;
+  top: -8px;
+  left: 8px;
+  font-size: 0.668rem;
+  margin: 0;
+  font-weight: bold;
+  background-color: var(--bg-menu-active);
+  color: var(--font-color);
+  padding: 0 5px;
+  text-transform: uppercase;
+  border-radius: 5px;
+  z-index: 1002;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  max-width: calc(100% - 15px);
+  overflow: hidden;
+}
+
+.cat-dialog .cat-field-container label {
+  background-color: var(--bg-dialog);
+}
+
+cat-form .hint {
+  display: flex;
+  align-items: flex-start;
+  justify-content: flex-start;
+  box-sizing: border-box;
+  background-color: transparent;
+}
+
+cat-form .hint .text-hint {
+  font-size: 0.8rem;
+  padding: 0 5px;
+  word-break: break-all;
+}
+
+cat-form .hint .text-hint i {
+  font-size: 0.8rem;
+}
+
+cat-form .hint .text-hint span {
+  margin-left: 5px;
+}
+
+cat-form .hint .spacer {
+  flex: 1 0 0;
+}
+
+cat-form .span-length {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  color: var(--disable-color);
+  font-size: 0.8rem;
+  padding: 0 5px;
+}
+
+cat-form .span-length .min {
+  color: var(--c-form-valid-field);
+}
+
+cat-form .span-length .max {
+  color: var(--c-form-invalid-field);
+}
+
+cat-form .invalid-feedback {
+  display: flex;
+  align-items: center;
+  padding: 0 5px;
+  font-weight: bold;
+  font-size: 0.8rem;
+}
+
+cat-form .invalid-feedback i {
+  font-size: 0.8rem;
+  margin-right: 5px;
+}
+
+cat-form .form-check-label {
+  font-size: 0.752rem;
+  line-height: 0.6688rem;
+  vertical-align: middle;
+  color: var(--primary-color);
+}
+
+cat-form .file-drag-drop-area {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  width: 100%;
+  box-sizing: border-box;
+  padding: 50px;
+  border: 3px dashed var(--c-form-valid-field);
+  border-radius: 10px;
+  background: transparent;
+}
+
+cat-form .file-drag-drop-area.invalid {
+  border: 3px dashed var(--c-form-invalid-field);
+}
+
+cat-form .file-drag-drop-area .placeholder-content {
+  color: var(--disable-color);
+  text-align: center;
+  padding: 10px 0;
+}
+
+cat-form .file-drag-drop-area .placeholder-content i {
+  font-size: 2.5rem;
+  margin-bottom: 10px;
+}
+
+cat-form .file-drag-drop-area .placeholder-content h2 {
+  font-size: 1.5rem;
+}
+
+cat-form .file-drag-drop-area .placeholder-content .extensions-accepted strong {
+  font-size: 0.8360rem;
+}
+
+cat-form .file-drag-drop-area .files-content {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-wrap: wrap;
+  box-sizing: border-box;
+  width: 100%;
+  padding: 5px;
+}
+
+cat-form .file-drag-drop-area .files-content .file-content {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  border-radius: 5px;
+  padding: 2px 10px;
+  color: var(--c-form-valid-field);
+  background-color: var(--primary-color-alpha);
+  margin: 5px;
+}
+
+cat-form .file-drag-drop-area .files-content .file-content .btn-remove {
+  background-color: transparent;
+  border: none;
+  margin-left: 5px;
+  color: var(--disable-color);
+  border-radius: 5px;
+  transition: 0.1s;
+  font-size: 0.875rem;
+  line-height: 0.875rem;
+}
+
+cat-form .file-drag-drop-area .files-content .file-content .btn-remove:hover {
+  color: var(--btn-icon-bg-danger);
+  background-color: var(--btn-icon-c-danger);
+}
+
+cat-form .file-drag-drop-area .files-content .file-content.invalid {
+  color: var(--c-form-invalid-field);
+  background-color: var(--bg-form-invalid-field);
+}
+
+cat-form .btn-group {
+  display: inline-block;
+  width: auto;
+}
+
+@media (max-width: 980px) {
+  cat-form .btn-group {
+    display: flex;
+    width: 100%;
+  }
+}
+
+cat-form .input-password-content {
+  position: relative;
+}
+
+cat-form .input-password-content input {
+  display: block;
+  width: 100%;
+  padding-right: 34px;
+}
+
+cat-form .input-password-content button {
+  position: absolute;
+  top: 4px;
+  right: 7px;
+  border-radius: 50%;
+  width: 24px;
+  height: 24px;
+  padding: 2px;
+  cursor: pointer;
+  border: 0;
+  background-color: transparent;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: var(--font-color);
+}
+
+cat-form .input-password-content button i {
+  font-size: 0.875rem;
+}
+
+cat-form textarea {
+  resize: none;
+}
+
+cat-form-fieldset fieldset {
+  border: 1px solid var(--fieldset-border-color);
+  border-radius: 10px;
+  box-sizing: border-box;
+  padding: 10px!important;
+  margin-bottom: 10px;
+  display: flex!important;
+  justify-content: flex-start;
+  align-items: flex-start;
+  flex-wrap: wrap;
+}
+
+cat-form-fieldset fieldset legend {
+  float: none;
+  width: fit-content;
+  padding: 0 5px;
+  margin-bottom: 3px;
+  font-size: 0.668rem;
+  font-weight: bold;
+  text-transform: uppercase;
+  color: var(--fieldset-legend-color);
+}
+
+cat-form-list-item fieldset {
+  border: 1px solid var(--shadow-color);
+  border-radius: 8px;
+  box-sizing: border-box;
+  padding: 15px 20px 7px!important;
+  margin-bottom: 10px;
+  display: flex!important;
+  justify-content: flex-start;
+  align-items: flex-start;
+  flex-wrap: wrap;
+  background-color: var(--bg-body).6;
+  box-shadow: 0 1px 16px 0 rgba(0, 0, 0, .2);
+}
+
+cat-form-list-item fieldset .title {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+  padding: 0 5px 15px;
+}
+cat-form-list-item fieldset .title h2 {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 0;
+  margin: 0;
+  font-size: 0.875rem;
+  line-height: 0.8;
+}
+cat-form-list-item fieldset .title h2 span {
+  font-weight: bold;
+}
+
+cat-form-list-item fieldset .cat-btn-remove-item-list {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  box-sizing: border-box;
+  border: none;
+  color: var(--font-color);
+  background-color: transparent;
+  margin: 5px 0 8px auto;
+  font-size: 1.2rem;
+}
+
+cat-form-list-item fieldset .cat-btn-remove-item-list:disabled {
+  cursor: not-allowed;
+  color: var(--disable-color);
+}
+
+cat-form-list-item .cat-list-item-size {
+  margin-left: 8px;
+  color: var(--font-color);
+  font-size: 0.752rem;
+}
+
+cat-form-list-item .fields-content {
+  box-sizing: border-box;
+  width: 100%;
+  display: flex;
+  justify-content: flex-start;
+  align-items: flex-start;
+  flex-wrap: wrap;
+}

@@ -9,7 +9,7 @@ import { Observable } from 'rxjs/internal/Observable';
     `
       form {
         display: block;
-        margin: 15px 20px;
+        margin: 15px 0;
       }
     `,
   ],

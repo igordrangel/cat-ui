@@ -154,9 +154,11 @@ cat-menu cat-menu-module ul li.module:not(.active):hover::after {
 cat-menu cat-menu-module ul li.module:not(.active):hover::before {
   box-shadow: 7.5px 7.5px 0 7.5px var(--bg-menu-hover);
 }
-cat-menu cat-menu-module ul li.module:not(.active):active::after,
+cat-menu cat-menu-module ul li.module:not(.active):active::after {
+  box-shadow: 7.5px -7.5px 0 7.5px var(--bg-menu-active);
+}
 cat-menu cat-menu-module ul li.module:not(.active):active::before {
-  border-color: var(--bg-menu-active);
+  box-shadow: 7.5px 7.5px 0 7.5px var(--bg-menu-active);
 }
 
 cat-menu cat-menu-module ul li.has-tools cat-menu-tool {
