@@ -166,6 +166,14 @@ cat-datatable .page-size-content label {
 cat-datatable .page-size-content select {
   margin-left: 8px;
   width: fit-content;
+  background-color: transparent !important;
+  color: var(--font-color) !important;
+  border-color: var(--shadow-color) !important;
+}
+
+cat-datatable .page-size-content select option {
+  background-color: var(--bg-menu);
+  font-size: 1rem;
 }
 
 cat-datatable .pagination-content {
@@ -225,12 +233,6 @@ cat-datatable .empty-list-container i {
   align-items: flex-start;
   margin-bottom: 0 !important;
   padding: 0;
-}
-
-.ngx-pagination .form-select {
-  background-color: transparent!important;
-  color: var(--font-color)!important;
-  border-color: var(--shadow-color)!important;
 }
 
 .ngx-pagination li {
