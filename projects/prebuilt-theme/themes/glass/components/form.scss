@@ -371,13 +371,13 @@ cat-form .input-password-content {
 cat-form .input-password-content input {
   display: block;
   width: 100%;
-  padding-right: 34px;
+  padding-right: 2.5rem;
 }
 
 cat-form .input-password-content button {
   position: absolute;
-  top: 0.5rem;
-  right: 7px;
+  top: calc((100%/2)/2);
+  right: calc(((2.5rem)/2)/2);
   border-radius: 50%;
   width: 24px;
   height: 24px;
