@@ -51,7 +51,7 @@ cat-form .form-control-sm {
   background-color: var(--bg-menu-active).6;
   -webkit-backdrop-filter: blur(2px);
   backdrop-filter: blur(13.5px);
-  border: 1px solid var(--shadow-color);
+  border: 1px solid var(--shadow-color)!important;
 }
 
 .ng-select .ng-arrow-wrapper .ng-arrow {
