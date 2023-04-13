@@ -26,8 +26,6 @@ registerLocaleData(ptBr);
     AppContainerModule,
   ],
   providers: [
-    { provide: LocationStrategy, useClass: CatOAuth2HashLocationStrategy },
-    { provide: LOCALE_ID, useValue: 'pt-BR' },
     CatAppService,
     CatOAuth2Service,
     CatAuthGuard,
@@ -53,6 +51,10 @@ export class CatUiModule {
 
     return {
       ngModule: CatUiModule,
+      providers: [
+        { provide: LocationStrategy, useClass: CatOAuth2HashLocationStrategy },
+        { provide: LOCALE_ID, useValue: 'pt-BR' },
+      ]
     };
   }
 }

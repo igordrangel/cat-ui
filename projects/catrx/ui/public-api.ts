@@ -6,6 +6,7 @@ export * from './src/core/catui.module';
 export * from './src/core/factory/app-config.interface';
 export * from './src/core/services/app/cat-app.service';
 export * from './src/core/services/token/cat-token.service';
+export * from './src/core/services/openid/cat-oauth2-hash-location-stategy';
 export * from './src/core/guard/cat-auth.guard';
 export * from './src/core/guard/cat-route.police';
 export * from './src/core/guard/cat-logged-user';
