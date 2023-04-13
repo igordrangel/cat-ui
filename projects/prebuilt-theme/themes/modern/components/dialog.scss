@@ -54,7 +54,7 @@
   }
 }
 
-.cat-dialog .cat-dialog-content .cat-modal-actions:has(div) {
+.cat-dialog .cat-dialog-content .cat-modal-actions:has(div) > * {
   display: flex;
   justify-content: flex-end;
   align-items: center;
