@@ -2,7 +2,7 @@ import { AppContainerModule } from './components/app-container/app-container.mod
 import { HttpClientModule } from '@angular/common/http';
 import { LOCALE_ID, ModuleWithProviders, NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
-import { registerLocaleData } from '@angular/common';
+import { LocationStrategy, registerLocaleData } from '@angular/common';
 import ptBr from '@angular/common/locales/pt';
 import { CatAppService } from './services/app/cat-app.service';
 import { CatOAuth2Service } from './services/openid/cat-oauth2.service';
@@ -13,6 +13,7 @@ import {
   CatXlsxConfig,
   CatXlsxConfigInterface,
 } from './interfaces/xlsx.config';
+import { CatOAuth2HashLocationStrategy } from './services/openid/cat-oauth2-hash-location-stategy';
 
 registerLocaleData(ptBr);
 
@@ -25,6 +26,7 @@ registerLocaleData(ptBr);
     AppContainerModule,
   ],
   providers: [
+    { provide: LocationStrategy, useClass: CatOAuth2HashLocationStrategy },
     { provide: LOCALE_ID, useValue: 'pt-BR' },
     CatAppService,
     CatOAuth2Service,
