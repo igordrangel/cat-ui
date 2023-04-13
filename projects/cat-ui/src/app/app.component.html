@@ -1,6 +1,6 @@
 <cat-app-container [config]="appConfig">
   <ng-container bottom-buttons>
-    <cat-dropdown position="right" [insideClick]="false">
+    <cat-dropdown [insideClick]="false">
       <button trigger type="button" catTooltip="Temas">
         <i class="fa-solid fa-fill-drip"></i>
       </button>
@@ -14,8 +14,8 @@
         <a
           #themeModern
           class="dropdown-item"
-          (click)="applyTheme('modern', themeModern)"
-          >Moderno</a
+          (click)="applyTheme('glass', themeModern)"
+          >Glass</a
         >
       </div>
     </cat-dropdown>

@@ -45,13 +45,13 @@ export class AppComponent {
     this.applyTheme('minimalist');
   }
 
-  applyTheme(name: 'minimalist' | 'modern', btnElement?: HTMLAnchorElement) {
+  applyTheme(name: 'minimalist' | 'glass', btnElement?: HTMLAnchorElement) {
     document.body.classList.remove('minimalist');
-    document.body.classList.remove('modern');
+    document.body.classList.remove('glass');
 
     document.body.classList.add(name);
 
-    if (name === 'modern') {
+    if (name === 'glass') {
       this.appConfig.logotype = {
         default: '../assets/logotype-negative.svg',
         negative: '../assets/logotype-negative.svg',
