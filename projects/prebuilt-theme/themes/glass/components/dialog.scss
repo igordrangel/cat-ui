@@ -63,6 +63,11 @@
   border-top: 1px solid var(--shadow-color);
 }
 
+.cat-dialog .cat-dialog-content .cat-modal-actions:has(div.cat-confirm-actions) > *,
+.cat-dialog .cat-dialog-content .cat-modal-actions:has(div.cat-alert-actions) > * {
+  justify-content: center;
+}
+
 @media (max-width: 980px) {
   .cat-dialog-content {
     width: 95vw !important;

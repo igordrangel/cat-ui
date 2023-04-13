@@ -32,7 +32,9 @@ export class TemplateMobileComponent implements OnInit {
   ngOnInit() {
     this.router.events.subscribe((event) => {
       if (event instanceof NavigationEnd) {
-        this.menuCollapsed$.next(false);
+        if (this.menuCollapsed$.getValue()) {
+          this.collapseMenu();
+        }
       }
     });
 
@@ -45,5 +47,8 @@ export class TemplateMobileComponent implements OnInit {
   public collapseMenu() {
     this.menuCollapsed$.next(!this.menuCollapsed$.getValue());
     this.menuCollapse.emit(this.menuCollapsed$.getValue());
+
+    document.getElementById('cat-content-app').style.overflow =
+      this.menuCollapsed$.getValue() ? 'hidden' : 'auto';
   }
 }
