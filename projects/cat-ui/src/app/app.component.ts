@@ -42,7 +42,7 @@ export class AppComponent {
     private catAppService: CatAppService,
     private appService: AppService
   ) {
-    this.applyTheme('minimalist');
+    this.applyTheme('modern');
   }
 
   applyTheme(name: 'minimalist' | 'modern', btnElement?: HTMLAnchorElement) {
