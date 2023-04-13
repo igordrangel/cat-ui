@@ -5,6 +5,19 @@ cat-form textarea {
   color: var(--font-color) !important;
 }
 
+cat-form .form-control-sm {
+  padding: 0.6rem 0.75rem 0.5rem;
+  min-height: calc(2.2em + 0.5rem + 2px);
+}
+
+.ng-select .ng-select-container {
+  padding: 0.3rem 0.75rem 0.5rem;
+}
+
+.ng-select .ng-select-container .ng-value-container .ng-input {
+  top: 0.6rem;
+}
+
 .cat-dialog input,
 .cat-dialog select,
 .cat-dialog textarea {
@@ -89,6 +102,7 @@ cat-form textarea {
 .ng-select .ng-select-container .ng-value-container .ng-value {
   color: var(--font-color);
   z-index: 1;
+  padding-top: 0.3rem;
 }
 
 .ng-dropdown-panel .ng-dropdown-panel-items .ng-option.ng-option-disabled {
@@ -309,11 +323,12 @@ cat-form .file-drag-drop-area .files-content .file-content {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  border-radius: 5px;
-  padding: 2px 10px;
-  color: var(--c-form-valid-field);
-  background-color: var(--primary-color-alpha);
+  border-radius: 20px;
+  padding: 5px 10px 5px 15px;
+  color: var(--c-menu);
+  background-color: var(--bg-menu);
   margin: 5px;
+  gap: 5px;
 }
 
 cat-form .file-drag-drop-area .files-content .file-content .btn-remove {
@@ -453,9 +468,13 @@ cat-form-list-item fieldset .cat-btn-remove-item-list {
   font-size: 1.2rem;
 }
 
-cat-form-list-item fieldset .cat-btn-remove-item-list:disabled {
+cat-form-list-item fieldset .cat-btn-add-item-list:disabled {
   cursor: not-allowed;
   color: var(--disable-color);
+}
+
+cat-form-list-item fieldset .cat-btn-add-item-list {
+  gap: 8px;
 }
 
 cat-form-list-item .cat-list-item-size {

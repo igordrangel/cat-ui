@@ -59,6 +59,8 @@ export class InputFileComponent extends FieldBase<
         this.control.markAsTouched();
         this.updateComponent$.next(true);
       }
+
+      this.elInput.nativeElement.value = null;
     }
   }
 

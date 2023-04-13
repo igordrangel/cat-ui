@@ -16,7 +16,9 @@ export class DragDropFileUploadDirective {
   @HostListener('dragover', ['$event']) dragOver(event: any) {
     event.preventDefault();
     event.stopPropagation();
-    this.background = '#e2eefd';
+    this.background = document.querySelector('main').classList.contains('dark')
+      ? 'rgba(0,0,0,.3)'
+      : 'rgba(0,0,0,.1)';
   }
   // Dragleave Event
   @HostListener('dragleave', ['$event']) public dragLeave(event: any) {
