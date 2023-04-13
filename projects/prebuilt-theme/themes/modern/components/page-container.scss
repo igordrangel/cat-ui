@@ -96,7 +96,7 @@ main cat-template-container div[menu-toolbar] button:active {
   left: 0;
   width: 100vw;
   height: 100vh;
-  background: var(--bg-body);
+  background: var(--bg-menu-active);
   z-index: 1000;
   display: flex;
   justify-content: center;

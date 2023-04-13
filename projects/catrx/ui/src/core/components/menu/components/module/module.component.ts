@@ -14,7 +14,10 @@ export class ModuleComponent {
   @Input() menuCollapsed: BehaviorSubject<boolean>;
 
   isActive(module: AppConfigMenuModule) {
-    if (location.pathname.includes(module.routerLink)) {
+    const pathname = location.hash
+      ? location.hash.replace('/#/', '')
+      : location.pathname;
+    if (pathname.includes(module.routerLink)) {
       return true;
     } else if (module.tools?.length > 0) {
       return this.hasActiveTool(module.tools);
@@ -28,7 +31,10 @@ export class ModuleComponent {
 
   private hasActiveTool(tools: AppConfigMenuTool[]) {
     return !!tools.find((tool) => {
-      if (location.pathname.includes(tool.routerLink)) {
+      const pathname = location.hash
+        ? location.hash.replace('/#/', '')
+        : location.pathname;
+      if (pathname.includes(tool.routerLink)) {
         return true;
       } else if (tool.tools?.length > 0) {
         return this.hasActiveTool(tool.tools);
