@@ -227,6 +227,12 @@ cat-datatable .empty-list-container i {
   padding: 0;
 }
 
+.ngx-pagination .form-select {
+  background-color: transparent!important;
+  color: var(--font-color)!important;
+  border-color: var(--shadow-color)!important;
+}
+
 .ngx-pagination li {
   display: inline;
   border: none !important;
