@@ -38,7 +38,7 @@ cat-form textarea {
   background-color: var(--bg-menu-active).6;
   -webkit-backdrop-filter: blur(2px);
   backdrop-filter: blur(13.5px);
-  box-shadow: 0 8px 32px 0 var(--shadow-color);
+  border: 1px solid var(--shadow-color);
 }
 
 .ng-select .ng-arrow-wrapper .ng-arrow {
