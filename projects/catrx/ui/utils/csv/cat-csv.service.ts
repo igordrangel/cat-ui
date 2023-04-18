@@ -3,7 +3,7 @@ import { Papa } from 'ngx-papaparse';
 import { UnparseData } from 'ngx-papaparse/lib/interfaces/unparse-data';
 import { CatFileInterface, CatFileService } from '@catrx/ui/utils';
 
-@Injectable({ providedIn: 'any', deps: [Papa] })
+@Injectable({ providedIn: 'any' })
 export class CatCsvService {
   constructor(private papa: Papa, private fileService: CatFileService) {}
 

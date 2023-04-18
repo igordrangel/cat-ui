@@ -43,7 +43,7 @@ fs.writeFileSync('dist/@catrx/ui/package.json', JSON.stringify({
     "ng2-search-filter": "~0.5.1",
     "ngx-mask": "~14.2.4",
     "ngx-pagination": "~6.0.3",
-    "ngx-papaparse": "~6.0.2",
+    "ngx-papaparse": "~7.0.0",
     "rxjs": "~7.5.0",
     "tslib": "^2.3.0",
   }
