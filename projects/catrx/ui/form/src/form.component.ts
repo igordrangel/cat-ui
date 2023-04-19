@@ -109,10 +109,16 @@ export class FormComponent implements OnInit {
     this.dynamicForm?.addControl(toCamelCase(name), formControl);
   }
 
+  public removeFormGroup(groupName: string) {
+    this.dynamicForm?.removeControl(groupName);
+  }
+
   public hideField(el: HTMLDivElement, hide: boolean) {
     if (hide) {
+      el.classList.remove('d-block');
       el.classList.add('d-none');
     } else {
+      el.classList.remove('d-none');
       el.classList.add('d-block');
     }
   }

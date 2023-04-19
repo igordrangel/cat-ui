@@ -35,16 +35,17 @@
             *ngIf="formElement.listItem as childListItemConfig"
             class="col-12"
           >
-            <cat-form-list-item
-              class="col-12"
-              [listItemConfig]="childListItemConfig"
-              [variableTree]="getFullListItemName(itemIndex)"
-              [highlightInvalidFields]="highlightInvalidFields"
-              (emitFormGroup)="
-                addFormGroup(itemIndex, childListItemConfig.name, $event)
-              "
-            >
-            </cat-form-list-item>
+            <div class="col-12" #containerListItem>
+              <cat-form-list-item
+                [listItemConfig]="childListItemConfig"
+                [variableTree]="getFullListItemName(itemIndex)"
+                [highlightInvalidFields]="highlightInvalidFields"
+                (isHiddenList)="hideField(containerListItem, $event)"
+                (emitFormGroup)="addFormGroup(itemIndex, childListItemConfig.name, $event)"
+                (removeFormGroup)="removeChildFormGroup($event)"
+              >
+              </cat-form-list-item>
+            </div>
           </ng-container>
 
           <ng-container *ngIf="formElement.field as fieldConfig">

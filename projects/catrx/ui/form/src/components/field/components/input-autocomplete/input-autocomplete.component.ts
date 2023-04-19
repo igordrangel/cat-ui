@@ -11,6 +11,7 @@ import {
 } from '../../../../builder/form.interface';
 import { FieldBase } from '../field.base';
 import { CatSelectOption } from './../../../../common/cat-select-option';
+import { takeUntil } from 'rxjs/internal/operators/takeUntil';
 
 @Component({
   selector: 'cat-field-autocomplete[control][fieldConfig]',
@@ -93,7 +94,7 @@ export class InputAutocompleteComponent extends FieldBase<
   }
 
   private updateList(requester: Observable<CatFormListOptions[]>) {
-    requester.pipe(first()).subscribe({
+    requester.pipe(takeUntil(this.destroySubscriptions$)).subscribe({
       next: (response) => {
         this.options$.next(response);
         this.loading$.next(false);

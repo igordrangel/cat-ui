@@ -10,12 +10,15 @@
       <div
         [attr.class]="'col-' + fieldset.config?.grid"
         [ngClass]="{ isCheckboxGroup: fieldset.config?.isCheckboxGroup }"
+        #containerFieldset
       >
         <cat-form-fieldset
           [fieldsetConfig]="fieldset"
           [highlightInvalidFields]="highlightInvalidFields"
           [variableTree]="getFullFieldsetName()"
+          (isHiddenFieldset)="hideField(containerFieldset, $event)"
           (emitFormGroup)="addFormGroup(fieldset.name, $event)"
+          (removeFormGroup)="removeChildFormGroup($event)"
         >
         </cat-form-fieldset>
       </div>
@@ -25,12 +28,15 @@
       <div
         [attr.class]="'col-' + listItem.config?.grid"
         [ngClass]="{ isCheckboxGroup: listItem.config?.isCheckboxGroup }"
+        #containerListItem
       >
         <cat-form-list-item
           [listItemConfig]="listItem"
           [highlightInvalidFields]="highlightInvalidFields"
           [variableTree]="getFullFieldsetName()"
+          (isHiddenList)="hideField(containerListItem, $event)"
           (emitFormGroup)="addFormGroup(listItem.name, $event)"
+          (removeFormGroup)="removeChildFormGroup($event)"
         >
         </cat-form-list-item>
       </div>
