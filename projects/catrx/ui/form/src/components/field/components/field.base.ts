@@ -25,7 +25,7 @@ export abstract class FieldBase<FormFieldType, ElInputType extends HTMLElement>
 
   public updateComponent$ = new BehaviorSubject<boolean>(true);
 
-  private destroySubscriptions$ = new Subject<boolean>();
+  protected destroySubscriptions$ = new Subject<boolean>();
 
   ngOnDestroy() {
     this.destroySubscriptions$.next(true);

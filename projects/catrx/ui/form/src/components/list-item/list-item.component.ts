@@ -12,6 +12,9 @@ import { toCamelCase } from '@koalarx/utils/operators/string';
 import { OnDestroy } from '@angular/core';
 import { Subject } from 'rxjs/internal/Subject';
 import { getValueByTree } from '../../common/cat-object.helper';
+import { BehaviorSubject } from 'rxjs/internal/BehaviorSubject';
+import { skipWhile } from 'rxjs/internal/operators/skipWhile';
+import { takeUntil } from 'rxjs/internal/operators/takeUntil';
 
 @Component({
   selector: 'cat-form-list-item[listItemConfig]',
@@ -23,8 +26,11 @@ export class ListItemComponent implements OnInit, OnDestroy {
   @Input() variableTree?: string;
   @Input() highlightInvalidFields = false;
   @Output() emitFormGroup = new EventEmitter<FormArray>();
+  @Output() removeFormGroup = new EventEmitter<string>();
+  @Output() isHiddenList = new EventEmitter<boolean>();
 
   public formListItem?: FormGroup;
+  public hidden$ = new BehaviorSubject<boolean>(false);
 
   private destroySubscriptions$ = new Subject<boolean>();
 
@@ -35,16 +41,23 @@ export class ListItemComponent implements OnInit, OnDestroy {
   }
 
   ngOnInit() {
-    this.formListItem = this.fb.group({
-      [this.listItemConfig.name]: this.fb.array([]),
-    });
-    this.emitFormGroup.emit(this.getItemList());
+    this.startList();
 
-    if (this.listItemConfig.options?.minItems > 0) {
-      for (let i = 1; i <= this.listItemConfig.options?.minItems; i++) {
-        this.addItem();
-      }
+    if (this.listItemConfig.config.behavior) {
+      this.listItemConfig.config.behavior.subject
+        .pipe(
+          skipWhile((value) => Object.keys(value).length === 0),
+          takeUntil(this.destroySubscriptions$)
+        )
+        .subscribe((options) => {
+          if (options.showFields) this.isVisible(options.showFields);
+          if (options.hideFields) this.isHidden(options.hideFields);
+        });
     }
+
+    this.hidden$
+      .pipe(takeUntil(this.destroySubscriptions$))
+      .subscribe((hidden) => this.isHiddenList.emit(hidden));
 
     if (this.listItemConfig.config.autofill) {
       const value = getValueByTree(
@@ -99,6 +112,10 @@ export class ListItemComponent implements OnInit, OnDestroy {
     );
   }
 
+  public removeChildFormGroup(groupName: string) {
+    this.formListItem?.removeControl(groupName);
+  }
+
   public getFullListItemName(index: number) {
     const name = this.listItemConfig?.name;
 
@@ -118,8 +135,10 @@ export class ListItemComponent implements OnInit, OnDestroy {
 
   public hideField(el: HTMLDivElement, hide: boolean) {
     if (hide) {
+      el.classList.remove('d-block');
       el.classList.add('d-none');
     } else {
+      el.classList.remove('d-none');
       el.classList.add('d-block');
     }
   }
@@ -144,5 +163,40 @@ export class ListItemComponent implements OnInit, OnDestroy {
       );
     }
     return -1;
+  }
+
+  private isVisible(fields: string[]) {
+    if (fields.indexOf(this.getTree()) >= 0) {
+      this.hidden$.next(false);
+      this.startList();
+    }
+  }
+
+  private isHidden(fields: string[]) {
+    if (fields.indexOf(this.getTree()) >= 0) {
+      this.hidden$.next(true);
+      this.clearList();
+    }
+  }
+
+  private startList() {
+    this.formListItem = this.fb.group({
+      [this.listItemConfig.name]: this.fb.array([]),
+    });
+    this.emitFormGroup.emit(this.getItemList());
+
+    if (
+      this.listItemConfig.options?.minItems > 0 &&
+      this.getItemList().length < this.listItemConfig.options?.minItems
+    ) {
+      for (let i = 1; i <= this.listItemConfig.options?.minItems; i++) {
+        this.addItem();
+      }
+    }
+  }
+
+  private clearList() {
+    this.formListItem = null;
+    this.removeFormGroup.emit(this.getTree());
   }
 }
