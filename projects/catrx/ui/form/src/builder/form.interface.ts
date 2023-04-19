@@ -1,9 +1,10 @@
-import { AsyncValidatorFn, FormControl, ValidatorFn } from '@angular/forms';
-import { CatFormBehavior } from '../common/cat-form-behavior';
 import { Type } from '@angular/core';
-import { CatFormCustomField } from '../common/cat-form-custom-field';
-import { Observable } from 'rxjs/internal/Observable';
+import { AsyncValidatorFn, FormControl, ValidatorFn } from '@angular/forms';
 import { BehaviorSubject } from 'rxjs/internal/BehaviorSubject';
+import { Observable } from 'rxjs/internal/Observable';
+import { CatFormBehavior } from '../common/cat-form-behavior';
+import { CatFormCustomField } from '../common/cat-form-custom-field';
+import { CatSelectOption } from '../common/cat-select-option';
 
 export interface CatFormConfig<DataType> {
   formElements: CatFormElementConfig[];
@@ -112,7 +113,7 @@ export interface CatFormRadioOptions extends CatFormFieldOptions {
 }
 
 export interface CatFormListOptions {
-  name: string;
+  name: string | CatSelectOption;
   value: any;
 }
 

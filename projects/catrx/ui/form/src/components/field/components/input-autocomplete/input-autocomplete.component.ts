@@ -1,15 +1,16 @@
 import { Component } from '@angular/core';
-import { FieldBase } from '../field.base';
-import {
-  CatFormListOptions,
-  CatFormAutocompleteOptions,
-} from '../../../../builder/form.interface';
 import { CatDynamicComponent } from '@catrx/ui/dynamic-component';
 import { BehaviorSubject } from 'rxjs/internal/BehaviorSubject';
-import { Subject } from 'rxjs/internal/Subject';
 import { Observable } from 'rxjs/internal/Observable';
-import { first } from 'rxjs/internal/operators/first';
+import { Subject } from 'rxjs/internal/Subject';
 import { debounceTime } from 'rxjs/internal/operators/debounceTime';
+import { first } from 'rxjs/internal/operators/first';
+import {
+  CatFormAutocompleteOptions,
+  CatFormListOptions,
+} from '../../../../builder/form.interface';
+import { FieldBase } from '../field.base';
+import { CatSelectOption } from './../../../../common/cat-select-option';
 
 @Component({
   selector: 'cat-field-autocomplete[control][fieldConfig]',
@@ -67,6 +68,14 @@ export class InputAutocompleteComponent extends FieldBase<
         return value;
       }
     };
+  }
+
+  public optionIsComponent(option: CatFormListOptions) {
+    return option.name instanceof CatSelectOption;
+  }
+
+  public getCompomentOption(option: CatFormListOptions) {
+    return option.name as CatSelectOption;
   }
 
   protected override customInit() {
