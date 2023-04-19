@@ -3,6 +3,7 @@ export * from './src/builder/form.factory';
 export * from './src/common/cat-form-behavior';
 export * from './src/common/cat-form-custom-field';
 export * from './src/common/cat-form-custom-field.base';
+export * from './src/common/cat-select-option';
 
 export * from './src/validators/cat-cnpj.validator';
 export * from './src/validators/cat-cpf.validator';

@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
+import { CatFormListOptions, CatFormSelectOptions } from '../../../../builder/form.interface';
 import { FieldBase } from '../field.base';
-import { CatFormSelectOptions } from '../../../../builder/form.interface';
+import { CatSelectOption } from './../../../../common/cat-select-option';
 
 @Component({
   selector: 'cat-field-select[control][fieldConfig]',
@@ -9,4 +10,13 @@ import { CatFormSelectOptions } from '../../../../builder/form.interface';
 export class InputSelectComponent extends FieldBase<
   CatFormSelectOptions,
   HTMLSelectElement
-> {}
+  > {
+
+  optionIsComponent(option: CatFormListOptions) {
+    return option.name instanceof CatSelectOption;
+  }
+
+  getCompomentOption(option: CatFormListOptions) {
+    return option.name as CatSelectOption;
+  }
+}
