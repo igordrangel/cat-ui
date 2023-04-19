@@ -14,4 +14,9 @@ export class FormSelectFactory extends FormFieldInputBase<CatFormSelectOptions> 
       : options;
     return this;
   }
+
+  public setMultiple(multiple = true) {
+    this.config.multiple = multiple;
+    return this;
+  }
 }

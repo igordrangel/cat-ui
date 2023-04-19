@@ -34,12 +34,17 @@
         </ng-template>
       </ng-container>
 
-      <ng-template ng-label-tmp let-item="item">
-        <cat-dynamic-component *ngIf="optionIsComponent(item) else textOption" [component]="getCompomentOption(item)" />
+      <ng-template ng-label-tmp let-item="item" let-clear="clear">
+        <div style="display: flex;align-items: center;">
+          <span class="ng-value-icon right" (click)="clear(item)" aria-hidden="true">×</span>
+          <span class="ng-value-label">
+            <cat-dynamic-component *ngIf="optionIsComponent(item) else textOption" [component]="getCompomentOption(item)" />
 
-        <ng-template #textOption>
-          <span [innerHTML]="item.name"></span>
-        </ng-template>
+            <ng-template #textOption>
+              <span [innerHTML]="item.name"></span>
+            </ng-template>
+          </span>
+        </div>
       </ng-template>
 
       <ng-template ng-option-tmp let-item="item">
