@@ -112,8 +112,8 @@ export interface CatFormRadioOptions extends CatFormFieldOptions {
   options?: Array<CatFormListOptions>;
 }
 
-export interface CatFormListOptions {
-  name: string | CatSelectOption;
+export interface CatFormListOptions<OptionName = string | CatSelectOption> {
+  name: OptionName;
   value: any;
 }
 
