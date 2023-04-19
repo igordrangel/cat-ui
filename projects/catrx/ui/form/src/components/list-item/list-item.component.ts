@@ -41,8 +41,6 @@ export class ListItemComponent implements OnInit, OnDestroy {
   }
 
   ngOnInit() {
-    this.startList();
-
     if (this.listItemConfig.config.behavior) {
       this.listItemConfig.config.behavior.subject
         .pipe(
@@ -55,9 +53,14 @@ export class ListItemComponent implements OnInit, OnDestroy {
         });
     }
 
+    this.hidden$.next(this.listItemConfig.options?.hidden ?? false);
     this.hidden$
       .pipe(takeUntil(this.destroySubscriptions$))
-      .subscribe((hidden) => this.isHiddenList.emit(hidden));
+      .subscribe((hidden) => {
+        this.isHiddenList.emit(hidden);
+        if (!hidden)
+          this.startList();
+      });
 
     if (this.listItemConfig.config.autofill) {
       const value = getValueByTree(
