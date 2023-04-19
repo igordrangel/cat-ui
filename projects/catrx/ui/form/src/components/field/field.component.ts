@@ -57,26 +57,24 @@ export class FieldComponent implements OnInit, OnDestroy, OnChanges {
       this.addControl();
       this.hidden$.next(this.fieldConfig.hidden ?? false);
 
-      if (!this.fieldConfig.hidden) {
-        if (this.fieldConfig.onChange) {
-          this.control?.valueChanges
-            .pipe(
-              skipWhile(() => this.control?.invalid ?? false),
-              takeUntil(this.destroySubscriptions$),
-              debounceTime(300)
-            )
-            .subscribe((value) => {
-              if (this.fieldConfig?.onChange) {
-                this.fieldConfig?.behavior?.clear();
-                this.fieldConfig?.onChange(value, this.fieldConfig?.behavior);
-              }
-            });
-        }
-      } else {
-        this.removeValidators();
+      if (this.fieldConfig.onChange) {
+        this.control?.valueChanges
+          .pipe(
+            skipWhile(() => this.control?.invalid ?? false),
+            takeUntil(this.destroySubscriptions$),
+            debounceTime(300)
+          )
+          .subscribe((value) => {
+            if (this.fieldConfig?.onChange) {
+              this.fieldConfig?.behavior?.clear();
+              this.fieldConfig?.onChange(value, this.fieldConfig?.behavior);
+            }
+          });
       }
-
-      if (this.fieldConfig.disabled) {
+      if (
+        this.fieldConfig.hidden ||
+        this.fieldConfig.disabled
+      ) {
         this.removeValidators();
       }
 
