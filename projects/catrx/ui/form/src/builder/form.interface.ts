@@ -139,6 +139,7 @@ export interface CatFormListItemConfig {
 export interface CatFormItemListOptions {
   minItems?: number;
   maxItems?: number;
+  hidden?: boolean;
 }
 
 export interface CatCsvModel {
