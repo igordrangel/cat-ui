@@ -67,7 +67,8 @@ cat-form textarea {
   color: var(--c-tag);
   background-color: var(--bg-tag);
   margin-top: 7px;
-  height: 20px;
+  min-height: 20px;
+  height: auto;
   line-height: 20px;
   font-size: 0.752rem;
 }
