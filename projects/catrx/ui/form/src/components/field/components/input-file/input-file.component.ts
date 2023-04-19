@@ -7,12 +7,10 @@ import {
 import { CatCsvService } from '@catrx/ui/utils/csv';
 import { CatFileInterface } from '@catrx/ui/utils';
 import { klArray } from '@koalarx/utils/operators/array';
-import { Papa } from 'ngx-papaparse';
 
 @Component({
   selector: 'cat-field-file[control][fieldConfig]',
-  templateUrl: './input-file.component.html',
-  providers: [Papa]
+  templateUrl: './input-file.component.html'
 })
 export class InputFileComponent extends FieldBase<
   CatFormFileOptions | CatFormCsvOptions,
