@@ -8,7 +8,7 @@ export abstract class FormFieldInputBase<
 > extends FormFieldBase<ConfigType> {
   public setRequired(required = true) {
     this.config.required = required;
-    this.setValidators([Validators.required]);
+    if (required) this.setValidators([Validators.required]);
     return this;
   }
 
