@@ -188,14 +188,23 @@ export class FormComponent implements OnInit {
     } else {
       clone(Object.keys(data)).map((index) => {
         if (Array.isArray(data[index])) {
-          data[index].forEach((item, indexItem) => {
-            clone(Object.keys(item)).forEach((propItem) => {
-              name = this.generateAutofillDataTree(
-                item,
-                `${index}[${indexItem}].${propItem}`
-              );
+          const isObjectArray = !!data[index].find(item => typeof item === 'object');
+          const isListItem = this.isListItemByName(index, this.config.formElements);
+          if (isObjectArray && isListItem) {
+            data[index].forEach((item, indexItem) => {
+              clone(Object.keys(item)).forEach((propItem) => {
+                name = this.generateAutofillDataTree(
+                  item,
+                  `${index}[${indexItem}].${propItem}`
+                );
+              });
             });
-          });
+          } else {
+            this.autofillValues.push({
+              name: index,
+              value: data[index],
+            });
+          }
         } else if (typeof data[index] === 'object') {
           clone(Object.keys(data[index])).forEach((objIndex) => {
             name = this.generateAutofillDataTree(
