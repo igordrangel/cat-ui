@@ -2,7 +2,7 @@ import { Component } from '@angular/core';
 import { CatDynamicComponentDataInterface } from '@catrx/ui/dynamic-component';
 
 @Component({
-  template: `<h2>{{ data.sigla }}</h2>`,
+  template: `{{ data.name }}`,
 })
 export class SelectOptionComponent implements CatDynamicComponentDataInterface {
   data: any;
