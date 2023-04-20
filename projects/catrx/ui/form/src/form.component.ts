@@ -11,6 +11,7 @@ import {
 import {
   CatFormBehaviorSetValue,
   CatFormConfig,
+  CatFormElementConfig,
 } from './builder/form.interface';
 import {
   FormBuilder,
@@ -137,22 +138,31 @@ export class FormComponent implements OnInit {
       };
 
       if (Array.isArray(valueDataByTree)) {
-        valueDataByTree.forEach((item, indexItem) => {
-          clone(Object.keys(item)).forEach((propItem) => {
-            const prefix = name.substring(0, name.length - 3);
-            let suffix = name.substring(name.length - 3);
-            if (suffix === `[${indexItem - 1}]`) {
-              suffix = suffix.replace(`[${indexItem - 1}]`, `[${indexItem}]`);
-            } else {
-              suffix += `[${indexItem}]`;
-            }
+        const isObjectArray = !!valueDataByTree.find(item => typeof item === 'object');
+        const isListItem = this.isListItemByName(name, this.config.formElements);
+        if (isObjectArray && isListItem) {
+          valueDataByTree.forEach((item, indexItem) => {
+            clone(Object.keys(item)).forEach((propItem) => {
+              const prefix = name.substring(0, name.length - 3);
+              let suffix = name.substring(name.length - 3);
+              if (suffix === `[${indexItem - 1}]`) {
+                suffix = suffix.replace(`[${indexItem - 1}]`, `[${indexItem}]`);
+              } else {
+                suffix += `[${indexItem}]`;
+              }
 
-            name = this.generateAutofillDataTree(
-              item[propItem],
-              `${prefix}${suffix}.${propItem}`
-            );
+              name = this.generateAutofillDataTree(
+                item[propItem],
+                `${prefix}${suffix}.${propItem}`
+              );
+            });
           });
-        });
+        } else {
+          this.autofillValues.push({
+            name,
+            value: valueDataByTree,
+          });
+        }
       } else if (typeof valueDataByTree === 'object') {
         clone(Object.keys(valueDataByTree)).forEach((index) => {
           name = this.generateAutofillDataTree(
@@ -203,5 +213,20 @@ export class FormComponent implements OnInit {
     }
 
     return name;
+  }
+
+  private isListItemByName(name: string, formElement: CatFormElementConfig[]): boolean {
+    return !!formElement.find(formElement => {
+      if (formElement.listItem) {
+        const splitedName = name.split('.');
+        if (
+          splitedName[splitedName.length - 1] === formElement.listItem.name ||
+          this.isListItemByName(name, formElement.listItem.config.formElements)
+        ) {
+          return true;
+        }
+      }
+      return false;
+    })
   }
 }
