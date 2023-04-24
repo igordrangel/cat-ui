@@ -1,12 +1,13 @@
 import { Component } from '@angular/core';
-import { FieldBase } from '../field.base';
+import { CatFileInterface } from '@catrx/ui/utils';
+import { CatCsvService } from '@catrx/ui/utils/csv';
+import { klArray } from '@koalarx/utils/operators/array';
+import { takeUntil } from 'rxjs/internal/operators/takeUntil';
 import {
   CatFormCsvOptions,
   CatFormFileOptions,
 } from '../../../../builder/form.interface';
-import { CatCsvService } from '@catrx/ui/utils/csv';
-import { CatFileInterface } from '@catrx/ui/utils';
-import { klArray } from '@koalarx/utils/operators/array';
+import { FieldBase } from '../field.base';
 
 @Component({
   selector: 'cat-field-file[control][fieldConfig]',
@@ -21,6 +22,23 @@ export class InputFileComponent extends FieldBase<
 
   constructor(private csvService: CatCsvService) {
     super();
+  }
+
+  protected override customInit(): void {
+    this.control
+      .valueChanges
+      .pipe(takeUntil(this.destroySubscriptions$))
+      .subscribe((value: CatFileInterface | Array<CatFileInterface>) => {
+        if (Array.isArray(value)) {
+          this.files = klArray(this.files)
+            .merge(value.filter(item => !this.files.find(file => item.filename === file.filename)))
+            .getValue();
+        } else {
+          if (!this.files.find(file => value.filename === file.filename)) {
+            this.files.push(value);
+          }
+        }
+      })
   }
 
   public async emitFiles(files: FileList | null) {

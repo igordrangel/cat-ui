@@ -32,6 +32,11 @@ export class FormFileFactory extends FormFieldBase<CatFormFileOptions> {
     return this;
   }
 
+  public hideSelectedFilesList(hide = true) {
+    this.config.hideSelectedFilesList = hide;
+    return this;
+  }
+
   private setValidators(validators: ValidatorFn[]) {
     if (!this.config.validators) this.config.validators = [];
     this.config.validators = klArray(this.config.validators)
