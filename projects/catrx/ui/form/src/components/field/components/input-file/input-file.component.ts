@@ -8,6 +8,7 @@ import {
   CatFormFileOptions,
 } from '../../../../builder/form.interface';
 import { FieldBase } from '../field.base';
+import { CatDynamicComponent } from '@catrx/ui/dynamic-component';
 
 @Component({
   selector: 'cat-field-file[control][fieldConfig]',
@@ -114,6 +115,10 @@ export class InputFileComponent extends FieldBase<
     const csvModel = (this.fieldConfig as CatFormCsvOptions).csvModel;
     if (csvModel)
       this.csvService.convertJsonToCsv([csvModel.model], csvModel.filename);
+  }
+
+  public getFilesToCustomList() {
+    return new CatDynamicComponent(this.fieldConfig.customSelectedFilesList, this.files);
   }
 
   private async convertFile(file: File): Promise<CatFileInterface | null> {

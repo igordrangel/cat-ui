@@ -3,6 +3,7 @@ import { klArray } from '@koalarx/utils/operators/array';
 import { CatFileValidator } from '../../validators/cat-file.validator';
 import { FormFieldBase } from '../form-field.base';
 import { CatFormFileOptions } from '../form.interface';
+import { Type } from '@angular/core';
 
 export class FormFileFactory extends FormFieldBase<CatFormFileOptions> {
   public setRequired(required = true) {
@@ -34,6 +35,11 @@ export class FormFileFactory extends FormFieldBase<CatFormFileOptions> {
 
   public hideSelectedFilesList(hide = true) {
     this.config.hideSelectedFilesList = hide;
+    return this;
+  }
+
+  public setCustomSelectedFilesList(component: Type<any>) {
+    this.config.customSelectedFilesList = component;
     return this;
   }
 
