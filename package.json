@@ -1,10 +1,6 @@
 {
   "name": "cat-ui",
-<<<<<<< HEAD
   "version": "1.7.9",
-=======
-  "version": "1.6.8",
->>>>>>> develop
   "license": "ISC",
   "keywords": [
     "design system",
