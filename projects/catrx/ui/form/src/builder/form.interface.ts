@@ -103,6 +103,8 @@ export interface CatFormFileOptions extends CatFormFieldOptions {
   btnText?: string;
   multiple?: boolean;
   accept?: string[];
+  hideSelectedFilesList?: boolean;
+  customSelectedFilesList?: Type<any>;
 }
 export interface CatFormCsvOptions extends CatFormFileOptions {
   csvModel: CatCsvModel;

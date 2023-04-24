@@ -140,12 +140,13 @@ export class FormComponent implements OnInit {
       if (Array.isArray(valueDataByTree)) {
         const isObjectArray = !!valueDataByTree.find(item => typeof item === 'object');
         const isListItem = this.isListItemByName(name, this.config.formElements);
+
         if (isObjectArray && isListItem) {
           valueDataByTree.forEach((item, indexItem) => {
             clone(Object.keys(item)).forEach((propItem) => {
               const prefix = name.substring(0, name.length - 3);
               let suffix = name.substring(name.length - 3);
-              if (suffix === `[${indexItem - 1}]`) {
+              if (suffix === `[${(indexItem > 0 ? indexItem - 1 : indexItem)}]`) {
                 suffix = suffix.replace(`[${indexItem - 1}]`, `[${indexItem}]`);
               } else {
                 suffix += `[${indexItem}]`;
@@ -163,7 +164,7 @@ export class FormComponent implements OnInit {
             value: valueDataByTree,
           });
         }
-      } else if (typeof valueDataByTree === 'object') {
+      } else if (typeof valueDataByTree === 'object' && !this.isFileByName(name, this.config.formElements)) {
         clone(Object.keys(valueDataByTree)).forEach((index) => {
           name = this.generateAutofillDataTree(
             valueDataByTree[index],
@@ -235,6 +236,34 @@ export class FormComponent implements OnInit {
           return true;
         }
       }
+      return false;
+    })
+  }
+
+  private isFileByName(name: string, formElement: CatFormElementConfig[]): boolean {
+    return !!formElement.find(formElement => {
+      if (formElement.field) {
+        const splitedName = name.split('.');
+        if (
+          splitedName[splitedName.length - 1] === formElement.field.name &&
+          formElement.field.type === 'file'
+        ) {
+          return true;
+        }
+      }
+
+      if (formElement.fieldset) {
+        if (this.isFileByName(name, formElement.fieldset.config.formElements)) {
+          return true;
+        }
+      }
+
+      if (formElement.listItem) {
+        if (this.isFileByName(name, formElement.listItem.config.formElements)) {
+          return true;
+        }
+      }
+
       return false;
     })
   }
