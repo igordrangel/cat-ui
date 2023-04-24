@@ -5,6 +5,7 @@ import { klArray } from '@koalarx/utils/operators/array';
 import { takeUntil } from 'rxjs/internal/operators/takeUntil';
 import {
   CatFormCsvOptions,
+  CatFormCustomSelectedFileList,
   CatFormFileOptions,
 } from '../../../../builder/form.interface';
 import { FieldBase } from '../field.base';
@@ -118,7 +119,10 @@ export class InputFileComponent extends FieldBase<
   }
 
   public getFilesToCustomList() {
-    return new CatDynamicComponent(this.fieldConfig.customSelectedFilesList, this.files);
+    return new CatDynamicComponent(this.fieldConfig.customSelectedFilesList, {
+      data: this.files,
+      remove: (index: number) => this.removeFile(index)
+    } as CatFormCustomSelectedFileList);
   }
 
   private async convertFile(file: File): Promise<CatFileInterface | null> {

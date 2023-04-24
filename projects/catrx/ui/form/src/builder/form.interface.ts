@@ -5,6 +5,7 @@ import { Observable } from 'rxjs/internal/Observable';
 import { CatFormBehavior } from '../common/cat-form-behavior';
 import { CatFormCustomField } from '../common/cat-form-custom-field';
 import { CatSelectOption } from '../common/cat-select-option';
+import { CatFileInterface } from '@catrx/ui/utils';
 
 export interface CatFormConfig<DataType> {
   formElements: CatFormElementConfig[];
@@ -97,6 +98,10 @@ export interface CatFormAutocompleteOptions extends CatFormFieldOptions {
 export interface CatFormAutocompleteAddOption {
   persistService?: (value: string) => Observable<CatFormListOptions>;
   customTemplate?: Type<any>;
+}
+export interface CatFormCustomSelectedFileList<DataType = CatFileInterface[]> {
+  data: DataType;
+  remove: (index: number) => void;
 }
 export interface CatFormFileOptions extends CatFormFieldOptions {
   icon?: string;
