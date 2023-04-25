@@ -173,7 +173,7 @@
           </cat-dropdown>
         </div>
 
-        <ng-container router-container>
+        <ng-container *ngIf="(loadingClaims$ | async) === false" router-container>
           <ng-content select="[router-container]"></ng-content>
         </ng-container>
       </cat-template-container>
@@ -212,9 +212,12 @@
     <ng-template #templateDefault>
       <div class="loading-info">
         <img
-          [src]="(themeActive$ | async) === 'dark' && config.logotype.negative
-              ? config.logotype.negative
-              : config.logotype.default"
+          [src]="(themeActive$ | async) === 'dark' && (
+            config.logotype.loadingClaims
+              ? config.logotype.loadingClaims
+              : (config.logotype.negative
+                  ? config.logotype.negative
+                  : config.logotype.default))"
           alt="Logotipo">
         <h1>Bem-Vindo ao {{ config.appName }}!</h1>
         <small>Validando seus dados...</small>

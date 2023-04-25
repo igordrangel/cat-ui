@@ -269,14 +269,11 @@ export class AppContainerComponent implements OnInit {
   private getClaimsAndBuildMenu(logged: boolean) {
     return new Promise((resolve) => {
       if (logged) {
-        this.getClaims()
-          .then(async () => {
-            await this.buildMenu();
-            resolve(true);
-          })
-          .catch(() => {
-            this.validatingScope$.next(true);
-          });
+        this.loadingClaims$.next(true);
+        this.buildMenu()
+          .then(() => this.getClaims())
+          .then(() => resolve(true))
+          .catch(() => this.validatingScope$.next(true));
       } else {
         this.buildMenu().then();
       }
@@ -322,9 +319,9 @@ export class AppContainerComponent implements OnInit {
     return new Promise((resolve, reject) => {
       if (this.config.authSettings.openId) {
         CatLoggedUser.claims = this.oauth2Service.getIdentityClaims();
+        this.loadingClaims$.next(false);
         resolve(true);
       } else if (this.config.authSettings.jwt?.claims) {
-        this.loadingClaims$.next(true);
         this.config.authSettings.jwt.claims.pipe(first()).subscribe({
           next: (claims) => {
             CatLoggedUser.claims = claims;
@@ -340,6 +337,7 @@ export class AppContainerComponent implements OnInit {
           },
         });
       } else {
+        this.loadingClaims$.next(false);
         resolve(true);
       }
     });

@@ -60,6 +60,7 @@ export interface AppNotification {
 export interface AppConfigLogotype {
   default: string;
   negative?: string;
+  loadingClaims?: string;
 }
 
 export interface AppConfigMenu {
