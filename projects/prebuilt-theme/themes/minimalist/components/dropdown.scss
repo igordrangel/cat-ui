@@ -22,12 +22,12 @@
 
 .cat-dropdown-content .dropdown-item:hover {
   background-color: var(--bg-dropdown-hover);
-  color: var(--c-dropdown-hover);
+  color: var(--c-dropdown-hover)!important;
 }
 
 .cat-dropdown-content .dropdown-item:active {
   background-color: var(--bg-dropdown-active);
-  color: var(--c-dropdown-active);
+  color: var(--c-dropdown-active)!important;
 }
 
 .cat-dropdown-content {
