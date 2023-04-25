@@ -74,12 +74,12 @@ cat-form textarea {
 }
 
 .ng-select .ng-select-container .ng-value-container .ng-value {
-  color: var(--font-color);
+  color: var(--font-color)!important;
   z-index: 1;
 }
 
 .ng-dropdown-panel .ng-dropdown-panel-items .ng-option.ng-option-disabled {
-  color: var(--font-color);
+  color: var(--font-color)!important;
 }
 
 cat-form input:disabled,
