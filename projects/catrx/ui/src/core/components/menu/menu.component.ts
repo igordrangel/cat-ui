@@ -1,3 +1,4 @@
+import { startWith } from 'rxjs/internal/operators/startWith';
 import {
   Component,
   Input,
@@ -32,13 +33,20 @@ export class MenuComponent implements OnInit, OnChanges {
   constructor(private router: Router) {}
 
   ngOnInit() {
-    this.router.events.subscribe((event) => {
-      if (event instanceof NavigationEnd) {
-        const activeModule = this.getActiveModule();
-        const activeTool = this.getActiveTool();
-        this.setInContext(activeTool, activeModule);
-      }
-    });
+    this.router
+      .events
+      .pipe(
+        startWith(
+          new NavigationEnd(1, location.hash, location.hash)
+        )
+      )
+      .subscribe((event) => {
+        if (event instanceof NavigationEnd) {
+          const activeModule = this.getActiveModule();
+          const activeTool = this.getActiveTool();
+          this.setInContext(activeTool, activeModule);
+        }
+      });
   }
 
   ngOnChanges(changes: SimpleChanges): void {
