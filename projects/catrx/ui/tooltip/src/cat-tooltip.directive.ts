@@ -27,7 +27,7 @@ export class CatTooltipDirective implements OnDestroy {
   private showTimeout: number;
   private touchTimeout: number;
   private hideTimeout: number;
-  private showDelay = 0;
+  private showDelay = 1000;
   private hideDelay = 0;
   private componentRef: ComponentRef<TooltipComponent> = null;
   private intervalObserveTriggerDestroy: Subscription;
@@ -41,7 +41,8 @@ export class CatTooltipDirective implements OnDestroy {
 
   @HostListener('mouseenter')
   onMouseEnter(): void {
-    if (document.body.clientWidth > 980) this.initializeTooltip();
+    if (document.body.clientWidth > 980)
+      this.initializeTooltip();
   }
 
   @HostListener('mouseleave')
@@ -83,56 +84,20 @@ export class CatTooltipDirective implements OnDestroy {
     if (this.componentRef !== null) {
       this.componentRef.instance.tooltip = this.catTooltip;
 
-      const { left, right, bottom, top, width, height } =
-        this.elementRef.nativeElement.getBoundingClientRect();
-      const letterWidth = 10;
-      const tooltipWidth = (this.catTooltip.length * letterWidth) / 2;
+      setTimeout(() => {
+        const position = this.calcPosition();
 
-      let calcLeft = Math.round((right - left) / 2 + left);
+        if (this.componentRef) {
+          this.componentRef.instance.left = position.leftPosition;
+          this.componentRef.instance.top = position.topPosition;
+          this.componentRef.instance.visible = true;
+        }
 
-      switch (this.catTooltipPosition) {
-        case 'below': {
-          this.componentRef.instance.left =
-            calcLeft < width ? tooltipWidth : calcLeft;
-          this.componentRef.instance.top = Math.round(bottom + height);
-          break;
-        }
-        case 'above': {
-          this.componentRef.instance.left =
-            calcLeft < width ? tooltipWidth : calcLeft;
-          this.componentRef.instance.top = Math.round(top);
-          break;
-        }
-        case 'right': {
-          calcLeft = Math.round(right + tooltipWidth * 2);
-          this.componentRef.instance.left =
-            calcLeft > document.body.clientWidth
-              ? document.body.clientWidth - tooltipWidth
-              : calcLeft - tooltipWidth;
-          this.componentRef.instance.top = Math.round(top + (bottom - top) / 2);
-          break;
-        }
-        case 'left': {
-          calcLeft = Math.round(left - tooltipWidth);
-          this.componentRef.instance.left =
-            calcLeft < width ? tooltipWidth : calcLeft;
-          this.componentRef.instance.top = Math.round(top + (bottom - top) / 2);
-          break;
-        }
-        default: {
-          break;
-        }
-      }
+        this.observeTriggerDestroy();
 
-      this.observeTriggerDestroy();
+        this.showTooltip();
+      }, 1);
     }
-  }
-
-  private setHideTooltipTimeout() {
-    this.hideTimeout = window.setTimeout(
-      this.destroy.bind(this),
-      this.hideDelay
-    );
   }
 
   private showTooltip() {
@@ -147,5 +112,72 @@ export class CatTooltipDirective implements OnDestroy {
       .subscribe(() => {
         if (!this.elementRef.nativeElement.isConnected) this.destroy();
       });
+  }
+
+  private calcPosition(withoutSwitches = false) {
+    const bodyWidth = document.body.clientWidth;
+    const bodyHeigth = document.body.clientHeight;
+
+    let topPosition = 0;
+    let leftPosition = 0;
+
+    const { left, right, bottom, top, width, height } =
+      this.elementRef.nativeElement.getBoundingClientRect();
+    const elTooltipContent = document.querySelector('.cat-tooltip');
+    const tooltipWidth = elTooltipContent?.clientWidth;
+    const tooltipHeigth = elTooltipContent?.clientHeight;
+    const triggerWidth = this.elementRef.nativeElement.clientWidth;
+    const triggerHeight = this.elementRef.nativeElement.clientHeight;
+    const absoluteHorizontalPosition = left + width + tooltipWidth;
+    const absoluteVerticalPosition = top + height + tooltipHeigth;
+    const isMobile = bodyWidth <= 980;
+
+    if (!withoutSwitches) {
+      if (this.calcPosition(true).topPosition < 0 && this.catTooltipPosition === 'above')
+        this.catTooltipPosition = 'below';
+      if (absoluteHorizontalPosition > bodyWidth && this.catTooltipPosition === 'right')
+        this.catTooltipPosition = 'left';
+      if (this.calcPosition(true).leftPosition < 0 && this.catTooltipPosition === 'left')
+        this.catTooltipPosition = 'right';
+      if (absoluteVerticalPosition > bodyHeigth && this.catTooltipPosition === 'below')
+        this.catTooltipPosition = 'above';
+    }
+
+    if (isMobile) {
+      leftPosition = 5
+    }
+
+    switch (this.catTooltipPosition) {
+      case 'above':
+        if (!isMobile)
+          leftPosition = left + this.calcMiddlePosition(tooltipWidth);
+
+        topPosition = top;
+        break;
+      case 'below':
+        if (!isMobile)
+          leftPosition = left + this.calcMiddlePosition(tooltipWidth);
+
+        topPosition = top + triggerHeight + tooltipHeigth;
+        break;
+      case 'left':
+        if (!isMobile)
+          leftPosition = left - this.calcMiddlePosition(tooltipWidth);
+
+        topPosition = top + this.calcMiddlePosition(triggerHeight) + this.calcMiddlePosition(tooltipHeigth);
+        break;
+      case 'right':
+        if (!isMobile)
+          leftPosition = left + triggerWidth + this.calcMiddlePosition(tooltipWidth);
+
+        topPosition = top + this.calcMiddlePosition(triggerHeight) + this.calcMiddlePosition(tooltipHeigth);
+        break;
+    }
+
+    return { topPosition, leftPosition };
+  }
+
+  private calcMiddlePosition(value: number) {
+    return value/2
   }
 }
