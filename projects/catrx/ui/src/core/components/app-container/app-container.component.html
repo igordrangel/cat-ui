@@ -41,7 +41,9 @@
 
           <ng-content select="[bottom-buttons]"></ng-content>
 
-          <cat-dropdown *ngIf="config.pushNotifications && (logged$ | async)">
+          <cat-dropdown
+            *ngIf="config.pushNotifications && (logged$ | async)"
+            [position]="(menuCollapsed$ | async) === true ? 'top' : 'right'">
             <button
               trigger
               type="button"
@@ -124,7 +126,9 @@
             <i class="fa-solid fa-arrow-right-to-bracket"></i>
           </button>
 
-          <cat-dropdown *ngIf="logged$ | async">
+          <cat-dropdown
+            *ngIf="logged$ | async"
+            [position]="(menuCollapsed$ | async) === true ? 'top' : 'right'">
             <button
               trigger
               class="btn-avatar"

@@ -97,9 +97,11 @@ export class CatDropdownDirective implements OnDestroy {
       setTimeout(() => {
         const position = this.calcPosition();
 
-        if (this.componentRef) this.componentRef.instance.left = position.leftPosition;
-        if (this.componentRef) this.componentRef.instance.top = position.topPosition;
-        this.componentRef.instance.visible = true;
+        if (this.componentRef) {
+          this.componentRef.instance.left = position.leftPosition;
+          this.componentRef.instance.top = position.topPosition;
+          this.componentRef.instance.visible = true;
+        }
 
         this.observeTriggerDestroy();
 
@@ -122,11 +124,13 @@ export class CatDropdownDirective implements OnDestroy {
       });
   }
 
-  private calcPosition() {
+  private calcPosition(withoutSwitches = false) {
     const bodyWidth = document.body.clientWidth;
     const bodyHeigth = document.body.clientHeight;
+
     let topPosition = 0;
     let leftPosition = 0;
+    let absolutePosition = 0;
 
     const { left, right, bottom, top, width, height } =
       this.elementRef.nativeElement.getBoundingClientRect();
@@ -137,14 +141,16 @@ export class CatDropdownDirective implements OnDestroy {
     const absoluteVerticalPosition = top + height + dropdownHeigth;
     const isMobile = bodyWidth <= 980;
 
-    if ((top - dropdownHeigth - 5) < 0 && this.catDropdown.position === 'top')
-      this.catDropdown.position = 'bottom';
-    if (absoluteHorizontalPosition > bodyWidth && this.catDropdown.position === 'right')
-      this.catDropdown.position = 'left';
-    if ((left - dropdownWidth - 5) < 0 && this.catDropdown.position === 'left')
-      this.catDropdown.position = 'right';
-    if (absoluteVerticalPosition > bodyHeigth && this.catDropdown.position === 'bottom')
-      this.catDropdown.position = 'top';
+    if (withoutSwitches) {
+      if (this.calcPosition(true).topPosition < 0 && this.catDropdown.position === 'top')
+        this.catDropdown.position = 'bottom';
+      if (absoluteHorizontalPosition > bodyWidth && this.catDropdown.position === 'right')
+        this.catDropdown.position = 'left';
+      if (this.calcPosition(true).leftPosition < 0 && this.catDropdown.position === 'left')
+        this.catDropdown.position = 'right';
+      if (absoluteVerticalPosition > bodyHeigth && this.catDropdown.position === 'bottom')
+        this.catDropdown.position = 'top';
+    }
 
     if (isMobile) {
       leftPosition = 5
@@ -152,23 +158,39 @@ export class CatDropdownDirective implements OnDestroy {
 
     switch (this.catDropdown.position) {
       case 'top':
-        if (!isMobile) leftPosition = left;
+        if (!isMobile)
+          leftPosition = left;
+
         topPosition = top - dropdownHeigth - 5;
         break;
       case 'bottom':
-        if (!isMobile) leftPosition = absoluteHorizontalPosition > bodyWidth ? left - width : left
+        if (!isMobile)
+          leftPosition = absoluteHorizontalPosition > bodyWidth ? left - width : left
+
         topPosition = bottom + 5;
         break;
       case 'left':
-        if (!isMobile) leftPosition = left - dropdownWidth - 5;
+        if (!isMobile)
+          leftPosition = left - dropdownWidth - 5;
+
         topPosition = top;
         break;
       case 'right':
-        if (!isMobile) leftPosition = right + 5;
+        if (!isMobile)
+          leftPosition = right + 5;
+
         topPosition = top;
+
+        absolutePosition = topPosition + dropdownHeigth + height;
+        if (absolutePosition >= absoluteVerticalPosition)
+          topPosition -= (dropdownHeigth - height);
         break;
     }
 
     return { topPosition, leftPosition };
+  }
+
+  private calcMiddlePosition(value: number) {
+    return value/2
   }
 }
