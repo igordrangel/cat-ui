@@ -37,6 +37,10 @@ cat-form .form-control-sm {
   background-color: var(--bg-menu-active) !important;
 }
 
+.ng-select.ng-select-disabled .ng-select-container {
+  border-style: dashed!important;
+}
+
 .ng-select.is-invalid .ng-select-container {
   border-color: #dc3545;
   padding-right: calc(1.5em + 0.75rem);
