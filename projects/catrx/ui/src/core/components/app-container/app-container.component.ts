@@ -358,7 +358,11 @@ export class AppContainerComponent implements OnInit {
   private verifyTokenIsExpired() {
     const user = this.tokenService.getDecodedToken<CatOAuth2TokenInterface | CatJwtTokenInterface>();
     if (user) {
-      return new Date(user['expired'] ?? user['exp']) < new Date();
+      if (user['expired']) {
+        return new Date(user['expired']) < new Date();
+      } else if (user['exp']) {
+        return new Date(user['exp'] * 1000) < new Date();
+      }
     }
 
     return true;
