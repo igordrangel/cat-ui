@@ -270,7 +270,6 @@ export class AppContainerComponent implements OnInit {
   private getClaimsAndBuildMenu(logged: boolean) {
     return new Promise((resolve) => {
       if (logged) {
-        this.loadingClaims$.next(true);
         this.getClaims()
           .then(() => this.buildMenu())
           .then(() => resolve(true))
@@ -323,6 +322,7 @@ export class AppContainerComponent implements OnInit {
         this.loadingClaims$.next(false);
         resolve(true);
       } else if (this.config.authSettings.jwt?.claims) {
+        this.loadingClaims$.next(true);
         this.config.authSettings.jwt.claims.pipe(first()).subscribe({
           next: (claims) => {
             CatLoggedUser.claims = claims;
