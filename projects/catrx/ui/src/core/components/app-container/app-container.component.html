@@ -212,10 +212,10 @@
     <ng-template #templateDefault>
       <div class="loading-info">
         <img
-          [src]="(themeActive$ | async) === 'dark' && (
+          [src]="(
             config.logotype.loadingClaims
               ? config.logotype.loadingClaims
-              : (config.logotype.negative
+              : ((themeActive$ | async) === 'dark' && config.logotype.negative
                   ? config.logotype.negative
                   : config.logotype.default))"
           alt="Logotipo">
