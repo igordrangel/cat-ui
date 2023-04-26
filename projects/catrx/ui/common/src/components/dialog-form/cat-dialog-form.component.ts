@@ -79,14 +79,7 @@ export class CatDialogFormComponent extends CatFormBase {
         });
         this.dialogRef.close('reloadList');
       },
-      (err: HttpErrorResponse) => {
-        this.submitLoader$.next(false);
-        this.snackbarService.open({
-          type: err?.statusText?.startsWith('4') ? 'warning' : 'error',
-          title: 'Algo inesperado ocorreu...',
-          message: err?.message ?? 'Ocorreu um problema desconhecido.',
-        });
-      }
+      (err: HttpErrorResponse) => this.submitLoader$.next(false)
     );
   }
 }

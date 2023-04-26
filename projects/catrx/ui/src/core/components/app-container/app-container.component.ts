@@ -17,6 +17,7 @@ import {
 import { CatOAuth2Config } from '../../services/openid/cat-oauth2.config';
 import { CatOAuth2Service } from '../../services/openid/cat-oauth2.service';
 import {
+  CatJwtTokenInterface,
   CatOAuth2TokenInterface,
   CatTokenService,
 } from '../../services/token/cat-token.service';
@@ -270,8 +271,8 @@ export class AppContainerComponent implements OnInit {
     return new Promise((resolve) => {
       if (logged) {
         this.loadingClaims$.next(true);
-        this.buildMenu()
-          .then(() => this.getClaims())
+        this.getClaims()
+          .then(() => this.buildMenu())
           .then(() => resolve(true))
           .catch(() => this.validatingScope$.next(true));
       } else {
@@ -355,9 +356,9 @@ export class AppContainerComponent implements OnInit {
   }
 
   private verifyTokenIsExpired() {
-    const user = this.tokenService.getDecodedToken<CatOAuth2TokenInterface>();
+    const user = this.tokenService.getDecodedToken<CatOAuth2TokenInterface | CatJwtTokenInterface>();
     if (user) {
-      return new Date(user.expired) < new Date();
+      return new Date(user['expired'] ?? user['exp']) < new Date();
     }
 
     return true;
