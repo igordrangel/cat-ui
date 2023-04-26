@@ -16,6 +16,13 @@ export interface CatOAuth2TokenInterface {
   code: string;
 }
 
+export interface CatJwtTokenInterface {
+  id: number;
+  login: string;
+  iat: number;
+  exp: number;
+}
+
 @Injectable({ providedIn: 'any' })
 export class CatTokenService implements OnDestroy {
   private token$ = new BehaviorSubject<string>(null);
