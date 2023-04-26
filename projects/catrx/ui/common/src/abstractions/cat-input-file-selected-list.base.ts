@@ -25,9 +25,6 @@ export abstract class CatInputFileSelectedListBase<SelectItemType = CatFileInter
   }
 
   removeImage(index: number) {
-    const selectedFiles = this.selectedFiles$.getValue();
-    selectedFiles.splice(index, 1);
-    this.selectedFiles$.next(selectedFiles);
     this.data?.remove(index);
   }
 }
