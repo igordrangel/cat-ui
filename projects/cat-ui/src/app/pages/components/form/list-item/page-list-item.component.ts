@@ -24,9 +24,6 @@ export class PageListItemComponent extends CatFormBase {
             { email: 'teste@exemplo.com' },
             { email: 'teste2@exemplo.com' },
           ],
-          curriculum: {
-            filename: 'teste.pdf',
-          },
         },
         { phone: '(22)888888888' },
       ],
@@ -49,14 +46,6 @@ export class PageListItemComponent extends CatFormBase {
                 )
                 .generate(),
             { minItems: 1, maxItems: 5 }
-          )
-          .file('curriculum', (builder) =>
-            builder
-              .setIcon('fa-solid fa-paperclip')
-              .setBtnText('Anexe o curriculo aqui')
-              .setExtensionsAccept(['.pdf'])
-              .setRequired()
-              .generate()
           )
           .generate(),
       { minItems: 1, maxItems: 5 }

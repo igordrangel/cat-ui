@@ -1,6 +1,7 @@
 .cat-expansive-panel-group-content cat-expansive-panel {
   width: 100%;
 }
+
 .cat-expansive-panel-group-content {
   position: relative;
   display: flex;
@@ -32,7 +33,8 @@
 
 .cat-expansive-panel-header.disabled {
   cursor: default;
-  color: var(--disable-color);
+  color: var(--font-color);
+  opacity: .6;
 }
 
 .cat-expansive-panel-header:not(.disabled):before {
