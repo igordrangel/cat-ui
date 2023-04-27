@@ -114,7 +114,7 @@ cat-form .form-control-sm {
   color: var(--font-color) !important;
 }
 
-cat-form .ng-select .ng-select-container,
+cat-form .ng-select.ng-select-disabled .ng-select-container,
 cat-form input:disabled,
 cat-form select:disabled {
   border-style: dashed;
