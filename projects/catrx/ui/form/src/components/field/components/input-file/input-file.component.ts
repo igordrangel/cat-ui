@@ -58,9 +58,9 @@ export class InputFileComponent extends FieldBase<
           if (file) {
             const fileResult = await this.convertFile(file);
             if (fileResult) {
-              const indexFile = klArray(this.files).getIndex(
-                'filename',
-                fileResult.filename
+              const indexFile = this.files.findIndex(file =>
+                file.filename === fileResult.filename &&
+                file.type === fileResult.type
               );
               if (indexFile >= 0) {
                 this.files[indexFile] = fileResult;
