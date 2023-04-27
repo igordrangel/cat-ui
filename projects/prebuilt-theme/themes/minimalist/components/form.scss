@@ -74,18 +74,19 @@ cat-form textarea {
 }
 
 .ng-select .ng-select-container .ng-value-container .ng-value {
-  color: var(--font-color)!important;
+  color: var(--font-color) !important;
   z-index: 1;
 }
 
 .ng-dropdown-panel .ng-dropdown-panel-items .ng-option.ng-option-disabled {
-  color: var(--font-color)!important;
+  color: var(--font-color) !important;
 }
 
+cat-form .ng-select .ng-select-container,
 cat-form input:disabled,
 cat-form select:disabled {
   border-style: dashed;
-  background-color: rgba(0, 0, 0, .2) !important;
+  background-color: var(--disable-color) !important;
 }
 
 .form-check-input {
@@ -207,7 +208,8 @@ cat-form .span-length {
   display: flex;
   align-items: center;
   justify-content: flex-end;
-  color: var(--disable-color);
+  color: var(--font-color);
+  opacity: .6;
   font-size: 0.8rem;
   padding: 0 5px;
 }
@@ -258,7 +260,8 @@ cat-form .file-drag-drop-area.invalid {
 }
 
 cat-form .file-drag-drop-area .placeholder-content {
-  color: var(--disable-color);
+  opacity: .6;
+  color: var(--font-color);
   text-align: center;
   padding: 10px 0;
 }
@@ -375,7 +378,7 @@ cat-form-fieldset fieldset {
   box-sizing: border-box;
   padding: 5px 10px;
   margin-bottom: 10px;
-  display: flex!important;
+  display: flex !important;
   justify-content: flex-start;
   align-items: flex-start;
   flex-wrap: wrap;
@@ -396,9 +399,9 @@ cat-form-list-item fieldset {
   border: 1px solid var(--fieldset-border-color);
   border-radius: 8px;
   box-sizing: border-box;
-  padding: 15px 20px 7px!important;
+  padding: 15px 20px 7px !important;
   margin-bottom: 10px;
-  display: flex!important;
+  display: flex !important;
   justify-content: flex-start;
   align-items: flex-start;
   flex-wrap: wrap;
