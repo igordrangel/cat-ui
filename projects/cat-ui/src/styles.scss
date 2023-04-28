@@ -5,3 +5,7 @@ body.minimalist {
 body.glass {
   @import "projects/prebuilt-theme/themes/glass/glass-theme.scss";
 }
+
+.content-login .logotype img {
+  width: 140px;
+}

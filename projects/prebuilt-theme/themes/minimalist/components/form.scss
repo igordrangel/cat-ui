@@ -1,8 +1,9 @@
 cat-form input,
 cat-form select,
 cat-form textarea {
-  background-color: var(--bg-body) !important;
   color: var(--font-color) !important;
+  background-color: transparent !important;
+  padding: 0.5rem;
 }
 
 .dark cat-form input {
@@ -10,7 +11,8 @@ cat-form textarea {
 }
 
 .ng-select .ng-select-container {
-  background-color: var(--bg-body) !important;
+  background-color: transparent;
+  padding: 0.34rem 0.5rem;
 }
 
 .ng-select.is-invalid .ng-select-container {
@@ -149,8 +151,6 @@ cat-form .fields-content {
 }
 
 cat-form .has-validation.invalid {
-  background-color: var(--bg-form-invalid-field);
-  border-radius: 5px;
   padding: 0 2px 5px;
 }
 
@@ -161,12 +161,11 @@ cat-form .cat-field-container {
 
 cat-form .cat-field-container label {
   position: absolute;
-  top: -8px;
+  top: -7px;
   left: 8px;
   font-size: 0.668rem;
   margin: 0;
   font-weight: bold;
-  background-color: var(--bg-body);
   color: var(--font-color);
   padding: 0 5px;
   text-transform: uppercase;
@@ -176,6 +175,21 @@ cat-form .cat-field-container label {
   text-overflow: ellipsis;
   max-width: calc(100% - 15px);
   overflow: hidden;
+}
+
+cat-form .cat-field-container label::after {
+  top: calc(50% - 1px);
+  left: 0;
+  content: '';
+  position: absolute;
+  background-color: var(--bg-body);
+  width: 100%;
+  height: 2px;
+  z-index: -1;
+}
+
+cat-dialog cat-form .cat-field-container label::after {
+  background-color: var(--bg-dialog);
 }
 
 cat-form .hint {

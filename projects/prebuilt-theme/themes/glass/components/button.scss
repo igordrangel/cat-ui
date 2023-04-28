@@ -51,6 +51,31 @@
   color: var(--btn-bg-primary);
 }
 
+.btn-default,
+.btn-outline-default:hover,
+.btn-default:disabled {
+  background-color: var(--btn-bg-default);
+  color: var(--btn-c-default);
+  border-color: var(--btn-bg-default);
+}
+
+.btn-default:hover {
+  background-color: var(--btn-bg-default-hover);
+  color: var(--btn-c-default-hover);
+  border-color: var(--btn-bg-default-hover);
+}
+
+.btn-default:active {
+  background-color: var(--btn-bg-default-active) !important;
+  color: var(--btn-c-default-active) !important;
+  border-color: var(--btn-bg-default-active) !important;
+}
+
+.btn-outline-default {
+  border-color: var(--btn-bg-default);
+  color: var(--btn-bg-default);
+}
+
 .btn-secondary,
 .btn-outline-secondary:hover,
 .btn-secondary:disabled {

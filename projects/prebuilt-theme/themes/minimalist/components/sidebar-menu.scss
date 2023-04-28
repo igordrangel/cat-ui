@@ -5,14 +5,14 @@ cat-menu nav {
   width: 100%;
   height: auto;
   box-sizing: border-box;
-  padding: 50px 20px 10px 0;
+  padding: 20px 15px 0 10px;
   position: relative;
   left: -1px;
 }
 
 cat-menu nav:not(.collapsed) {
   width: 56px;
-  padding: 50px 5px 10px 5px;
+  padding: 20px 8px 10px;
   align-items: center;
 }
 
@@ -20,15 +20,10 @@ cat-menu nav .menu-container {
   display: flex;
   justify-content: center;
   align-items: flex-start;
-  border-radius: 0 15px 15px 0;
   overflow: auto;
   overflow-x: hidden;
   width: 100%;
   border: var(--menu-border);
-}
-
-cat-menu nav:not(.collapsed) .menu-container {
-  border-radius: 15px;
 }
 
 cat-menu nav .menu-container cat-menu-module,
@@ -52,7 +47,8 @@ cat-menu cat-menu-module ul li {
   text-align: left;
   width: 100%;
   box-sizing: border-box;
-  background-color: var(--bg-menu);
+  border-radius: 8px;
+  margin: 2px 0;
   transition: .1s;
 }
 
@@ -72,7 +68,7 @@ cat-menu cat-menu-module ul.collapsed li.has-tools::after {
   content: '\f054';
   position: absolute;
   right: 15px;
-  top: 10px;
+  top: 8px;
   font-size: 0.625rem;
   transition: .1s;
 }
@@ -99,16 +95,19 @@ cat-menu cat-menu-module ul:not(.collapsed) li.module a {
   align-items: center;
 }
 
+cat-menu cat-menu-module ul:not(.collapsed) li {
+  border-radius: 6px;
+}
+
 cat-menu cat-menu-module ul.collapsed li.module a {
   font-size: 0.8360rem;
-  padding: 10px 15px;
+  padding: 5px 10px;
   text-align: left;
 }
 
 cat-menu cat-menu-module ul li.module a i {
   margin: 0;
-  font-size: 1.170rem;
-  padding: 20px 10px;
+  padding: 8px;
 }
 
 cat-menu cat-menu-module ul.collapsed li.module a i {
@@ -118,13 +117,14 @@ cat-menu cat-menu-module ul.collapsed li.module a i {
 }
 
 cat-menu cat-menu-module ul.collapsed li.module.active {
-  border-left: 4px solid var(--c-menu-border-active);
   color: var(--c-menu-active);
 }
 
 cat-menu cat-menu-module ul li.module.active {
   border: none;
   color: var(--c-menu-active);
+  background-color: var(--bg-menu-active);
+  z-index: 1;
 }
 
 cat-menu cat-menu-module ul li.has-tools cat-menu-tool {

@@ -1,6 +1,35 @@
 * {
-  font-family: OpenSans, sans-serif;
+  line-height: 1.5;
+  font-family: Inter, sans-serif;
   background-color: transparent;
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizelegibility;
+  text-size-adjust: 100%;
+}
+
+*::-webkit-scrollbar {
+  background-clip: padding-box;
+  border-radius: 8px;
+  width: 8px;
+  border: 1px solid var(--shadow-color);
+}
+
+*::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+*::-webkit-scrollbar-thumb {
+  background: var(--c-scrollbar);
+  border-radius: 8px;
+  width: 2px;
+}
+
+html {
+  font-size: 16px;
+}
+
+i {
+  font-size: 1rem;
 }
 
 .fa-classic,
@@ -8,15 +37,15 @@
 .fa-solid,
 .far,
 .fas {
-  font-family: "Font Awesome 6 Free"!important;
+  font-family: "Font Awesome 6 Free" !important;
 }
 
 .fa-brands {
-  font-family: "Font Awesome 6 Brands"!important;
+  font-family: "Font Awesome 6 Brands" !important;
 }
 
 @media (max-width: 980px) {
-  * {
+  html {
     font-size: 20px;
   }
 }

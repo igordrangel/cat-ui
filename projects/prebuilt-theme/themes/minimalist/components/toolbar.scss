@@ -2,7 +2,7 @@
   display: flex;
   justify-content: flex-start;
   align-items: center;
-  padding: 10px 20px 5px;
+  padding: 10px 20px;
   box-sizing: border-box;
   width: 100%;
   border: 1px solid var(--shadow-color);
@@ -12,9 +12,19 @@
   color: var(--c-toolbar);
 }
 
+.cat-toolbar.cat-toolbar-sm {
+  padding: 0 24px 0 30px;
+  min-height: 57px;
+  justify-content: center;
+}
+
 .cat-toolbar a {
   text-decoration: none;
-  color: var(--c-toolbar);
+  color: var(--c-toolbar) !important;
+}
+
+.dark .cat-toolbar a {
+  font-weight: 100;
 }
 
 .cat-toolbar li a.active,
@@ -53,6 +63,7 @@
 
 .cat-toolbar .breadcrumb {
   font-size: 0.8360rem;
+  margin: 0;
 }
 
 .cat-toolbar .btn-group {

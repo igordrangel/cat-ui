@@ -26,7 +26,9 @@ export class AppComponent {
     )
     .setLogotype({
       default: '../assets/logotype.svg',
+      defaultForUncollapse: '../assets/logo.svg',
       negative: '../assets/logotype-negative.svg',
+      negativeForUncollapse: '../assets/logo-negative.svg',
     })
     .pushNotifications({
       getNotifications: this.appService.getNotifications(),
@@ -59,7 +61,9 @@ export class AppComponent {
     } else {
       this.appConfig.logotype = {
         default: '../assets/logotype.svg',
+        defaultForUncollapse: '../assets/logo.svg',
         negative: '../assets/logotype-negative.svg',
+        negativeForUncollapse: '../assets/logo-negative.svg',
       };
     }
 

@@ -1,11 +1,9 @@
-<cat-toolbar [config]="getToolbarInfo()">
+<cat-toolbar [config]="getToolbarInfo(true)">
   <nav buttons>
-    <button
+    <cat-default-button
       *ngIf="!isSubpage"
-      class="btn btn-primary btn-sm"
-      routerLink="./sub-pagina"
-    >
+      routerLink="./sub-pagina">
       Ir para Subpágina
-    </button>
+    </cat-default-button>
   </nav>
 </cat-toolbar>

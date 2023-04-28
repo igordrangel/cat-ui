@@ -70,7 +70,7 @@ export class AppContainerComponent implements OnInit {
     private oauth2Service: CatOAuth2Service,
     private tokenService: CatTokenService,
     private notificationService: NotificationService
-  ) {}
+  ) { }
 
   ngOnInit() {
     if (window.matchMedia && this.config.darkMode) {

@@ -29,6 +29,13 @@ main {
   --btn-c-primary-hover: #fff;
   --btn-c-primary-active: #fff;
 
+  --btn-bg-default: #f1f1f1;
+  --btn-bg-default-hover: #ddd;
+  --btn-bg-default-active: #bbb;
+  --btn-c-default: #5e35b1;
+  --btn-c-default-hover: #5e35b1;
+  --btn-c-default-active: #5e35b1;
+
   --btn-bg-secondary: #757575;
   --btn-bg-secondary-hover: #616161;
   --btn-bg-secondary-active: #424242;
@@ -173,6 +180,13 @@ main.dark {
   --btn-c-primary-hover: #5e35b1;
   --btn-c-primary-active: #5e35b1;
 
+  --btn-bg-default: #f1f1f1;
+  --btn-bg-default-hover: #ddd;
+  --btn-bg-default-active: #bbb;
+  --btn-c-default: #5e35b1;
+  --btn-c-default-hover: #5e35b1;
+  --btn-c-default-active: #5e35b1;
+
   --btn-bg-secondary: #757575;
   --btn-bg-secondary-hover: #616161;
   --btn-bg-secondary-active: #424242;
@@ -288,18 +302,4 @@ main.dark {
 
   --c-scrollbar: #fff;
   --menu-c-scrollbar: #fff;
-}
-
-@font-face {
-  font-family: OpenSans;
-  src: url(../fonts/OpenSans/OpenSans-Light.woff),
-    url(../fonts/OpenSans/OpenSans-LightItalic.woff),
-    url(../fonts/OpenSans/OpenSans-Medium.woff),
-    url(../fonts/OpenSans/OpenSans-MediumItalic.woff),
-    url(../fonts/OpenSans/OpenSans-SemiBold.woff),
-    url(../fonts/OpenSans/OpenSans-SemiBoldItalic.woff),
-    url(../fonts/OpenSans/OpenSans-Bold.woff),
-    url(../fonts/OpenSans/OpenSans-BoldItalic.woff),
-    url(../fonts/OpenSans/OpenSans-ExtraBold.woff),
-    url(../fonts/OpenSans/OpenSans-ExtraBoldItalic.woff);
 }

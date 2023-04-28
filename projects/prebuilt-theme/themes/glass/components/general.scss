@@ -1,6 +1,10 @@
 * {
-  font-family: OpenSans, sans-serif;
+  line-height: 1.5;
+  font-family: Inter, sans-serif;
   background-color: transparent;
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizelegibility;
+  text-size-adjust: 100%;
 }
 
 .fa-classic,

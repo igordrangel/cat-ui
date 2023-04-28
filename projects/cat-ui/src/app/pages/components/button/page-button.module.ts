@@ -8,12 +8,14 @@ import { CatWarningButtonComponent } from '@catrx/ui/button/warning';
 import { CatToolbarModule } from '@catrx/ui/toolbar';
 import { PageButtonComponent } from './page-button.component';
 import { PageButtonRoutingModule } from './page-button.routing.module';
+import { CatDefaultButtonComponent } from '@catrx/ui/button/default';
 
 @NgModule({
   declarations: [PageButtonComponent],
   imports: [
     CatToolbarModule,
     CatPrimaryButtonComponent,
+    CatDefaultButtonComponent,
     CatSecondaryButtonComponent,
     CatSuccessButtonComponent,
     CatWarningButtonComponent,
@@ -22,4 +24,4 @@ import { PageButtonRoutingModule } from './page-button.routing.module';
     PageButtonRoutingModule,
   ],
 })
-export class PageButtonModule {}
+export class PageButtonModule { }

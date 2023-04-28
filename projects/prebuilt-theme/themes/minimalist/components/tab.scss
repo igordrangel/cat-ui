@@ -4,7 +4,7 @@
   justify-content: flex-start;
   align-items: flex-start;
   box-sizing: border-box;
-  padding: 10px;
+  padding: 10px 20px;
   width: 100%;
 }
 
@@ -13,11 +13,14 @@
   justify-content: center;
   align-items: center;
   box-sizing: border-box;
-  padding: 5px 30px;
-  margin: 0 5px;
+  padding: 3px 20px;
+  margin: 0 2px;
+  font-size: var(--font-size-small);
+  font-weight: 600;
   border: 1px solid var(--shadow-color);
   border-radius: 5px 5px 0 0;
   border-bottom: none;
+  opacity: .6;
   cursor: pointer;
   transition: .1s;
 }
@@ -34,7 +37,7 @@
 .cat-tab-item.active {
   background-color: var(--tab-bg);
   color: var(--tab-c);
-  font-weight: bold;
+  opacity: 1;
 }
 
 .cat-tab-item-content {

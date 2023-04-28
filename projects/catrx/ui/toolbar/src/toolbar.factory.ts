@@ -6,7 +6,7 @@ import {
 export class ToolbarFactory {
   private config: CatToolbarConfig;
 
-  constructor(title: string, breadcrumb: CatToolbarBreadcrumb[]) {
+  constructor(title?: string, breadcrumb?: CatToolbarBreadcrumb[]) {
     this.config = {
       title,
       breadcrumb,
@@ -15,6 +15,11 @@ export class ToolbarFactory {
 
   public setIcon(icon: string) {
     this.config.icon = icon;
+    return this;
+  }
+
+  public setTitle(title: string) {
+    this.config.title = title;
     return this;
   }
 

@@ -24,16 +24,19 @@
 }
 
 .cat-dialog .cat-dialog-content {
+  position: relative;
   border-radius: 10px;
-  border: 1px solid var(--shadow-color);
-  background-color: var(--bg-body);
+  border: 1px solid var(--border-dialog);
+  background-color: var(--bg-dialog);
+  box-shadow: rgba(0, 0, 0, 0.5) 0px 16px 70px;
   display: flex;
   flex-direction: column;
 }
 
 .cat-dialog .cat-dialog-content .cat-modal-header:has(div) {
   padding: 5px 15px;
-  border-bottom: 1px solid var(--shadow-color);
+  border-bottom: 1px solid var(--border-dialog);
+  z-index: 1;
 }
 
 .cat-dialog .cat-dialog-content .cat-modal-content:has(div) {
@@ -42,6 +45,7 @@
   overflow-x: hidden;
   max-width: 75vw;
   max-height: 75vh;
+  z-index: 1;
 }
 
 @media (max-width: 980px) {
@@ -57,7 +61,8 @@
   align-items: center;
   padding: 10px 15px;
   box-sizing: border-box;
-  border-top: 1px solid var(--shadow-color);
+  border-top: 1px solid var(--border-dialog);
+  z-index: 1;
 }
 
 @media (max-width: 980px) {

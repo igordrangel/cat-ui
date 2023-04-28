@@ -21,9 +21,7 @@
         <img
           #logotypeImage
           class="logotype"
-          [src]="(themeActive | async) === 'dark' && appConfig.logotype.negative
-                ? appConfig.logotype.negative
-                : appConfig.logotype.default"
+          [src]="getLogotype()"
           alt="Logotipo">
 
         <ng-content select="[menu-content]"></ng-content>

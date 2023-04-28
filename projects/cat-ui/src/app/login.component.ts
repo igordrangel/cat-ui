@@ -16,15 +16,14 @@ import { CatPrimaryButtonComponent } from '@catrx/ui/button/primary';
       <cat-dynamic-component
         class="logotype"
         [component]="data"
-      ></cat-dynamic-component>
+      />
 
-      <cat-form #form [config]="loginFormConfig"></cat-form>
+      <cat-form #form [config]="loginFormConfig" />
 
       <cat-primary-button
         class="w-100"
         type="submit"
-        [showLoader]="submitLoader$ | async"
-      >
+        [showLoader]="submitLoader$ | async">
         Entrar
       </cat-primary-button>
     </form>
@@ -35,10 +34,9 @@ import { CatPrimaryButtonComponent } from '@catrx/ui/button/primary';
         width: 250px;
       }
       .logotype {
-        display: block;
-        width: 100px;
-        height: 100px;
-        margin: 0 auto 20px;
+        display: flex;
+        justify-content: center;
+        margin: 0 0 40px;
       }
     `,
   ],
@@ -52,8 +50,7 @@ import { CatPrimaryButtonComponent } from '@catrx/ui/button/primary';
 })
 export class LoginComponent
   extends CatFormBase
-  implements CatDynamicComponentDataInterface
-{
+  implements CatDynamicComponentDataInterface {
   data: CatLogotypeApp;
 
   loginFormConfig = this.formService

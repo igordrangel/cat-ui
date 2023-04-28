@@ -18,16 +18,17 @@
   transition: .1s;
   color: var(--c-dropdown) !important;
   border-radius: 8px;
+  font-size: var(--font-size-mini);
 }
 
 .cat-dropdown-content .dropdown-item:hover {
   background-color: var(--bg-dropdown-hover);
-  color: var(--c-dropdown-hover)!important;
+  color: var(--c-dropdown-hover) !important;
 }
 
 .cat-dropdown-content .dropdown-item:active {
   background-color: var(--bg-dropdown-active);
-  color: var(--c-dropdown-active)!important;
+  color: var(--c-dropdown-active) !important;
 }
 
 .cat-dropdown-content {
@@ -51,7 +52,7 @@
 .cat-dropdown-content ul {
   list-style: none;
   margin: 0;
-  padding: 10px 20px;
+  padding: 10px;
 }
 
 cat-menu-tool {

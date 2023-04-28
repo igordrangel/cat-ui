@@ -4,7 +4,7 @@ import { BehaviorSubject } from 'rxjs/internal/BehaviorSubject';
 import { Observable } from 'rxjs/internal/Observable';
 import { CatOAuth2TokenInterface } from '../services/token/cat-token.service';
 
-export class CatLogotypeApp extends CatDynamicComponent {}
+export class CatLogotypeApp extends CatDynamicComponent { }
 
 export interface AppContainerConfig {
   config: AppConfig;
@@ -59,7 +59,9 @@ export interface AppNotification {
 
 export interface AppConfigLogotype {
   default: string;
+  defaultForUncollapse?: string;
   negative?: string;
+  negativeForUncollapse?: string;
   loadingClaims?: string;
 }
 

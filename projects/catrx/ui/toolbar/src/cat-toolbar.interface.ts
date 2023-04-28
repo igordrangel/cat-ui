@@ -1,7 +1,7 @@
 export interface CatToolbarConfig {
   icon?: string;
-  title: string;
-  breadcrumb: CatToolbarBreadcrumb[];
+  title?: string;
+  breadcrumb?: CatToolbarBreadcrumb[];
 }
 
 export interface CatToolbarBreadcrumb {

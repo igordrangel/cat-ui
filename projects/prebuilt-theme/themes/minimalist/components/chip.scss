@@ -3,11 +3,10 @@
   justify-content: center;
   align-items: center;
   box-sizing: border-box;
-  padding: 5px 15px;
-  border-radius: 20px;
-  font-size: 0.9196rem;
-  line-height: 11pt;
-  font-weight: bold;
+  padding: 3px 15px;
+  border-radius: 5px;
+  font-size: var(--font-size-mini);
+  font-weight: 300;
   background-color: var(--chip-bg-default);
   color: var(--chip-c-default);
 }

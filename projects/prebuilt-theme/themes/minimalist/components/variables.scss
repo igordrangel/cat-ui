@@ -6,6 +6,20 @@ $breadcrumb-divider-color-light: "%23212121";
 
 :root,
 main {
+  --font-size-micro: 0.6875rem;
+  --font-size-microPlus: 0.6875rem;
+  --font-size-mini: 0.75rem;
+  --font-size-miniPlus: 0.75rem;
+  --font-size-small: 0.8125rem;
+  --font-size-smallPlus: 0.8125rem;
+  --font-size-regular: 0.9375rem;
+  --font-size-regularPlus: 0.9375rem;
+  --font-size-large: 1.125rem;
+  --font-size-largePlus: 1.125rem;
+  --font-size-title1: 2.25rem;
+  --font-size-title2: 1.5rem;
+  --font-size-title3: 1.25rem;
+
   --bg-body: #fff;
   --font-color: #616161;
   --light-font-color: #f1f1f1;
@@ -28,6 +42,13 @@ main {
   --btn-c-primary: #fff;
   --btn-c-primary-hover: #fff;
   --btn-c-primary-active: #fff;
+
+  --btn-bg-default: #f1f1f1;
+  --btn-bg-default-hover: #ddd;
+  --btn-bg-default-active: #bbb;
+  --btn-c-default: #5e35b1;
+  --btn-c-default-hover: #5e35b1;
+  --btn-c-default-active: #5e35b1;
 
   --btn-bg-secondary: #757575;
   --btn-bg-secondary-hover: #616161;
@@ -90,7 +111,7 @@ main {
   --spinner-width: 1.5rem;
   --spinner-height: 1.5rem;
 
-  --c-toolbar: #616161;
+  --c-toolbar: #000;
   --bg-toolbar: #fff;
 
   --c-tooltip: #f1f1f1;
@@ -118,13 +139,13 @@ main {
   --bg-select-option-hover-active: rgba(0, 0, 0, 0.1);
 
   --menu-border: none;
-  --c-menu: rgba(255, 255, 255, 0.6);
-  --c-menu-hover: rgba(255, 255, 255, 0.8);
-  --c-menu-active: rgba(255, 255, 255, 1);
+  --c-menu: rgba(0, 0, 0, 0.6);
+  --c-menu-hover: rgba(0, 0, 0, 0.8);
+  --c-menu-active: rgba(0, 0, 0, 1);
   --c-menu-border-active: rgba(255, 255, 255, 1);
-  --bg-menu: rgba(0, 0, 0, 0.8);
-  --bg-menu-hover: rgba(0, 0, 0, 0.9);
-  --bg-menu-active: rgba(0, 0, 0, 1);
+  --bg-menu: #eee;
+  --bg-menu-hover: #ddd;
+  --bg-menu-active: #ccc;
 
   --c-dropdown: rgba(0, 0, 0, 0.6);
   --c-dropdown-hover: rgba(0, 0, 0, 0.8);
@@ -133,19 +154,25 @@ main {
   --bg-dropdown-hover: rgba(0, 0, 0, 0.2);
   --bg-dropdown-active: rgba(0, 0, 0, 0.3);
 
+  --bg-dialog: #eee;
+  --border-dialog: #ccc;
+
   --bg-avatar-image: #fff;
 
-  --shadow-color: rgba(0, 0, 0, .15);
+  --shadow-color: #ddd;
 
   --bg-progress-bar-container: #212121;
   --bg-progress-bar: #f1f1f1;
+
+  --c-scrollbar: #33354a;
+  --menu-c-scrollbar: #fff;
 
   --animate-duration: 200ms;
   --animate-delay: 0s;
 }
 
 main.dark {
-  --bg-body: #212121;
+  --bg-body: #191A23;
   --font-color: #f1f1f1;
   --light-font-color: #ddd;
   --disable-color: #313131;
@@ -161,12 +188,19 @@ main.dark {
   --btn-icon-bg-danger: #c62828;
   --btn-icon-c-danger: #ffcdd2;
 
-  --btn-bg-primary: #1E88E5;
-  --btn-bg-primary-hover: #1976D2;
-  --btn-bg-primary-active: #1565C0;
+  --btn-bg-primary: #575bc7;
+  --btn-bg-primary-hover: #5d61d6;
+  --btn-bg-primary-active: #575bc7;
   --btn-c-primary: #fff;
   --btn-c-primary-hover: #fff;
   --btn-c-primary-active: #fff;
+
+  --btn-bg-default: #272939;
+  --btn-bg-default-hover: #33354a;
+  --btn-bg-default-active: #272939;
+  --btn-c-default: #f1f1f1;
+  --btn-c-default-hover: #f1f1f1;
+  --btn-c-default-active: #f1f1f1;
 
   --btn-bg-secondary: #757575;
   --btn-bg-secondary-hover: #616161;
@@ -203,7 +237,7 @@ main.dark {
   --btn-c-info-hover: #212121;
   --btn-c-info-active: #212121;
 
-  --chip-bg-default: #212121;
+  --chip-bg-default: #272939;
   --chip-c-default: #f1f1f1;
   --chip-bg-success: #198754;
   --chip-c-success: #f1f1f1;
@@ -218,7 +252,7 @@ main.dark {
   --chip-bg-secondary: #6c757d;
   --chip-c-secondary: #f1f1f1;
 
-  --tab-bg: #0d6efd;
+  --tab-bg: #272939;
   --tab-c: #f1f1f1;
 
   --step-active-bg: #0d6efd;
@@ -230,15 +264,15 @@ main.dark {
   --spinner-height: 1.5rem;
 
   --c-toolbar: #f1f1f1;
-  --bg-toolbar: #212121;
+  --bg-toolbar: #191A23;
 
-  --c-tooltip: #f1f1f1;
-  --bg-tooltip: #212121;
+  --c-tooltip: #ccc;
+  --bg-tooltip: #191A23;
 
   --c-datatable-th: #9a9a9a;
-  --bg-datatable-th: #111111;
-  --border-color-datatable-th: #484848;
-  --bg-datatable-hover-bg: rgba(0, 0, 0, .3);
+  --bg-datatable-th: #21232e;
+  --border-color-datatable-th: #2c2d3c;
+  --bg-datatable-hover-bg: rgba(0, 0, 0, .1);
   --bg-datatable-hover-color: #fff;
 
   --c-form-valid-field: #1976d2;
@@ -256,40 +290,32 @@ main.dark {
 
   --bg-select-option-hover-active: rgba(0, 0, 0, 0.2);
 
-  --menu-border: none;
+  --menu-border: #2c2d3c;
   --c-menu: rgba(255, 255, 255, 0.6);
   --c-menu-hover: rgba(255, 255, 255, 0.8);
   --c-menu-active: rgba(255, 255, 255, 1);
   --c-menu-border-active: rgba(255, 255, 255, 1);
-  --bg-menu: rgba(0, 0, 0, 0.6);
-  --bg-menu-hover: rgba(0, 0, 0, 0.8);
-  --bg-menu-active: rgba(0, 0, 0, 1);
+  --bg-menu: #272939;
+  --bg-menu-hover: #272939;
+  --bg-menu-active: #272939;
 
-  --c-dropdown: rgba(255, 255, 255, 0.6);
-  --c-dropdown-hover: rgba(255, 255, 255, 0.8);
-  --c-dropdown-active: rgba(255, 255, 255, 1);
-  --bg-dropdown: #212121;
-  --bg-dropdown-hover: #111111;
-  --bg-dropdown-active: #070707;
+  --c-dropdown: #ccc;
+  --c-dropdown-hover: #ddd;
+  --c-dropdown-active: #ddd;
+  --bg-dropdown: #191A23;
+  --bg-dropdown-hover: #33354a;
+  --bg-dropdown-active: #33354a;
+
+  --bg-dialog: #272939;
+  --border-dialog: #3c3e57;
 
   --bg-avatar-image: #000;
 
-  --shadow-color: rgba(255, 255, 255, .15);
+  --shadow-color: #2c2d3c;
 
   --bg-progress-bar-container: #f1f1f1;
-  --bg-progress-bar: #616161;
-}
+  --bg-progress-bar: #272939;
 
-@font-face {
-  font-family: OpenSans;
-  src: url(../fonts/OpenSans/OpenSans-Light.woff),
-    url(../fonts/OpenSans/OpenSans-LightItalic.woff),
-    url(../fonts/OpenSans/OpenSans-Medium.woff),
-    url(../fonts/OpenSans/OpenSans-MediumItalic.woff),
-    url(../fonts/OpenSans/OpenSans-SemiBold.woff),
-    url(../fonts/OpenSans/OpenSans-SemiBoldItalic.woff),
-    url(../fonts/OpenSans/OpenSans-Bold.woff),
-    url(../fonts/OpenSans/OpenSans-BoldItalic.woff),
-    url(../fonts/OpenSans/OpenSans-ExtraBold.woff),
-    url(../fonts/OpenSans/OpenSans-ExtraBoldItalic.woff);
+  --c-scrollbar: #33354a;
+  --menu-c-scrollbar: #fff;
 }

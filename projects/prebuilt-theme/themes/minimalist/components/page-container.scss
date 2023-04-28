@@ -31,7 +31,7 @@ main cat-template-container div[menu-toolbar] {
   justify-content: space-between;
   align-items: center;
   flex-wrap: wrap;
-  border-top: 1px solid var(--primary-color-alpha);
+  border-top: 1px solid var(--shadow-color);
   width: 100%;
   padding: 5px;
   box-sizing: border-box;
@@ -204,7 +204,7 @@ main cat-template-container div[menu-toolbar] button:active {
 }
 
 .notification-item {
-  display: flex!important;
+  display: flex !important;
   justify-content: flex-start;
   align-items: center;
   padding: 5px 0;
