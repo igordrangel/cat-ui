@@ -1,0 +1,91 @@
+.trigger-button {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 0.3rem;
+  background-color: transparent;
+  border: 1px dashed var(--font-color);
+  color: var(--font-color);
+  border-radius: 4px;
+  font-size: 0.8rem;
+  padding: 2px 8px;
+  opacity: 0.6;
+  transition: .2s;
+}
+
+.trigger-button i {
+  font-size: 0.715rem;
+}
+
+.trigger-button:hover {
+  opacity: 1;
+}
+
+.options-container {
+  min-width: 250px;
+}
+
+.options-container form {
+  padding: 5px;
+  border-bottom: 1px solid var(--shadow-color);
+}
+
+.options-container form input {
+  border: none;
+  background-color: transparent;
+  padding: 5px 10px;
+  color: var(--font-color);
+  font-size: 0.875rem;
+}
+
+.options-container form input:focus {
+  outline: 0;
+}
+
+.options-content {
+  padding: 5px;
+}
+
+.options-content .dropdown-item {
+  display: flex !important;
+  justify-content: flex-start;
+  align-items: center;
+  font-size: 0.8rem !important;
+  gap: 0.5rem;
+}
+
+.options-content .dropdown-item i {
+  font-size: 0.715rem;
+}
+
+.form-option-content cat-form {
+  display: block;
+  padding: 10px 8px 2px;
+}
+
+.form-option-content nav {
+  padding: 5px 10px;
+  border-bottom: 1px solid var(--shadow-color);
+}
+
+.form-option-content nav .btn-back {
+  border: none;
+  color: var(--font-color);
+  opacity: 0.6;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 0.3rem;
+  font-size: 0.715rem;
+  border-radius: 5px;
+  padding: 2px 8px;
+  transition: .1s;
+}
+
+.form-option-content nav .btn-back:hover {
+  opacity: 1;
+}
+
+.form-option-content nav .btn-back i {
+  font-size: 0.715rem;
+}

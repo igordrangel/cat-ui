@@ -1,0 +1,35 @@
+<cat-dropdown position="bottom" [insideClick]="true">
+  <button trigger class="trigger-button" type="button">
+    <i class="fa-solid fa-plus"></i>
+    {{label}}
+  </button>
+  <div class="options-container" content>
+    <ng-container *ngIf="!activeFilterForm else filterFormField">
+      <form>
+        <input type="search" [placeholder]="label + '...'" />
+      </form>
+      
+      <div class="options-content">
+        <a 
+          class="dropdown-item" 
+          *ngFor="let option of config.options" 
+          (click)="chooseOption(option)">
+          <i *ngIf="option.icon" [class]="option.icon"></i>
+          {{option.name}}
+        </a>
+      </div>
+    </ng-container>
+    
+    <ng-template #filterFormField>
+      <div class="form-option-content">
+        <nav>
+          <button class="btn-back" (click)="back()">
+            <i class="fa-solid fa-chevron-left"></i>
+          </button>
+        </nav>
+
+        <cat-form [config]="activeFilterForm" />
+      </div>
+    </ng-template>
+  </div>
+</cat-dropdown>
