@@ -55,8 +55,10 @@ export class AppComponent {
 
     if (name === 'glass') {
       this.appConfig.logotype = {
-        default: '../assets/logotype-negative.svg',
+        default: '../assets/logotype.svg',
+        defaultForUncollapse: '../assets/logo.svg',
         negative: '../assets/logotype-negative.svg',
+        negativeForUncollapse: '../assets/logo-negative.svg',
       };
     } else {
       this.appConfig.logotype = {

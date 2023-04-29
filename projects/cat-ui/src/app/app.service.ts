@@ -109,6 +109,10 @@ export class AppService {
                 name: 'Expansive Panel',
                 routerLink: '/components/expansive-panel',
               },
+              {
+                name: 'Filtro por Demanda',
+                routerLink: '/components/on-demand-filter',
+              },
             ],
           },
           {

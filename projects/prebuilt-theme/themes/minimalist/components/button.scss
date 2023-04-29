@@ -232,6 +232,10 @@ button.loading {
   color: var(--btn-icon-c-default);
 }
 
+.cat-icon-button i {
+  font-size: 0.875rem;
+}
+
 .cat-icon-button:hover {
   opacity: .9;
 }

@@ -15,7 +15,7 @@
 
   <nav list-actions>
     <cat-icon-button
-      *ngIf="datasource?.length > 0"
+      [disabled]="datasource?.length === 0"
       (click)="export('Lista de Gatos')"
       icon="fa-solid fa-download"
       tooltip="Exportar Lista"

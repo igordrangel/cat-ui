@@ -1,3 +1,6 @@
-<button class="cat-icon-button" [ngClass]="color" [catTooltip]="tooltip ?? ''">
+<button 
+  class="cat-icon-button" 
+  [ngClass]="color" [catTooltip]="tooltip ?? ''"
+  [disabled]="disabled">
   <i [class]="icon"></i>
 </button>

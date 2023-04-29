@@ -117,6 +117,13 @@ const routes: Routes = [
             './pages/components/expansive-panel/page-expansive-panel.module'
           ).then((m) => m.PageExpansivePanelModule),
       },
+      {
+        path: 'on-demand-filter',
+        loadChildren: () =>
+          import(
+            './pages/components/on-demand-filter/page-on-demand-filter.module'
+          ).then((m) => m.PageOnDemandFilterModule),
+      },
     ],
   },
   {
@@ -163,4 +170,4 @@ const routes: Routes = [
   imports: [RouterModule.forRoot(routes, { useHash: true })],
   exports: [RouterModule],
 })
-export class AppRoutingModule {}
+export class AppRoutingModule { }

@@ -21,6 +21,10 @@ import { CatService } from './services/cat.service';
         display: block;
         margin: 20px 20px 10px;
       }
+      cat-datatable {
+        display: block;
+        border-top: 1px solid var(--shadow-color);
+      }
     `,
   ],
 })

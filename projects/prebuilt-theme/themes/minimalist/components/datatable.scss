@@ -2,13 +2,21 @@ cat-datatable .cat-datatable-menu:has(nav)>nav {
   display: flex;
   justify-content: flex-start;
   align-items: center;
-  padding: 3px 8px;
+  padding: 0 8px 0 0;
+  margin: 5px 0;
+}
+
+cat-datatable .cat-datatable-menu:has(nav)>nav i {
+  font-size: 0.875rem;
 }
 
 cat-datatable .cat-datatable-menu:has(nav)>nav[list-checked-actions] {
   border-radius: 4px;
   background-color: var(--shadow-color);
   margin-right: 0.5rem;
+  padding: 0 5px;
+  margin-left: 5px;
+  gap: 0.3rem;
 }
 
 cat-datatable .cat-datatable-menu:has(nav) {

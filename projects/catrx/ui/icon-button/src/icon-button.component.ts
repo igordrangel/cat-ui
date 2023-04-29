@@ -19,4 +19,5 @@ export class IconButtonComponent {
   @Input() icon: string;
   @Input() color?: CatIconButtonColor;
   @Input() tooltip?: string;
+  @Input() disabled?: boolean;
 }
