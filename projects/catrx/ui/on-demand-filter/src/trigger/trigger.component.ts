@@ -1,4 +1,4 @@
-import { Component, Input, OnDestroy, OnInit } from "@angular/core";
+import { Component, ElementRef, Input, OnDestroy, OnInit, ViewChild } from "@angular/core";
 import { CatFormConfig, CatFormFieldConfig, CatFormSelectOptions } from "@catrx/ui/form";
 import { FilterConfig, FilterOption } from "../factory/filter-options.types";
 import { firstValueFrom } from "rxjs/internal/firstValueFrom";
@@ -18,6 +18,8 @@ export class TriggerComponent implements OnInit, OnDestroy {
   activeFilterForm?: CatFormConfig<any>;
   filteredOptions: FilterOption[] = [];
   filterOptionsControl = new FormControl();
+
+  @ViewChild('filterFormContent', { static: false }) private elFilterFormContent?: ElementRef<HTMLDivElement>
 
   private destroySubscriptions$ = new Subject<boolean>();
 
@@ -88,13 +90,14 @@ export class TriggerComponent implements OnInit, OnDestroy {
         this.config.selectedOptions.next(selectedOptions);
       }
 
+      this.animateFormOption('in');
       this.activeFilterForm = optionConfig.formConfig;
     }, 50)
   }
 
   back() {
     setTimeout(() => {
-      this.activeFilterForm = undefined;
+      this.animateFormOption('out', () => this.activeFilterForm = undefined);
     }, 50)
   }
 
@@ -162,6 +165,23 @@ export class TriggerComponent implements OnInit, OnDestroy {
 
           this.config.onChange(payload);
         })
+    }
+  }
+
+  private animateFormOption(type: 'in' | 'out', cb?: () => void) {
+    const formContent = this.elFilterFormContent?.nativeElement;
+
+    if (formContent) {
+      formContent.classList.remove('animate__fadeInRight');
+      formContent.classList.remove('animate__fadeOutRight');
+
+      if (type === 'in') {
+        formContent.classList.add('animate__fadeInRight');
+      } else {
+        formContent.classList.add('animate__fadeOutRight');
+        if (cb)
+          setTimeout(() => cb(), 200);
+      }
     }
   }
 }

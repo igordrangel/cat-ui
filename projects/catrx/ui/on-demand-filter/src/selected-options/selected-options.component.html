@@ -1,4 +1,4 @@
-<div class="cat-on-demand-filter-selected-options-content">
+<div class="cat-on-demand-filter-selected-options-content animate__animated animate__fadeIn">
   <button 
     *ngIf="(selectedOptions$ | async)?.length > 0" 
     type="button" 
@@ -8,7 +8,7 @@
     <i class="fa-solid fa-filter-circle-xmark"></i>
   </button>
 
-  <div class="option-content" *ngFor="let option of selectedOptions$ | async;let i = index">
+  <div class="option-content animate__animated animate__fadeIn" *ngFor="let option of selectedOptions$ | async;let i = index">
     <span class="label">
       <i *ngIf="option.icon" [class]="option.icon"></i>
       {{option.label}}

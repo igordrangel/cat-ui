@@ -25,12 +25,12 @@
   min-width: 250px;
 }
 
-.cat-on-demand-filter.options-container form {
+.cat-on-demand-filter.options-container form.filter-options {
   padding: 5px;
   border-bottom: 1px solid var(--shadow-color);
 }
 
-.cat-on-demand-filter.options-container form input {
+.cat-on-demand-filter.options-container form.filter-options input {
   border: none;
   background-color: transparent;
   padding: 5px 10px;
@@ -39,7 +39,7 @@
   width: 100%;
 }
 
-.cat-on-demand-filter.options-container form input:focus {
+.cat-on-demand-filter.options-container form.filter-options input:focus {
   outline: 0;
 }
 

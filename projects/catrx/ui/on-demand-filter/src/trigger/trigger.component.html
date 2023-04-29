@@ -5,11 +5,11 @@
   </button>
   <div class="cat-on-demand-filter options-container" content>
     <ng-container *ngIf="!activeFilterForm else filterFormField">
-      <form>
+      <form class="filter-options">
         <input type="search" placeholder="Filtrar opções..." [formControl]="filterOptionsControl" />
       </form>
       
-      <div *ngIf="filteredOptions.length > 0 else emptyOptions" class="options-content">
+      <div *ngIf="filteredOptions.length > 0 else emptyOptions" class="options-content animate__animated animate__fadeIn">
         <a 
           class="dropdown-item" 
           *ngFor="let option of filteredOptions" 
@@ -20,7 +20,7 @@
       </div>
 
       <ng-template #emptyOptions>
-        <div class="empty-options">
+        <div class="empty-options animate__animated animate__fadeIn">
           <i class="fa-solid fa-filter-circle-xmark"></i>
           <h2>Nenhuma opção encontrada</h2>
         </div>
@@ -28,7 +28,7 @@
     </ng-container>
     
     <ng-template #filterFormField>
-      <div class="form-option-content">
+      <div #filterFormContent class="form-option-content animate__animated animate__fadeInRight">
         <nav>
           <button class="btn-back" (click)="back()">
             <i class="fa-solid fa-chevron-left"></i>
