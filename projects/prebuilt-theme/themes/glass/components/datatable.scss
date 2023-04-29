@@ -25,7 +25,8 @@ cat-datatable .cat-datatable-menu:has(nav) {
   display: flex;
   justify-content: flex-start;
   align-items: center;
-  padding: 3px 8px;
+  padding: 3px 8px 3px 15px;
+  min-height: 57px;
 }
 
 cat-datatable .table-container {
@@ -62,6 +63,11 @@ cat-datatable .table th {
   font-weight: normal;
   border: none;
   height: 35px;
+}
+
+cat-datatable .table tr th:first-child,
+cat-datatable .table tr td:first-child {
+  padding-left: 30px;
 }
 
 cat-datatable .table th.sorted {
@@ -105,7 +111,7 @@ cat-datatable .table tr {
   transition: background 0.2s;
 }
 
-cat-datatable .table-hover tr:hover > * {
+cat-datatable .table-hover tr:hover>* {
   transition: 0.2s;
 }
 

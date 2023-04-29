@@ -1,0 +1,22 @@
+<div class="cat-on-demand-filter-selected-options-content">
+  <button 
+    *ngIf="(selectedOptions$ | async)?.length > 0" 
+    type="button" 
+    class="btn-clear" 
+    catTooltip="Limpar Filtro"
+    (click)="selectedOptions$.next([])">
+    <i class="fa-solid fa-filter-circle-xmark"></i>
+  </button>
+
+  <div class="option-content" *ngFor="let option of selectedOptions$ | async;let i = index">
+    <span class="label">
+      <i *ngIf="option.icon" [class]="option.icon"></i>
+      {{option.label}}
+    </span>
+    <span class="comparator"> = </span>
+    <span class="value">{{option.previewValue}}</span>
+    <span class="btn-remove" catTooltip="Remover Filtro" (click)="remove(i)">
+      <i class="fa-solid fa-xmark"></i>
+    </span>
+  </div>
+</div>

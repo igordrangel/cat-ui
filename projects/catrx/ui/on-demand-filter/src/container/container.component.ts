@@ -4,8 +4,7 @@ import { Component } from "@angular/core";
   selector: 'cat-on-demand-filter-container',
   template: `
     <div class="cat-on-demand-filter-container">
-      <ng-content select='[trigger-container]'></ng-content>
-      <ng-content select='[selected-options]'></ng-content>
+      <ng-content />
     </div>`
 })
 export class ContainerComponent { }

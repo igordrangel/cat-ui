@@ -3,6 +3,39 @@
     <ng-content select="nav[list-checked-actions]"></ng-content>
   </ng-container>
   <ng-content select="nav[list-actions]"></ng-content>
+
+  <div class="space"></div>
+
+  <div class="page-size-content mr-20">
+    <label>Itens por página: </label>
+    <select
+      class="form-select form-select-sm"
+      [(ngModel)]="config.limitItemPerPage"
+      (change)="handlePageSizeChange()">
+      <option selected [ngValue]="10">10</option>
+      <option [ngValue]="30">30</option>
+      <option [ngValue]="50">50</option>
+      <option [ngValue]="100">100</option>
+    </select>
+  </div>
+
+  <div class="pagination-content">
+    <span class="page-info">
+      {{ currentPage > 1
+        ? ((totalItemsPage ?? 0) * (currentPage - 1)) + 1
+        : currentPage}} -
+      {{ getPaginateProps().totalItems > ((totalItemsPage ?? 0) * currentPage)
+        ? (totalItemsPage ?? 0) * currentPage
+        : getPaginateProps().totalItems }} de
+      {{ getPaginateProps().totalItems }}
+    </span>
+    <pagination-controls
+      class="my-pagination"
+      previousLabel="Anterior"
+      nextLabel="Próximo"
+      (pageChange)="handlePageChange($event)"
+    />
+  </div>
 </nav>
 <div class="table-responsive table-container">
   <table class="table table-hover">
@@ -171,43 +204,5 @@
         </ng-container>
       </tbody>
     </ng-container>
-    <tfoot *ngIf="config">
-      <tr>
-        <td [attr.colspan]="getFooterColspan()" class="text-left">
-          <div class="page-size-content">
-            <label>Itens por página: </label>
-            <select
-              class="form-select form-select-sm"
-              [(ngModel)]="config.limitItemPerPage"
-              (change)="handlePageSizeChange()"
-            >
-              <option selected [ngValue]="10">10</option>
-              <option [ngValue]="30">30</option>
-              <option [ngValue]="50">50</option>
-              <option [ngValue]="100">100</option>
-            </select>
-          </div>
-        </td>
-        <td colspan="50">
-          <div class="pagination-content">
-            <span class="page-info">
-              {{ currentPage > 1
-                ? ((totalItemsPage ?? 0) * (currentPage - 1)) + 1
-                : currentPage}} -
-              {{ getPaginateProps().totalItems > ((totalItemsPage ?? 0) * currentPage)
-                ? (totalItemsPage ?? 0) * currentPage
-                : getPaginateProps().totalItems }} de
-              {{ getPaginateProps().totalItems }}
-            </span>
-            <pagination-controls
-              class="my-pagination"
-              previousLabel="Anterior"
-              nextLabel="Próximo"
-              (pageChange)="handlePageChange($event)"
-            ></pagination-controls>
-          </div>
-        </td>
-      </tr>
-    </tfoot>
   </table>
 </div>

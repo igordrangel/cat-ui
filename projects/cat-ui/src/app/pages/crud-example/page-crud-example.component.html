@@ -1,9 +1,15 @@
-<cat-toolbar [config]="getToolbarInfo(true)">
-  <nav buttons>
-    <cat-primary-button (click)="openDialog()">Incluir Gato</cat-primary-button>
-  </nav>
-</cat-toolbar>
-<cat-form [config]="filterConfig"></cat-form>
+<cat-on-demand-filter-container>
+  <cat-toolbar [config]="getToolbarInfo(true)" [spaceBetween]="false">
+    <nav buttons>
+      <div [catOnDemandFilterTrigger]="filterConfig">
+        Buscar
+      </div>
+    </nav>
+  </cat-toolbar>
+</cat-on-demand-filter-container>
+
+<div [catOnDemandFilterSelectedOptions]="filterConfig.selectedOptions"></div>
+
 <cat-datatable [config]="listConfig">
   <nav list-checked-actions>
     <cat-icon-button
@@ -19,6 +25,12 @@
       (click)="export('Lista de Gatos')"
       icon="fa-solid fa-download"
       tooltip="Exportar Lista"
+    />
+    
+    <cat-icon-button 
+      (click)="openDialog()"
+      icon="fa-solid fa-circle-plus"
+      tooltip="Incluir Gato"
     />
   </nav>
 </cat-datatable>

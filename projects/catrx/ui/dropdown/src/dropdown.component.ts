@@ -1,5 +1,5 @@
 import { DropdownConfig } from './cat-dropdown.directive';
-import { Component, Input, ViewChild, TemplateRef } from '@angular/core';
+import { Component, Input, ViewChild, TemplateRef, Output, EventEmitter } from '@angular/core';
 import { CatDropdownPosition } from './dropdown.interface';
 
 @Component({
@@ -10,6 +10,7 @@ export class CatDropdownComponent {
   @Input() position: CatDropdownPosition = 'top';
   @Input() insideClick = true;
   @Input() disabled = false;
+  @Output() onClose = new EventEmitter<boolean>();
 
   @ViewChild('dropdownContent') dropdownContent: TemplateRef<any>;
 
@@ -19,6 +20,9 @@ export class CatDropdownComponent {
       disabled: this.disabled,
       insideClick: this.insideClick,
       position: this.position,
+      onClose: (isClosed: boolean) => {
+        if (isClosed) this.onClose.emit(isClosed);
+      }
     } as DropdownConfig;
   }
 }

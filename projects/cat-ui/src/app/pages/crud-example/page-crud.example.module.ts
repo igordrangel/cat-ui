@@ -10,6 +10,7 @@ import { PageCRUDExampleRoutingModule } from './page-crud-example.routing.module
 import { CatIconButtonModule } from '@catrx/ui/icon-button';
 import { CatPhotoComponent } from './cat-photo.component';
 import { CatPrimaryButtonComponent } from '@catrx/ui/button/primary';
+import { CatOnDemandFilterModule } from '@catrx/ui/on-demand-filter';
 
 @NgModule({
   declarations: [PageCRUDExampleComponent, CatPhotoComponent],
@@ -22,7 +23,8 @@ import { CatPrimaryButtonComponent } from '@catrx/ui/button/primary';
     CatConfirmModule,
     CatIconButtonModule,
     CatPrimaryButtonComponent,
+    CatOnDemandFilterModule,
     PageCRUDExampleRoutingModule,
   ],
 })
-export class PageCRUDExampleModule {}
+export class PageCRUDExampleModule { }

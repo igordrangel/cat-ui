@@ -1,9 +1,11 @@
 <cat-on-demand-filter-container>
-  <ng-container trigger-container>    
-    <cat-toolbar [config]="getToolbarInfo(true)" [spaceBetween]="false">
-      <nav buttons>
-        <cat-on-demand-filter-trigger  label="Buscar" [config]="filterConfig"/>
-      </nav>
-    </cat-toolbar>
-  </ng-container>
+  <cat-toolbar [config]="getToolbarInfo(true)" [spaceBetween]="false">
+    <nav buttons>
+      <div [catOnDemandFilterTrigger]="filterConfig">
+        Buscar
+      </div>
+    </nav>
+  </cat-toolbar>
+
+  <div [catOnDemandFilterSelectedOptions]="filterConfig.selectedOptions"></div>
 </cat-on-demand-filter-container>

@@ -1,23 +1,30 @@
-<cat-dropdown position="bottom" [insideClick]="true">
+<cat-dropdown class="cat-on-demand-filter" position="bottom" [insideClick]="true" (onClose)="activeFilterForm = undefined">
   <button trigger class="trigger-button" type="button">
     <i class="fa-solid fa-plus"></i>
     {{label}}
   </button>
-  <div class="options-container" content>
+  <div class="cat-on-demand-filter options-container" content>
     <ng-container *ngIf="!activeFilterForm else filterFormField">
       <form>
-        <input type="search" [placeholder]="label + '...'" />
+        <input type="search" placeholder="Filtrar opções..." [formControl]="filterOptionsControl" />
       </form>
       
-      <div class="options-content">
+      <div *ngIf="filteredOptions.length > 0 else emptyOptions" class="options-content">
         <a 
           class="dropdown-item" 
-          *ngFor="let option of config.options" 
+          *ngFor="let option of filteredOptions" 
           (click)="chooseOption(option)">
           <i *ngIf="option.icon" [class]="option.icon"></i>
-          {{option.name}}
+          {{getOptionConfig(option).fieldConfig.label}}
         </a>
       </div>
+
+      <ng-template #emptyOptions>
+        <div class="empty-options">
+          <i class="fa-solid fa-filter-circle-xmark"></i>
+          <h2>Nenhuma opção encontrada</h2>
+        </div>
+      </ng-template>
     </ng-container>
     
     <ng-template #filterFormField>

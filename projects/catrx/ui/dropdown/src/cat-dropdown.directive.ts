@@ -17,12 +17,14 @@ import { startWith } from 'rxjs/internal/operators/startWith';
 import { Subscription } from 'rxjs/internal/Subscription';
 import { DropdownContentComponent } from './content/dropdown-content.component';
 import { CatDropdownPosition } from './dropdown.interface';
+import { Subject } from 'rxjs';
 
 export interface DropdownConfig {
   insideClick: boolean;
   disabled: boolean;
   templateRef: TemplateRef<any>;
-  position: CatDropdownPosition
+  position: CatDropdownPosition;
+  onClose: (isClosed: boolean) => void;
 }
 
 @Directive({
@@ -73,6 +75,7 @@ export class CatDropdownDirective implements OnDestroy {
       this.componentRef.destroy();
       this.componentRef = null;
       this.wasTrigged = false;
+      this.catDropdown.onClose(true);
     }
     this.intervalObserveTriggerDestroy?.unsubscribe();
   }
@@ -191,6 +194,6 @@ export class CatDropdownDirective implements OnDestroy {
   }
 
   private calcMiddlePosition(value: number) {
-    return value/2
+    return value / 2
   }
 }

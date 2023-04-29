@@ -1,0 +1,184 @@
+.cat-on-demand-filter .trigger-button {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 0.3rem;
+  background-color: transparent;
+  border: 1px dashed var(--font-color);
+  color: var(--font-color);
+  border-radius: 4px;
+  font-size: 0.8rem;
+  padding: 2px 8px;
+  opacity: 0.6;
+  transition: .2s;
+}
+
+.cat-on-demand-filter .trigger-button i {
+  font-size: 0.715rem;
+}
+
+.cat-on-demand-filter .trigger-button:hover {
+  opacity: 1;
+}
+
+.cat-on-demand-filter.options-container {
+  min-width: 250px;
+}
+
+.cat-on-demand-filter.options-container form {
+  padding: 5px;
+  border-bottom: 1px solid var(--shadow-color);
+}
+
+.cat-on-demand-filter.options-container form input {
+  border: none;
+  background-color: transparent;
+  padding: 5px 10px;
+  color: var(--font-color);
+  font-size: 0.875rem;
+  width: 100%;
+}
+
+.cat-on-demand-filter.options-container form input:focus {
+  outline: 0;
+}
+
+.cat-on-demand-filter .options-content {
+  padding: 5px;
+}
+
+.cat-on-demand-filter .empty-options {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  flex-direction: column;
+  box-sizing: border-box;
+  padding: 1.5rem 3rem;
+  opacity: 0.7;
+}
+
+.cat-on-demand-filter .empty-options h2 {
+  margin: 0;
+  padding: 0;
+  font-size: 1.125rem;
+  font-weight: 400;
+}
+
+.cat-on-demand-filter .empty-options i {
+  font-size: 1.5rem;
+}
+
+.cat-on-demand-filter .options-content .dropdown-item {
+  display: flex !important;
+  justify-content: flex-start;
+  align-items: center;
+  font-size: 0.8rem !important;
+  gap: 0.3rem;
+  padding-left: 5px;
+}
+
+.cat-on-demand-filter .options-content .dropdown-item i {
+  width: 26px;
+  text-align: center;
+}
+
+.cat-on-demand-filter .form-option-content cat-form {
+  display: block;
+  padding: 10px 8px 2px;
+}
+
+.cat-on-demand-filter .form-option-content nav {
+  padding: 5px 10px;
+  border-bottom: 1px solid var(--shadow-color);
+}
+
+.cat-on-demand-filter .form-option-content nav .btn-back {
+  border: none;
+  color: var(--font-color);
+  opacity: 0.6;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 0.3rem;
+  font-size: 0.715rem;
+  border-radius: 5px;
+  padding: 2px 8px;
+  transition: .1s;
+}
+
+.cat-on-demand-filter .form-option-content nav .btn-back:hover {
+  opacity: 1;
+}
+
+.cat-on-demand-filter .form-option-content nav .btn-back i {
+  font-size: 0.715rem;
+}
+
+.cat-on-demand-filter-selected-options-content {
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  gap: 0.4rem;
+  box-sizing: border-box;
+}
+
+.cat-on-demand-filter-selected-options-content:has(div.option-content) {
+  padding: 10px 10px 10px 20px;
+  background-color: rgba(0, 0, 0, 0.08);
+  border-bottom: 1px solid var(--shadow-color);
+}
+
+.cat-on-demand-filter-selected-options-content .btn-clear {
+  border: none;
+  background-color: transparent;
+  color: var(--font-color);
+  padding: 0;
+  margin: 0 0.5rem;
+  transition: .2s;
+  opacity: .6;
+}
+
+.cat-on-demand-filter-selected-options-content .btn-clear:hover {
+  opacity: 1;
+}
+
+.cat-on-demand-filter-selected-options-content .option-content {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 1px;
+}
+
+.cat-on-demand-filter-selected-options-content .option-content span:first-child {
+  border-radius: 5px 0 0 5px;
+}
+
+.cat-on-demand-filter-selected-options-content .option-content span:last-child {
+  border-radius: 0 5px 5px 0;
+}
+
+.cat-on-demand-filter-selected-options-content .option-content span {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 0.3rem;
+  height: 1.5rem;
+  background-color: var(--shadow-color);
+  padding: 2px 10px;
+  font-size: 0.8rem;
+  opacity: 0.9;
+  transition: .1s;
+}
+
+.cat-on-demand-filter-selected-options-content .option-content span.btn-remove {
+  cursor: pointer;
+}
+
+.cat-on-demand-filter-selected-options-content .option-content span.btn-remove:hover {
+  opacity: 1;
+}
+
+.cat-on-demand-filter-selected-options-content .option-content span i {
+  font-size: 0.8rem;
+}

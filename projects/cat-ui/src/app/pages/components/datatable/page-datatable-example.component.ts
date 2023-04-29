@@ -12,6 +12,10 @@ import { PageDatatableExampleService } from './page-datatable-example.service';
         display: block;
         margin: 20px 20px 15px;
       }
+      cat-datatable {
+        border-top: 1px solid var(--shadow-color);
+        height: calc(100vh - 146px);
+      }
     `,
   ],
 })
@@ -56,5 +60,5 @@ export class PageDatatableExampleComponent {
     private formService: CatFormService,
     private datatableService: CatDatatableService,
     private service: PageDatatableExampleService
-  ) {}
+  ) { }
 }

@@ -12,6 +12,7 @@ import { CatXlsxService } from '@catrx/ui/utils/xlsx';
 import { CatPhotoComponent } from './cat-photo.component';
 import { Cat, CatFilter, CatSexSelectOptions } from './services/cat.interface';
 import { CatService } from './services/cat.service';
+import { CatOnDemandFilterService } from '@catrx/ui/on-demand-filter/src/cat-on-demand-filter.service';
 
 @Component({
   templateUrl: './page-crud-example.component.html',
@@ -21,10 +22,6 @@ import { CatService } from './services/cat.service';
         display: block;
         margin: 20px 20px 10px;
       }
-      cat-datatable {
-        display: block;
-        border-top: 1px solid var(--shadow-color);
-      }
     `,
   ],
 })
@@ -32,9 +29,18 @@ export class PageCRUDExampleComponent extends CatCRUDComponentBase<
   CatFilter,
   Cat
 > {
-  filterConfig = this.filterFormBuilder
-    .search('Filtro', 'filter', (builder) => builder.grid(3).generate())
-    .onChange((data) => this.filterValueChanges$.next(data?.filter))
+  filterConfig = this.onDemandFilterService
+    .build()
+    .setOption((formBuilder) => formBuilder
+      .select('Sexo', 'sex', builder => builder
+        .setOptions(CatSexSelectOptions)
+        .generate()
+      ), 'fa-solid fa-genderless')
+    .setOption((formBuilder) => formBuilder
+      .text('Raça', 'race', builder => builder
+        .generate()
+      ), 'fa-solid fa-paw')
+    .onChange((data) => this.filterValueChanges$.next(data))
     .generate();
 
   listConfig = this.datatableService
@@ -70,7 +76,8 @@ export class PageCRUDExampleComponent extends CatCRUDComponentBase<
     csvService: CatCsvService,
     xlsxService: CatXlsxService,
     loaderService: CatLoaderPageService,
-    snackbarService: CatSnackbarService
+    snackbarService: CatSnackbarService,
+    private onDemandFilterService: CatOnDemandFilterService
   ) {
     super(
       formService,

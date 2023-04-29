@@ -1,13 +1,19 @@
+cat-datatable {
+  position: relative;
+  display: block;
+}
+
 cat-datatable .cat-datatable-menu:has(nav)>nav {
   display: flex;
   justify-content: flex-start;
   align-items: center;
   padding: 0 8px 0 0;
   margin: 5px 0;
+  gap: 0.3rem;
 }
 
 cat-datatable .cat-datatable-menu:has(nav)>nav i {
-  font-size: 0.875rem;
+  font-size: 1rem;
 }
 
 cat-datatable .cat-datatable-menu:has(nav)>nav[list-checked-actions] {
@@ -23,13 +29,14 @@ cat-datatable .cat-datatable-menu:has(nav) {
   display: flex;
   justify-content: flex-start;
   align-items: center;
-  padding: 3px 8px;
+  padding: 3px 8px 3px 22px;
+  min-height: 57px;
 }
 
 cat-datatable .table-container {
   overflow: auto;
-  max-height: 500px;
   width: 100%;
+  height: 100%;
   position: relative;
 }
 
@@ -60,6 +67,11 @@ cat-datatable .table th {
   font-weight: normal;
   border: none;
   height: 35px;
+}
+
+cat-datatable .table tr th:first-child,
+cat-datatable .table tr td:first-child {
+  padding-left: 30px;
 }
 
 cat-datatable .table th.sorted {
@@ -191,8 +203,7 @@ cat-datatable .datatable-loader {
   justify-content: center;
   align-items: center;
   width: calc(100% - 1px);
-  height: 421px;
-  background-color: rgba(0, 0, 0, .2);
+  height: 25vh;
   z-index: 1;
   box-sizing: border-box;
 }
