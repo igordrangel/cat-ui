@@ -425,6 +425,8 @@ cat-form-list-item fieldset .title {
   display: flex;
   justify-content: space-between;
   align-items: center;
+  flex-wrap: wrap;
+  gap: 0.5rem;
   width: 100%;
   padding: 0 5px 15px;
 }

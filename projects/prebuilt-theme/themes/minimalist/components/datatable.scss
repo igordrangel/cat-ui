@@ -228,6 +228,11 @@ cat-datatable .empty-list-container i {
   cat-datatable .cat-datatable-menu:has(nav)>nav {
     gap: 0.6rem;
   }
+
+  cat-datatable .cat-datatable-menu:has(nav) {
+    flex-wrap: wrap;
+    gap: 0.6rem;
+  }
 }
 
 .ngx-pagination {

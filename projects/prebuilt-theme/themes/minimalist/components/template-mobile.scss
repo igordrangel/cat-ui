@@ -8,9 +8,9 @@ cat-template-mobile .template-content {
 cat-template-mobile .template-content aside {
   position: absolute;
   height: 100vh;
-  width: calc(100vw - 30px);
-  left: calc((100vw - 30px) * -1);
-  max-width: calc(100vw - 30px);
+  width: 70vw;
+  left: -70vw;
+  max-width: 70vw;
   padding: 40px 0 0;
   transition: ease-in-out .2s;
   display: flex;
@@ -21,6 +21,15 @@ cat-template-mobile .template-content aside {
   border-right: 1px solid var(--primary-color-alpha);
   background-color: var(--bg-body);
   z-index: 99999;
+}
+
+cat-template-mobile .template-content aside.show::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 70vw;
+  width: 30vw;
+  height: 100%;
 }
 
 cat-template-mobile .template-content aside.show {
@@ -64,23 +73,22 @@ cat-template-mobile .logotype {
 
 cat-template-mobile .btn-menu-collapse {
   position: absolute;
-  top: 60px;
-  right: -15px;
-  background-color: var(--bg-body);
-  border: 1px solid var(--primary-color-alpha);
+  top: 20px;
+  left: 15px;
+  background-color: transparent;
+  border: none;
   width: 30px;
   height: 30px;
   font-size: 1rem;
   border-radius: 50%;
   transition: ease-in-out .2s;
   padding: 0;
-  color: var(--primary-color);
+  color: var(--c-menu);
   z-index: 1;
 }
 
 cat-template-mobile .btn-menu-collapse:hover {
-  background-color: var(--btn-icon-bg-primary);
-  color: var(--btn-icon-c-primary);
+  color: var(--c-menu-hover);
 }
 
 cat-template-mobile .toolbar-content {
