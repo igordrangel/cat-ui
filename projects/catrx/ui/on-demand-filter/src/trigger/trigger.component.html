@@ -1,4 +1,9 @@
-<cat-dropdown class="cat-on-demand-filter" position="bottom" [insideClick]="true" (onClose)="activeFilterForm = undefined">
+<cat-dropdown 
+  class="cat-on-demand-filter" 
+  position="bottom"
+  #dropdownFilter 
+  [insideClick]="true" 
+  (onClose)="activeFilterForm = undefined">
   <button trigger class="trigger-button" type="button">
     <i class="fa-solid fa-plus"></i>
     {{label}}

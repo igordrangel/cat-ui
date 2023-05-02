@@ -205,9 +205,10 @@ export class FormFactory<DataType> {
 
   public radio(
     name: string,
-    field: (builder: FormRadioFactory) => CatFormFieldOptions
+    field: (builder: FormRadioFactory) => CatFormFieldOptions,
+    label?: string
   ) {
-    this.field('radio', '', name, field);
+    this.field('radio', label ?? '', name, field);
     return this;
   }
 

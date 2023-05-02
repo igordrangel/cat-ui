@@ -17,7 +17,8 @@ import { startWith } from 'rxjs/internal/operators/startWith';
 import { Subscription } from 'rxjs/internal/Subscription';
 import { DropdownContentComponent } from './content/dropdown-content.component';
 import { CatDropdownPosition } from './dropdown.interface';
-import { Subject } from 'rxjs';
+import { Subject } from 'rxjs/internal/Subject';
+import { takeUntil } from 'rxjs/internal/operators/takeUntil';
 
 export interface DropdownConfig {
   insideClick: boolean;
@@ -25,6 +26,7 @@ export interface DropdownConfig {
   templateRef: TemplateRef<any>;
   position: CatDropdownPosition;
   onClose: (isClosed: boolean) => void;
+  close: Subject<boolean>;
 }
 
 @Directive({
@@ -36,6 +38,7 @@ export class CatDropdownDirective implements OnDestroy {
   private wasTrigged = false;
   private componentRef: ComponentRef<DropdownContentComponent> = null;
   private intervalObserveTriggerDestroy: Subscription;
+  private destroySubscriptions$ = new Subject();
 
   constructor(
     private elementRef: ElementRef<HTMLElement>,
@@ -76,6 +79,7 @@ export class CatDropdownDirective implements OnDestroy {
       this.componentRef = null;
       this.wasTrigged = false;
       this.catDropdown.onClose(true);
+      this.destroySubscriptions$.next(true);
     }
     this.intervalObserveTriggerDestroy?.unsubscribe();
   }
@@ -116,6 +120,10 @@ export class CatDropdownDirective implements OnDestroy {
   private showDropdown() {
     if (this.componentRef !== null) {
       this.componentRef.instance.visible = true;
+      this.catDropdown
+        .close
+        .pipe(takeUntil(this.destroySubscriptions$))
+        .subscribe(() => this.destroy());
     }
   }
 

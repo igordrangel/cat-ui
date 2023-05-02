@@ -1,12 +1,14 @@
 import { Component, ElementRef, Input, OnDestroy, OnInit, ViewChild } from "@angular/core";
-import { CatFormConfig, CatFormFieldConfig, CatFormSelectOptions } from "@catrx/ui/form";
-import { FilterConfig, FilterOption } from "../factory/filter-options.types";
-import { firstValueFrom } from "rxjs/internal/firstValueFrom";
-import { Subject } from "rxjs/internal/Subject";
-import { takeUntil } from "rxjs/internal/operators/takeUntil";
-import { debounceTime } from "rxjs/internal/operators/debounceTime";
 import { FormControl } from "@angular/forms";
-import { startWith } from "rxjs";
+import { CatDropdownComponent } from "@catrx/ui/dropdown";
+import { CatFormConfig, CatFormFieldConfig, CatFormListOptions, CatFormRadioOptions, CatFormSelectOptions } from "@catrx/ui/form";
+import { format } from "@koalarx/utils/operators/date";
+import { Subject } from "rxjs/internal/Subject";
+import { firstValueFrom } from "rxjs/internal/firstValueFrom";
+import { debounceTime } from "rxjs/internal/operators/debounceTime";
+import { startWith } from "rxjs/internal/operators/startWith";
+import { takeUntil } from "rxjs/internal/operators/takeUntil";
+import { FilterConfig, FilterOption } from "../factory/filter-options.types";
 
 @Component({
   templateUrl: './trigger.component.html'
@@ -20,6 +22,7 @@ export class TriggerComponent implements OnInit, OnDestroy {
   filterOptionsControl = new FormControl();
 
   @ViewChild('filterFormContent', { static: false }) private elFilterFormContent?: ElementRef<HTMLDivElement>
+  @ViewChild('dropdownFilter') private dropdownFilter: CatDropdownComponent;
 
   private destroySubscriptions$ = new Subject<boolean>();
 
@@ -116,16 +119,23 @@ export class TriggerComponent implements OnInit, OnDestroy {
   }
 
   private async getPreviewValue(fieldConfig: CatFormFieldConfig, value: any) {
+    let options: CatFormListOptions[];
     switch (fieldConfig.type) {
       case "date":
+        return format(value, 'DD/MM/YYYY');
       case "datetime-local":
+        return format(value, 'DD/MM/YYYY HH:mm');
       case "time":
         return value;
       case "select":
       case "autocomplete":
-      case "checkbox":
+        options = await firstValueFrom((fieldConfig as CatFormSelectOptions).options);
+        this.closeDropdown();
+        return options.find(option => option.value === value)?.name;
       case "radio":
-        const options = await firstValueFrom((fieldConfig as CatFormSelectOptions).options);
+      case "checkbox":
+        this.closeDropdown();
+        options = (fieldConfig as CatFormRadioOptions).options;
         return options.find(option => option.value === value)?.name;
       case "file":
       case "csv":
@@ -183,5 +193,9 @@ export class TriggerComponent implements OnInit, OnDestroy {
           setTimeout(() => cb(), 200);
       }
     }
+  }
+
+  private closeDropdown() {
+    this.dropdownFilter.close();
   }
 }

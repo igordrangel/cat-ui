@@ -16,6 +16,15 @@ export class PageOnDemandFilterComponent extends CatComponentBase {
         ])
         .generate()
       ), 'fa-regular fa-circle')
+    .setOption((formBuilder) => formBuilder
+      .date('Data', 'date', builder => builder.generate())
+      , 'fa-regular fa-calendar')
+    .setOption((formBuilder) => formBuilder
+      .time('Hora', 'time', builder => builder.generate())
+      , 'fa-regular fa-clock')
+    .setOption((formBuilder) => formBuilder
+      .datetime('Data/Hora', 'datetime', builder => builder.generate())
+      , 'fa-solid fa-clock')
     .onChange(data => console.log(data))
     .generate();
 

@@ -1,6 +1,7 @@
 import { DropdownConfig } from './cat-dropdown.directive';
 import { Component, Input, ViewChild, TemplateRef, Output, EventEmitter } from '@angular/core';
 import { CatDropdownPosition } from './dropdown.interface';
+import { Subject } from 'rxjs/internal/Subject';
 
 @Component({
   selector: 'cat-dropdown',
@@ -14,6 +15,12 @@ export class CatDropdownComponent {
 
   @ViewChild('dropdownContent') dropdownContent: TemplateRef<any>;
 
+  private closeDropdown$ = new Subject<boolean>();
+
+  close() {
+    this.closeDropdown$.next(true);
+  }
+
   getDropdownConfig() {
     return {
       templateRef: this.dropdownContent,
@@ -22,7 +29,8 @@ export class CatDropdownComponent {
       position: this.position,
       onClose: (isClosed: boolean) => {
         if (isClosed) this.onClose.emit(isClosed);
-      }
+      },
+      close: this.closeDropdown$
     } as DropdownConfig;
   }
 }
