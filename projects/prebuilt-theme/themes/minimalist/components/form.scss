@@ -3,7 +3,7 @@ cat-form select,
 cat-form textarea {
   color: var(--font-color) !important;
   background-color: transparent !important;
-  padding: 0.5rem;
+  padding: 0.5rem !important;
 }
 
 .dark cat-form input {
@@ -11,7 +11,7 @@ cat-form textarea {
 }
 
 .ng-select .ng-select-container {
-  background-color: transparent;
+  background-color: transparent !important;
   padding: 0.34rem 0.5rem;
 }
 
