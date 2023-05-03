@@ -35,7 +35,7 @@
 
 .cat-alert-actions {
   display: flex;
-  align-items: center;
-  justify-content: center;
+  justify-content: center !important;
+  align-items: center !important;
   width: 100%;
 }
