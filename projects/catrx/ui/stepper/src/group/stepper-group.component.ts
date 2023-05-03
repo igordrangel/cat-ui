@@ -51,13 +51,13 @@ export class StepperGroupComponent implements OnInit {
     await this.open(tabs[activeStep - 1]);
   }
 
-  async setActiveStep(index: number) {
+  async setActiveStep(index: number, withAnimation = false) {
     const tabs = this.getSteps();
     for (const tab of tabs) {
-      await this.close(tab, false);
+      await this.close(tab, withAnimation);
     }
 
-    await this.open(tabs[index], false);
+    await this.open(tabs[index], withAnimation);
   }
 
   private async open(element: Element, withAnimation = true) {
