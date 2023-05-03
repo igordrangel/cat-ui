@@ -54,7 +54,9 @@ export class StepperGroupComponent implements OnInit {
   async setActiveStep(index: number, withAnimation = false) {
     const tabs = this.getSteps();
     for (const tab of tabs) {
-      await this.close(tab, withAnimation);
+      if (tab.classList.contains('active')) {
+        await this.close(tab, withAnimation);
+      }
     }
 
     await this.open(tabs[index], withAnimation);
