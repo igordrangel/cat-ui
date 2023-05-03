@@ -4,7 +4,7 @@ import { CatMenuContext } from '../cat-menu-context';
 @Directive()
 export abstract class CatComponentBase {
   public getToolbarInfo(withoutTitle = false) {
-    const context = Object.assign(CatMenuContext.context);
+    const context = Object.assign(CatMenuContext.context ?? {});
 
     if (withoutTitle) {
       delete context.title;
