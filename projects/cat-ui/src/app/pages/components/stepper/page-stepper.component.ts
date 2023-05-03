@@ -4,4 +4,4 @@ import { CatComponentBase } from '@catrx/ui/common';
 @Component({
   templateUrl: './page-stepper.component.html',
 })
-export class PageStepperComponent extends CatComponentBase {}
+export class PageStepperComponent extends CatComponentBase { }

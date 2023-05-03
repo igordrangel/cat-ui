@@ -51,11 +51,21 @@ export class StepperGroupComponent implements OnInit {
     await this.open(tabs[activeStep - 1]);
   }
 
-  private async open(element: Element) {
+  async setActiveStep(index: number) {
+    const tabs = this.getSteps();
+    for (const tab of tabs) {
+      await this.close(tab, false);
+    }
+
+    await this.open(tabs[index], false);
+  }
+
+  private async open(element: Element, withAnimation = true) {
     element.children.item(0).classList.add('active');
     element.children.item(1).classList.add('active');
 
-    await this.animateOpen(element);
+    if (withAnimation)
+      await this.animateOpen(element);
   }
 
   private async animateOpen(element: Element) {
@@ -94,8 +104,9 @@ export class StepperGroupComponent implements OnInit {
       .classList.remove('animate__slideInDown');
   }
 
-  private async close(element: Element) {
-    await this.animateClose(element);
+  private async close(element: Element, withAnimation = true) {
+    if (withAnimation)
+      await this.animateClose(element);
 
     element.children.item(0).classList.remove('active');
     element.children.item(1).classList.remove('active');
