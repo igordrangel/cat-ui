@@ -18,7 +18,6 @@ import { BehaviorSubject } from 'rxjs/internal/BehaviorSubject';
 import { Subject } from 'rxjs/internal/Subject';
 import { takeUntil } from 'rxjs/internal/operators/takeUntil';
 import { first } from 'rxjs/internal/operators/first';
-import { debounceTime } from 'rxjs/internal/operators/debounceTime';
 
 @Component({
   selector: 'cat-datatable[config]',
@@ -82,7 +81,7 @@ export class DatatableComponent implements OnInit, OnDestroy {
   private watchFilter() {
     if (this.config) {
       (this.config.filter$ ?? new BehaviorSubject(null))
-        .pipe(takeUntil(this.destroySubscriptions$), debounceTime(300))
+        .pipe(takeUntil(this.destroySubscriptions$))
         .subscribe((filter) => {
           if (typeof filter === 'string') {
             this.datatableList$.next(
