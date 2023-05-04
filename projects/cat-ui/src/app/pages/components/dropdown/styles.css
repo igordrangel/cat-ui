@@ -1,0 +1,10 @@
+.content {
+  display: flex;
+  flex-direction: column;
+  padding: 10px 24px 0 30px;
+  gap: 0.5rem;
+}
+
+.content>* {
+  width: fit-content;
+}

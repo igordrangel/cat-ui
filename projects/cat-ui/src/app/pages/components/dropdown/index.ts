@@ -13,38 +13,42 @@ import { CatToolbarModule } from '@catrx/ui/toolbar';
     CatPrimaryButtonComponent,
     CatDropdownModule,
   ],
+  styleUrls: ['./styles.css'],
   template: `
-    <cat-toolbar [config]="getToolbarInfo()">
-      <nav buttons>
-        <cat-dropdown position="left">
-          <cat-primary-button trigger>Left</cat-primary-button>
-          <div content>
-            <a class="dropdown-item">Ok</a>
-          </div>
-        </cat-dropdown>
+    <cat-toolbar [config]="getToolbarInfo()"></cat-toolbar>
+    <div class="content">
+      <h4>Left</h4>
+      <cat-dropdown position="left">
+        <cat-primary-button trigger>position="left"</cat-primary-button>
+        <div content>
+          <a class="dropdown-item">Ok</a>
+        </div>
+      </cat-dropdown>
 
-        <cat-dropdown position="right">
-          <cat-primary-button trigger>Right</cat-primary-button>
-          <div content>
-            <a class="dropdown-item">Ok</a>
-          </div>
-        </cat-dropdown>
+      <h4>Right</h4>
+      <cat-dropdown position="right">
+        <cat-primary-button trigger>position="right"</cat-primary-button>
+        <div content>
+          <a class="dropdown-item">Ok</a>
+        </div>
+      </cat-dropdown>
 
-        <cat-dropdown position="top">
-          <cat-primary-button trigger>Top</cat-primary-button>
-          <div content>
-            <a class="dropdown-item">Ok</a>
-          </div>
-        </cat-dropdown>
+      <h4>Top</h4>
+      <cat-dropdown position="top">
+        <cat-primary-button trigger>position="top"</cat-primary-button>
+        <div content>
+          <a class="dropdown-item">Ok</a>
+        </div>
+      </cat-dropdown>
 
-        <cat-dropdown position="bottom">
-          <cat-primary-button trigger>Bottom</cat-primary-button>
-          <div content>
-            <a class="dropdown-item">Ok</a>
-          </div>
-        </cat-dropdown>
-      </nav>
-    </cat-toolbar>
+      <h4>Bottom</h4>
+      <cat-dropdown position="bottom">
+        <cat-primary-button trigger>position="bottom"</cat-primary-button>
+        <div content>
+          <a class="dropdown-item">Ok</a>
+        </div>
+      </cat-dropdown>
+    </div>
   `,
 })
 export class PageDropdownComponent extends CatComponentBase {}
