@@ -94,10 +94,12 @@ export class TriggerComponent implements OnInit, OnDestroy {
         this.config.selectedOptions.next(selectedOptions);
       }
 
-      if (value) optionConfig.fieldConfig.onChange(value, null);
-
-      this.animateFormOption('in');
-      this.activeFilterForm = optionConfig.formConfig;
+      if (value) {
+        optionConfig.fieldConfig.onChange(value, null);
+      } else {
+        this.animateFormOption('in');
+        this.activeFilterForm = optionConfig.formConfig;
+      }
     }, 50)
   }
 
