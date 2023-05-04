@@ -10,11 +10,16 @@ export class FilterOptionsFactory {
     selectedOptions: new BehaviorSubject<SelectedOptions[]>([])
   }
 
-  public setOption(builder: (fieldBuilder: FormFactory<any>) => FormFactory<any>, autofill?: any, icon?: string) {
+  public setOption(builder: (fieldBuilder: FormFactory<any>) => FormFactory<any>, icon?: string) {
     this.config.options.push({
       icon,
-      formBuilder: builder(this.formService.build(autofill))
+      formBuilder: builder(this.formService.build())
     });
+    return this;
+  }
+
+  public autofill(data: any) {
+    this.autofill = data;
     return this;
   }
 
