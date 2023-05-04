@@ -1,14 +1,14 @@
 import { Injectable } from '@angular/core';
 import { CatDialogService } from '@catrx/ui/dialog';
 import { ConfirmOptions, ConfirmResponse } from './cat-confirm.interface';
-import { ConfirmComponent } from './confirm.component';
+import { CatConfirmComponent } from './cat-confirm.component';
 
-@Injectable()
+@Injectable({providedIn: 'root'})
 export class CatConfirmService {
   constructor(private dialogService: CatDialogService) {}
 
   public ask(question: string, yesCb: () => void, options?: ConfirmOptions) {
-    this.dialogService.open(ConfirmComponent, {
+    this.dialogService.open(CatConfirmComponent, {
       size: 'small',
       data: { question, icon: options?.icon },
       closeTrigger: {},

@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { CatDialogService } from '@catrx/ui/dialog';
 import { CatDynamicComponent } from '@catrx/ui/dynamic-component';
-import { AlertComponent } from './alert.component';
+import { CatAlertComponent } from './cat-alert.component';
 
 export type CatAlertType = 'success' | 'warning' | 'error' | 'info';
 export interface CatAlertConfig {
@@ -10,12 +10,12 @@ export interface CatAlertConfig {
   icon?: CatDynamicComponent;
 }
 
-@Injectable({ providedIn: 'root' })
+@Injectable({providedIn: 'root'})
 export class CatAlertService {
-  constructor(private dialogService: CatDialogService) {}
+  constructor(private dialogService: CatDialogService) { }
 
   show(config: CatAlertConfig) {
-    this.dialogService.open(AlertComponent, {
+    this.dialogService.open(CatAlertComponent, {
       size: 'small',
       data: config,
     });

@@ -1,12 +1,12 @@
 import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
 import { CatDropdownDirective } from './cat-dropdown.directive';
-import { DropdownContentComponent } from './content/dropdown-content.component';
-import { CatDropdownComponent } from './dropdown.component';
+import { DropdownContentComponent } from './dropdown-content.component';
+import { DropdownComponent } from './dropdown.component';
 
 @NgModule({
-  declarations: [CatDropdownDirective, CatDropdownComponent, DropdownContentComponent],
-  exports: [CatDropdownComponent],
+  declarations: [CatDropdownDirective, DropdownContentComponent, DropdownComponent],
+  exports: [DropdownComponent],
   imports: [CommonModule],
 })
 export class CatDropdownModule { }

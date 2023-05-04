@@ -15,7 +15,7 @@ import {
   CAT_DIALOG_REF_TOKEN,
 } from './cat-dialog';
 
-@Injectable()
+@Injectable({providedIn: 'root'})
 export class CatDialogService {
   constructor(
     private componentFactoryResolver: ComponentFactoryResolver,

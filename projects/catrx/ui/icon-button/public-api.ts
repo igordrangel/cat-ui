@@ -1,2 +1,1 @@
-export * from './src/icon-button.component';
-export * from './src/cat-icon-button.module';
+export * from './src/cat-icon-button.component';

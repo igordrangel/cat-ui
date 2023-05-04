@@ -1,14 +1,25 @@
-import { Component, Inject } from '@angular/core';
-import { CatDialogRef, CAT_DIALOG_DATA } from '@catrx/ui/dialog';
+import { Component, Inject, signal } from '@angular/core';
+import { CatDialogRef, CAT_DIALOG_DATA, CatDialogComponent } from '@catrx/ui/dialog';
 import { CatAlertConfig } from './cat-alert.service';
+import { CommonModule } from '@angular/common';
+import { CatPrimaryButtonComponent } from '@catrx/ui/button/primary';
+import { CatDynamicComponentModule } from '@catrx/ui/dynamic-component';
 
 @Component({
-  template: `<cat-dialog>
+  standalone: true,
+  imports: [
+    CommonModule,
+    CatDialogComponent,
+    CatDynamicComponentModule,
+    CatPrimaryButtonComponent,
+  ],
+  template: `
+    <cat-dialog>
       <div class="cat-alert-content" [ngClass]="config.type" content>
         <cat-dynamic-component
           *ngIf="config.icon; else defaultIcon"
           [component]="config.icon"
-        ></cat-dynamic-component>
+        />
         <p [innerHTML]="config.message"></p>
       </div>
       <div class="cat-alert-actions" actions>
@@ -17,14 +28,16 @@ import { CatAlertConfig } from './cat-alert.service';
     </cat-dialog>
 
     <ng-template #defaultIcon>
-      <i [ngClass]="getIcon()"></i>
+      <i [ngClass]="icon()"></i>
     </ng-template>`,
 })
-export class AlertComponent {
+export class CatAlertComponent {
+  icon = signal(this.getIcon())
+
   constructor(
     public dialogRef: CatDialogRef,
     @Inject(CAT_DIALOG_DATA) public config: CatAlertConfig
-  ) {}
+  ) { }
 
   getIcon() {
     switch (this.config.type) {

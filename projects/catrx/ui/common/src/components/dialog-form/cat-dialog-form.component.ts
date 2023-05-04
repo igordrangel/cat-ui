@@ -1,9 +1,9 @@
 import { CommonModule } from '@angular/common';
 import { Component, Inject } from '@angular/core';
 import {
-  CatDialogModule,
   CatDialogRef,
   CAT_DIALOG_DATA,
+  CatDialogComponent,
 } from '@catrx/ui/dialog';
 import { CatFormModule } from '@catrx/ui/form';
 import { CatDialogFormConfig } from './cat-dialog-form.interface';
@@ -14,43 +14,45 @@ import { CatPrimaryButtonComponent } from '@catrx/ui/button/primary';
 import { CatSecondaryButtonComponent } from '@catrx/ui/button/secondary';
 
 @Component({
-  template: `<form (submit)="submit($event)">
-    <cat-dialog>
-      <div header>
-        <i
-          [ngClass]="{
-            'fa-pen': config?.isEdit,
-            'fa-circle-plus': !config?.isEdit
-          }"
-          class="fa-solid mr-8"
-        >
-        </i>
-        {{
-          (config?.isEdit ? 'Editar ' : 'Incluir ') +
-            (config?.title ? config?.title : '')
-        }}
-      </div>
-      <div content>
-        <cat-form #form [config]="config?.formConfig"></cat-form>
-      </div>
-      <div actions>
-        <cat-secondary-button
-          (click)="dialogRef.close()"
-          [disabled]="submitLoader$ | async"
-          [style.marginRight]="'5px'"
-        >
-          Cancelar
-        </cat-secondary-button>
-        <cat-primary-button type="submit" [showLoader]="submitLoader$ | async">
-          Salvar
-        </cat-primary-button>
-      </div>
-    </cat-dialog>
-  </form>`,
+  template: `
+    <form (submit)="submit($event)">
+      <cat-dialog>
+        <div header>
+          <i
+            [ngClass]="{
+              'fa-pen': config?.isEdit,
+              'fa-circle-plus': !config?.isEdit
+            }"
+            class="fa-solid mr-8"
+          >
+          </i>
+          {{
+            (config?.isEdit ? 'Editar ' : 'Incluir ') +
+              (config?.title ? config?.title : '')
+          }}
+        </div>
+        <div content>
+          <cat-form #form [config]="config?.formConfig"></cat-form>
+        </div>
+        <div actions>
+          <cat-secondary-button
+            (click)="dialogRef.close()"
+            [disabled]="submitLoader$ | async"
+            [style.marginRight]="'5px'"
+          >
+            Cancelar
+          </cat-secondary-button>
+          <cat-primary-button type="submit" [showLoader]="submitLoader$ | async">
+            Salvar
+          </cat-primary-button>
+        </div>
+      </cat-dialog>
+    </form>
+  `,
   standalone: true,
   imports: [
     CommonModule,
-    CatDialogModule,
+    CatDialogComponent,
     CatFormModule,
     CatPrimaryButtonComponent,
     CatSecondaryButtonComponent,

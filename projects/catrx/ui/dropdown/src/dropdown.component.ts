@@ -5,9 +5,16 @@ import { Subject } from 'rxjs/internal/Subject';
 
 @Component({
   selector: 'cat-dropdown',
-  templateUrl: './dropdown.component.html',
+  template: `
+    <div [catDropdown]="getDropdownConfig()">
+      <ng-content select="[trigger]"></ng-content>
+      <ng-template #dropdownContent>
+        <ng-content select="[content]"></ng-content>
+      </ng-template>
+    </div>
+  `
 })
-export class CatDropdownComponent {
+export class DropdownComponent {
   @Input() position: CatDropdownPosition = 'top';
   @Input() insideClick = true;
   @Input() disabled = false;

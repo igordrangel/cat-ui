@@ -59,8 +59,8 @@
           *ngIf="config?.hasAction"
           [style.width]="
             42 * (config?.actionButtons?.length ?? 1) + 'px!important'
-          "
-        ></th>
+          ">
+        </th>
         <th
           scope="col"
           *ngFor="let column of config?.columns; let columnIndex = index"
@@ -69,22 +69,18 @@
             activeSelection: columnIndex >= 0,
             sortable: isSortable(columnIndex),
             sorted: columnIndex === columnIndexSort
-          }"
-        >
+          }">
           <div class="content-header">
             {{ column }}
             <i
               *ngIf="columnIndex !== columnIndexSort && isSortable(columnIndex)"
-              class="fa-solid fa-sort"
-            ></i>
+              class="fa-solid fa-sort"></i>
             <i
               *ngIf="columnIndex === columnIndexSort && !reverse"
-              class="fa-solid fa-arrow-up-a-z"
-            ></i>
+              class="fa-solid fa-arrow-up-a-z"></i>
             <i
               *ngIf="columnIndex === columnIndexSort && reverse"
-              class="fa-solid fa-arrow-down-z-a"
-            ></i>
+              class="fa-solid fa-arrow-down-z-a"></i>
           </div>
         </th>
       </tr>
@@ -93,12 +89,10 @@
       <tbody>
         <tr *ngIf="(loadedList$ | async) === false" class="fake-line">
           <td colspan="50">
-            <ng-container
-              *ngIf="config?.customLoaderComponent; else defaultLoader"
-            >
+            <ng-container *ngIf="config?.customLoaderComponent; else defaultLoader">
               <cat-dynamic-component
                 [component]="config?.customLoaderComponent"
-              ></cat-dynamic-component>
+              />
             </ng-container>
 
             <ng-template #defaultLoader>
@@ -110,17 +104,13 @@
         </tr>
 
         <ng-container *ngIf="datatableList$ | async as datatableList">
-          <ng-container
-            *ngIf="datatableList.length === 0 && loadedList$ | async"
-          >
+          <ng-container *ngIf="datatableList.length === 0 && loadedList$ | async">
             <tr class="fake-line">
               <td colspan="50">
-                <ng-container
-                  *ngIf="config?.customEmptyComponent; else defaultEmptyList"
-                >
+                <ng-container *ngIf="config?.customEmptyComponent; else defaultEmptyList">
                   <cat-dynamic-component
                     [component]="config?.customEmptyComponent"
-                  ></cat-dynamic-component>
+                  />
                 </ng-container>
 
                 <ng-template #defaultEmptyList>
@@ -139,17 +129,14 @@
                 let rowData of datatableList
                   | orderBy : orderBy : reverse
                   | paginate : getPaginateProps();
-                let i = index
-              "
-            >
+                let i = index">
               <td class="selection" *ngIf="config?.hasSelection">
                 <div class="checkbox">
                   <input
                     *ngIf="
                       (config?.disableSelectionItem &&
                         !(config?.disableSelectionItem(rowData) ?? false)) ||
-                      !config?.disableSelectionItem
-                    "
+                      !config?.disableSelectionItem"
                     class="form-check-input"
                     [checked]="isChecked(i)"
                     (change)="toggleItem(i, rowData)"
@@ -160,10 +147,7 @@
               <td
                 class="option"
                 *ngIf="config?.hasAction"
-                [style.width]="
-                  42 * (config?.actionButtons?.length ?? 1) + 'px!important'
-                "
-              >
+                [style.width]="42 * (config?.actionButtons?.length ?? 1) + 'px!important'">
                 <div class="options-content">
                   <cat-icon-button
                     *ngFor="let actionButton of getActionButtons(rowData)"
@@ -173,17 +157,14 @@
                     (click)="
                       actionButton.fnAction
                         ? actionButton.fnAction(rowData)
-                        : null
-                    "
-                  >
-                  </cat-icon-button>
+                        : null"
+                  />
                 </div>
               </td>
               <td
                 *ngFor="let column of config?.columns; let columnIndex = index"
                 [ngClass]="{ sorted: columnIndex === columnIndexSort }"
-                [style.width]="getItemLine(columnIndex).customWidthColumn"
-              >
+                [style.width]="getItemLine(columnIndex).customWidthColumn">
                 <cat-dynamic-component
                   *ngIf="
                     getItemLineComponent(
@@ -193,8 +174,7 @@
                     else tableCellDateText
                   "
                   [component]="dynamicComponent"
-                >
-                </cat-dynamic-component>
+                />
                 <ng-template #tableCellDateText>
                   {{ this.getItemLineText(columnIndex, rowData) }}
                 </ng-template>

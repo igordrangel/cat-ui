@@ -4,13 +4,13 @@ import { CommonModule } from '@angular/common';
 import { CatToolbarModule } from '@catrx/ui/toolbar';
 import { CatFormModule } from '@catrx/ui/form';
 import { CatDatatableModule } from '@catrx/ui/datatable';
-import { CatDialogModule } from '@catrx/ui/dialog';
-import { CatConfirmModule } from '@catrx/ui/confirm';
+import { CatDialogComponent } from '@catrx/ui/dialog';
 import { PageCRUDExampleRoutingModule } from './page-crud-example.routing.module';
-import { CatIconButtonModule } from '@catrx/ui/icon-button';
+import { CatIconButtonComponent } from '@catrx/ui/icon-button';
 import { CatPhotoComponent } from './cat-photo.component';
 import { CatPrimaryButtonComponent } from '@catrx/ui/button/primary';
 import { CatOnDemandFilterModule } from '@catrx/ui/on-demand-filter';
+import { CatConfirmComponent } from '@catrx/ui/confirm';
 
 @NgModule({
   declarations: [PageCRUDExampleComponent, CatPhotoComponent],
@@ -19,12 +19,12 @@ import { CatOnDemandFilterModule } from '@catrx/ui/on-demand-filter';
     CatToolbarModule,
     CatFormModule,
     CatDatatableModule,
-    CatDialogModule,
-    CatConfirmModule,
-    CatIconButtonModule,
+    CatDialogComponent,
+    CatConfirmComponent,
+    CatIconButtonComponent,
     CatPrimaryButtonComponent,
     CatOnDemandFilterModule,
     PageCRUDExampleRoutingModule,
   ],
 })
-export class PageCRUDExampleModule { }
+export class PageCRUDExampleModule {}

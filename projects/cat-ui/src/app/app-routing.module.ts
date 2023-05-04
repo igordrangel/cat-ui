@@ -7,10 +7,10 @@ const routes: Routes = [
     children: [
       {
         path: 'datatable',
-        loadChildren: () =>
-          import(
-            './pages/components/datatable/page-datatable-example.module'
-          ).then((m) => m.PageDatatableExampleModule),
+        loadComponent: () =>
+          import('./pages/components/datatable').then(
+            (m) => m.PageDatatableExampleComponent
+          ),
       },
       {
         path: 'form',
@@ -21,10 +21,10 @@ const routes: Routes = [
       },
       {
         path: 'dynamic-components',
-        loadChildren: () =>
-          import(
-            './pages/components/dynamic-component/page-dynamic-component.module'
-          ).then((m) => m.PageDynamicComponentModule),
+        loadComponent: () =>
+          import('./pages/components/dynamic-component').then(
+            (m) => m.PageDynamicComponentComponent
+          ),
       },
       {
         path: 'toolbar',
@@ -42,16 +42,16 @@ const routes: Routes = [
       },
       {
         path: 'dialog',
-        loadChildren: () =>
-          import('./pages/components/dialog/page-dialog.module').then(
-            (m) => m.PageDialogModule
+        loadComponent: () =>
+          import('./pages/components/dialog').then(
+            (m) => m.PageDialogComponent
           ),
       },
       {
         path: 'confirm',
-        loadChildren: () =>
-          import('./pages/components/confirm/page-confirm.module').then(
-            (m) => m.PageConfirmModule
+        loadComponent: () =>
+          import('./pages/components/confirm').then(
+            (m) => m.PageConfirmComponent
           ),
       },
       {
@@ -63,10 +63,8 @@ const routes: Routes = [
       },
       {
         path: 'alert',
-        loadChildren: () =>
-          import('./pages/components/alert/page-alert.module').then(
-            (m) => m.PageAlertModule
-          ),
+        loadComponent: () =>
+          import('./pages/components/alert').then((m) => m.PageAlertComponent),
       },
       {
         path: 'button',
@@ -77,9 +75,9 @@ const routes: Routes = [
       },
       {
         path: 'dropdown',
-        loadChildren: () =>
-          import('./pages/components/dropdown/page-dropdown.module').then(
-            (m) => m.PageDropdownModule
+        loadComponent: () =>
+          import('./pages/components/dropdown').then(
+            (m) => m.PageDropdownComponent
           ),
       },
       {
@@ -91,10 +89,8 @@ const routes: Routes = [
       },
       {
         path: 'chip',
-        loadChildren: () =>
-          import('./pages/components/chip/page-chip.module').then(
-            (m) => m.PageChipModule
-          ),
+        loadComponent: () =>
+          import('./pages/components/chip').then((m) => m.PageChipComponent),
       },
       {
         path: 'tab',
@@ -170,4 +166,4 @@ const routes: Routes = [
   imports: [RouterModule.forRoot(routes, { useHash: true })],
   exports: [RouterModule],
 })
-export class AppRoutingModule { }
+export class AppRoutingModule {}

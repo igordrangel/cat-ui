@@ -1,11 +1,16 @@
 import { Component } from '@angular/core';
-import { CatDatatableService } from '@catrx/ui/datatable';
-import { CatFormService } from '@catrx/ui/form';
+import { CatDatatableModule, CatDatatableService } from '@catrx/ui/datatable';
+import { CatFormModule, CatFormService } from '@catrx/ui/form';
 import { BehaviorSubject } from 'rxjs/internal/BehaviorSubject';
 import { PageDatatableExampleService } from './page-datatable-example.service';
 
 @Component({
-  templateUrl: 'page-datatable-example.component.html',
+  standalone: true,
+  imports: [CatFormModule, CatDatatableModule],
+  template: `
+    <cat-form [config]="filterConfig"></cat-form>
+    <cat-datatable [config]="datatableConfig"></cat-datatable>
+  `,
   styles: [
     `
       cat-form {
@@ -60,5 +65,5 @@ export class PageDatatableExampleComponent {
     private formService: CatFormService,
     private datatableService: CatDatatableService,
     private service: PageDatatableExampleService
-  ) { }
+  ) {}
 }

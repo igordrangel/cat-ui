@@ -9,16 +9,15 @@ import {
   Injector,
   Input,
   OnDestroy,
-  TemplateRef,
-  Type,
+  TemplateRef
 } from '@angular/core';
+import { Subject } from 'rxjs/internal/Subject';
+import { Subscription } from 'rxjs/internal/Subscription';
 import { interval } from 'rxjs/internal/observable/interval';
 import { startWith } from 'rxjs/internal/operators/startWith';
-import { Subscription } from 'rxjs/internal/Subscription';
-import { DropdownContentComponent } from './content/dropdown-content.component';
-import { CatDropdownPosition } from './dropdown.interface';
-import { Subject } from 'rxjs/internal/Subject';
 import { takeUntil } from 'rxjs/internal/operators/takeUntil';
+import { DropdownContentComponent } from './dropdown-content.component';
+import { CatDropdownPosition } from './dropdown.interface';
 
 export interface DropdownConfig {
   insideClick: boolean;
@@ -105,9 +104,9 @@ export class CatDropdownDirective implements OnDestroy {
         const position = this.calcPosition();
 
         if (this.componentRef) {
-          this.componentRef.instance.left = position.leftPosition;
-          this.componentRef.instance.top = position.topPosition;
-          this.componentRef.instance.visible = true;
+          this.componentRef.instance.left.set(position.leftPosition);
+          this.componentRef.instance.top.set(position.topPosition);
+          this.componentRef.instance.visible.set(true);
         }
 
         this.observeTriggerDestroy();
@@ -119,7 +118,7 @@ export class CatDropdownDirective implements OnDestroy {
 
   private showDropdown() {
     if (this.componentRef !== null) {
-      this.componentRef.instance.visible = true;
+      this.componentRef.instance.visible.set(true);
       this.catDropdown
         .close
         .pipe(takeUntil(this.destroySubscriptions$))
@@ -199,9 +198,5 @@ export class CatDropdownDirective implements OnDestroy {
     }
 
     return { topPosition, leftPosition };
-  }
-
-  private calcMiddlePosition(value: number) {
-    return value / 2
   }
 }

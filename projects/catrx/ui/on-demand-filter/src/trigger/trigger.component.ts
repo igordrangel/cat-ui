@@ -1,6 +1,6 @@
 import { Component, ElementRef, Input, OnDestroy, OnInit, ViewChild } from "@angular/core";
 import { FormControl } from "@angular/forms";
-import { CatDropdownComponent } from "@catrx/ui/dropdown";
+import { DropdownComponent } from "@catrx/ui/dropdown";
 import { CatFormConfig, CatFormFieldConfig, CatFormListOptions, CatFormRadioOptions, CatFormSelectOptions } from "@catrx/ui/form";
 import { format } from "@koalarx/utils/operators/date";
 import { Subject } from "rxjs/internal/Subject";
@@ -22,7 +22,7 @@ export class TriggerComponent implements OnInit, OnDestroy {
   filterOptionsControl = new FormControl();
 
   @ViewChild('filterFormContent', { static: false }) private elFilterFormContent?: ElementRef<HTMLDivElement>
-  @ViewChild('dropdownFilter') private dropdownFilter: CatDropdownComponent;
+  @ViewChild('dropdownFilter') private dropdownFilter: DropdownComponent;
 
   private destroySubscriptions$ = new Subject<boolean>();
 
