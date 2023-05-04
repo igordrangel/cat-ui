@@ -24,6 +24,8 @@ export interface DatatableConfig<DataType> {
   disableSelectionItem?: (item: DataType) => boolean;
   customEmptyComponent?: CatDynamicComponent;
   customLoaderComponent?: CatDynamicComponent;
+  hideMenuAndPaginator?: boolean;
+  hidePaginator?: boolean;
 }
 
 export interface DatatableFilterResponse {

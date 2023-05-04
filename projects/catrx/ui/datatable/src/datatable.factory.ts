@@ -39,6 +39,16 @@ export class DatatableFactory<FilterType = any, DataType = any> {
     return this;
   }
 
+  hidePaginator(hide = true) {
+    this.config.hidePaginator = hide;
+    return this;
+  }
+
+  hideMenuAndPaginator(hide = true) {
+    this.config.hideMenuAndPaginator = hide;
+    return this;
+  }
+
   disableSelectionLineByRule(rule: (itemLine: DataType) => boolean) {
     this.config.disableSelectionItem = rule;
     return this;
