@@ -49,7 +49,7 @@ export class TriggerComponent implements OnInit, OnDestroy {
       });
   }
 
-  chooseOption(option: FilterOption) {
+  chooseOption(option: FilterOption, value?: any) {
     setTimeout(() => {
       const optionConfig = this.getOptionConfig(option);
 
@@ -93,6 +93,8 @@ export class TriggerComponent implements OnInit, OnDestroy {
 
         this.config.selectedOptions.next(selectedOptions);
       }
+
+      if (value) optionConfig.fieldConfig.onChange(value, null);
 
       this.animateFormOption('in');
       this.activeFilterForm = optionConfig.formConfig;
@@ -207,7 +209,7 @@ export class TriggerComponent implements OnInit, OnDestroy {
           this.getOptionConfig(option).fieldConfig.name === propName
         );
 
-        if (filterOption) this.chooseOption(filterOption);
+        if (filterOption) this.chooseOption(filterOption, this.config.autofill[propName]);
       })
     }
   }

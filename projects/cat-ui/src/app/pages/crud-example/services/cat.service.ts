@@ -44,6 +44,7 @@ export class CatService extends CatServiceBase<CatFilter, Array<Cat>, Cat> {
   public getDatatable(
     filter?: CatFilter
   ): Observable<CatDatatableDataHttpResponse<Cat>> {
+    console.log(filter)
     return this.getAll(filter).pipe(
       map((response) => {
         return {

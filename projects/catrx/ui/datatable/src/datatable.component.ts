@@ -18,6 +18,7 @@ import { BehaviorSubject } from 'rxjs/internal/BehaviorSubject';
 import { Subject } from 'rxjs/internal/Subject';
 import { takeUntil } from 'rxjs/internal/operators/takeUntil';
 import { first } from 'rxjs/internal/operators/first';
+import { debounceTime } from 'rxjs/internal/operators/debounceTime';
 
 @Component({
   selector: 'cat-datatable[config]',
@@ -81,7 +82,7 @@ export class DatatableComponent implements OnInit, OnDestroy {
   private watchFilter() {
     if (this.config) {
       (this.config.filter$ ?? new BehaviorSubject(null))
-        .pipe(takeUntil(this.destroySubscriptions$))
+        .pipe(takeUntil(this.destroySubscriptions$), debounceTime(300))
         .subscribe((filter) => {
           if (typeof filter === 'string') {
             this.datatableList$.next(
@@ -109,11 +110,11 @@ export class DatatableComponent implements OnInit, OnDestroy {
                   } else {
                     dataFiltered.push(
                       JSON.stringify(itemLine[indexNameFilter]) ===
-                        JSON.stringify(filter[indexNameFilter]) ||
-                        (itemLine[indexNameFilter]?.['id'] ?? 0) ===
-                          (filter[indexNameFilter]?.['id'] ?? -1) ||
-                        (itemLine[indexNameFilter]?.['codigo'] ?? 0) ===
-                          (filter[indexNameFilter]?.['codigo'] ?? -1)
+                      JSON.stringify(filter[indexNameFilter]) ||
+                      (itemLine[indexNameFilter]?.['id'] ?? 0) ===
+                      (filter[indexNameFilter]?.['id'] ?? -1) ||
+                      (itemLine[indexNameFilter]?.['codigo'] ?? 0) ===
+                      (filter[indexNameFilter]?.['codigo'] ?? -1)
                     );
                   }
                 }
@@ -199,8 +200,8 @@ export class DatatableComponent implements OnInit, OnDestroy {
       this.reverse = reverse
         ? reverse
         : this.columnIndexSort !== columnIndex
-        ? false
-        : !this.reverse;
+          ? false
+          : !this.reverse;
       this.columnIndexSort = columnIndex;
     }
   }
