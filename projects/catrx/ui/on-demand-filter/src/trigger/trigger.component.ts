@@ -33,6 +33,7 @@ export class TriggerComponent implements OnInit, OnDestroy {
 
   ngOnInit(): void {
     this.observeOnChangeField();
+    this.autofillFilter();
 
     this.filterOptionsControl
       .valueChanges
@@ -45,7 +46,7 @@ export class TriggerComponent implements OnInit, OnDestroy {
         this.filteredOptions = this.config.options.filter(
           option => this.getOptionConfig(option).fieldConfig.name.includes(value)
         );
-      })
+      });
   }
 
   chooseOption(option: FilterOption) {
@@ -197,5 +198,17 @@ export class TriggerComponent implements OnInit, OnDestroy {
 
   private closeDropdown() {
     this.dropdownFilter.close();
+  }
+
+  private autofillFilter() {
+    if (this.config.autofill) {
+      Object.keys(this.config.autofill).forEach(propName => {
+        const filterOption = this.config.options.find(option =>
+          this.getOptionConfig(option).fieldConfig.name === propName
+        );
+
+        if (filterOption) this.chooseOption(filterOption);
+      })
+    }
   }
 }
