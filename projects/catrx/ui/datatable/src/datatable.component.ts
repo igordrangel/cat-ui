@@ -109,11 +109,11 @@ export class DatatableComponent implements OnInit, OnDestroy {
                   } else {
                     dataFiltered.push(
                       JSON.stringify(itemLine[indexNameFilter]) ===
-                        JSON.stringify(filter[indexNameFilter]) ||
-                        (itemLine[indexNameFilter]?.['id'] ?? 0) ===
-                          (filter[indexNameFilter]?.['id'] ?? -1) ||
-                        (itemLine[indexNameFilter]?.['codigo'] ?? 0) ===
-                          (filter[indexNameFilter]?.['codigo'] ?? -1)
+                      JSON.stringify(filter[indexNameFilter]) ||
+                      (itemLine[indexNameFilter]?.['id'] ?? 0) ===
+                      (filter[indexNameFilter]?.['id'] ?? -1) ||
+                      (itemLine[indexNameFilter]?.['codigo'] ?? 0) ===
+                      (filter[indexNameFilter]?.['codigo'] ?? -1)
                     );
                   }
                 }
@@ -199,8 +199,8 @@ export class DatatableComponent implements OnInit, OnDestroy {
       this.reverse = reverse
         ? reverse
         : this.columnIndexSort !== columnIndex
-        ? false
-        : !this.reverse;
+          ? false
+          : !this.reverse;
       this.columnIndexSort = columnIndex;
     }
   }

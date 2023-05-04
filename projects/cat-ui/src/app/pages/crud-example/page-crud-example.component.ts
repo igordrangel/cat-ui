@@ -13,6 +13,7 @@ import { CatPhotoComponent } from './cat-photo.component';
 import { Cat, CatFilter, CatSexSelectOptions } from './services/cat.interface';
 import { CatService } from './services/cat.service';
 import { CatOnDemandFilterService } from '@catrx/ui/on-demand-filter/src/cat-on-demand-filter.service';
+import { klDelay } from '@koalarx/utils/operators/delay';
 
 @Component({
   templateUrl: './page-crud-example.component.html',
@@ -40,7 +41,13 @@ export class PageCRUDExampleComponent extends CatCRUDComponentBase<
       .text('Raça', 'race', builder => builder
         .generate()
       ), 'fa-solid fa-paw')
-    .onChange((data) => this.filterValueChanges$.next(data))
+    .autofill({ sex: 'M' })
+    .onChange(async (data) => {
+      while ((this.datasource?.length ?? 0) === 0) {
+        await klDelay(50);
+      }
+      this.filterValueChanges$.next(data);
+    })
     .generate();
 
   listConfig = this.datatableService

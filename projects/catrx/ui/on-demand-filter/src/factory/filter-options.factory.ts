@@ -19,7 +19,7 @@ export class FilterOptionsFactory {
   }
 
   public autofill(data: any) {
-    this.autofill = data;
+    this.config.autofill = data;
     return this;
   }
 
