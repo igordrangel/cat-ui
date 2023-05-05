@@ -1,13 +1,13 @@
-import { Component, Inject, signal } from '@angular/core';
+import { CommonModule } from '@angular/common';
+import { Component, Inject } from '@angular/core';
+import { CatButtonModule } from '@catrx/ui/button';
 import {
-  CatDialogRef,
   CAT_DIALOG_DATA,
   CatDialogComponent,
+  CatDialogRef,
 } from '@catrx/ui/dialog';
-import { CatAlertConfig } from './cat-alert.service';
-import { CommonModule } from '@angular/common';
 import { CatDynamicComponentModule } from '@catrx/ui/dynamic-component';
-import { CatButtonModule } from '@catrx/ui/button';
+import { CatAlertConfig } from './cat-alert.service';
 
 @Component({
   standalone: true,
@@ -31,11 +31,11 @@ import { CatButtonModule } from '@catrx/ui/button';
     </cat-dialog>
 
     <ng-template #defaultIcon>
-      <i [ngClass]="icon()"></i>
+      <i [ngClass]="icon"></i>
     </ng-template>`,
 })
 export class CatAlertComponent {
-  icon = signal(this.getIcon());
+  icon = this.getIcon();
 
   constructor(
     public dialogRef: CatDialogRef,

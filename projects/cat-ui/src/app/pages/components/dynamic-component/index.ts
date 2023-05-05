@@ -1,4 +1,4 @@
-import { Component, OnInit, signal } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import {
   CatDynamicComponent,
   CatDynamicComponentModule,
@@ -10,13 +10,11 @@ import { HelloWorldComponent } from './hello-world.component';
   imports: [HelloWorldComponent, CatDynamicComponentModule],
   styleUrls: ['./style.css'],
   template: `
-    <cat-dynamic-component [component]="component()"></cat-dynamic-component>
+    <cat-dynamic-component [component]="component"></cat-dynamic-component>
   `,
 })
 export class PageDynamicComponentComponent implements OnInit {
-  component = signal(
-    new CatDynamicComponent(HelloWorldComponent, 'Olá Mundo!')
-  );
+  component = new CatDynamicComponent(HelloWorldComponent, 'Olá Mundo!');
 
   ngOnInit() {
     document.title = 'Exemplo | Componentes Dinâmicos';
