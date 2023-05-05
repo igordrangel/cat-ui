@@ -74,10 +74,16 @@ export class AppContainerComponent implements OnInit {
 
   ngOnInit() {
     if (window.matchMedia && this.config.darkMode) {
-      if (window.matchMedia('(prefers-color-scheme: dark)').matches) {
-        this.themeActive$.next('dark');
+      const savedTheme = localStorage.getItem(this.getLocalStorageThemeName()) as CatThemeType;
+
+      if (savedTheme) {
+        this.themeActive$.next(savedTheme);
       } else {
-        this.themeActive$.next('light');
+        if (window.matchMedia('(prefers-color-scheme: dark)').matches) {
+          this.themeActive$.next('dark');
+        } else {
+          this.themeActive$.next('light');
+        }
       }
     } else {
       this.themeActive$.next(this.config.defaultTheme ?? 'light');
@@ -105,6 +111,7 @@ export class AppContainerComponent implements OnInit {
   public switchTheme() {
     const currentTheme = this.themeActive$.getValue();
     this.themeActive$.next(currentTheme === 'dark' ? 'light' : 'dark');
+    localStorage.setItem(this.getLocalStorageThemeName(), this.themeActive$.getValue());
   }
 
   public logout(clearToken = false) {
@@ -190,6 +197,14 @@ export class AppContainerComponent implements OnInit {
       );
     }
     return null;
+  }
+
+  private getLocalStorageThemeName() {
+    return `${this.getDefaultAliasStorageName()}:theme`;
+  }
+
+  private getDefaultAliasStorageName() {
+    return `@${this.config.appName.replace(/ /g, '-').toLocaleLowerCase()}`;
   }
 
   private startOpenID() {

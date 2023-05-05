@@ -336,6 +336,11 @@ cat-form .file-drag-drop-area .files-content .file-content.invalid {
   background-color: var(--bg-form-invalid-field);
 }
 
+cat-form .file-drag-drop-area .btn-group {
+  display: flex;
+  gap: 0;
+}
+
 cat-form .btn-group {
   display: inline-block;
   width: auto;
