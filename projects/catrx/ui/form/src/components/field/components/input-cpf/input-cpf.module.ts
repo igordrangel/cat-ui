@@ -3,7 +3,7 @@ import { CommonModule } from '@angular/common';
 import { InputCpfComponent } from './input-cpf.component';
 import { ReactiveFormsModule } from '@angular/forms';
 import { FieldContentModule } from '../common/field-content/field-content.module';
-import { NgxMaskModule } from 'ngx-mask';
+import { NgxMaskDirective } from 'ngx-mask';
 
 @NgModule({
   declarations: [InputCpfComponent],
@@ -12,7 +12,7 @@ import { NgxMaskModule } from 'ngx-mask';
     CommonModule,
     ReactiveFormsModule,
     FieldContentModule,
-    NgxMaskModule,
+    NgxMaskDirective,
   ],
 })
 export class InputCpfModule {}

@@ -62,8 +62,8 @@ export class PageFormComponent extends CatFormBase {
             .setRequired()
             .setMinLength(5)
             .setValidators([nameValidator])
-            .onChange((value, behavior) => {
-              if (value === 'teste') {
+            .onChange((value: string, behavior) => {
+              if (value.toLowerCase() === 'teste') {
                 behavior.enableFields(['personData.lastname']);
               } else {
                 behavior.disableFields(['personData.lastname']);
@@ -155,7 +155,6 @@ export class PageFormComponent extends CatFormBase {
             .setOptions(this.pageFormService.getUFs())
             .grid(3)
             .setRequired()
-            .onChange((value) => console.log(value))
             .generate()
         )
         .generate()

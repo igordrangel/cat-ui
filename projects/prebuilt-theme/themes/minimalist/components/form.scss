@@ -6,6 +6,25 @@ cat-form textarea {
   padding: 0.5rem !important;
 }
 
+cat-form .was-validated input:invalid,
+cat-form .has-validation input.is-invalid,
+cat-form .was-validated select:invalid,
+cat-form .has-validation select.is-invalid,
+cat-form .was-validated textarea:invalid,
+cat-form .has-validation textarea.is-invalid {
+  padding-right: calc(1.5em + 0.75rem) !important;
+}
+
+cat-form input[type="time"],
+cat-form input[type="date"],
+cat-form input[type="datetime-local"] {
+  display: grid;
+}
+
+cat-form .ng-input input {
+  padding: 0.3rem 0.5rem !important;
+}
+
 .dark cat-form input {
   color-scheme: dark;
 }
@@ -60,16 +79,11 @@ cat-form textarea {
   box-sizing: border-box;
 }
 
-.ng-select.ng-select-clearable
-  .ng-select-container.ng-has-value:hover
-  .ng-clear-wrapper {
+.ng-select.ng-select-clearable .ng-select-container.ng-has-value:hover .ng-clear-wrapper {
   display: flex;
 }
 
-.ng-select.ng-select-multiple
-  .ng-select-container
-  .ng-value-container
-  .ng-value {
+.ng-select.ng-select-multiple .ng-select-container .ng-value-container .ng-value {
   border-radius: 5px;
   color: var(--c-tag);
   background-color: var(--bg-tag);

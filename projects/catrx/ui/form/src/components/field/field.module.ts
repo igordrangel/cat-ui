@@ -7,7 +7,7 @@ import { TextareaModule } from './components/textarea/textarea.module';
 import { InputNumberModule } from './components/input-number/input-number.module';
 import { InputDatetimeModule } from './components/input-datetime/input-datetime.module';
 import { InputCpfModule } from './components/input-cpf/input-cpf.module';
-import { IConfig, NgxMaskModule } from 'ngx-mask';
+import { IConfig, NgxMaskDirective, NgxMaskPipe, provideNgxMask } from 'ngx-mask';
 import { InputCnpjModule } from './components/input-cnpj/input-cnpj.module';
 import { InputEmailModule } from './components/input-email/input-email.module';
 import { InputUrlModule } from './components/input-url/input-url.module';
@@ -44,7 +44,9 @@ const maskOptions: Partial<IConfig> | (() => Partial<IConfig>) = {
     InputSelectModule,
     InputAutocompleteModule,
     InputCustomFieldModule,
-    NgxMaskModule.forRoot(maskOptions),
+    NgxMaskDirective,
+    NgxMaskPipe
   ],
+  providers: [provideNgxMask(maskOptions)]
 })
 export class FieldModule {}
