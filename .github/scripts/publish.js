@@ -1,12 +1,12 @@
 const fs = require("fs");
 const fsExtra = require("fs-extra");
-const {execSync} = require("child_process");
+const { execSync } = require("child_process");
 const config = JSON.parse(fs.readFileSync('package.json').toString());
 const currentVersion = config.version;
 
-execSync(`ng build @catrx/ui`, {stdio: 'inherit'});
+execSync(`ng build @catrx/ui`, { stdio: 'inherit' });
 
-const packageJson = JSON.parse(fs.readFileSync('dist/@catrx/ui/package.json', {encoding: 'utf8'}).toString());
+const packageJson = JSON.parse(fs.readFileSync('dist/@catrx/ui/package.json', { encoding: 'utf8' }).toString());
 
 fs.writeFileSync('dist/@catrx/ui/package.json', JSON.stringify({
   ...packageJson,
@@ -25,9 +25,9 @@ fs.writeFileSync('dist/@catrx/ui/package.json', JSON.stringify({
   "homepage": "https://github.com/igordrangel/cat-ui#readme",
   "types": "./catrx-ui.d.ts",
   "peerDependencies": {
-    "@angular/cli": ">=15.0.0",
-    "@angular/common": ">=15.0.0",
-    "@angular/core": ">=15.0.0"
+    "@angular/cli": ">=16.0.0",
+    "@angular/common": ">=16.0.0",
+    "@angular/core": ">=16.0.0"
   },
   "dependencies": {
     "@fortawesome/fontawesome-free": "~6.2.1",

@@ -13,6 +13,7 @@ npm i @catrx/ui
 | @catrx/ui | Angular |
 | :-------: | :-----: |
 |   1.x.x   | 15.0.4  |
+|   2.x.x   | 16.0.0  |
 
 ## Documentação
 
