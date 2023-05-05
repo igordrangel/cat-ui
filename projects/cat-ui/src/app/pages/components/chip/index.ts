@@ -1,6 +1,6 @@
-import { Component, signal } from '@angular/core';
-import { CatComponentBase } from '@catrx/ui/common';
+import { Component } from '@angular/core';
 import { CatChip, CatChipComponent } from '@catrx/ui/chip';
+import { CatComponentBase } from '@catrx/ui/common';
 import { CatDynamicComponentModule } from '@catrx/ui/dynamic-component';
 import { CatToolbarModule } from '@catrx/ui/toolbar';
 
@@ -16,13 +16,11 @@ import { CatToolbarModule } from '@catrx/ui/toolbar';
         <cat-chip color="info">Info</cat-chip>
         <cat-chip color="primary">Primary</cat-chip>
         <cat-chip color="secondary">Secondary</cat-chip>
-        <cat-dynamic-component [component]="chipWithDynamicComponent()" />
+        <cat-dynamic-component [component]="chipWithDynamicComponent" />
       </nav>
     </cat-toolbar>
   `,
 })
 export class PageChipComponent extends CatComponentBase {
-  chipWithDynamicComponent = signal(
-    new CatChip('Componente Dinâmico', 'success')
-  );
+  chipWithDynamicComponent = new CatChip('Componente Dinâmico', 'success');
 }

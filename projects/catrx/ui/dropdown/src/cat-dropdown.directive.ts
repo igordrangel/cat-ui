@@ -110,9 +110,9 @@ export class CatDropdownDirective implements OnDestroy {
         const position = this.calcPosition();
 
         if (this.componentRef) {
-          this.componentRef.instance.left.set(position.leftPosition);
-          this.componentRef.instance.top.set(position.topPosition);
-          this.componentRef.instance.visible.set(true);
+          this.componentRef.instance.left = position.leftPosition;
+          this.componentRef.instance.top = position.topPosition;
+          this.componentRef.instance.visible = true;
         }
 
         this.observeTriggerDestroy();
@@ -124,7 +124,7 @@ export class CatDropdownDirective implements OnDestroy {
 
   private showDropdown() {
     if (this.componentRef !== null) {
-      this.componentRef.instance.visible.set(true);
+      this.componentRef.instance.visible = true;
       this.catDropdown.close
         .pipe(takeUntil(this.destroySubscriptions$))
         .subscribe(() => this.destroy());

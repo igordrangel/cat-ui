@@ -34,6 +34,7 @@ fs.writeFileSync(
       "@angular/cli": ">=16.0.0",
       "@angular/common": ">=16.0.0",
       "@angular/core": ">=16.0.0",
+      "@angular/forms": "^16.0.0",
     },
     dependencies: {
       "@fortawesome/fontawesome-free": "~6.2.1",
