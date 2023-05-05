@@ -6,11 +6,11 @@ $breadcrumb-divider-color-light: "%23212121";
 
 :root,
 main {
-  --bg-body: #673AB7;
+  --bg-body: #673ab7;
   --font-color: #616161;
   --light-font-color: #f1f1f1;
   --disable-color: #eee;
-  --primary-color: #673AB7;
+  --primary-color: #673ab7;
   --primary-color-alpha: rgba(255, 255, 255, 0.2);
 
   --btn-icon-bg-default: transparent;
@@ -22,9 +22,9 @@ main {
   --btn-icon-bg-danger: #c62828;
   --btn-icon-c-danger: #ffcdd2;
 
-  --btn-bg-primary: #2196F3;
-  --btn-bg-primary-hover: #1E88E5;
-  --btn-bg-primary-active: #1976D2;
+  --btn-bg-primary: #2196f3;
+  --btn-bg-primary-hover: #1e88e5;
+  --btn-bg-primary-active: #1976d2;
   --btn-c-primary: #fff;
   --btn-c-primary-hover: #fff;
   --btn-c-primary-active: #fff;
@@ -43,30 +43,30 @@ main {
   --btn-c-secondary-hover: #fff;
   --btn-c-secondary-active: #fff;
 
-  --btn-bg-success: #43A047;
-  --btn-bg-success-hover: #388E3C;
-  --btn-bg-success-active: #2E7D32;
+  --btn-bg-success: #43a047;
+  --btn-bg-success-hover: #388e3c;
+  --btn-bg-success-active: #2e7d32;
   --btn-c-success: #fff;
   --btn-c-success-hover: #fff;
   --btn-c-success-active: #fff;
 
-  --btn-bg-warning: #FFB300;
-  --btn-bg-warning-hover: #FFA000;
-  --btn-bg-warning-active: #FF8F00;
+  --btn-bg-warning: #ffb300;
+  --btn-bg-warning-hover: #ffa000;
+  --btn-bg-warning-active: #ff8f00;
   --btn-c-warning: #212121;
   --btn-c-warning-hover: #212121;
   --btn-c-warning-active: #212121;
 
-  --btn-bg-danger: #E53935;
-  --btn-bg-danger-hover: #D32F2F;
-  --btn-bg-danger-active: #C62828;
+  --btn-bg-danger: #e53935;
+  --btn-bg-danger-hover: #d32f2f;
+  --btn-bg-danger-active: #c62828;
   --btn-c-danger: #fff;
   --btn-c-danger-hover: #fff;
   --btn-c-danger-active: #fff;
 
-  --btn-bg-info: #00ACC1;
-  --btn-bg-info-hover: #0097A7;
-  --btn-bg-info-active: #00838F;
+  --btn-bg-info: #00acc1;
+  --btn-bg-info-hover: #0097a7;
+  --btn-bg-info-active: #00838f;
   --btn-c-info: #212121;
   --btn-c-info-hover: #212121;
   --btn-c-info-active: #212121;
@@ -106,7 +106,7 @@ main {
   --c-datatable-th: #616161;
   --bg-datatable-th: #f1f1f1;
   --border-color-datatable-th: #ddd;
-  --bg-datatable-hover-bg: rgba(0, 0, 0, .1);
+  --bg-datatable-hover-bg: rgba(0, 0, 0, 0.1);
   --bg-datatable-hover-color: #000;
 
   --c-form-valid-field: #1976d2;
@@ -125,9 +125,9 @@ main {
   --bg-select-option-hover-active: rgba(0, 0, 0, 0.1);
 
   --menu-border: none;
-  --c-menu: #B39DDB;
-  --c-menu-hover: #9575CD;
-  --c-menu-active: #7E57C2;
+  --c-menu: #b39ddb;
+  --c-menu-hover: #9575cd;
+  --c-menu-active: #7e57c2;
   --c-menu-border-active: rgba(255, 255, 255, 1);
   --bg-menu: #eee;
   --bg-menu-hover: #ddd;
@@ -144,7 +144,7 @@ main {
 
   --bg-avatar-image: #fff;
 
-  --shadow-color: rgba(0, 0, 0, .1);
+  --shadow-color: rgba(0, 0, 0, 0.1);
 
   --bg-progress-bar-container: #f1f1f1;
   --bg-progress-bar: #5e35b1;
@@ -194,30 +194,30 @@ main.dark {
   --btn-c-secondary-hover: #fff;
   --btn-c-secondary-active: #fff;
 
-  --btn-bg-success: #43A047;
-  --btn-bg-success-hover: #388E3C;
-  --btn-bg-success-active: #2E7D32;
+  --btn-bg-success: #43a047;
+  --btn-bg-success-hover: #388e3c;
+  --btn-bg-success-active: #2e7d32;
   --btn-c-success: #fff;
   --btn-c-success-hover: #fff;
   --btn-c-success-active: #fff;
 
-  --btn-bg-warning: #FFB300;
-  --btn-bg-warning-hover: #FFA000;
-  --btn-bg-warning-active: #FF8F00;
+  --btn-bg-warning: #ffb300;
+  --btn-bg-warning-hover: #ffa000;
+  --btn-bg-warning-active: #ff8f00;
   --btn-c-warning: #212121;
   --btn-c-warning-hover: #212121;
   --btn-c-warning-active: #212121;
 
-  --btn-bg-danger: #E53935;
-  --btn-bg-danger-hover: #D32F2F;
-  --btn-bg-danger-active: #C62828;
+  --btn-bg-danger: #e53935;
+  --btn-bg-danger-hover: #d32f2f;
+  --btn-bg-danger-active: #c62828;
   --btn-c-danger: #fff;
   --btn-c-danger-hover: #fff;
   --btn-c-danger-active: #fff;
 
-  --btn-bg-info: #26C6DA;
-  --btn-bg-info-hover: #00BCD4;
-  --btn-bg-info-active: #00ACC1;
+  --btn-bg-info: #26c6da;
+  --btn-bg-info-hover: #00bcd4;
+  --btn-bg-info-active: #00acc1;
   --btn-c-info: #212121;
   --btn-c-info-hover: #212121;
   --btn-c-info-active: #212121;
@@ -249,7 +249,7 @@ main.dark {
   --spinner-height: 1.5rem;
 
   --c-toolbar: #f1f1f1;
-  --bg-toolbar: var(--bg-body).6;
+  --bg-toolbar: var(--bg-body) 0.6;
 
   --c-tooltip: #f1f1f1;
   --bg-tooltip: rgba(94, 53, 177, 0.6);
@@ -257,7 +257,7 @@ main.dark {
   --c-datatable-th: #9a9a9a;
   --bg-datatable-th: #3a206f;
   --border-color-datatable-th: #484848;
-  --bg-datatable-hover-bg: rgba(0, 0, 0, .3);
+  --bg-datatable-hover-bg: rgba(0, 0, 0, 0.3);
   --bg-datatable-hover-color: #fff;
 
   --c-form-valid-field: #1976d2;
@@ -295,7 +295,7 @@ main.dark {
 
   --bg-avatar-image: #000;
 
-  --shadow-color: rgba(255, 255, 255, .1);
+  --shadow-color: rgba(255, 255, 255, 0.1);
 
   --bg-progress-bar-container: #f1f1f1;
   --bg-progress-bar: #5e35b1;

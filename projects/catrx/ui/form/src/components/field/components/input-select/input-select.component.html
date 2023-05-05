@@ -19,16 +19,16 @@
       [appendTo]="'main'"
       appearance="outline"
     >
-
       <ng-container *ngFor="let option of options">
         <ng-option
-          *ngIf="optionIsComponent(option) else textOption"
-          [value]="option.value">
-          <cat-dynamic-component [component]="getCompomentOption(option)"/>
+          *ngIf="optionIsComponent(option); else textOption"
+          [value]="option.value"
+        >
+          <cat-dynamic-component [component]="getCompomentOption(option)" />
         </ng-option>
 
         <ng-template #textOption>
-          <ng-option [value]="option.value" [innerHTML]="option.name"/>
+          <ng-option [value]="option.value" [innerHTML]="option.name" />
         </ng-template>
       </ng-container>
     </ng-select>

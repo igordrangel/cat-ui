@@ -3,7 +3,8 @@
   #desktopTemplate
   [appConfig]="appConfig"
   [themeActive]="themeActive"
-  (menuCollapse)="menuCollapse.emit($event)">
+  (menuCollapse)="menuCollapse.emit($event)"
+>
   <ng-container menu-content>
     <ng-container *ngTemplateOutlet="menuContent"></ng-container>
   </ng-container>
@@ -20,7 +21,8 @@
   #mobileTemplate
   [appConfig]="appConfig"
   [themeActive]="themeActive"
-  (menuCollapse)="menuCollapse.emit($event)">
+  (menuCollapse)="menuCollapse.emit($event)"
+>
   <ng-container menu-content>
     <ng-container *ngTemplateOutlet="menuContent"></ng-container>
   </ng-container>

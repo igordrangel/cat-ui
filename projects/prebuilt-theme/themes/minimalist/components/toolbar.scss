@@ -30,7 +30,7 @@
 .cat-toolbar li a.active,
 .cat-toolbar li a.noRoute {
   color: var(--font-color);
-  opacity: .6;
+  opacity: 0.6;
   cursor: default;
 }
 
@@ -48,7 +48,7 @@
 .cat-toolbar .info-content h1 {
   margin: 0 0 5px;
   padding: 10px 0;
-  font-size: 1.170rem;
+  font-size: 1.17rem;
 }
 
 .cat-toolbar .info-content h2 {
@@ -62,7 +62,7 @@
 }
 
 .cat-toolbar .breadcrumb {
-  font-size: 0.8360rem;
+  font-size: 0.836rem;
   margin: 0;
 }
 
@@ -96,7 +96,7 @@
     gap: 0.5rem;
   }
 
-  .cat-toolbar>div {
+  .cat-toolbar > div {
     width: 100%;
   }
 

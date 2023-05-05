@@ -37,12 +37,11 @@ export class CatTooltipDirective implements OnDestroy {
     private appRef: ApplicationRef,
     private componentFactoryResolver: ComponentFactoryResolver,
     private injector: Injector
-  ) { }
+  ) {}
 
   @HostListener('mouseenter')
   onMouseEnter(): void {
-    if (document.body.clientWidth > 980)
-      this.initializeTooltip();
+    if (document.body.clientWidth > 980) this.initializeTooltip();
   }
 
   @HostListener('mouseleave')
@@ -133,18 +132,30 @@ export class CatTooltipDirective implements OnDestroy {
     const isMobile = bodyWidth <= 980;
 
     if (!withoutSwitches) {
-      if (this.calcPosition(true).topPosition < 0 && this.catTooltipPosition === 'above')
+      if (
+        this.calcPosition(true).topPosition < 0 &&
+        this.catTooltipPosition === 'above'
+      )
         this.catTooltipPosition = 'below';
-      if (absoluteHorizontalPosition > bodyWidth && this.catTooltipPosition === 'right')
+      if (
+        absoluteHorizontalPosition > bodyWidth &&
+        this.catTooltipPosition === 'right'
+      )
         this.catTooltipPosition = 'left';
-      if (this.calcPosition(true).leftPosition < 0 && this.catTooltipPosition === 'left')
+      if (
+        this.calcPosition(true).leftPosition < 0 &&
+        this.catTooltipPosition === 'left'
+      )
         this.catTooltipPosition = 'right';
-      if (absoluteVerticalPosition > bodyHeigth && this.catTooltipPosition === 'below')
+      if (
+        absoluteVerticalPosition > bodyHeigth &&
+        this.catTooltipPosition === 'below'
+      )
         this.catTooltipPosition = 'above';
     }
 
     if (isMobile) {
-      leftPosition = 5
+      leftPosition = 5;
     }
 
     switch (this.catTooltipPosition) {
@@ -164,13 +175,20 @@ export class CatTooltipDirective implements OnDestroy {
         if (!isMobile)
           leftPosition = left - this.calcMiddlePosition(tooltipWidth);
 
-        topPosition = top + this.calcMiddlePosition(triggerHeight) + this.calcMiddlePosition(tooltipHeigth);
+        topPosition =
+          top +
+          this.calcMiddlePosition(triggerHeight) +
+          this.calcMiddlePosition(tooltipHeigth);
         break;
       case 'right':
         if (!isMobile)
-          leftPosition = left + triggerWidth + this.calcMiddlePosition(tooltipWidth);
+          leftPosition =
+            left + triggerWidth + this.calcMiddlePosition(tooltipWidth);
 
-        topPosition = top + this.calcMiddlePosition(triggerHeight) + this.calcMiddlePosition(tooltipHeigth);
+        topPosition =
+          top +
+          this.calcMiddlePosition(triggerHeight) +
+          this.calcMiddlePosition(tooltipHeigth);
         break;
     }
 
@@ -178,6 +196,6 @@ export class CatTooltipDirective implements OnDestroy {
   }
 
   private calcMiddlePosition(value: number) {
-    return value/2
+    return value / 2;
   }
 }

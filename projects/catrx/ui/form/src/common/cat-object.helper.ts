@@ -1,11 +1,11 @@
 export function getValueByTree(object: any, strTree: string) {
   const tree = strTree.split('.');
   let value: any;
-  tree.forEach(key => {
+  tree.forEach((key) => {
     if (!value) {
       if (key.includes('[') && key.includes(']')) {
         const keySplited = key.split('[');
-        keySplited.forEach(keyPart => {
+        keySplited.forEach((keyPart) => {
           if (value) {
             value = value[keyPart.replace(/]/g, '')];
           } else {
@@ -18,7 +18,7 @@ export function getValueByTree(object: any, strTree: string) {
     } else {
       if (key.includes('[') && key.includes(']')) {
         const keySplited = key.split('[');
-        keySplited.forEach(keyPart => {
+        keySplited.forEach((keyPart) => {
           value = value[keyPart.replace(/]/g, '')];
         });
       } else {

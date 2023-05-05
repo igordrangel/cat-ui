@@ -10,7 +10,7 @@
   font-size: 0.8rem;
   padding: 2px 8px;
   opacity: 0.6;
-  transition: .2s;
+  transition: 0.2s;
 }
 
 .cat-on-demand-filter .trigger-button i {
@@ -104,7 +104,7 @@
   font-size: 0.715rem;
   border-radius: 5px;
   padding: 2px 8px;
-  transition: .1s;
+  transition: 0.1s;
 }
 
 .cat-on-demand-filter .form-option-content nav .btn-back:hover {
@@ -134,8 +134,8 @@
   color: var(--font-color);
   padding: 0;
   margin: 0 0.5rem;
-  transition: .2s;
-  opacity: .6;
+  transition: 0.2s;
+  opacity: 0.6;
 }
 
 .cat-on-demand-filter-selected-options-content .btn-clear:hover {
@@ -149,7 +149,9 @@
   gap: 1px;
 }
 
-.cat-on-demand-filter-selected-options-content .option-content span:first-child {
+.cat-on-demand-filter-selected-options-content
+  .option-content
+  span:first-child {
   border-radius: 5px 0 0 5px;
 }
 
@@ -167,14 +169,16 @@
   padding: 2px 10px;
   font-size: 0.8rem;
   opacity: 0.9;
-  transition: .1s;
+  transition: 0.1s;
 }
 
 .cat-on-demand-filter-selected-options-content .option-content span.btn-remove {
   cursor: pointer;
 }
 
-.cat-on-demand-filter-selected-options-content .option-content span.btn-remove:hover {
+.cat-on-demand-filter-selected-options-content
+  .option-content
+  span.btn-remove:hover {
   opacity: 1;
 }
 

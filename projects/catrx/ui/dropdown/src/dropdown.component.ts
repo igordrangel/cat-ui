@@ -1,5 +1,12 @@
 import { DropdownConfig } from './cat-dropdown.directive';
-import { Component, Input, ViewChild, TemplateRef, Output, EventEmitter } from '@angular/core';
+import {
+  Component,
+  Input,
+  ViewChild,
+  TemplateRef,
+  Output,
+  EventEmitter,
+} from '@angular/core';
 import { CatDropdownPosition } from './dropdown.interface';
 import { Subject } from 'rxjs/internal/Subject';
 
@@ -12,7 +19,7 @@ import { Subject } from 'rxjs/internal/Subject';
         <ng-content select="[content]"></ng-content>
       </ng-template>
     </div>
-  `
+  `,
 })
 export class DropdownComponent {
   @Input() position: CatDropdownPosition = 'top';
@@ -37,7 +44,7 @@ export class DropdownComponent {
       onClose: (isClosed: boolean) => {
         if (isClosed) this.onClose.emit(isClosed);
       },
-      close: this.closeDropdown$
+      close: this.closeDropdown$,
     } as DropdownConfig;
   }
 }

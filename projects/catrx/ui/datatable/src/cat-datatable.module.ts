@@ -20,4 +20,4 @@ import { CatLoaderModule } from '@catrx/ui/loader';
     NgxPaginationModule,
   ],
 })
-export class CatDatatableModule { }
+export class CatDatatableModule {}

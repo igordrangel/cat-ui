@@ -1,5 +1,9 @@
 import { Component, Inject, signal } from '@angular/core';
-import { CatDialogRef, CAT_DIALOG_DATA, CatDialogComponent } from '@catrx/ui/dialog';
+import {
+  CatDialogRef,
+  CAT_DIALOG_DATA,
+  CatDialogComponent,
+} from '@catrx/ui/dialog';
 import { CatAlertConfig } from './cat-alert.service';
 import { CommonModule } from '@angular/common';
 import { CatDynamicComponentModule } from '@catrx/ui/dynamic-component';
@@ -13,8 +17,7 @@ import { CatButtonModule } from '@catrx/ui/button';
     CatDynamicComponentModule,
     CatButtonModule,
   ],
-  template: `
-    <cat-dialog>
+  template: ` <cat-dialog>
       <div class="cat-alert-content" [ngClass]="config.type" content>
         <cat-dynamic-component
           *ngIf="config.icon; else defaultIcon"
@@ -32,12 +35,12 @@ import { CatButtonModule } from '@catrx/ui/button';
     </ng-template>`,
 })
 export class CatAlertComponent {
-  icon = signal(this.getIcon())
+  icon = signal(this.getIcon());
 
   constructor(
     public dialogRef: CatDialogRef,
     @Inject(CAT_DIALOG_DATA) public config: CatAlertConfig
-  ) { }
+  ) {}
 
   getIcon() {
     switch (this.config.type) {

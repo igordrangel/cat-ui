@@ -64,8 +64,7 @@ export class StepperGroupComponent implements OnInit {
     element.children.item(0).classList.add('active');
     element.children.item(1).classList.add('active');
 
-    if (withAnimation)
-      await this.animateOpen(element);
+    if (withAnimation) await this.animateOpen(element);
   }
 
   private async animateOpen(element: Element) {

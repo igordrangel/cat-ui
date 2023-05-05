@@ -32,15 +32,18 @@ export class PageCRUDExampleComponent extends CatCRUDComponentBase<
 > {
   filterConfig = this.onDemandFilterService
     .build()
-    .setOption((formBuilder) => formBuilder
-      .select('Sexo', 'sex', builder => builder
-        .setOptions(CatSexSelectOptions)
-        .generate()
-      ), 'fa-solid fa-genderless')
-    .setOption((formBuilder) => formBuilder
-      .text('Raça', 'race', builder => builder
-        .generate()
-      ), 'fa-solid fa-paw')
+    .setOption(
+      (formBuilder) =>
+        formBuilder.select('Sexo', 'sex', (builder) =>
+          builder.setOptions(CatSexSelectOptions).generate()
+        ),
+      'fa-solid fa-genderless'
+    )
+    .setOption(
+      (formBuilder) =>
+        formBuilder.text('Raça', 'race', (builder) => builder.generate()),
+      'fa-solid fa-paw'
+    )
     .autofill({ sex: 'M' })
     .onChange(async (data) => {
       while ((this.datasource?.length ?? 0) === 0) {

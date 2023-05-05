@@ -17,6 +17,6 @@ import { Component } from '@angular/core';
         </div>
       </div>
     </div>
-  `
+  `,
 })
 export class CatDialogComponent {}

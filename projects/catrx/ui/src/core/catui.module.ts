@@ -25,11 +25,7 @@ registerLocaleData(ptBr);
     HttpClientModule,
     AppContainerModule,
   ],
-  providers: [
-    CatAppService,
-    CatOAuth2Service,
-    CatAuthGuard,
-  ],
+  providers: [CatAppService, CatOAuth2Service, CatAuthGuard],
 })
 export class CatUiModule {
   static forRoot(
@@ -54,7 +50,7 @@ export class CatUiModule {
       providers: [
         { provide: LocationStrategy, useClass: CatOAuth2HashLocationStrategy },
         { provide: LOCALE_ID, useValue: 'pt-BR' },
-      ]
+      ],
     };
   }
 }

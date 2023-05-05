@@ -9,7 +9,7 @@ import {
   Injector,
   Input,
   OnDestroy,
-  TemplateRef
+  TemplateRef,
 } from '@angular/core';
 import { Subject } from 'rxjs/internal/Subject';
 import { Subscription } from 'rxjs/internal/Subscription';
@@ -44,20 +44,24 @@ export class CatDropdownDirective implements OnDestroy {
     private appRef: ApplicationRef,
     private componentFactoryResolver: ComponentFactoryResolver,
     private injector: Injector
-  ) { }
+  ) {}
 
   @HostListener('click')
   onClick(): void {
     if (!this.catDropdown.disabled) {
       this.initializeDropdown();
-      setTimeout(() => this.wasTrigged = true, 1);
+      setTimeout(() => (this.wasTrigged = true), 1);
     }
   }
 
   @HostListener('document:click', ['$event'])
   onClickout(event: PointerEvent): void {
     if (this.componentRef?.instance && this.wasTrigged) {
-      if (this.componentRef.instance.elementRef.nativeElement.contains(event.target as Node)) {
+      if (
+        this.componentRef.instance.elementRef.nativeElement.contains(
+          event.target as Node
+        )
+      ) {
         if (!this.catDropdown.insideClick) {
           this.destroy();
         }
@@ -86,7 +90,9 @@ export class CatDropdownDirective implements OnDestroy {
   private initializeDropdown() {
     if (this.componentRef === null) {
       const componentFactory =
-        this.componentFactoryResolver.resolveComponentFactory(DropdownContentComponent);
+        this.componentFactoryResolver.resolveComponentFactory(
+          DropdownContentComponent
+        );
       this.componentRef = componentFactory.create(this.injector);
       this.appRef.attachView(this.componentRef.hostView);
       const domElem = (this.componentRef.hostView as EmbeddedViewRef<any>)
@@ -112,15 +118,14 @@ export class CatDropdownDirective implements OnDestroy {
         this.observeTriggerDestroy();
 
         this.showDropdown();
-      }, 1)
+      }, 1);
     }
   }
 
   private showDropdown() {
     if (this.componentRef !== null) {
       this.componentRef.instance.visible.set(true);
-      this.catDropdown
-        .close
+      this.catDropdown.close
         .pipe(takeUntil(this.destroySubscriptions$))
         .subscribe(() => this.destroy());
     }
@@ -152,40 +157,50 @@ export class CatDropdownDirective implements OnDestroy {
     const isMobile = bodyWidth <= 980;
 
     if (withoutSwitches) {
-      if (this.calcPosition(true).topPosition < 0 && this.catDropdown.position === 'top')
+      if (
+        this.calcPosition(true).topPosition < 0 &&
+        this.catDropdown.position === 'top'
+      )
         this.catDropdown.position = 'bottom';
-      if (absoluteHorizontalPosition > bodyWidth && this.catDropdown.position === 'right')
+      if (
+        absoluteHorizontalPosition > bodyWidth &&
+        this.catDropdown.position === 'right'
+      )
         this.catDropdown.position = 'left';
-      if (this.calcPosition(true).leftPosition < 0 && this.catDropdown.position === 'left')
+      if (
+        this.calcPosition(true).leftPosition < 0 &&
+        this.catDropdown.position === 'left'
+      )
         this.catDropdown.position = 'right';
-      if (absoluteVerticalPosition > bodyHeigth && this.catDropdown.position === 'bottom')
+      if (
+        absoluteVerticalPosition > bodyHeigth &&
+        this.catDropdown.position === 'bottom'
+      )
         this.catDropdown.position = 'top';
     }
 
     if (isMobile) {
-      leftPosition = 5
+      leftPosition = 5;
     }
 
     switch (this.catDropdown.position) {
       case 'top':
-        if (!isMobile)
-          leftPosition = left;
+        if (!isMobile) leftPosition = left;
 
         topPosition = top - dropdownHeigth - 5;
-        if (topPosition < 0)
-          topPosition = 5
+        if (topPosition < 0) topPosition = 5;
         break;
       case 'bottom':
         if (!isMobile)
-          leftPosition = absoluteHorizontalPosition > bodyWidth ? left - width : left
+          leftPosition =
+            absoluteHorizontalPosition > bodyWidth ? left - width : left;
 
         topPosition = bottom + 5;
         break;
       case 'left':
         if (!isMobile) {
           leftPosition = left - dropdownWidth - 5;
-          if (leftPosition < 0)
-            leftPosition = 5
+          if (leftPosition < 0) leftPosition = 5;
         }
 
         topPosition = top;
@@ -194,14 +209,14 @@ export class CatDropdownDirective implements OnDestroy {
         if (!isMobile) {
           leftPosition = right + 5;
           if (leftPosition > absoluteHorizontalPosition)
-            leftPosition = absoluteHorizontalPosition - 5
+            leftPosition = absoluteHorizontalPosition - 5;
         }
 
         topPosition = top;
 
         absolutePosition = topPosition + dropdownHeigth + height;
         if (absolutePosition >= absoluteVerticalPosition)
-          topPosition -= (dropdownHeigth - height);
+          topPosition -= dropdownHeigth - height;
         break;
     }
 

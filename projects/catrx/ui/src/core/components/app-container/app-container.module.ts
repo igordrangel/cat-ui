@@ -16,7 +16,7 @@ import { TemplateMobileComponent } from './templates/mobile/template-mobile.comp
     AppContainerComponent,
     TemplateContainerComponent,
     TemplateDesktopComponent,
-    TemplateMobileComponent
+    TemplateMobileComponent,
   ],
   exports: [AppContainerComponent],
   imports: [
@@ -29,4 +29,4 @@ import { TemplateMobileComponent } from './templates/mobile/template-mobile.comp
     RouterModule,
   ],
 })
-export class AppContainerModule { }
+export class AppContainerModule {}

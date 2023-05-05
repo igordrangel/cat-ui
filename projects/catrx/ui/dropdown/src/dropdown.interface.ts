@@ -1,5 +1,1 @@
-export type CatDropdownPosition =
-  | 'top'
-  | 'bottom'
-  | 'left'
-  | 'right';
+export type CatDropdownPosition = 'top' | 'bottom' | 'left' | 'right';

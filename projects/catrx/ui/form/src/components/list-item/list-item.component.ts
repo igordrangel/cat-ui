@@ -58,8 +58,7 @@ export class ListItemComponent implements OnInit, OnDestroy {
       .pipe(takeUntil(this.destroySubscriptions$))
       .subscribe((hidden) => {
         this.isHiddenList.emit(hidden);
-        if (!hidden)
-          this.startList();
+        if (!hidden) this.startList();
       });
 
     if (this.listItemConfig.config.autofill) {

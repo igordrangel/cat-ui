@@ -1,29 +1,28 @@
 <div class="template-content">
   <ng-container>
     <ng-container>
-      <aside
-        #asideElement
-        [ngClass]="{ show: menuCollapsed$ | async }">
-
+      <aside #asideElement [ngClass]="{ show: menuCollapsed$ | async }">
         <button
           *ngIf="menuCollapsed$ | async"
           type="button"
           class="btn-menu-collapse"
-          (click)="collapseMenu()">
+          (click)="collapseMenu()"
+        >
           <i class="fa-solid fa-chevron-left"></i>
         </button>
 
         <img
           #logotypeImage
           class="logotype"
-          [src]="(themeActive | async) === 'dark' && appConfig.logotype.negative
-                      ? appConfig.logotype.negative
-                      : appConfig.logotype.default"
-          alt="Logotipo">
+          [src]="
+            (themeActive | async) === 'dark' && appConfig.logotype.negative
+              ? appConfig.logotype.negative
+              : appConfig.logotype.default
+          "
+          alt="Logotipo"
+        />
 
-        <ng-content
-          *ngIf="menuCollapsed$ | async"
-          select="[menu-content]">
+        <ng-content *ngIf="menuCollapsed$ | async" select="[menu-content]">
         </ng-content>
 
         <div class="space"></div>
@@ -34,9 +33,7 @@
       </section>
 
       <nav class="toolbar-content">
-        <button
-          type="button"
-          (click)="collapseMenu()">
+        <button type="button" (click)="collapseMenu()">
           <i class="fa-solid fa-bars"></i>
         </button>
 

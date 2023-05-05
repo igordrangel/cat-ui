@@ -1,19 +1,22 @@
-import { BehaviorSubject } from "rxjs/internal/BehaviorSubject";
-import { FilterConfig, SelectedOptions } from "./filter-options.types";
-import { CatFormService, FormFactory } from "@catrx/ui/form";
+import { BehaviorSubject } from 'rxjs/internal/BehaviorSubject';
+import { FilterConfig, SelectedOptions } from './filter-options.types';
+import { CatFormService, FormFactory } from '@catrx/ui/form';
 
 export class FilterOptionsFactory {
-  constructor(private formService: CatFormService) { }
+  constructor(private formService: CatFormService) {}
 
   private config: FilterConfig = {
     options: [],
-    selectedOptions: new BehaviorSubject<SelectedOptions[]>([])
-  }
+    selectedOptions: new BehaviorSubject<SelectedOptions[]>([]),
+  };
 
-  public setOption(builder: (fieldBuilder: FormFactory<any>) => FormFactory<any>, icon?: string) {
+  public setOption(
+    builder: (fieldBuilder: FormFactory<any>) => FormFactory<any>,
+    icon?: string
+  ) {
     this.config.options.push({
       icon,
-      formBuilder: builder(this.formService.build())
+      formBuilder: builder(this.formService.build()),
     });
     return this;
   }
