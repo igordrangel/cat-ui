@@ -36,9 +36,9 @@ main {
   --btn-icon-bg-danger: #c62828;
   --btn-icon-c-danger: #ffcdd2;
 
-  --btn-bg-primary: #2196F3;
-  --btn-bg-primary-hover: #1E88E5;
-  --btn-bg-primary-active: #1976D2;
+  --btn-bg-primary: #2196f3;
+  --btn-bg-primary-hover: #1e88e5;
+  --btn-bg-primary-active: #1976d2;
   --btn-c-primary: #fff;
   --btn-c-primary-hover: #fff;
   --btn-c-primary-active: #fff;
@@ -57,30 +57,30 @@ main {
   --btn-c-secondary-hover: #fff;
   --btn-c-secondary-active: #fff;
 
-  --btn-bg-success: #43A047;
-  --btn-bg-success-hover: #388E3C;
-  --btn-bg-success-active: #2E7D32;
+  --btn-bg-success: #43a047;
+  --btn-bg-success-hover: #388e3c;
+  --btn-bg-success-active: #2e7d32;
   --btn-c-success: #fff;
   --btn-c-success-hover: #fff;
   --btn-c-success-active: #fff;
 
-  --btn-bg-warning: #FFB300;
-  --btn-bg-warning-hover: #FFA000;
-  --btn-bg-warning-active: #FF8F00;
+  --btn-bg-warning: #ffb300;
+  --btn-bg-warning-hover: #ffa000;
+  --btn-bg-warning-active: #ff8f00;
   --btn-c-warning: #212121;
   --btn-c-warning-hover: #212121;
   --btn-c-warning-active: #212121;
 
-  --btn-bg-danger: #E53935;
-  --btn-bg-danger-hover: #D32F2F;
-  --btn-bg-danger-active: #C62828;
+  --btn-bg-danger: #e53935;
+  --btn-bg-danger-hover: #d32f2f;
+  --btn-bg-danger-active: #c62828;
   --btn-c-danger: #fff;
   --btn-c-danger-hover: #fff;
   --btn-c-danger-active: #fff;
 
-  --btn-bg-info: #00ACC1;
-  --btn-bg-info-hover: #0097A7;
-  --btn-bg-info-active: #00838F;
+  --btn-bg-info: #00acc1;
+  --btn-bg-info-hover: #0097a7;
+  --btn-bg-info-active: #00838f;
   --btn-c-info: #212121;
   --btn-c-info-hover: #212121;
   --btn-c-info-active: #212121;
@@ -120,7 +120,7 @@ main {
   --c-datatable-th: #616161;
   --bg-datatable-th: #f1f1f1;
   --border-color-datatable-th: #ddd;
-  --bg-datatable-hover-bg: rgba(0, 0, 0, .1);
+  --bg-datatable-hover-bg: rgba(0, 0, 0, 0.1);
   --bg-datatable-hover-color: #000;
 
   --c-form-valid-field: #1976d2;
@@ -172,7 +172,7 @@ main {
 }
 
 main.dark {
-  --bg-body: #191A23;
+  --bg-body: #191a23;
   --font-color: #bbb;
   --light-font-color: #bbb;
   --disable-color: #313131;
@@ -209,30 +209,30 @@ main.dark {
   --btn-c-secondary-hover: #fff;
   --btn-c-secondary-active: #fff;
 
-  --btn-bg-success: #43A047;
-  --btn-bg-success-hover: #388E3C;
-  --btn-bg-success-active: #2E7D32;
+  --btn-bg-success: #43a047;
+  --btn-bg-success-hover: #388e3c;
+  --btn-bg-success-active: #2e7d32;
   --btn-c-success: #fff;
   --btn-c-success-hover: #fff;
   --btn-c-success-active: #fff;
 
-  --btn-bg-warning: #FFB300;
-  --btn-bg-warning-hover: #FFA000;
-  --btn-bg-warning-active: #FF8F00;
+  --btn-bg-warning: #ffb300;
+  --btn-bg-warning-hover: #ffa000;
+  --btn-bg-warning-active: #ff8f00;
   --btn-c-warning: #212121;
   --btn-c-warning-hover: #212121;
   --btn-c-warning-active: #212121;
 
-  --btn-bg-danger: #E53935;
-  --btn-bg-danger-hover: #D32F2F;
-  --btn-bg-danger-active: #C62828;
+  --btn-bg-danger: #e53935;
+  --btn-bg-danger-hover: #d32f2f;
+  --btn-bg-danger-active: #c62828;
   --btn-c-danger: #fff;
   --btn-c-danger-hover: #fff;
   --btn-c-danger-active: #fff;
 
-  --btn-bg-info: #26C6DA;
-  --btn-bg-info-hover: #00BCD4;
-  --btn-bg-info-active: #00ACC1;
+  --btn-bg-info: #26c6da;
+  --btn-bg-info-hover: #00bcd4;
+  --btn-bg-info-active: #00acc1;
   --btn-c-info: #212121;
   --btn-c-info-hover: #212121;
   --btn-c-info-active: #212121;
@@ -264,15 +264,15 @@ main.dark {
   --spinner-height: 1.5rem;
 
   --c-toolbar: #f1f1f1;
-  --bg-toolbar: #191A23;
+  --bg-toolbar: #191a23;
 
   --c-tooltip: #ccc;
-  --bg-tooltip: #191A23;
+  --bg-tooltip: #191a23;
 
   --c-datatable-th: #9a9a9a;
   --bg-datatable-th: #21232e;
   --border-color-datatable-th: #2c2d3c;
-  --bg-datatable-hover-bg: rgba(0, 0, 0, .1);
+  --bg-datatable-hover-bg: rgba(0, 0, 0, 0.1);
   --bg-datatable-hover-color: #fff;
 
   --c-form-valid-field: #1976d2;
@@ -302,7 +302,7 @@ main.dark {
   --c-dropdown: #ccc;
   --c-dropdown-hover: #ddd;
   --c-dropdown-active: #ddd;
-  --bg-dropdown: #191A23;
+  --bg-dropdown: #191a23;
   --bg-dropdown-hover: #33354a;
   --bg-dropdown-active: #33354a;
 

@@ -70,11 +70,13 @@ export class AppContainerComponent implements OnInit {
     private oauth2Service: CatOAuth2Service,
     private tokenService: CatTokenService,
     private notificationService: NotificationService
-  ) { }
+  ) {}
 
   ngOnInit() {
     if (window.matchMedia && this.config.darkMode) {
-      const savedTheme = localStorage.getItem(this.getLocalStorageThemeName()) as CatThemeType;
+      const savedTheme = localStorage.getItem(
+        this.getLocalStorageThemeName()
+      ) as CatThemeType;
 
       if (savedTheme) {
         this.themeActive$.next(savedTheme);
@@ -111,7 +113,10 @@ export class AppContainerComponent implements OnInit {
   public switchTheme() {
     const currentTheme = this.themeActive$.getValue();
     this.themeActive$.next(currentTheme === 'dark' ? 'light' : 'dark');
-    localStorage.setItem(this.getLocalStorageThemeName(), this.themeActive$.getValue());
+    localStorage.setItem(
+      this.getLocalStorageThemeName(),
+      this.themeActive$.getValue()
+    );
   }
 
   public logout(clearToken = false) {
@@ -371,7 +376,9 @@ export class AppContainerComponent implements OnInit {
   }
 
   private verifyTokenIsExpired() {
-    const user = this.tokenService.getDecodedToken<CatOAuth2TokenInterface | CatJwtTokenInterface>();
+    const user = this.tokenService.getDecodedToken<
+      CatOAuth2TokenInterface | CatJwtTokenInterface
+    >();
     if (user) {
       const exp = user['expired'] ?? user['exp'];
       if (typeof exp === 'string') {

@@ -17,7 +17,7 @@ import { CommonModule } from '@angular/common';
         <ng-content></ng-content>
       </ng-template>
     </div>
-  `
+  `,
 })
 export class CatChipComponent implements CatDynamicComponentDataInterface {
   @Input() color: CatChipColor = 'primary';

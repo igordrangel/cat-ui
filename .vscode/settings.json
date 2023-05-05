@@ -5,5 +5,5 @@
   },
   "[html]": {
     "editor.defaultFormatter": "dbaeumer.vscode-eslint"
-  },
+  }
 }

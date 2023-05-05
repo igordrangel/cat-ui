@@ -15,7 +15,7 @@ cat-template-mobile .template-content aside {
   left: calc((100vw - 20px) * -1);
   max-width: calc(100vw - 20px);
   padding: 40px 20px 20px;
-  transition: ease-in-out .2s;
+  transition: ease-in-out 0.2s;
   display: flex;
   justify-content: flex-start;
   align-items: center;
@@ -37,13 +37,13 @@ cat-template-mobile cat-menu cat-menu-module ul li {
 }
 cat-template-mobile cat-menu cat-menu-module ul li::after,
 cat-template-mobile cat-menu cat-menu-module ul li::before {
-  width: 0!important;
-  height: 0!important;
+  width: 0 !important;
+  height: 0 !important;
   display: none;
 }
 
 cat-template-mobile cat-menu cat-menu-tool ul li.tool a {
-  padding: 10px 25px!important;
+  padding: 10px 25px !important;
 }
 
 cat-template-mobile cat-menu ul li a span {
@@ -51,8 +51,8 @@ cat-template-mobile cat-menu ul li a span {
 }
 
 cat-template-mobile cat-menu cat-menu-module ul li.module a i {
-  font-size: 1.17rem!important;
-  margin-right: 15px!important;
+  font-size: 1.17rem !important;
+  margin-right: 15px !important;
 }
 
 cat-template-mobile .template-content aside.show {
@@ -93,7 +93,7 @@ cat-template-mobile .template-content section#cat-content-app {
 
 cat-template-mobile .logotype {
   width: 80px;
-  transition: ease-in-out .2s;
+  transition: ease-in-out 0.2s;
 }
 
 cat-template-mobile .btn-menu-collapse {
@@ -106,7 +106,7 @@ cat-template-mobile .btn-menu-collapse {
   height: 30px;
   font-size: 1rem;
   border-radius: 50%;
-  transition: ease-in-out .2s;
+  transition: ease-in-out 0.2s;
   padding: 0;
   color: var(--primary-color);
   z-index: 1;
@@ -128,7 +128,7 @@ cat-template-mobile .toolbar-content {
   height: 60px;
   background-color: var(--bg-body);
   border-radius: 120px;
-  box-shadow: 0 8px 32px 0 rgba(0,0,0,.2);
+  box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.2);
   gap: 8px;
   bottom: 10px;
   z-index: 1003;

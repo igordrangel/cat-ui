@@ -4,11 +4,11 @@ import { CatToolbarConfig } from './cat-toolbar.interface';
 
 @Component({
   selector: 'cat-toolbar',
-  templateUrl: './toolbar.component.html'
+  templateUrl: './toolbar.component.html',
 })
 export class ToolbarComponent {
   @Input() config?: CatToolbarConfig;
   @Input() spaceBetween = true;
 
-  constructor(public router: Router) { }
+  constructor(public router: Router) {}
 }

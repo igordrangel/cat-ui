@@ -20,9 +20,9 @@
   border: 1px solid var(--shadow-color);
   border-radius: 5px 5px 0 0;
   border-bottom: none;
-  opacity: .6;
+  opacity: 0.6;
   cursor: pointer;
-  transition: .1s;
+  transition: 0.1s;
 }
 
 .cat-tab-item:first-child {
@@ -46,7 +46,7 @@
   left: calc(100% + 40px);
   border-top: 1px solid var(--shadow-color);
   width: 100%;
-  transition: .1s;
+  transition: 0.1s;
 }
 
 .cat-tab-item-content.active {

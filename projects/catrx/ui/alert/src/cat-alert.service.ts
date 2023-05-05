@@ -10,9 +10,9 @@ export interface CatAlertConfig {
   icon?: CatDynamicComponent;
 }
 
-@Injectable({providedIn: 'root'})
+@Injectable({ providedIn: 'root' })
 export class CatAlertService {
-  constructor(private dialogService: CatDialogService) { }
+  constructor(private dialogService: CatDialogService) {}
 
   show(config: CatAlertConfig) {
     this.dialogService.open(CatAlertComponent, {

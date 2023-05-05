@@ -20,14 +20,16 @@ export type CatIconButtonColor =
   template: `
     <button
       class="cat-icon-button"
-      [ngClass]="color" [catTooltip]="tooltip ?? ''"
-      [disabled]="disabled">
+      [ngClass]="color"
+      [catTooltip]="tooltip ?? ''"
+      [disabled]="disabled"
+    >
       <i [class]="icon"></i>
     </button>
   `,
 })
 export class CatIconButtonComponent {
-  @Input({required: true}) icon: string;
+  @Input({ required: true }) icon: string;
   @Input() color?: CatIconButtonColor;
   @Input() tooltip?: string;
   @Input() disabled?: boolean;

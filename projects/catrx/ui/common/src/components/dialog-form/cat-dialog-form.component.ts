@@ -14,12 +14,7 @@ import { CatButtonModule } from '@catrx/ui/button';
 
 @Component({
   standalone: true,
-  imports: [
-    CommonModule,
-    CatDialogComponent,
-    CatFormModule,
-    CatButtonModule
-  ],
+  imports: [CommonModule, CatDialogComponent, CatFormModule, CatButtonModule],
   template: `
     <form (submit)="submit($event)">
       <cat-dialog>
@@ -49,13 +44,17 @@ import { CatButtonModule } from '@catrx/ui/button';
           >
             Cancelar
           </button>
-          <button catButton="primary" type="submit" [showLoader]="submitLoader$ | async">
+          <button
+            catButton="primary"
+            type="submit"
+            [showLoader]="submitLoader$ | async"
+          >
             Salvar
           </button>
         </div>
       </cat-dialog>
     </form>
-  `
+  `,
 })
 export class CatDialogFormComponent extends CatFormBase {
   constructor(

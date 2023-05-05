@@ -13,10 +13,13 @@
     </h2>
 
     <button
-      [disabled]="getItemList().controls.length === listItemConfig.options?.maxItems"
+      [disabled]="
+        getItemList().controls.length === listItemConfig.options?.maxItems
+      "
       (click)="addItem()"
       type="button"
-      class="btn btn-primary cat-btn-add-item-list">
+      class="btn btn-primary cat-btn-add-item-list"
+    >
       <i class="fa-solid fa-circle-plus"></i>
       Adicionar
     </button>
@@ -41,7 +44,9 @@
                 [variableTree]="getFullListItemName(itemIndex)"
                 [highlightInvalidFields]="highlightInvalidFields"
                 (isHiddenList)="hideField(containerListItem, $event)"
-                (emitFormGroup)="addFormGroup(itemIndex, childListItemConfig.name, $event)"
+                (emitFormGroup)="
+                  addFormGroup(itemIndex, childListItemConfig.name, $event)
+                "
                 (removeFormGroup)="removeChildFormGroup($event)"
               >
               </cat-form-list-item>
@@ -66,9 +71,7 @@
       </div>
 
       <button
-        *ngIf="
-          getItemList().controls.length > listItemConfig.options?.minItems
-        "
+        *ngIf="getItemList().controls.length > listItemConfig.options?.minItems"
         (click)="removeItem(itemIndex)"
         type="button"
         class="cat-btn-remove-item-list"

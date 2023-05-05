@@ -98,14 +98,17 @@ export class FormComponent implements OnInit {
 
   public submitOnKeyEnter(event: KeyboardEvent) {
     if (event.key === 'Enter') {
-      const autocompleteInputIsOpened = !(event.target as HTMLInputElement).attributes.getNamedItem('aria-activedescendant');
-      const isInput = (event.target as HTMLInputElement).attributes.getNamedItem('class')?.value?.includes('form-control');
-      const isTexteArea = (event.target as HTMLInputElement).attributes.getNamedItem('class')?.ownerElement?.localName === 'textarea';
+      const autocompleteInputIsOpened = !(
+        event.target as HTMLInputElement
+      ).attributes.getNamedItem('aria-activedescendant');
+      const isInput = (event.target as HTMLInputElement).attributes
+        .getNamedItem('class')
+        ?.value?.includes('form-control');
+      const isTexteArea =
+        (event.target as HTMLInputElement).attributes.getNamedItem('class')
+          ?.ownerElement?.localName === 'textarea';
 
-      if (
-        !autocompleteInputIsOpened ||
-        (isInput && !isTexteArea)
-      ) {
+      if (!autocompleteInputIsOpened || (isInput && !isTexteArea)) {
         this.submitted.emit(true);
       }
     }
@@ -147,15 +150,20 @@ export class FormComponent implements OnInit {
       };
 
       if (Array.isArray(valueDataByTree)) {
-        const isObjectArray = !!valueDataByTree.find(item => typeof item === 'object');
-        const isListItem = this.isListItemByName(name, this.config.formElements);
+        const isObjectArray = !!valueDataByTree.find(
+          (item) => typeof item === 'object'
+        );
+        const isListItem = this.isListItemByName(
+          name,
+          this.config.formElements
+        );
 
         if (isObjectArray && isListItem) {
           valueDataByTree.forEach((item, indexItem) => {
             clone(Object.keys(item)).forEach((propItem) => {
               const prefix = name.substring(0, name.length - 3);
               let suffix = name.substring(name.length - 3);
-              if (suffix === `[${(indexItem > 0 ? indexItem - 1 : indexItem)}]`) {
+              if (suffix === `[${indexItem > 0 ? indexItem - 1 : indexItem}]`) {
                 suffix = suffix.replace(`[${indexItem - 1}]`, `[${indexItem}]`);
               } else {
                 suffix += `[${indexItem}]`;
@@ -173,7 +181,10 @@ export class FormComponent implements OnInit {
             value: valueDataByTree,
           });
         }
-      } else if (typeof valueDataByTree === 'object' && !this.isFileByName(name, this.config.formElements)) {
+      } else if (
+        typeof valueDataByTree === 'object' &&
+        !this.isFileByName(name, this.config.formElements)
+      ) {
         clone(Object.keys(valueDataByTree)).forEach((index) => {
           name = this.generateAutofillDataTree(
             valueDataByTree[index],
@@ -198,8 +209,13 @@ export class FormComponent implements OnInit {
     } else {
       clone(Object.keys(data)).map((index) => {
         if (Array.isArray(data[index])) {
-          const isObjectArray = !!data[index].find(item => typeof item === 'object');
-          const isListItem = this.isListItemByName(index, this.config.formElements);
+          const isObjectArray = !!data[index].find(
+            (item) => typeof item === 'object'
+          );
+          const isListItem = this.isListItemByName(
+            index,
+            this.config.formElements
+          );
           if (isObjectArray && isListItem) {
             data[index].forEach((item, indexItem) => {
               clone(Object.keys(item)).forEach((propItem) => {
@@ -234,8 +250,11 @@ export class FormComponent implements OnInit {
     return name;
   }
 
-  private isListItemByName(name: string, formElement: CatFormElementConfig[]): boolean {
-    return !!formElement.find(formElement => {
+  private isListItemByName(
+    name: string,
+    formElement: CatFormElementConfig[]
+  ): boolean {
+    return !!formElement.find((formElement) => {
       if (formElement.listItem) {
         const splitedName = name.split('.');
         if (
@@ -246,11 +265,14 @@ export class FormComponent implements OnInit {
         }
       }
       return false;
-    })
+    });
   }
 
-  private isFileByName(name: string, formElement: CatFormElementConfig[]): boolean {
-    return !!formElement.find(formElement => {
+  private isFileByName(
+    name: string,
+    formElement: CatFormElementConfig[]
+  ): boolean {
+    return !!formElement.find((formElement) => {
       if (formElement.field) {
         const splitedName = name.split('.');
         if (
@@ -274,6 +296,6 @@ export class FormComponent implements OnInit {
       }
 
       return false;
-    })
+    });
   }
 }

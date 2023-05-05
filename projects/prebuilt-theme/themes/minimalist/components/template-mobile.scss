@@ -12,7 +12,7 @@ cat-template-mobile .template-content aside {
   left: -70vw;
   max-width: 70vw;
   padding: 40px 0 0;
-  transition: ease-in-out .2s;
+  transition: ease-in-out 0.2s;
   display: flex;
   justify-content: flex-start;
   align-items: center;
@@ -24,7 +24,7 @@ cat-template-mobile .template-content aside {
 }
 
 cat-template-mobile .template-content aside.show::after {
-  content: '';
+  content: "";
   position: absolute;
   top: 0;
   left: 70vw;
@@ -68,7 +68,7 @@ cat-template-mobile .template-content section#cat-content-app {
 
 cat-template-mobile .logotype {
   width: 80px;
-  transition: ease-in-out .2s;
+  transition: ease-in-out 0.2s;
 }
 
 cat-template-mobile .btn-menu-collapse {
@@ -81,7 +81,7 @@ cat-template-mobile .btn-menu-collapse {
   height: 30px;
   font-size: 1rem;
   border-radius: 50%;
-  transition: ease-in-out .2s;
+  transition: ease-in-out 0.2s;
   padding: 0;
   color: var(--c-menu);
   z-index: 1;

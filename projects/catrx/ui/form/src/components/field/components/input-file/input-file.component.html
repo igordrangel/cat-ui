@@ -54,11 +54,14 @@
     </div>
 
     <div *ngIf="!fieldConfig.hideSelectedFilesList" class="files-content">
-      <ng-container *ngIf="!fieldConfig.customSelectedFilesList else customFileContent">
+      <ng-container
+        *ngIf="!fieldConfig.customSelectedFilesList; else customFileContent"
+      >
         <div
           class="file-content"
           *ngFor="let file of files; let i = index"
-          [ngClass]="{ invalid: !hasValidExtension(file.filename) }">
+          [ngClass]="{ invalid: !hasValidExtension(file.filename) }"
+        >
           <strong>{{ file.filename }}</strong>
           <button (click)="removeFile(i)" class="btn-remove" type="button">
             <i class="fa-solid fa-xmark"></i>
@@ -67,7 +70,9 @@
       </ng-container>
 
       <ng-template #customFileContent>
-        <cat-dynamic-component [component]="getFilesToCustomList()"></cat-dynamic-component>
+        <cat-dynamic-component
+          [component]="getFilesToCustomList()"
+        ></cat-dynamic-component>
       </ng-template>
     </div>
   </div>

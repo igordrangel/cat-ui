@@ -71,10 +71,7 @@ export class FieldComponent implements OnInit, OnDestroy, OnChanges {
             }
           });
       }
-      if (
-        this.fieldConfig.hidden ||
-        this.fieldConfig.disabled
-      ) {
+      if (this.fieldConfig.hidden || this.fieldConfig.disabled) {
         this.removeValidators();
       }
 

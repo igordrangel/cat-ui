@@ -1,5 +1,5 @@
-import { FormFactory } from "@catrx/ui/form";
-import { BehaviorSubject } from "rxjs/internal/BehaviorSubject";
+import { FormFactory } from '@catrx/ui/form';
+import { BehaviorSubject } from 'rxjs/internal/BehaviorSubject';
 
 export interface FilterConfig<PayloadType = any> {
   autofill?: any;

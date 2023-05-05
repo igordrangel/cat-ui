@@ -28,10 +28,7 @@
           "builder": "@angular-devkit/build-angular:karma",
           "options": {
             "tsConfig": "projects/catrx/ui/tsconfig.spec.json",
-            "polyfills": [
-              "zone.js",
-              "zone.js/testing"
-            ]
+            "polyfills": ["zone.js", "zone.js/testing"]
           }
         },
         "lint": {
@@ -133,9 +130,7 @@
               "projects/cat-ui/src/favicon.ico",
               "projects/cat-ui/src/assets"
             ],
-            "styles": [
-              "projects/cat-ui/src/styles.css"
-            ],
+            "styles": ["projects/cat-ui/src/styles.css"],
             "scripts": []
           }
         },
@@ -152,8 +147,6 @@
     }
   },
   "cli": {
-    "schematicCollections": [
-      "@angular-eslint/schematics"
-    ]
+    "schematicCollections": ["@angular-eslint/schematics"]
   }
 }

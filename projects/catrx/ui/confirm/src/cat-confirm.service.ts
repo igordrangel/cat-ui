@@ -3,7 +3,7 @@ import { CatDialogService } from '@catrx/ui/dialog';
 import { ConfirmOptions, ConfirmResponse } from './cat-confirm.interface';
 import { CatConfirmComponent } from './cat-confirm.component';
 
-@Injectable({providedIn: 'root'})
+@Injectable({ providedIn: 'root' })
 export class CatConfirmService {
   constructor(private dialogService: CatDialogService) {}
 

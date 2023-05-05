@@ -14,7 +14,7 @@ import { CatDynamicComponentModule } from '@catrx/ui/dynamic-component';
     ReactiveFormsModule,
     FieldContentModule,
     NgSelectModule,
-    CatDynamicComponentModule
+    CatDynamicComponentModule,
   ],
 })
 export class InputSelectModule {}

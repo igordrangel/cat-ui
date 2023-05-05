@@ -9,6 +9,11 @@ import { CatDynamicComponentModule } from '@catrx/ui/dynamic-component';
 @NgModule({
   declarations: [InputFileComponent, DragDropFileUploadDirective],
   exports: [InputFileComponent],
-  imports: [CommonModule, ReactiveFormsModule, CommonErrorsModule, CatDynamicComponentModule],
+  imports: [
+    CommonModule,
+    ReactiveFormsModule,
+    CommonErrorsModule,
+    CatDynamicComponentModule,
+  ],
 })
 export class InputFileModule {}

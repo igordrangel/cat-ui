@@ -1,11 +1,15 @@
 import { Injectable } from '@angular/core';
-import { ActivatedRouteSnapshot, RouterStateSnapshot, UrlTree } from '@angular/router';
+import {
+  ActivatedRouteSnapshot,
+  RouterStateSnapshot,
+  UrlTree,
+} from '@angular/router';
 import { Observable } from 'rxjs/internal/Observable';
 import { TokenFactory } from '../factory/token.factory';
 import { CatRoutePolice } from './cat-route.police';
 
 @Injectable()
-export class CatAuthGuard  {
+export class CatAuthGuard {
   canActivate(
     route: ActivatedRouteSnapshot,
     state: RouterStateSnapshot

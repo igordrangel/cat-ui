@@ -45,15 +45,23 @@ export class TemplateDesktopComponent implements OnInit {
     if (this.appConfig.logotype) {
       if (isCollapsed) {
         if (darkMode) {
-          return this.appConfig.logotype.negative ?? this.appConfig.logotype.default;
+          return (
+            this.appConfig.logotype.negative ?? this.appConfig.logotype.default
+          );
         } else {
           return this.appConfig.logotype.default;
         }
       } else {
         if (darkMode) {
-          return this.appConfig.logotype.negativeForUncollapse ?? this.appConfig.logotype.default;
+          return (
+            this.appConfig.logotype.negativeForUncollapse ??
+            this.appConfig.logotype.default
+          );
         } else {
-          return this.appConfig.logotype.defaultForUncollapse ?? this.appConfig.logotype.default;
+          return (
+            this.appConfig.logotype.defaultForUncollapse ??
+            this.appConfig.logotype.default
+          );
         }
       }
     }

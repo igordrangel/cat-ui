@@ -1,10 +1,10 @@
 name: PUBLISH DOC
 on:
   push:
-    branches: [ develop ]
+    branches: [develop]
 jobs:
   build:
-    name: 'production'
+    name: "production"
     runs-on: ubuntu-latest
     steps:
       - name: 🚚 Get latest code
@@ -13,7 +13,7 @@ jobs:
       - name: Use Node.js 16
         uses: actions/setup-node@v2-beta
         with:
-          node-version: '16'
+          node-version: "16"
 
       - name: 🔨 Install Dependencies
         run: npm ci --force
@@ -27,6 +27,6 @@ jobs:
           server: ftp.igordrangel.com.br
           username: catui@igordrangel.com.br
           password: ${{ secrets.FTP_PASSWORD }}
-          server-dir: './dist/'
-          local-dir: './dist/cat-ui/'
+          server-dir: "./dist/"
+          local-dir: "./dist/cat-ui/"
           dangerous-clean-slate: true

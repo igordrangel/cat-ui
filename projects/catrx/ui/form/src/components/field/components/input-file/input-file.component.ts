@@ -13,7 +13,7 @@ import { CatDynamicComponent } from '@catrx/ui/dynamic-component';
 
 @Component({
   selector: 'cat-field-file[control][fieldConfig]',
-  templateUrl: './input-file.component.html'
+  templateUrl: './input-file.component.html',
 })
 export class InputFileComponent extends FieldBase<
   CatFormFileOptions | CatFormCsvOptions,
@@ -27,20 +27,24 @@ export class InputFileComponent extends FieldBase<
   }
 
   protected override customInit(): void {
-    this.control
-      .valueChanges
+    this.control.valueChanges
       .pipe(takeUntil(this.destroySubscriptions$))
       .subscribe((value: CatFileInterface | Array<CatFileInterface>) => {
         if (Array.isArray(value)) {
           this.files = klArray(this.files)
-            .merge(value.filter(item => !this.files.find(file => item.filename === file.filename)))
+            .merge(
+              value.filter(
+                (item) =>
+                  !this.files.find((file) => item.filename === file.filename)
+              )
+            )
             .getValue();
         } else if (value) {
-          if (!this.files.find(file => value.filename === file.filename)) {
+          if (!this.files.find((file) => value.filename === file.filename)) {
             this.files.push(value);
           }
         }
-      })
+      });
   }
 
   public async emitFiles(files: FileList | null) {
@@ -58,9 +62,10 @@ export class InputFileComponent extends FieldBase<
           if (file) {
             const fileResult = await this.convertFile(file);
             if (fileResult) {
-              const indexFile = this.files.findIndex(file =>
-                file.filename === fileResult.filename &&
-                file.type === fileResult.type
+              const indexFile = this.files.findIndex(
+                (file) =>
+                  file.filename === fileResult.filename &&
+                  file.type === fileResult.type
               );
               if (indexFile >= 0) {
                 this.files[indexFile] = fileResult;
@@ -121,7 +126,7 @@ export class InputFileComponent extends FieldBase<
   public getFilesToCustomList() {
     return new CatDynamicComponent(this.fieldConfig.customSelectedFilesList, {
       data: this.files,
-      remove: (index: number) => this.removeFile(index)
+      remove: (index: number) => this.removeFile(index),
     } as CatFormCustomSelectedFileList);
   }
 

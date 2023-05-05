@@ -1,26 +1,35 @@
-<cat-dropdown 
-  class="cat-on-demand-filter" 
+<cat-dropdown
+  class="cat-on-demand-filter"
   position="bottom"
-  #dropdownFilter 
-  [insideClick]="true" 
-  (onClose)="activeFilterForm = undefined">
+  #dropdownFilter
+  [insideClick]="true"
+  (onClose)="activeFilterForm = undefined"
+>
   <button trigger class="trigger-button" type="button">
     <i class="fa-solid fa-plus"></i>
-    {{label}}
+    {{ label }}
   </button>
   <div class="cat-on-demand-filter options-container" content>
-    <ng-container *ngIf="!activeFilterForm else filterFormField">
+    <ng-container *ngIf="!activeFilterForm; else filterFormField">
       <form class="filter-options">
-        <input type="search" placeholder="Filtrar opções..." [formControl]="filterOptionsControl" />
+        <input
+          type="search"
+          placeholder="Filtrar opções..."
+          [formControl]="filterOptionsControl"
+        />
       </form>
-      
-      <div *ngIf="filteredOptions.length > 0 else emptyOptions" class="options-content animate__animated animate__fadeIn">
-        <a 
-          class="dropdown-item" 
-          *ngFor="let option of filteredOptions" 
-          (click)="chooseOption(option)">
+
+      <div
+        *ngIf="filteredOptions.length > 0; else emptyOptions"
+        class="options-content animate__animated animate__fadeIn"
+      >
+        <a
+          class="dropdown-item"
+          *ngFor="let option of filteredOptions"
+          (click)="chooseOption(option)"
+        >
           <i *ngIf="option.icon" [class]="option.icon"></i>
-          {{getOptionConfig(option).fieldConfig.label}}
+          {{ getOptionConfig(option).fieldConfig.label }}
         </a>
       </div>
 
@@ -31,9 +40,12 @@
         </div>
       </ng-template>
     </ng-container>
-    
+
     <ng-template #filterFormField>
-      <div #filterFormContent class="form-option-content animate__animated animate__fadeInRight">
+      <div
+        #filterFormContent
+        class="form-option-content animate__animated animate__fadeInRight"
+      >
         <nav>
           <button class="btn-back" (click)="back()">
             <i class="fa-solid fa-chevron-left"></i>

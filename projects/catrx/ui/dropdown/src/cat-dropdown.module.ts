@@ -5,8 +5,12 @@ import { DropdownContentComponent } from './dropdown-content.component';
 import { DropdownComponent } from './dropdown.component';
 
 @NgModule({
-  declarations: [CatDropdownDirective, DropdownContentComponent, DropdownComponent],
+  declarations: [
+    CatDropdownDirective,
+    DropdownContentComponent,
+    DropdownComponent,
+  ],
   exports: [DropdownComponent],
   imports: [CommonModule],
 })
-export class CatDropdownModule { }
+export class CatDropdownModule {}

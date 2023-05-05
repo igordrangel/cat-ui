@@ -67,7 +67,7 @@ cat-menu cat-menu-module ul li:active {
 cat-menu cat-menu-module ul.collapsed li.has-tools a::after {
   font-family: "Font Awesome 5 Free";
   font-weight: 900;
-  content: '\f054';
+  content: "\f054";
   position: absolute;
   right: 15px;
   top: 10px;
@@ -83,7 +83,7 @@ cat-menu cat-menu-module ul li.module a {
   width: 100%;
   text-align: center;
   margin: 0;
-  transition: .1s linear;
+  transition: 0.1s linear;
   padding: 0;
   cursor: pointer;
   text-decoration: none;
@@ -97,20 +97,20 @@ cat-menu cat-menu-module ul:not(.collapsed) li.module a {
 }
 
 cat-menu cat-menu-module ul.collapsed li.module a {
-  font-size: 0.8360rem;
+  font-size: 0.836rem;
   padding: 10px 15px;
   text-align: left;
 }
 
 cat-menu cat-menu-module ul li.module a i {
   margin: 0;
-  font-size: 1.170rem;
+  font-size: 1.17rem;
   padding: 20px 10px;
 }
 
 cat-menu cat-menu-module ul.collapsed li.module a i {
   margin-right: 8px;
-  font-size: 0.8360rem;
+  font-size: 0.836rem;
   padding: 0;
 }
 
@@ -126,7 +126,7 @@ cat-menu cat-menu-module ul li.module.active {
 }
 cat-menu cat-menu-module ul li.module:hover::after,
 cat-menu cat-menu-module ul li.module.active::after {
-  content: '';
+  content: "";
   position: absolute;
   bottom: -20px;
   right: 0;
@@ -138,7 +138,7 @@ cat-menu cat-menu-module ul li.module.active::after {
 }
 cat-menu cat-menu-module ul li.module:hover::before,
 cat-menu cat-menu-module ul li.module.active::before {
-  content: '';
+  content: "";
   position: absolute;
   top: -20px;
   right: 0;
@@ -187,7 +187,7 @@ cat-menu cat-menu-tool ul li {
   width: 100%;
   box-sizing: border-box;
   background-color: var(--bg-menu);
-  transition: .1s;
+  transition: 0.1s;
 }
 
 cat-menu cat-menu-tool ul li:hover {
@@ -205,18 +205,20 @@ cat-menu cat-menu-tool ul li.tool {
 }
 
 cat-menu cat-menu-tool ul li.tool a {
-  font-size: 0.8360rem;
+  font-size: 0.836rem;
   width: 100%;
   text-align: left;
   margin: 0;
-  transition: .1s linear;
+  transition: 0.1s linear;
   padding: 10px 15px;
   cursor: pointer;
   text-decoration: none;
   color: var(--c-menu);
 }
 
-cat-menu cat-menu-tool ul li.tool a::after {content: ''!important;}
+cat-menu cat-menu-tool ul li.tool a::after {
+  content: "" !important;
+}
 
 cat-menu cat-menu-tool ul li.tool a i {
   margin-right: 8px;
@@ -229,12 +231,12 @@ cat-menu cat-menu-tool ul li.tool .active {
 cat-menu cat-menu-tool ul li.has-tools a::after {
   font-family: "Font Awesome 5 Free";
   font-weight: 900;
-  content: '\f054';
+  content: "\f054";
   position: absolute;
   right: 15px;
   top: 10px;
   font-size: 0.625rem;
-  transition: .1s;
+  transition: 0.1s;
 }
 
 cat-menu cat-menu-tool ul li.has-tools.collapsed::after {

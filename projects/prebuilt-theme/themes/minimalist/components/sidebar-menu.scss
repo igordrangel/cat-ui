@@ -49,7 +49,7 @@ cat-menu cat-menu-module ul li {
   box-sizing: border-box;
   border-radius: 8px;
   margin: 2px 0;
-  transition: .1s;
+  transition: 0.1s;
 }
 
 cat-menu cat-menu-module ul li:hover {
@@ -65,12 +65,12 @@ cat-menu cat-menu-module ul li:active {
 cat-menu cat-menu-module ul.collapsed li.has-tools::after {
   font-family: "Font Awesome 5 Free";
   font-weight: 900;
-  content: '\f054';
+  content: "\f054";
   position: absolute;
   right: 15px;
   top: 8px;
   font-size: 0.625rem;
-  transition: .1s;
+  transition: 0.1s;
 }
 
 cat-menu cat-menu-module ul.collapsed li.has-tools.collapsed::after {
@@ -82,7 +82,7 @@ cat-menu cat-menu-module ul li.module a {
   width: 100%;
   text-align: center;
   margin: 0;
-  transition: .1s linear;
+  transition: 0.1s linear;
   padding: 0;
   cursor: pointer;
   text-decoration: none;
@@ -100,7 +100,7 @@ cat-menu cat-menu-module ul:not(.collapsed) li {
 }
 
 cat-menu cat-menu-module ul.collapsed li.module a {
-  font-size: 0.8360rem;
+  font-size: 0.836rem;
   padding: 5px 10px;
   text-align: left;
 }
@@ -112,7 +112,7 @@ cat-menu cat-menu-module ul li.module a i {
 
 cat-menu cat-menu-module ul.collapsed li.module a i {
   margin-right: 8px;
-  font-size: 0.8360rem;
+  font-size: 0.836rem;
   padding: 0;
 }
 
@@ -153,7 +153,7 @@ cat-menu cat-menu-tool ul li {
   width: 100%;
   box-sizing: border-box;
   background-color: var(--bg-menu);
-  transition: .1s;
+  transition: 0.1s;
 }
 
 cat-menu cat-menu-tool ul li:hover {
@@ -171,11 +171,11 @@ cat-menu cat-menu-tool ul li.tool {
 }
 
 cat-menu cat-menu-tool ul li.tool a {
-  font-size: 0.8360rem;
+  font-size: 0.836rem;
   width: 100%;
   text-align: left;
   margin: 0;
-  transition: .1s linear;
+  transition: 0.1s linear;
   padding: 10px 15px;
   cursor: pointer;
   text-decoration: none;
@@ -193,12 +193,12 @@ cat-menu cat-menu-tool ul li.tool .active {
 cat-menu cat-menu-tool ul li.has-tools::after {
   font-family: "Font Awesome 5 Free";
   font-weight: 900;
-  content: '\f054';
+  content: "\f054";
   position: absolute;
   right: 15px;
   top: 10px;
   font-size: 0.625rem;
-  transition: .1s;
+  transition: 0.1s;
 }
 
 cat-menu cat-menu-tool ul li.has-tools.collapsed::after {
