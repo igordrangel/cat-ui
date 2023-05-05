@@ -1,10 +1,10 @@
-import { Component, Inject, signal } from '@angular/core';
+import { Component, Inject } from '@angular/core';
 import {
+  CAT_DIALOG_DATA,
+  CatDialogComponent,
   CatDialogRef,
   CatDialogService,
   CatDialogSize,
-  CAT_DIALOG_DATA,
-  CatDialogComponent,
 } from '@catrx/ui/dialog';
 import { CatFormModule, CatFormService } from '@catrx/ui/form';
 
@@ -21,7 +21,7 @@ interface FormData {
       <div header>Dialog</div>
       <div content>
         <span>{{ data }}</span>
-        <cat-form class="d-block mt-10" [config]="formConfig()"></cat-form>
+        <cat-form class="d-block mt-10" [config]="formConfig"></cat-form>
       </div>
       <div actions>
         <button
@@ -44,26 +44,22 @@ interface FormData {
 })
 export class DialogExampleComponent {
   formData: FormData;
-  formConfig = signal(
-    this.formService
-      .build<FormData>()
-      .text(
-        'Inclua um texto para exibir no próximo Dialog',
-        'text',
-        (builder) => builder.generate()
-      )
-      .select('Tamanho do próximo Dialog', 'size', (builder) =>
-        builder
-          .setOptions([
-            { value: 'small', name: 'Pequeno' },
-            { value: 'medium', name: 'Médio' },
-            { value: 'big', name: 'Grande' },
-          ])
-          .generate()
-      )
-      .onChange((value) => (this.formData = value))
-      .generate()
-  );
+  formConfig = this.formService
+    .build<FormData>()
+    .text('Inclua um texto para exibir no próximo Dialog', 'text', (builder) =>
+      builder.generate()
+    )
+    .select('Tamanho do próximo Dialog', 'size', (builder) =>
+      builder
+        .setOptions([
+          { value: 'small', name: 'Pequeno' },
+          { value: 'medium', name: 'Médio' },
+          { value: 'big', name: 'Grande' },
+        ])
+        .generate()
+    )
+    .onChange((value) => (this.formData = value))
+    .generate();
 
   constructor(
     @Inject(CAT_DIALOG_DATA) public data: string,

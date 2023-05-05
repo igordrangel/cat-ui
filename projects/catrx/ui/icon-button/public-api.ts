@@ -1,1 +1,1 @@
-export * from './src/cat-icon-button.component';
+export * from './cat-icon-button.component';
