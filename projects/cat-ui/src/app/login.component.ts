@@ -8,49 +8,41 @@ import {
 import { Observable } from 'rxjs';
 import { CatFormBase } from '@catrx/ui/common';
 import { CommonModule } from '@angular/common';
-import { CatPrimaryButtonComponent } from '@catrx/ui/button/primary';
+import { CatButtonModule } from '@catrx/ui/button';
 
 @Component({
-  template: `
-    <form class="login-content" (submit)="submit($event)">
-      <cat-dynamic-component
-        class="logotype"
-        [component]="data"
-      />
-
-      <cat-form #form [config]="loginFormConfig" />
-
-      <cat-primary-button
-        class="w-100"
-        type="submit"
-        [showLoader]="submitLoader$ | async">
-        Entrar
-      </cat-primary-button>
-    </form>
-  `,
-  styles: [
-    `
-      .login-content {
-        width: 250px;
-      }
-      .logotype {
-        display: flex;
-        justify-content: center;
-        margin: 0 0 40px;
-      }
-    `,
-  ],
   standalone: true,
   imports: [
     CommonModule,
     CatDynamicComponentModule,
     CatFormModule,
-    CatPrimaryButtonComponent,
+    CatButtonModule,
+  ],
+  template: `
+    <form class="login-content" (submit)="submit($event)">
+      <cat-dynamic-component class="logotype" [component]="data" />
+
+      <cat-form #form [config]="loginFormConfig" />
+
+      <button
+        catButton="primary"
+        [showLoader]="submitLoader$ | async"
+        class="w-100"
+        type="submit"
+      >
+        Entrar
+      </button>
+    </form>
+  `,
+  styles: [
+    '.login-content { width: 250px; }',
+    '.logotype { display: flex; justify-content: center; margin: 0 0 40px; } ',
   ],
 })
 export class LoginComponent
   extends CatFormBase
-  implements CatDynamicComponentDataInterface {
+  implements CatDynamicComponentDataInterface
+{
   data: CatLogotypeApp;
 
   loginFormConfig = this.formService

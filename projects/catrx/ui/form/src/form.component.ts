@@ -98,7 +98,16 @@ export class FormComponent implements OnInit {
 
   public submitOnKeyEnter(event: KeyboardEvent) {
     if (event.key === 'Enter') {
-      this.submitted.emit(true);
+      const autocompleteInputIsOpened = !(event.target as HTMLInputElement).attributes.getNamedItem('aria-activedescendant');
+      const isInput = (event.target as HTMLInputElement).attributes.getNamedItem('class')?.value?.includes('form-control');
+      const isTexteArea = (event.target as HTMLInputElement).attributes.getNamedItem('class')?.ownerElement?.localName === 'textarea';
+
+      if (
+        !autocompleteInputIsOpened ||
+        (isInput && !isTexteArea)
+      ) {
+        this.submitted.emit(true);
+      }
     }
   }
 

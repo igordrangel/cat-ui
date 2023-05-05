@@ -35,7 +35,7 @@ export class InputFileComponent extends FieldBase<
           this.files = klArray(this.files)
             .merge(value.filter(item => !this.files.find(file => item.filename === file.filename)))
             .getValue();
-        } else {
+        } else if (value) {
           if (!this.files.find(file => value.filename === file.filename)) {
             this.files.push(value);
           }

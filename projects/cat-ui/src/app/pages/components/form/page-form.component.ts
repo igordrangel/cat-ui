@@ -4,6 +4,7 @@ import { CatFileInterface } from '@catrx/ui/utils';
 import { PageFormService } from './page-form.service';
 import { nameValidator } from './validators/name.validator';
 import { Observable } from 'rxjs/internal/Observable';
+import { CatFormBase } from '@catrx/ui/common';
 
 @Component({
   templateUrl: 'page-form.component.html',
@@ -16,7 +17,7 @@ import { Observable } from 'rxjs/internal/Observable';
     `,
   ],
 })
-export class PageFormComponent {
+export class PageFormComponent extends CatFormBase {
   config = this.formService
     .build()
     .fieldset(
@@ -225,7 +226,9 @@ export class PageFormComponent {
   constructor(
     private formService: CatFormService,
     private pageFormService: PageFormService
-  ) {}
+  ) {
+    super();
+  }
 
   private fillAddress(address: any, behavior: CatFormBehavior) {
     behavior

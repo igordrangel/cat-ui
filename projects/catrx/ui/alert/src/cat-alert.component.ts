@@ -2,8 +2,8 @@ import { Component, Inject, signal } from '@angular/core';
 import { CatDialogRef, CAT_DIALOG_DATA, CatDialogComponent } from '@catrx/ui/dialog';
 import { CatAlertConfig } from './cat-alert.service';
 import { CommonModule } from '@angular/common';
-import { CatPrimaryButtonComponent } from '@catrx/ui/button/primary';
 import { CatDynamicComponentModule } from '@catrx/ui/dynamic-component';
+import { CatButtonModule } from '@catrx/ui/button/cat-button.module';
 
 @Component({
   standalone: true,
@@ -11,7 +11,7 @@ import { CatDynamicComponentModule } from '@catrx/ui/dynamic-component';
     CommonModule,
     CatDialogComponent,
     CatDynamicComponentModule,
-    CatPrimaryButtonComponent,
+    CatButtonModule,
   ],
   template: `
     <cat-dialog>
@@ -23,7 +23,7 @@ import { CatDynamicComponentModule } from '@catrx/ui/dynamic-component';
         <p [innerHTML]="config.message"></p>
       </div>
       <div class="cat-alert-actions" actions>
-        <cat-primary-button (click)="dialogRef.close()">Ok</cat-primary-button>
+        <button catButton="primary" (click)="dialogRef.close()">Ok</button>
       </div>
     </cat-dialog>
 

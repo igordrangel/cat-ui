@@ -10,10 +10,16 @@ import { CatDialogFormConfig } from './cat-dialog-form.interface';
 import { CatSnackbarService } from '@catrx/ui/snackbar';
 import { HttpErrorResponse } from '@angular/common/http';
 import { CatFormBase } from '../../abstractions/cat-form.base';
-import { CatPrimaryButtonComponent } from '@catrx/ui/button/primary';
-import { CatSecondaryButtonComponent } from '@catrx/ui/button/secondary';
+import { CatButtonModule } from '@catrx/ui/button';
 
 @Component({
+  standalone: true,
+  imports: [
+    CommonModule,
+    CatDialogComponent,
+    CatFormModule,
+    CatButtonModule
+  ],
   template: `
     <form (submit)="submit($event)">
       <cat-dialog>
@@ -35,28 +41,21 @@ import { CatSecondaryButtonComponent } from '@catrx/ui/button/secondary';
           <cat-form #form [config]="config?.formConfig"></cat-form>
         </div>
         <div actions>
-          <cat-secondary-button
+          <button
+            catButton="secondary"
             (click)="dialogRef.close()"
             [disabled]="submitLoader$ | async"
             [style.marginRight]="'5px'"
           >
             Cancelar
-          </cat-secondary-button>
-          <cat-primary-button type="submit" [showLoader]="submitLoader$ | async">
+          </button>
+          <button catButton="primary" type="submit" [showLoader]="submitLoader$ | async">
             Salvar
-          </cat-primary-button>
+          </button>
         </div>
       </cat-dialog>
     </form>
-  `,
-  standalone: true,
-  imports: [
-    CommonModule,
-    CatDialogComponent,
-    CatFormModule,
-    CatPrimaryButtonComponent,
-    CatSecondaryButtonComponent,
-  ],
+  `
 })
 export class CatDialogFormComponent extends CatFormBase {
   constructor(

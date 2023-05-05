@@ -7,7 +7,7 @@ import { PageListItemComponent } from './list-item/page-list-item.component';
 import { CommonModule } from '@angular/common';
 import { CatToolbarModule } from '@catrx/ui/toolbar';
 import { PageCustomFieldComponent } from './custom-field/page-custom-field.component';
-import { CatPrimaryButtonComponent } from '@catrx/ui/button/primary';
+import { CatButtonModule } from '@catrx/ui/button';
 
 @NgModule({
   declarations: [
@@ -19,7 +19,7 @@ import { CatPrimaryButtonComponent } from '@catrx/ui/button/primary';
     CommonModule,
     CatToolbarModule,
     CatFormModule,
-    CatPrimaryButtonComponent,
+    CatButtonModule,
     HttpClientModule,
     PageFormRoutingModule,
   ],

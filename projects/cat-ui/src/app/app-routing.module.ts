@@ -29,15 +29,13 @@ const routes: Routes = [
       {
         path: 'toolbar',
         loadChildren: () =>
-          import('./pages/components/toolbar/page-toolbar.module').then(
-            (m) => m.PageToolbarModule
-          ),
+          import('./pages/components/toolbar/routes').then((m) => m.ROUTES),
       },
       {
         path: 'side-window',
-        loadChildren: () =>
-          import('./pages/components/side-window/page-side-window.module').then(
-            (m) => m.PageSideWindowModule
+        loadComponent: () =>
+          import('./pages/components/side-window').then(
+            (m) => m.PageSideWindowComponent
           ),
       },
       {
@@ -56,9 +54,9 @@ const routes: Routes = [
       },
       {
         path: 'snackbar',
-        loadChildren: () =>
-          import('./pages/components/snackbar/page-snackbar.module').then(
-            (m) => m.PageSnackbarModule
+        loadComponent: () =>
+          import('./pages/components/snackbar').then(
+            (m) => m.PageSnackbarComponent
           ),
       },
       {
@@ -68,9 +66,9 @@ const routes: Routes = [
       },
       {
         path: 'button',
-        loadChildren: () =>
-          import('./pages/components/button/page-button.module').then(
-            (m) => m.PageButtonModule
+        loadComponent: () =>
+          import('./pages/components/button').then(
+            (m) => m.PageButtonComponent
           ),
       },
       {
@@ -82,9 +80,9 @@ const routes: Routes = [
       },
       {
         path: 'tooltip',
-        loadChildren: () =>
-          import('./pages/components/tooltip/page-tooltip.module').then(
-            (m) => m.PageTooltipModule
+        loadComponent: () =>
+          import('./pages/components/tooltip').then(
+            (m) => m.PageTooltipComponent
           ),
       },
       {
@@ -94,31 +92,29 @@ const routes: Routes = [
       },
       {
         path: 'tab',
-        loadChildren: () =>
-          import('./pages/components/tab/page-tab.module').then(
-            (m) => m.PageTabModule
-          ),
+        loadComponent: () =>
+          import('./pages/components/tab').then((m) => m.PageTabComponent),
       },
       {
         path: 'stepper',
-        loadChildren: () =>
-          import('./pages/components/stepper/page-stepper.module').then(
-            (m) => m.PageStepperModule
+        loadComponent: () =>
+          import('./pages/components/stepper').then(
+            (m) => m.PageStepperComponent
           ),
       },
       {
         path: 'expansive-panel',
-        loadChildren: () =>
-          import(
-            './pages/components/expansive-panel/page-expansive-panel.module'
-          ).then((m) => m.PageExpansivePanelModule),
+        loadComponent: () =>
+          import('./pages/components/expansive-panel').then(
+            (m) => m.PageExpansivePanelComponent
+          ),
       },
       {
         path: 'on-demand-filter',
-        loadChildren: () =>
-          import(
-            './pages/components/on-demand-filter/page-on-demand-filter.module'
-          ).then((m) => m.PageOnDemandFilterModule),
+        loadComponent: () =>
+          import('./pages/components/on-demand-filter').then(
+            (m) => m.PageOnDemandFilterComponent
+          ),
       },
     ],
   },
@@ -127,23 +123,19 @@ const routes: Routes = [
     children: [
       {
         path: 'csv',
-        loadChildren: () =>
-          import('./pages/services/csv/page-csv.module').then(
-            (m) => m.PageCsvModule
-          ),
+        loadComponent: () =>
+          import('./pages/services/csv').then((m) => m.PageCsvComponent),
       },
       {
         path: 'xlsx',
         loadChildren: () =>
-          import('./pages/services/xlsx/page-xlsx.module').then(
-            (m) => m.PageXlsxModule
-          ),
+          import('./pages/services/xlsx').then((m) => m.PageXlsxComponent),
       },
       {
         path: 'loader-page',
-        loadChildren: () =>
-          import('./pages/services/loader-page/page-loader-page.module').then(
-            (m) => m.PageLoaderPageModule
+        loadComponent: () =>
+          import('./pages/services/loader-page').then(
+            (m) => m.PageLoaderPageComponent
           ),
       },
     ],

@@ -4,41 +4,27 @@ import {
   CatAlertService,
   CatAlertType,
 } from '@catrx/ui/alert';
-import { CatDangerButtonComponent } from '@catrx/ui/button/danger';
-import { CatInfoButtonComponent } from '@catrx/ui/button/info';
-import { CatSuccessButtonComponent } from '@catrx/ui/button/success';
-import { CatWarningButtonComponent } from '@catrx/ui/button/warning';
+import { CatButtonModule } from '@catrx/ui/button/cat-button.module';
 import { CatComponentBase } from '@catrx/ui/common';
 import { CatToolbarModule } from '@catrx/ui/toolbar';
 
 @Component({
   standalone: true,
-  imports: [
-    CatToolbarModule,
-    CatSuccessButtonComponent,
-    CatWarningButtonComponent,
-    CatDangerButtonComponent,
-    CatInfoButtonComponent,
-    CatAlertComponent,
-  ],
+  imports: [CatToolbarModule, CatButtonModule, CatAlertComponent],
   template: `
     <cat-toolbar [config]="getToolbarInfo()">
       <nav buttons>
-        <cat-success-button (click)="openAlert('success')">
+        <button catButton="success" (click)="openAlert('success')">
           Sucesso
-        </cat-success-button>
+        </button>
 
-        <cat-warning-button (click)="openAlert('warning')">
+        <button catButton="warning" (click)="openAlert('warning')">
           Atenção
-        </cat-warning-button>
+        </button>
 
-        <cat-danger-button (click)="openAlert('error')">
-          Error
-        </cat-danger-button>
+        <button catButton="danger" (click)="openAlert('error')">Error</button>
 
-        <cat-info-button (click)="openAlert('info')">
-          Informação
-        </cat-info-button>
+        <button catButton="info" (click)="openAlert('info')">Informação</button>
       </nav>
     </cat-toolbar>
   `,
