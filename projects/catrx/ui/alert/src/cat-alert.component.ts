@@ -3,7 +3,7 @@ import { CatDialogRef, CAT_DIALOG_DATA, CatDialogComponent } from '@catrx/ui/dia
 import { CatAlertConfig } from './cat-alert.service';
 import { CommonModule } from '@angular/common';
 import { CatDynamicComponentModule } from '@catrx/ui/dynamic-component';
-import { CatButtonModule } from '@catrx/ui/button/cat-button.module';
+import { CatButtonModule } from '@catrx/ui/button';
 
 @Component({
   standalone: true,
