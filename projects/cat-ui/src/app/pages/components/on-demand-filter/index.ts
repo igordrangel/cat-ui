@@ -9,17 +9,13 @@ import { CatToolbarModule } from '@catrx/ui/toolbar';
   standalone: true,
   imports: [CommonModule, CatToolbarModule, CatOnDemandFilterModule],
   template: `
-    <cat-on-demand-filter-container>
-      <cat-toolbar [config]="getToolbarInfo(true)" [spaceBetween]="false">
-        <nav buttons>
-          <div [catOnDemandFilterTrigger]="filterConfig">Buscar</div>
-        </nav>
-      </cat-toolbar>
+    <cat-toolbar [config]="getToolbarInfo(true)" [spaceBetween]="false">
+      <nav buttons>
+        <div [catOnDemandFilterTrigger]="filterConfig">Buscar</div>
+      </nav>
+    </cat-toolbar>
 
-      <div
-        [catOnDemandFilterSelectedOptions]="filterConfig.selectedOptions"
-      ></div>
-    </cat-on-demand-filter-container>
+    <div [catOnDemandFilterSelectedOptions]="filterConfig"></div>
   `,
 })
 export class PageOnDemandFilterComponent extends CatComponentBase {

@@ -79,11 +79,16 @@ cat-form .ng-input input {
   box-sizing: border-box;
 }
 
-.ng-select.ng-select-clearable .ng-select-container.ng-has-value:hover .ng-clear-wrapper {
+.ng-select.ng-select-clearable
+  .ng-select-container.ng-has-value:hover
+  .ng-clear-wrapper {
   display: flex;
 }
 
-.ng-select.ng-select-multiple .ng-select-container .ng-value-container .ng-value {
+.ng-select.ng-select-multiple
+  .ng-select-container
+  .ng-value-container
+  .ng-value {
   border-radius: 5px;
   color: var(--c-tag);
   background-color: var(--bg-tag);

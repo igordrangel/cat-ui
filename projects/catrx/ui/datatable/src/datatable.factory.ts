@@ -7,14 +7,15 @@ import {
   DatatableTypeDataList,
 } from './cat-datatable.interface';
 import { CatDynamicComponent } from '@catrx/ui/dynamic-component';
-import { Observable } from 'rxjs/internal/Observable';
 import { BehaviorSubject } from 'rxjs/internal/BehaviorSubject';
+import { Observable } from 'rxjs/internal/Observable';
+import { Subject } from 'rxjs/internal/Subject';
 
 export class DatatableFactory<FilterType = any, DataType = any> {
   private config: DatatableConfig<DataType>;
 
   constructor(
-    filter$: BehaviorSubject<FilterType>,
+    filter$: Subject<FilterType> | BehaviorSubject<FilterType>,
     service: (
       filter: FilterType
     ) => Observable<CatDatatableDataHttpResponse<DataType>>,

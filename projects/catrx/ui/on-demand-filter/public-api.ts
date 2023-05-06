@@ -1,6 +1,5 @@
 export * from './src/factory/filter-options.factory';
 export * from './src/factory/filter-options.types';
-export * from './src/container/container.component';
 export * from './src/selected-options/selected-options.directive';
 export * from './src/selected-options/selected-options.component';
 export * from './src/trigger/trigger.directive';

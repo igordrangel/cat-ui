@@ -195,13 +195,18 @@ export class DatatableComponent implements OnInit, OnDestroy {
   public sort(columnIndex: number, reverse?: boolean) {
     this.checkAll(false);
     this.orderBy = this.getItemLine(columnIndex)?.sortColumn ?? '';
+
     if (this.orderBy) {
       this.reverse = reverse
         ? reverse
         : this.columnIndexSort !== columnIndex
-        ? false
-        : !this.reverse;
+          ? false
+          : !this.reverse;
       this.columnIndexSort = columnIndex;
+    }
+
+    if (this.config.typeDataList === 'onDemand') {
+      this.loadData(true);
     }
   }
 

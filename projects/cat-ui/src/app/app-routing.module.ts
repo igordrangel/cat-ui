@@ -145,9 +145,9 @@ const routes: Routes = [
     children: [
       {
         path: 'crud-page',
-        loadChildren: () =>
-          import('./pages/crud-example/page-crud.example.module').then(
-            (m) => m.PageCRUDExampleModule
+        loadComponent: () =>
+          import('./pages/crud-example').then(
+            (m) => m.PageCRUDExampleComponent
           ),
       },
     ],

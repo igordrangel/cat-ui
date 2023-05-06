@@ -9,15 +9,14 @@ import {
   Input,
   OnInit,
 } from '@angular/core';
-import { SelectedOptions } from '../factory/filter-options.types';
+import { FilterConfig } from '../factory/filter-options.types';
 import { SelectedOptionsComponent } from './selected-options.component';
-import { BehaviorSubject } from 'rxjs/internal/BehaviorSubject';
 
 @Directive({
   selector: 'div[catOnDemandFilterSelectedOptions]',
 })
 export class SelectedOptionsDirective implements OnInit {
-  @Input() catOnDemandFilterSelectedOptions: BehaviorSubject<SelectedOptions[]>;
+  @Input() catOnDemandFilterSelectedOptions: FilterConfig;
   private componentRef: ComponentRef<SelectedOptionsComponent> = null;
 
   constructor(
@@ -36,7 +35,8 @@ export class SelectedOptionsDirective implements OnInit {
       this.componentRef = componentFactory.create(this.injector);
 
       this.componentRef.instance.selectedOptions$ =
-        this.catOnDemandFilterSelectedOptions;
+        this.catOnDemandFilterSelectedOptions.selectedOptions;
+      this.componentRef.instance.submit = this.catOnDemandFilterSelectedOptions.submit;
 
       this.appRef.attachView(this.componentRef.hostView);
       const domElem = (this.componentRef.hostView as EmbeddedViewRef<any>)

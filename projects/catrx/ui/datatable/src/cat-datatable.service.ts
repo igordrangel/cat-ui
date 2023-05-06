@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import { BehaviorSubject } from 'rxjs/internal/BehaviorSubject';
 import { Observable } from 'rxjs/internal/Observable';
+import { Subject } from 'rxjs/internal/Subject';
 import {
   CatDatatableDataHttpResponse,
   DatatableTypeDataList,
@@ -12,7 +13,7 @@ import { DatatableFactory } from './datatable.factory';
 })
 export class CatDatatableService {
   public build<FilterType, ListType>(
-    filter: BehaviorSubject<FilterType>,
+    filter: Subject<FilterType> | BehaviorSubject<FilterType>,
     service: (
       filter: FilterType
     ) => Observable<CatDatatableDataHttpResponse<ListType>>,

@@ -6,7 +6,7 @@ import { CatFormService } from '@catrx/ui/form';
 export class CatOnDemandFilterService {
   constructor(private formService: CatFormService) {}
 
-  public build() {
-    return new FilterOptionsFactory(this.formService);
+  public build<PayloadType = any>() {
+    return new FilterOptionsFactory<PayloadType>(this.formService);
   }
 }

@@ -1,39 +1,54 @@
 import { Component } from '@angular/core';
+import { CatComponentBase } from '@catrx/ui/common';
 import { CatDatatableModule, CatDatatableService } from '@catrx/ui/datatable';
-import { CatFormModule, CatFormService } from '@catrx/ui/form';
-import { BehaviorSubject } from 'rxjs/internal/BehaviorSubject';
+import {
+  CatOnDemandFilterModule,
+  CatOnDemandFilterService,
+} from '@catrx/ui/on-demand-filter';
+import { CatToolbarModule } from '@catrx/ui/toolbar';
 import { PageDatatableExampleService } from './page-datatable-example.service';
+import { Subject } from 'rxjs/internal/Subject';
 
 @Component({
   standalone: true,
-  imports: [CatFormModule, CatDatatableModule],
+  imports: [CatToolbarModule, CatDatatableModule, CatOnDemandFilterModule],
   template: `
-    <cat-form [config]="filterConfig"></cat-form>
+    <cat-toolbar [config]="getToolbarInfo()" [spaceBetween]="false">
+      <nav buttons>
+        <div [catOnDemandFilterTrigger]="filterConfig">Filtro</div>
+      </nav>
+    </cat-toolbar>
+
+    <div [catOnDemandFilterSelectedOptions]="filterConfig"></div>
+
     <cat-datatable [config]="datatableConfig"></cat-datatable>
   `,
-  styles: [
-    `
-      cat-form {
-        display: block;
-        margin: 20px 20px 15px;
-      }
-      cat-datatable {
-        border-top: 1px solid var(--shadow-color);
-        height: calc(100vh - 146px);
-      }
-    `,
-  ],
 })
-export class PageDatatableExampleComponent {
-  datatableFilter$ = new BehaviorSubject(null);
-  filterConfig = this.formService
+export class PageDatatableExampleComponent extends CatComponentBase {
+  datatableFilter$ = new Subject();
+
+  filterConfig = this.filterService
     .build<any>()
-    .search('Buscar', 'filter', (builder) => builder.grid(3).generate())
-    .onChange((data) => this.datatableFilter$.next(data?.filter))
+    .setOption((formBuilder) =>
+      formBuilder.text('Estado', 'uf', (builder) =>
+        builder.setMinLength(2).setMaxLength(2).generate()
+      )
+    )
+    .setOption((formBuilder) =>
+      formBuilder.text('Municipio', 'municipio', (builder) =>
+        builder.generate()
+      )
+    )
+    .onSubmit((data) => this.datatableFilter$.next(data))
+    .autofill({ uf: 'RJ' })
     .generate();
 
   datatableConfig = this.datatableService
-    .build(this.datatableFilter$, (filter) => this.service.getDatatable(filter))
+    .build(
+      this.datatableFilter$,
+      (filter) => this.service.getDatatable(filter),
+      'onDemand'
+    )
     .setColumns(['Estado', 'Município'])
     .setActionButton({
       iconName: 'fa-solid fa-pencil',
@@ -47,7 +62,7 @@ export class PageDatatableExampleComponent {
     })
     .setItemLine({
       columnIndex: 0,
-      sortColumn: 'estado',
+      sortColumn: 'uf',
       text: (itemLine) => itemLine.estado,
     })
     .setItemLine({
@@ -62,8 +77,10 @@ export class PageDatatableExampleComponent {
     .generate();
 
   constructor(
-    private formService: CatFormService,
+    private filterService: CatOnDemandFilterService,
     private datatableService: CatDatatableService,
     private service: PageDatatableExampleService
-  ) {}
+  ) {
+    super();
+  }
 }

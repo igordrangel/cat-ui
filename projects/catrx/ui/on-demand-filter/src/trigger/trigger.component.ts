@@ -21,7 +21,7 @@ import { firstValueFrom } from 'rxjs/internal/firstValueFrom';
 import { debounceTime } from 'rxjs/internal/operators/debounceTime';
 import { startWith } from 'rxjs/internal/operators/startWith';
 import { takeUntil } from 'rxjs/internal/operators/takeUntil';
-import { FilterConfig, FilterOption } from '../factory/filter-options.types';
+import { FilterConfig, FilterOption, SelectedOptions } from '../factory/filter-options.types';
 
 @Component({
   templateUrl: './trigger.component.html',
@@ -46,6 +46,16 @@ export class TriggerComponent implements OnInit, OnDestroy {
   }
 
   ngOnInit(): void {
+    if (this.config.onSubmit) {
+      this.config.submit.set(() => {
+        this.config.onSubmit(
+          this.convertSelectedOptionsToPayload(
+            this.config.selectedOptions.getValue()
+          )
+        );
+      });
+    }
+
     this.observeOnChangeField();
     this.autofillFilter();
 
@@ -185,26 +195,16 @@ export class TriggerComponent implements OnInit, OnDestroy {
   }
 
   private observeOnChangeField() {
-    if (this.config.onChange) {
-      this.config.selectedOptions
-        .pipe(takeUntil(this.destroySubscriptions$), debounceTime(300))
-        .subscribe((selectedOptions) => {
-          const payload = {};
-
-          selectedOptions.forEach((option) => {
-            const optionsByName = selectedOptions.filter(
-              (filteredOption) => filteredOption.name === option.name
-            );
-            if (optionsByName.length > 1) {
-              payload[option.name] = optionsByName.map((opt) => opt.value);
-            } else {
-              payload[option.name] = option.value;
-            }
-          });
-
-          this.config.onChange(payload);
-        });
-    }
+    this.config.selectedOptions
+      .pipe(takeUntil(this.destroySubscriptions$), debounceTime(300))
+      .subscribe((selectedOptions) => {
+        const payload = this.convertSelectedOptionsToPayload(selectedOptions);
+        if (this.config.onChange) {
+          this.config.onChange(payload)
+        } else if (this.config.onSubmit) {
+          this.config.onSubmit(payload);
+        }
+      });
   }
 
   private animateFormOption(type: 'in' | 'out', cb?: () => void) {
@@ -237,6 +237,27 @@ export class TriggerComponent implements OnInit, OnDestroy {
         if (filterOption)
           this.chooseOption(filterOption, this.config.autofill[propName]);
       });
+
+      if (this.config.submit()) {
+        setTimeout(() => (this.config.submit())(), 50);
+      }
     }
+  }
+
+  private convertSelectedOptionsToPayload(selectedOptions: SelectedOptions[]) {
+    const payload = {};
+
+    selectedOptions.forEach((option) => {
+      const optionsByName = selectedOptions.filter(
+        (filteredOption) => filteredOption.name === option.name
+      );
+      if (optionsByName.length > 1) {
+        payload[option.name] = optionsByName.map((opt) => opt.value);
+      } else {
+        payload[option.name] = option.value;
+      }
+    });
+
+    return payload;
   }
 }

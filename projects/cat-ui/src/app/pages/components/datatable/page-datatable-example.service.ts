@@ -24,13 +24,19 @@ export class PageDatatableExampleService extends CatServiceBase {
       .get<any[]>(`${this.host}/${this.mainResource}/${endpoint}`)
       .pipe(
         map((response) =>
-          response.map((item) => {
-            return {
-              uf: item['regiao-imediata']['regiao-intermediaria'].UF.sigla,
-              estado: item['regiao-imediata']['regiao-intermediaria'].UF.nome,
-              municipio: item.nome,
-            };
-          })
+          response
+            .map((item) => {
+              return {
+                uf: item['regiao-imediata']['regiao-intermediaria'].UF.sigla,
+                estado: item['regiao-imediata']['regiao-intermediaria'].UF.nome,
+                municipio: item.nome as string,
+              };
+            })
+            .filter((item) =>
+              filter.municipio
+                ? item.municipio.includes(filter.municipio)
+                : true
+            )
         ),
         delay(2000),
         first()
