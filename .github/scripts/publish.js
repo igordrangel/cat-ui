@@ -30,28 +30,6 @@ fs.writeFileSync(
     },
     homepage: "https://github.com/igordrangel/cat-ui#readme",
     types: "./catrx-ui.d.ts",
-    peerDependencies: {
-      "@angular/common": "<17.0.0",
-      "@angular/core": "<17.0.0",
-      "rxjs": "7.5.0",
-      "tslib": "2.3.0",
-    },
-    dependencies: {
-      "@fortawesome/fontawesome-free": "6.2.1",
-      "@koalarx/utils": "2.0.8",
-      "@ng-select/ng-select": "10.0.4",
-      "animate.css": "4.1.1",
-      "b64-to-blob": "1.2.19",
-      "bootstrap": "5.2.3",
-      "exceljs": "4.3.0",
-      "file-saver": "2.0.5",
-      "jwt-decode": "3.1.2",
-      "jwt-encode": "1.0.1",
-      "ng2-search-filter": "0.5.1",
-      "ngx-mask": "15.1.2",
-      "ngx-pagination": "6.0.3",
-      "ngx-papaparse": "7.0.0"
-    },
   }),
   "utf8"
 );

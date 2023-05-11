@@ -3,5 +3,21 @@
   "dest": "../../../dist/@catrx/ui",
   "lib": {
     "entryFile": "public-api.ts"
-  }
+  },
+  "allowedNonPeerDependencies": [
+    "@fortawesome/fontawesome-free",
+    "@koalarx/utils",
+    "@ng-select/ng-select",
+    "animate.css",
+    "b64-to-blob",
+    "bootstrap",
+    "exceljs",
+    "file-saver",
+    "jwt-decode",
+    "jwt-encode",
+    "ng2-search-filter",
+    "ngx-mask",
+    "ngx-pagination",
+    "ngx-papaparse"
+  ]
 }
