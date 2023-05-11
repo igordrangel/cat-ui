@@ -31,14 +31,8 @@ fs.writeFileSync(
     homepage: "https://github.com/igordrangel/cat-ui#readme",
     types: "./catrx-ui.d.ts",
     peerDependencies: {
-      "@angular/animations": "<17.0.0",
       "@angular/common": "<17.0.0",
-      "@angular/compiler": "<17.0.0",
-      "@angular/core": "<17.0.0",
-      "@angular/forms": "<17.0.0",
-      "@angular/platform-browser": "<17.0.0",
-      "@angular/platform-browser-dynamic": "<17.0.0",
-      "@angular/router": "<17.0.0",
+      "@angular/core": "<17.0.0"
     },
     dependencies: {
       "@fortawesome/fontawesome-free": "6.2.1",
