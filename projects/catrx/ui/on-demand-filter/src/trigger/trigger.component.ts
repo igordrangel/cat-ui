@@ -39,6 +39,7 @@ export class TriggerComponent implements OnInit, OnDestroy {
   @ViewChild('dropdownFilter') private dropdownFilter: DropdownComponent;
 
   private destroySubscriptions$ = new Subject<boolean>();
+  private firstLoad = true;
 
   ngOnDestroy(): void {
     this.activeFilterForm = undefined;
@@ -201,8 +202,9 @@ export class TriggerComponent implements OnInit, OnDestroy {
         const payload = this.convertSelectedOptionsToPayload(selectedOptions);
         if (this.config.onChange) {
           this.config.onChange(payload)
-        } else if (this.config.onSubmit) {
+        } else if ((this.firstLoad || Object.keys(payload).length === 0) && this.config.onSubmit) {
           this.config.onSubmit(payload);
+          this.firstLoad = false;
         }
       });
   }
