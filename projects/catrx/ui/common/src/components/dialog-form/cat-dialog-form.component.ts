@@ -38,17 +38,16 @@ import { CatButtonModule } from '@catrx/ui/button';
         <div actions>
           <button
             catButton="secondary"
+            type="button"
             (click)="dialogRef.close()"
             [disabled]="submitLoader$ | async"
-            [style.marginRight]="'5px'"
-          >
+            [style.marginRight]="'5px'">
             Cancelar
           </button>
           <button
             catButton="primary"
             type="submit"
-            [showLoader]="submitLoader$ | async"
-          >
+            [showLoader]="submitLoader$ | async">
             Salvar
           </button>
         </div>
