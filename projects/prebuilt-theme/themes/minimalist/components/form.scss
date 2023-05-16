@@ -162,7 +162,7 @@ cat-datatable .form-check-input:indeterminate[type="checkbox"] {
 }
 
 .dark .form-check:not(.form-switch) .form-check-input:checked[type="checkbox"],
-cat-datatable .form-check-input:checked[type="checkbox"] {
+.dark cat-datatable .form-check-input:checked[type="checkbox"] {
   background-image: url("data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 20 20'><path fill='none' stroke='#{$checkbox-radio-icon-color-dark}' stroke-linecap='round' stroke-linejoin='round' stroke-width='3' d='m6 10 3 3 6-6'/></svg>") !important;
 }
 
@@ -171,7 +171,7 @@ cat-datatable .form-check-input:checked[type="checkbox"] {
 }
 
 .dark .form-check:not(.form-switch) .form-check-input:indeterminate[type="checkbox"],
-cat-datatable .form-check-input:indeterminate[type="checkbox"] {
+.dark cat-datatable .form-check-input:indeterminate[type="checkbox"] {
   background-image: url("data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 20 20'><path fill='none' stroke='#{$checkbox-radio-icon-color-dark}' stroke-linecap='round' stroke-linejoin='round' stroke-width='3' d='M6 10h8'/></svg>") !important;
 }
 
