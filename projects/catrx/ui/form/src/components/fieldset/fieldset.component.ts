@@ -82,8 +82,10 @@ export class FieldsetComponent implements OnInit, OnDestroy {
 
   public hideField(el: HTMLDivElement, hide: boolean) {
     if (hide) {
+      el.classList.remove('d-block');
       el.classList.add('d-none');
     } else {
+      el.classList.remove('d-none');
       el.classList.add('d-block');
     }
   }
