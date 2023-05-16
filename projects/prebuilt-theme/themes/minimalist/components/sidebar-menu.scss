@@ -95,6 +95,10 @@ cat-menu cat-menu-module ul:not(.collapsed) li.module a {
   align-items: center;
 }
 
+cat-menu cat-menu-module ul:not(.collapsed) li.module a.active {
+  color: var(--c-menu-active);
+}
+
 cat-menu cat-menu-module ul:not(.collapsed) li {
   border-radius: 6px;
 }
