@@ -129,7 +129,8 @@ cat-form select:disabled {
   background-color: var(--switcher-bg-active) !important;
 }
 
-.form-check:not(.form-switch) .form-check-input {
+.form-check:not(.form-switch) .form-check-input,
+cat-datatable .form-check-input {
   border-color: var(--font-color);
   background-color: transparent;
 }
@@ -143,12 +144,15 @@ cat-form select:disabled {
 }
 
 .form-check:not(.form-switch) .form-check-input[type="checkbox"]:indeterminate,
-.form-check:not(.form-switch) .form-check-input:checked {
+.form-check:not(.form-switch) .form-check-input:checked,
+cat-datatable .form-check-input[type="checkbox"]:indeterminate,
+cat-datatable .form-check-input:checked {
   background-color: var(--primary-color) !important;
   border-color: var(--primary-color) !important;
 }
 
-.dark .form-check:not(.form-switch) .form-check-input:checked[type="checkbox"] {
+.dark .form-check:not(.form-switch) .form-check-input:checked[type="checkbox"],
+cat-datatable .form-check-input:checked[type="checkbox"] {
   background-image: url("data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 20 20'><path fill='none' stroke='#{$checkbox-radio-icon-color-dark}' stroke-linecap='round' stroke-linejoin='round' stroke-width='3' d='m6 10 3 3 6-6'/></svg>") !important;
 }
 
@@ -156,7 +160,8 @@ cat-form select:disabled {
   background-image: url("data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='-4 -4 8 8'><circle r='2' fill='#{$checkbox-radio-icon-color-dark}'/></svg>");
 }
 
-.dark .form-check:not(.form-switch) .form-check-input:indeterminate[type="checkbox"] {
+.dark .form-check:not(.form-switch) .form-check-input:indeterminate[type="checkbox"],
+cat-datatable .form-check-input:indeterminate[type="checkbox"] {
   background-image: url("data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 20 20'><path fill='none' stroke='#{$checkbox-radio-icon-color-dark}' stroke-linecap='round' stroke-linejoin='round' stroke-width='3' d='M6 10h8'/></svg>") !important;
 }
 
@@ -164,7 +169,8 @@ cat-form select:disabled {
   background-image: url("data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'><path fill='none' stroke='#{$select-icon-color-dark}' stroke-linecap='round' stroke-linejoin='round' stroke-width='2' d='m2 5 6 6 6-6'/></svg>") !important;
 }
 
-.form-check:not(.form-switch) .form-check-input:focus {
+.form-check:not(.form-switch) .form-check-input:focus,
+cat-datatable .form-check-input:focus {
   box-shadow: 0 0 0 0.25rem var(--primary-color-alpha);
 }
 
