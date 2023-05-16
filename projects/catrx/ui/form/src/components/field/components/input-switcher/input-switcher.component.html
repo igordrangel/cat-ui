@@ -1,0 +1,14 @@
+<div *ngIf="updateComponent$ | async" class="form-check form-switch">
+  <input
+    *ngIf="control && fieldConfig"
+    [id]="fieldConfig.name"
+    [formControl]="control"
+    [attr.aria-label]="fieldConfig.label"
+    class="form-check-input"
+    type="checkbox"
+    role="switch"
+  />
+  <label class="form-check-label" [attr.for]="fieldConfig?.name">
+    {{ fieldConfig?.label }}
+  </label>
+</div>

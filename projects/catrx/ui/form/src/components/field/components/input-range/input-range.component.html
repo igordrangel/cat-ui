@@ -1,0 +1,35 @@
+<div class="form-range-container">
+  <cat-form-field-content
+    *ngIf="updateComponent$ | async"
+    [control]="control"
+    [config]="fieldConfig"
+    [elInput]="elInput">
+    <ng-container field>
+      <div class="form-range-field-container">
+        <input
+          #inputElement
+          *ngIf="control && fieldConfig"
+          [id]="fieldConfig.name"
+          [formControl]="control"
+          [attr.aria-label]="fieldConfig.label"
+          [required]="fieldConfig.required ?? false"
+          [min]="fieldConfig.min ?? 0"
+          [max]="fieldConfig.max ?? 100"
+          [attr.list]="'datalist-' + fieldConfig.name"
+          [attr.range]="fieldConfig.range ?? 1"
+          [style.backgroundSize]="getRangePosition() + '%'"
+          type="range"
+        />
+        <input
+          type="number"
+          [id]="fieldConfig.name"
+          [min]="fieldConfig.min ?? 0"
+          [max]="fieldConfig.max ?? 100"
+          [style.width]="(((control.value?.toString().length ?? 1 - 1) * 16) + 40) + 'px'"
+          [formControl]="control"
+          (input)="setValueOnRange($event)"
+        />
+      </div>
+    </ng-container>
+  </cat-form-field-content>
+</div>

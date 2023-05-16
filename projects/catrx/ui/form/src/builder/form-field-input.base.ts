@@ -3,9 +3,12 @@ import { AsyncValidatorFn, ValidatorFn, Validators } from '@angular/forms';
 import { FormFieldBase } from './form-field.base';
 import { klArray } from '@koalarx/utils/operators/array';
 
-export abstract class FormFieldInputBase<
-  ConfigType extends CatFormFieldOptions
-> extends FormFieldBase<ConfigType> {
+export abstract class FormFieldInputBase<ConfigType extends CatFormFieldOptions> extends FormFieldBase<ConfigType> {
+  public setPlaceholder(text: string) {
+    this.config.placeholder = text;
+    return this;
+  }
+
   public setRequired(required = true) {
     this.config.required = required;
     if (required) this.setValidators([Validators.required]);

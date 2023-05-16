@@ -169,6 +169,9 @@ main {
 
   --animate-duration: 200ms;
   --animate-delay: 0s;
+
+  --switcher-bg: rgba(0, 0, 0, .2);
+  --switcher-bg-active: rgba(0, 0, 0, .8);
 }
 
 main.dark {
@@ -320,4 +323,7 @@ main.dark {
   --menu-c-scrollbar: #fff;
 
   --bg-on-demand-filter-trigger-hover: #2c2d3c;
+
+  --switcher-bg: rgba(255, 255, 255, .2);
+  --switcher-bg-active: rgba(255, 255, 255, .8);
 }

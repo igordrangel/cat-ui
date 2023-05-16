@@ -41,6 +41,7 @@ export class FieldsetComponent implements OnInit, OnDestroy {
 
   ngOnInit() {
     this.startFieldset();
+    this.hidden$.next(this.fieldsetConfig.config.hidden ?? false);
 
     if (this.fieldsetConfig.config.behavior) {
       this.fieldsetConfig.config.behavior.subject

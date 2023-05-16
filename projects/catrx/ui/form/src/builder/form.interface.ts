@@ -13,6 +13,7 @@ export interface CatFormConfig<DataType> {
   onChange?: (data: DataType) => void;
   isCheckboxGroup?: boolean;
   grid?: CatFormFieldTemplateGridType;
+  hidden?: boolean;
   behavior: CatFormBehavior;
   autofill?: DataType;
 }
@@ -31,6 +32,7 @@ export interface CatFormFieldConfig extends CatFormFieldOptions {
 
 export interface CatFormFieldOptions {
   label: string;
+  placeholder?: string;
   value?: string;
   hint?: string;
   focus?: boolean;
@@ -78,6 +80,9 @@ export interface CatFormTextareaOptions extends CatFormFieldOptions {
 export interface CatFormNumberOptions extends CatFormFieldOptions {
   min?: number;
   max?: number;
+}
+export interface CatFormRangeOptions extends CatFormNumberOptions {
+  range?: number;
 }
 export interface CatFormDatetimeOptions extends CatFormFieldOptions {
   min?: string;
@@ -171,6 +176,7 @@ export type CatFormFieldType =
   | 'text'
   | 'search'
   | 'password'
+  | 'range'
   | 'number'
   | 'email'
   | 'date'
@@ -180,6 +186,7 @@ export type CatFormFieldType =
   | 'textarea'
   | 'cpf'
   | 'cnpj'
+  | 'switcher'
   | 'checkbox'
   | 'radio'
   | 'file'
