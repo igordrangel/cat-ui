@@ -1,20 +1,21 @@
+import { Type } from '@angular/core';
+import { FormAutocompleteFactory } from './autocomplete/form-autocomplete.factory';
+import { FormCheckboxFactory } from './checkbox/form-checkbox.factory';
+import { FormCnpjFactory } from './cnpj/form-cnpj.factory';
 import { FormCpfFactory } from './cpf/form-cpf.factory';
+import { FormCsvFactory } from './csv/form-csv.factory';
+import { FormCustomFieldFactory } from './customField/form-custom-field.factory';
+import { FormDatetimeFactory } from './datetime/form-datetime.factory';
+import { FormEmailFactory } from './email/form-email.factory';
+import { FormFileFactory } from './file/form-file.factory';
+import { FormNumberFactory } from './number/form-number.factory';
+import { FormRadioFactory } from './radio/form-radio.factory';
+import { FormRangeFactory } from './range/form-range.factory';
+import { FormSearchFactory } from './search/form-search.factory';
+import { FormSelectFactory } from './select/form-select.factory';
 import { FormTextFactory } from './text/form-text.factory';
 import { FormTextareaFactory } from './textarea/form-textarea.factory';
-import { FormNumberFactory } from './number/form-number.factory';
-import { FormDatetimeFactory } from './datetime/form-datetime.factory';
-import { FormCnpjFactory } from './cnpj/form-cnpj.factory';
-import { FormEmailFactory } from './email/form-email.factory';
 import { FormUrlFactory } from './url/form-url.factory';
-import { FormCheckboxFactory } from './checkbox/form-checkbox.factory';
-import { FormRadioFactory } from './radio/form-radio.factory';
-import { FormFileFactory } from './file/form-file.factory';
-import { FormCsvFactory } from './csv/form-csv.factory';
-import { FormSelectFactory } from './select/form-select.factory';
-import { FormAutocompleteFactory } from './autocomplete/form-autocomplete.factory';
-import { FormSearchFactory } from './search/form-search.factory';
-import { FormCustomFieldFactory } from './customField/form-custom-field.factory';
-import { Type } from '@angular/core';
 
 export class FormFieldService {
   public text(label: string) {
@@ -35,6 +36,10 @@ export class FormFieldService {
 
   public url(label: string) {
     return new FormUrlFactory(label);
+  }
+
+  public range(label: string) {
+    return new FormRangeFactory(label);
   }
 
   public number(label: string) {

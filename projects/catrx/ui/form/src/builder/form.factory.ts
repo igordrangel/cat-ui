@@ -1,5 +1,16 @@
-import { FormSelectFactory } from './select/form-select.factory';
+import { Type } from '@angular/core';
+import { Observable } from 'rxjs/internal/Observable';
+import { Subject } from 'rxjs/internal/Subject';
+import { CatFormBehavior } from '../common/cat-form-behavior';
+import { FormAutocompleteFactory } from './autocomplete/form-autocomplete.factory';
+import { FormCheckboxFactory } from './checkbox/form-checkbox.factory';
+import { FormCnpjFactory } from './cnpj/form-cnpj.factory';
 import { FormCpfFactory } from './cpf/form-cpf.factory';
+import { FormCsvFactory } from './csv/form-csv.factory';
+import { FormCustomFieldFactory } from './customField/form-custom-field.factory';
+import { FormDatetimeFactory } from './datetime/form-datetime.factory';
+import { FormFileFactory } from './file/form-file.factory';
+import { FormFieldService } from './form-field.service';
 import {
   CatFormConfig,
   CatFormCustomFieldOptions,
@@ -9,24 +20,14 @@ import {
   CatFormItemListOptions,
   CatFormTextareaOptions,
 } from './form.interface';
-import { FormFieldService } from './form-field.service';
-import { FormTextareaFactory } from './textarea/form-textarea.factory';
-import { FormTextFactory } from './text/form-text.factory';
 import { FormNumberFactory } from './number/form-number.factory';
-import { FormDatetimeFactory } from './datetime/form-datetime.factory';
-import { FormCnpjFactory } from './cnpj/form-cnpj.factory';
-import { CatFormBehavior } from '../common/cat-form-behavior';
-import { FormCheckboxFactory } from './checkbox/form-checkbox.factory';
-import { FormRadioFactory } from './radio/form-radio.factory';
-import { FormFileFactory } from './file/form-file.factory';
-import { FormCsvFactory } from './csv/form-csv.factory';
-import { FormAutocompleteFactory } from './autocomplete/form-autocomplete.factory';
 import { FormPasswordFactory } from './password/form-password.factory';
+import { FormRadioFactory } from './radio/form-radio.factory';
+import { FormRangeFactory } from './range/form-range.factory';
 import { FormSearchFactory } from './search/form-search.factory';
-import { FormCustomFieldFactory } from './customField/form-custom-field.factory';
-import { Type } from '@angular/core';
-import { Subject } from 'rxjs/internal/Subject';
-import { Observable } from 'rxjs/internal/Observable';
+import { FormSelectFactory } from './select/form-select.factory';
+import { FormTextFactory } from './text/form-text.factory';
+import { FormTextareaFactory } from './textarea/form-textarea.factory';
 
 export class FormFactory<DataType> {
   private readonly config: CatFormConfig<DataType>;
@@ -86,6 +87,11 @@ export class FormFactory<DataType> {
     return this;
   }
 
+  public hidden(hidden = true) {
+    this.config.hidden = hidden;
+    return this;
+  }
+
   public text(
     label: string,
     name: string,
@@ -128,6 +134,15 @@ export class FormFactory<DataType> {
     field: (builder: FormTextFactory) => CatFormFieldOptions
   ) {
     this.field('url', label, name, field);
+    return this;
+  }
+
+  public range(
+    label: string,
+    name: string,
+    field: (builder: FormRangeFactory) => CatFormFieldOptions
+  ) {
+    this.field('range', label, name, field);
     return this;
   }
 
@@ -191,6 +206,15 @@ export class FormFactory<DataType> {
     field: (builder: FormCnpjFactory) => CatFormFieldOptions
   ) {
     this.field('cnpj', label, name, field);
+    return this;
+  }
+
+  public switcher(
+    label: string,
+    name: string,
+    field: (builder: FormCheckboxFactory) => CatFormFieldOptions
+  ) {
+    this.field('switcher', label, name, field);
     return this;
   }
 
@@ -312,6 +336,8 @@ export class FormFactory<DataType> {
         return fieldService.email(label);
       case 'url':
         return fieldService.url(label);
+      case 'range':
+        return fieldService.range(label);
       case 'number':
         return fieldService.number(label);
       case 'date':
@@ -324,6 +350,7 @@ export class FormFactory<DataType> {
         return fieldService.cpf(label);
       case 'cnpj':
         return fieldService.cnpj(label);
+      case 'switcher':
       case 'checkbox':
         return fieldService.checkbox(label);
       case 'radio':

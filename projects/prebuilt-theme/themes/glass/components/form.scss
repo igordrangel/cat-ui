@@ -89,16 +89,11 @@ cat-form .form-control-sm {
   box-sizing: border-box;
 }
 
-.ng-select.ng-select-clearable
-  .ng-select-container.ng-has-value:hover
-  .ng-clear-wrapper {
+.ng-select.ng-select-clearable .ng-select-container.ng-has-value:hover .ng-clear-wrapper {
   display: flex;
 }
 
-.ng-select.ng-select-multiple
-  .ng-select-container
-  .ng-value-container
-  .ng-value {
+.ng-select.ng-select-multiple .ng-select-container .ng-value-container .ng-value {
   border-radius: 5px;
   color: var(--c-tag);
   background-color: var(--bg-tag);
@@ -126,31 +121,68 @@ cat-form select:disabled {
   background-color: var(--disable-color) !important;
 }
 
-.form-check-input {
-  border-color: var(--font-color);
-  background-color: transparent !important;
+.form-check.form-switch {
+  display: flex;
+  align-items: center;
+  height: 37px;
+  gap: 0.5rem;
+  width: 100%;
+  padding: 0.5rem;
+  box-sizing: border-box;
+  line-height: 1;
 }
 
-.form-check-input[type="checkbox"]:indeterminate,
-.form-check-input:checked {
+.form-check.form-switch .form-check-label {
+  height: 6px;
+}
+
+.form-check.form-switch .form-check-input {
+  margin-left: 0 !important;
+  border-color: var(--primary-color);
+  background-color: var(--switcher-bg) !important;
+}
+
+.form-check.form-switch .form-check-input:checked {
+  background-color: var(--switcher-bg-active) !important;
+}
+
+.form-check:not(.form-switch) .form-check-input {
+  border-color: var(--font-color);
+  background-color: transparent;
+}
+
+.form-check.form-switch .form-check-input:checked[type="checkbox"] {
+  background-image: url("data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='-4 -4 8 8'><circle r='3' fill='#{$checkbox-radio-icon-color-light}'/></svg>") !important;
+}
+
+.dark .form-check.form-switch .form-check-input:checked[type="checkbox"] {
+  background-image: url("data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='-4 -4 8 8'><circle r='3' fill='#{$checkbox-radio-icon-color-dark}' /></svg>") !important;
+}
+
+.form-check:not(.form-switch) .form-check-input[type="checkbox"]:indeterminate,
+.form-check:not(.form-switch) .form-check-input:checked {
   background-color: var(--primary-color) !important;
   border-color: var(--primary-color) !important;
 }
 
-.dark .form-check-input:checked[type="checkbox"] {
+.dark .form-check:not(.form-switch) .form-check-input:checked[type="checkbox"] {
   background-image: url("data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 20 20'><path fill='none' stroke='#{$checkbox-radio-icon-color-dark}' stroke-linecap='round' stroke-linejoin='round' stroke-width='3' d='m6 10 3 3 6-6'/></svg>") !important;
 }
 
-.dark .form-check-input:checked[type="radio"] {
+.dark .form-check:not(.form-switch) .form-check-input:checked[type="radio"] {
   background-image: url("data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='-4 -4 8 8'><circle r='2' fill='#{$checkbox-radio-icon-color-dark}'/></svg>");
 }
 
-.dark .form-check-input:indeterminate[type="checkbox"] {
+.dark .form-check:not(.form-switch) .form-check-input:indeterminate[type="checkbox"] {
   background-image: url("data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 20 20'><path fill='none' stroke='#{$checkbox-radio-icon-color-dark}' stroke-linecap='round' stroke-linejoin='round' stroke-width='3' d='M6 10h8'/></svg>") !important;
 }
 
-.dark .form-select {
+.dark .form-check:not(.form-switch) .form-select {
   background-image: url("data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'><path fill='none' stroke='#{$select-icon-color-dark}' stroke-linecap='round' stroke-linejoin='round' stroke-width='2' d='m2 5 6 6 6-6'/></svg>") !important;
+}
+
+.form-check:not(.form-switch) .form-check-input:focus {
+  box-shadow: 0 0 0 0.25rem var(--primary-color-alpha);
 }
 
 cat-form .form-check-input:focus {
@@ -410,6 +442,55 @@ cat-form .input-password-content button i {
 
 cat-form textarea {
   resize: none;
+}
+
+cat-form .form-range-container label {
+  left: 0;
+  padding: 0;
+}
+
+cat-form .form-range-field-container {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  box-sizing: border-box;
+  padding: 5px 0 0;
+}
+
+cat-form .form-range-field-container input[type=range] {
+  width: 100%;
+  padding: 0;
+  margin-right: 1rem;
+  padding: 0 !important;
+
+  appearance: none;
+  height: 10px;
+  border: 1px solid var(--shadow-color);
+  background-color: rgba(0, 0, 0, 0.1);
+  border-radius: 5px;
+  background-image: linear-gradient(var(--primary-color), var(--primary-color));
+  background-size: 0 100%;
+  background-repeat: no-repeat;
+}
+
+cat-form .form-range-field-container input[type="range"]::-webkit-slider-thumb {
+  appearance: none;
+  height: 20px;
+  width: 20px;
+  border-radius: 50%;
+  background: var(--primary-color);
+  cursor: ew-resize;
+  box-shadow: 0 0 2px 0 var(--shadow-color);
+  transition: background .3s ease-in-out;
+}
+
+cat-form .form-range-field-container input[type=number] {
+  padding: 2px 0 2px 8px !important;
+  background-color: transparent;
+  border: 1px solid var(--shadow-color);
+  border-radius: 5px;
+  font-size: 1rem;
+  text-align: center;
 }
 
 cat-form-fieldset fieldset {

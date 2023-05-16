@@ -1,83 +1,84 @@
-<fieldset
-  *ngIf="listItemConfig && formListItem"
-  [formGroup]="formListItem"
-  class="col-12"
->
-  <div class="title">
-    <h2>
-      {{ listItemConfig.legend }}
-      <span *ngIf="listItemConfig.options" class="cat-list-item-size">
-        (Min: {{ listItemConfig.options.minItems ?? 0 }} | Max:
-        {{ listItemConfig.options.maxItems ?? "&#8734;" }})
-      </span>
-    </h2>
-
-    <button
-      [disabled]="
-        getItemList().controls.length === listItemConfig.options?.maxItems
-      "
-      (click)="addItem()"
-      type="button"
-      class="btn btn-primary cat-btn-add-item-list"
-    >
-      <i class="fa-solid fa-circle-plus"></i>
-      Adicionar
-    </button>
-  </div>
-
-  <ng-container
-    *ngFor="let item of getItemList().controls; let itemIndex = index"
-  >
-    <fieldset class="col-12">
-      <div class="fields-content">
-        <ng-container
-          *ngFor="let formElement of listItemConfig.config?.formElements"
-          class="col-12"
-        >
-          <ng-container
-            *ngIf="formElement.listItem as childListItemConfig"
-            class="col-12"
-          >
-            <div class="col-12" #containerListItem>
-              <cat-form-list-item
-                [listItemConfig]="childListItemConfig"
-                [variableTree]="getFullListItemName(itemIndex)"
-                [highlightInvalidFields]="highlightInvalidFields"
-                (isHiddenList)="hideField(containerListItem, $event)"
-                (emitFormGroup)="
-                  addFormGroup(itemIndex, childListItemConfig.name, $event)
-                "
-                (removeFormGroup)="removeChildFormGroup($event)"
-              >
-              </cat-form-list-item>
-            </div>
-          </ng-container>
-
-          <ng-container *ngIf="formElement.field as fieldConfig">
-            <div #containerField [ngClass]="'col-' + fieldConfig.grid">
-              <cat-form-field
-                [fieldConfig]="fieldConfig"
-                [variableTree]="getFullListItemName(itemIndex)"
-                [highlightInvalidFields]="highlightInvalidFields"
-                (isHiddenField)="hideField(containerField, $event)"
-                (emitFormControl)="
-                  addFormControl(itemIndex, fieldConfig.name, $event)
-                "
-              >
-              </cat-form-field>
-            </div>
-          </ng-container>
-        </ng-container>
-      </div>
+<ng-container *ngIf="(hidden$ | async) === false">
+  <fieldset
+    *ngIf="listItemConfig && formListItem"
+    [formGroup]="formListItem"
+    class="col-12">
+    <div class="title">
+      <h2>
+        {{ listItemConfig.legend }}
+        <span *ngIf="listItemConfig.options" class="cat-list-item-size">
+          (Min: {{ listItemConfig.options.minItems ?? 0 }} | Max:
+          {{ listItemConfig.options.maxItems ?? "&#8734;" }})
+        </span>
+      </h2>
 
       <button
-        *ngIf="getItemList().controls.length > listItemConfig.options?.minItems"
-        (click)="removeItem(itemIndex)"
+        [disabled]="
+          getItemList().controls.length === listItemConfig.options?.maxItems
+        "
+        (click)="addItem()"
         type="button"
-        class="cat-btn-remove-item-list"
+        class="btn btn-primary cat-btn-add-item-list"
       >
-        <i class="fa-solid fa-trash-can"></i>
+        <i class="fa-solid fa-circle-plus"></i>
+        Adicionar
       </button>
-    </fieldset>
-  </ng-container>
-</fieldset>
+    </div>
+
+    <ng-container
+      *ngFor="let item of getItemList().controls; let itemIndex = index"
+    >
+      <fieldset class="col-12">
+        <div class="fields-content">
+          <ng-container
+            *ngFor="let formElement of listItemConfig.config?.formElements"
+            class="col-12"
+          >
+            <ng-container
+              *ngIf="formElement.listItem as childListItemConfig"
+              class="col-12"
+            >
+              <div class="col-12" #containerListItem>
+                <cat-form-list-item
+                  [listItemConfig]="childListItemConfig"
+                  [variableTree]="getFullListItemName(itemIndex)"
+                  [highlightInvalidFields]="highlightInvalidFields"
+                  (isHiddenList)="hideField(containerListItem, $event)"
+                  (emitFormGroup)="
+                    addFormGroup(itemIndex, childListItemConfig.name, $event)
+                  "
+                  (removeFormGroup)="removeChildFormGroup($event)"
+                >
+                </cat-form-list-item>
+              </div>
+            </ng-container>
+
+            <ng-container *ngIf="formElement.field as fieldConfig">
+              <div #containerField [ngClass]="'col-' + fieldConfig.grid">
+                <cat-form-field
+                  [fieldConfig]="fieldConfig"
+                  [variableTree]="getFullListItemName(itemIndex)"
+                  [highlightInvalidFields]="highlightInvalidFields"
+                  (isHiddenField)="hideField(containerField, $event)"
+                  (emitFormControl)="
+                    addFormControl(itemIndex, fieldConfig.name, $event)
+                  "
+                >
+                </cat-form-field>
+              </div>
+            </ng-container>
+          </ng-container>
+        </div>
+
+        <button
+          *ngIf="getItemList().controls.length > listItemConfig.options?.minItems"
+          (click)="removeItem(itemIndex)"
+          type="button"
+          class="cat-btn-remove-item-list"
+        >
+          <i class="fa-solid fa-trash-can"></i>
+        </button>
+      </fieldset>
+    </ng-container>
+  </fieldset>
+</ng-container>

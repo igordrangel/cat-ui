@@ -195,6 +195,10 @@ export class PageFormComponent extends CatFormBase {
             .setRequired()
             .generate()
         )
+        .switcher('Ativo', 'active', (builder) => builder.grid(2).generate())
+        .range('Carga horária diária', 'hoursByDay', (builder) =>
+          builder.setMin(6).setMax(10).grid(4).generate()
+        )
         .generate()
     )
     .fieldset('Dados Bancários', 'bankData', (builder) =>

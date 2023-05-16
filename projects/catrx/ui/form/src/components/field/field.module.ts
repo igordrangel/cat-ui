@@ -23,6 +23,8 @@ import { InputAutocompleteModule } from './components/input-autocomplete/input-a
 import { InputPasswordModule } from './components/input-password/input-password.module';
 import { InputSearchModule } from './components/input-search/input-search.module';
 import { InputCustomFieldModule } from './components/input-custom-field/input-custom-field.module';
+import { InputSwitcherModule } from './components/input-switcher/input-switcher.module';
+import { InputRangeModule } from './components/input-range/input-range.module';
 
 const maskOptions: Partial<IConfig> | (() => Partial<IConfig>) = {
   validation: false,
@@ -39,10 +41,12 @@ const maskOptions: Partial<IConfig> | (() => Partial<IConfig>) = {
     InputEmailModule,
     InputUrlModule,
     InputNumberModule,
+    InputRangeModule,
     InputDatetimeModule,
     InputCpfModule,
     InputCnpjModule,
     TextareaModule,
+    InputSwitcherModule,
     InputCheckboxModule,
     InputRadioModule,
     InputFileModule,

@@ -154,6 +154,9 @@ main {
 
   --c-scrollbar: #5e35b1;
   --menu-c-scrollbar: #fff;
+
+  --switcher-bg: rgba(0, 0, 0, .2);
+  --switcher-bg-active: #5e35b1;
 }
 
 main.dark {
@@ -302,4 +305,7 @@ main.dark {
 
   --c-scrollbar: #fff;
   --menu-c-scrollbar: #fff;
+
+  --switcher-bg: rgba(255, 255, 255, .2);
+  --switcher-bg-active: rgba(255, 255, 255, .8);
 }

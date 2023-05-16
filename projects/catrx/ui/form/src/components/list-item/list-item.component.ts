@@ -41,6 +41,8 @@ export class ListItemComponent implements OnInit, OnDestroy {
   }
 
   ngOnInit() {
+    this.hidden$.next(this.listItemConfig.config.hidden ?? false);
+
     if (this.listItemConfig.config.behavior) {
       this.listItemConfig.config.behavior.subject
         .pipe(
