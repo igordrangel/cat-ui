@@ -99,6 +99,10 @@ cat-stepper .cat-step-item-content .cat-step-actions {
   padding: 10px 0;
 }
 
+cat-stepper .cat-step-item-content .cat-step-actions:not(:has(*)) {
+  display: none;
+}
+
 cat-stepper .cat-step-item-content .cat-step-content {
   box-sizing: border-box;
   padding: 10px 0;
