@@ -79,7 +79,6 @@ export class PageCRUDExampleComponent extends CatCRUDComponentBase<
         formBuilder.text('Raça', 'race', (builder) => builder.generate()),
       'fa-solid fa-paw'
     )
-    .autofill({ sex: 'F' })
     .onSubmit(async (data) => {
       console.log(data);
       while ((this.datasource?.length ?? 0) === 0) {

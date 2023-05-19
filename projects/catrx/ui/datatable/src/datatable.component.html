@@ -44,7 +44,11 @@
     />
   </div>
 </nav>
-<div class="table-responsive table-container">
+<div class="table-responsive table-container" [ngClass]="{
+  'list-without-action': !config.hasAction && config.hasSelection,
+  'list-without-selection': config.hasAction && !config.hasSelection,
+  'list-without-selection-and-action': !config.hasAction && !config.hasSelection
+}">
   <table class="table table-hover">
     <thead>
       <tr>

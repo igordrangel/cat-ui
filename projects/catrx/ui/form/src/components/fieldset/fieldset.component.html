@@ -2,7 +2,7 @@
   <fieldset
     *ngIf="fieldsetConfig && formFieldset"
     [formGroup]="formFieldset"
-    class="col-12">
+    [attr.class]="'col-' + fieldsetConfig.config?.grid">
     <legend>{{ fieldsetConfig.legend }}</legend>
 
     <ng-container *ngFor="let formElement of fieldsetConfig.config?.formElements">

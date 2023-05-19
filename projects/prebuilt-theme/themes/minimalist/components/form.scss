@@ -104,6 +104,10 @@ cat-form select:disabled {
   background-color: var(--disable-color) !important;
 }
 
+cat-form div:not(:has(.isCheckboxGroup))>.form-check.form-switch {
+  padding: 0 0 1rem;
+}
+
 .form-check.form-switch {
   display: flex;
   align-items: center;
@@ -117,6 +121,10 @@ cat-form select:disabled {
 
 .form-check.form-switch .form-check-label {
   height: 6px;
+}
+
+cat-form .form-check-label {
+  color: var(--font-color);
 }
 
 .form-check.form-switch .form-check-input {
@@ -253,6 +261,17 @@ cat-form .cat-field-container label::after {
 
 cat-dialog cat-form .cat-field-container label::after {
   background-color: var(--bg-dialog);
+}
+
+@media (max-width: 980px) {
+  cat-form .cat-field-container label {
+    top: -9px;
+  }
+}
+
+cat-form .cat-field-container label::after {
+  top: calc(50% - 2px);
+  height: 3px;
 }
 
 cat-form .hint {
@@ -513,6 +532,14 @@ cat-form-fieldset fieldset {
   justify-content: flex-start;
   align-items: flex-start;
   flex-wrap: wrap;
+}
+
+cat-form-fieldset fieldset {
+  padding: 5px 10px !important;
+
+  &:not(:has(div.d-block)) {
+    display: none !important;
+  }
 }
 
 cat-form-fieldset fieldset legend {
