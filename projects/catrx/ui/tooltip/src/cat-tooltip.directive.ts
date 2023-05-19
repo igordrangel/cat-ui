@@ -133,7 +133,7 @@ export class CatTooltipDirective implements OnDestroy {
 
     if (!withoutSwitches) {
       if (
-        this.calcPosition(true).topPosition < 0 &&
+        this.calcPosition(true).topPosition - tooltipHeigth < 0 &&
         this.catTooltipPosition === 'above'
       )
         this.catTooltipPosition = 'below';
@@ -143,7 +143,7 @@ export class CatTooltipDirective implements OnDestroy {
       )
         this.catTooltipPosition = 'left';
       if (
-        this.calcPosition(true).leftPosition < 0 &&
+        this.calcPosition(true).leftPosition - tooltipWidth < 0 &&
         this.catTooltipPosition === 'left'
       )
         this.catTooltipPosition = 'right';
@@ -166,8 +166,13 @@ export class CatTooltipDirective implements OnDestroy {
         topPosition = top;
         break;
       case 'below':
-        if (!isMobile)
+        if (!isMobile) {
           leftPosition = left + this.calcMiddlePosition(tooltipWidth);
+          if ((leftPosition + tooltipWidth) > bodyWidth) {
+            leftPosition = bodyWidth - this.calcMiddlePosition(tooltipWidth) - 5;
+          }
+          console.log(leftPosition)
+        }
 
         topPosition = top + triggerHeight + tooltipHeigth;
         break;

@@ -1,6 +1,6 @@
 import { CommonModule } from '@angular/common';
 import { Component, Input } from '@angular/core';
-import { CatTooltipModule } from '@catrx/ui/tooltip';
+import { CatTooltipModule, CatTooltipPosition } from '@catrx/ui/tooltip';
 
 export type CatIconButtonColor =
   | 'primary'
@@ -22,8 +22,8 @@ export type CatIconButtonColor =
       class="cat-icon-button"
       [ngClass]="color"
       [catTooltip]="tooltip ?? ''"
-      [disabled]="disabled"
-    >
+      [catTooltipPosition]="tooltipoPosition ?? 'above'"
+      [disabled]="disabled">
       <i [class]="icon"></i>
     </button>
   `,
@@ -32,5 +32,6 @@ export class CatIconButtonComponent {
   @Input({ required: true }) icon: string;
   @Input() color?: CatIconButtonColor;
   @Input() tooltip?: string;
+  @Input() tooltipoPosition?: CatTooltipPosition;
   @Input() disabled?: boolean;
 }

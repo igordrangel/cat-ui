@@ -11,13 +11,17 @@ import { CatTooltipModule } from '@catrx/ui/tooltip';
   template: `
     <cat-toolbar [config]="getToolbarInfo()">
       <nav buttons>
-        <button catButton="primary" catTooltip="left" catTooltipPosition="left">
+        <button
+          catButton="primary"
+          catTooltip="catTooltipPosition = left"
+          catTooltipPosition="left"
+        >
           Left
         </button>
 
         <button
           catButton="primary"
-          catTooltip="right"
+          catTooltip="catTooltipPosition = right"
           catTooltipPosition="right"
         >
           Right
@@ -25,7 +29,7 @@ import { CatTooltipModule } from '@catrx/ui/tooltip';
 
         <button
           catButton="primary"
-          catTooltip="above"
+          catTooltip="catTooltipPosition = above"
           catTooltipPosition="above"
         >
           Above
@@ -33,7 +37,7 @@ import { CatTooltipModule } from '@catrx/ui/tooltip';
 
         <button
           catButton="primary"
-          catTooltip="below"
+          catTooltip="catTooltipPosition = below"
           catTooltipPosition="below"
         >
           Below
