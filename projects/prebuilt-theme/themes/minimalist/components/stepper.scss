@@ -22,8 +22,8 @@
   flex-direction: column;
 }
 
-cat-stepper .cat-step-item-content .cat-step-actions:not(:has(*)),
-cat-stepper cat-step:last-child .cat-step-item-content.active {
+cat-stepper>.cat-step-item-content .cat-step-actions:not(:has(*)),
+cat-stepper>cat-step:last-child .cat-step-item-content.active {
   border: none;
 }
 
