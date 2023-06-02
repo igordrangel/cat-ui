@@ -16,6 +16,7 @@ export interface CatOpenIDConfigInterface {
   responseType: string;
   clientId: string;
   scope: string;
+  scopeName?: 'scope' | 'resource';
   issuer: string;
   redirectUriAfterAuth?: string;
   customQueryParams?: object;
@@ -111,7 +112,7 @@ export class CatOAuth2Service implements OnDestroy {
       if (event === 'authenticate') {
         this.generateState();
         localStorage.setItem(STATE_STORAGE_NAME, this.state);
-        window.location.href = `${this.openIdOptions.authorization_endpoint}?response_type=${this.config.responseType}&client_id=${this.config.clientId}&state=${this.state}&redirect_uri=${this.config.redirectUri}&scope=${this.config.scope}`;
+        window.location.href = `${this.openIdOptions.authorization_endpoint}?response_type=${this.config.responseType}&client_id=${this.config.clientId}&state=${this.state}&redirect_uri=${this.config.redirectUri}&${this.config.scopeName}=${this.config.scope}`;
       } else if (event === 'getToken') {
         const urlParams = new URLSearchParams(window.location.search);
         const state = urlParams.get('state');

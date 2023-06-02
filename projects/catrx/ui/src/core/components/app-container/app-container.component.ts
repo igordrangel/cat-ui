@@ -453,6 +453,7 @@ export class AppContainerComponent implements OnInit {
         responseType: config.responseType ?? 'code',
         clientId: config.clientId,
         scope: config.scope,
+        scopeName: config.scopeName ?? 'scope',
         issuer: config.domain,
         customQueryParams: config.customQueryParams,
         endpointToken: config.endpointToken ?? null,
