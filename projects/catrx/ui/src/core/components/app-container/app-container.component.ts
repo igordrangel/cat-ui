@@ -450,7 +450,7 @@ export class AppContainerComponent implements OnInit {
       this.oauth2Service.configure({
         redirectUri: window.location.origin,
         redirectUriAfterAuth: '',
-        responseType: 'code',
+        responseType: config.responseType ?? 'code',
         clientId: config.clientId,
         scope: config.scope,
         issuer: config.domain,
