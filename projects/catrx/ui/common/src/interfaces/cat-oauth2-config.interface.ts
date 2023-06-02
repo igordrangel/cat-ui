@@ -9,4 +9,5 @@ export interface CatOAuth2ConfigInterface {
   endpointLogout?: string;
   endpointToken?: string;
   endpointClaims?: string;
+  responseType?: string;
 }
