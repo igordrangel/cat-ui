@@ -169,6 +169,7 @@ export class DatatableComponent implements OnInit, OnDestroy {
   private getFilter() {
     let filter = {
       page: this.currentPage,
+      limit: this.config.limitItemPerPage,
       orderBy: this.orderBy,
       direction: this.reverse ? 'desc' : 'asc',
     } as DatatableFilterResponse;
