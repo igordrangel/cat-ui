@@ -182,6 +182,7 @@ export class FormComponent implements OnInit {
           });
         }
       } else if (
+        valueDataByTree &&
         typeof valueDataByTree === 'object' &&
         !this.isFileByName(name, this.config.formElements)
       ) {
