@@ -194,20 +194,22 @@ export class DatatableComponent implements OnInit, OnDestroy {
   }
 
   public sort(columnIndex: number, reverse?: boolean) {
-    this.checkAll(false);
-    this.orderBy = this.getItemLine(columnIndex)?.sortColumn ?? '';
+    if (this.isSortable(columnIndex)) {
+      this.checkAll(false);
+      this.orderBy = this.getItemLine(columnIndex)?.sortColumn ?? '';
 
-    if (this.orderBy) {
-      this.reverse = reverse
-        ? reverse
-        : this.columnIndexSort !== columnIndex
-          ? false
-          : !this.reverse;
-      this.columnIndexSort = columnIndex;
-    }
+      if (this.orderBy) {
+        this.reverse = reverse
+          ? reverse
+          : this.columnIndexSort !== columnIndex
+            ? false
+            : !this.reverse;
+        this.columnIndexSort = columnIndex;
+      }
 
-    if (this.config.typeDataList === 'onDemand') {
-      this.loadData(true);
+      if (this.config.typeDataList === 'onDemand') {
+        this.loadData(true);
+      }
     }
   }
 
@@ -363,6 +365,15 @@ export class DatatableComponent implements OnInit, OnDestroy {
           ? this.totalItemsBd
           : this.datatableList$.getValue()?.length,
     };
+  }
+
+  public canShowColumn(index: number) {
+    const itemLineConfig = this.getItemLine(index);
+    if (itemLineConfig.showColumn) {
+      return itemLineConfig.showColumn();
+    }
+
+    return true;
   }
 
   //#endregion
