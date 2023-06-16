@@ -59,6 +59,7 @@ export interface DatatableActionButtonConfig<DataType> {
 
 export interface DatatableData<DataType> {
   columnIndex: number;
+  showColumn?: () => boolean;
   sortColumn?: string;
   text?: (itemLine: DataType) => string;
   component?: (itemLine: DataType) => CatDynamicComponent;
