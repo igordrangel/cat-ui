@@ -70,7 +70,8 @@ export class TriggerComponent implements OnInit, OnDestroy {
         this.filteredOptions = this.config.options.filter((option) =>
           this.getOptionConfig(option)
             .fieldConfig
-            .name.toLowerCase()
+            .label
+            .toLowerCase()
             .includes(value.toLowerCase())
         );
       });
