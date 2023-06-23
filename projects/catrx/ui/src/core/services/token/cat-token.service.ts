@@ -65,6 +65,7 @@ export class CatTokenService implements OnDestroy {
 
   public removeToken() {
     TokenFactory.removeToken();
+    this.token$.next(null);
   }
 
   private verifySession() {
