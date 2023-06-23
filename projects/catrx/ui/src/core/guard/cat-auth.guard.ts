@@ -7,6 +7,7 @@ import {
 import { Observable } from 'rxjs/internal/Observable';
 import { TokenFactory } from '../factory/token.factory';
 import { CatRoutePolice } from './cat-route.police';
+import { CatEnvironment } from '@catrx/ui/common';
 
 @Injectable()
 export class CatAuthGuard {
@@ -18,7 +19,7 @@ export class CatAuthGuard {
     | UrlTree
     | Observable<boolean | UrlTree>
     | Promise<boolean | UrlTree> {
-    if (TokenFactory.hasToken()) {
+    if (localStorage.getItem(CatEnvironment.environment?.storageTokenName)) {
       return CatRoutePolice.hasPermission(state.url);
     }
 
