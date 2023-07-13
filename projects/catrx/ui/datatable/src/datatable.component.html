@@ -8,11 +8,7 @@
 
   <div *ngIf="config.hidePaginator !== true" class="page-size-content mr-20">
     <label>Itens por página: </label>
-    <select
-      class="form-select form-select-sm"
-      [(ngModel)]="config.limitItemPerPage"
-      (change)="handlePageSizeChange()"
-    >
+    <select class="form-select form-select-sm" [(ngModel)]="config.limitItemPerPage" (change)="handlePageSizeChange()">
       <option selected [ngValue]="10">10</option>
       <option [ngValue]="30">30</option>
       <option [ngValue]="50">50</option>
@@ -22,26 +18,14 @@
 
   <div *ngIf="config.hidePaginator !== true" class="pagination-content">
     <span class="page-info">
-      {{
-        currentPage > 1
-          ? (totalItemsPage ?? 0) * (currentPage - 1) + 1
-          : currentPage
-      }}
+      {{getPaginateProps().startItemOffset}}
       -
-      {{
-        getPaginateProps().totalItems > (totalItemsPage ?? 0) * currentPage
-          ? (totalItemsPage ?? 0) * currentPage
-          : getPaginateProps().totalItems
-      }}
+      {{getPaginateProps().endItemOffset}}
       de
       {{ getPaginateProps().totalItems }}
     </span>
-    <pagination-controls
-      class="my-pagination"
-      previousLabel="Anterior"
-      nextLabel="Próximo"
-      (pageChange)="handlePageChange($event)"
-    />
+    <pagination-controls class="my-pagination" previousLabel="Anterior" nextLabel="Próximo"
+      (pageChange)="handlePageChange($event)" />
   </div>
 </nav>
 <div class="table-responsive table-container" [ngClass]="{
@@ -54,48 +38,24 @@
       <tr>
         <th scope="col" class="selection" *ngIf="config?.hasSelection">
           <div class="checkbox">
-            <input
-              #checkboxAll
-              [checked]="isAllChecked()"
-              (change)="checkAll(checkboxAll.checked)"
-              [indeterminate]="isIndeterminateSelection()"
-              class="form-check-input"
-              type="checkbox"
-            />
+            <input #checkboxAll [checked]="isAllChecked()" (change)="checkAll(checkboxAll.checked)"
+              [indeterminate]="isIndeterminateSelection()" class="form-check-input" type="checkbox" />
           </div>
         </th>
-        <th
-          scope="col"
-          class="option"
-          *ngIf="config?.hasAction"
-          [style.width]="
+        <th scope="col" class="option" *ngIf="config?.hasAction" [style.width]="
             42 * (config?.actionButtons?.length ?? 1) + 'px!important'
-          "
-        ></th>
+          "></th>
         <ng-container *ngFor="let column of config?.columns; let columnIndex = index">
-          <th
-            *ngIf="canShowColumn(columnIndex)"
-            scope="col"
-            (click)="sort(columnIndex)"
-            [ngClass]="{
+          <th *ngIf="canShowColumn(columnIndex)" scope="col" (click)="sort(columnIndex)" [ngClass]="{
               activeSelection: columnIndex >= 0,
               sortable: isSortable(columnIndex),
               sorted: columnIndex === columnIndexSort
             }">
             <div class="content-header">
               {{ column }}
-              <i
-                *ngIf="columnIndex !== columnIndexSort && isSortable(columnIndex)"
-                class="fa-solid fa-sort"
-              ></i>
-              <i
-                *ngIf="columnIndex === columnIndexSort && !reverse"
-                class="fa-solid fa-arrow-up-a-z"
-              ></i>
-              <i
-                *ngIf="columnIndex === columnIndexSort && reverse"
-                class="fa-solid fa-arrow-down-z-a"
-              ></i>
+              <i *ngIf="columnIndex !== columnIndexSort && isSortable(columnIndex)" class="fa-solid fa-sort"></i>
+              <i *ngIf="columnIndex === columnIndexSort && !reverse" class="fa-solid fa-arrow-up-a-z"></i>
+              <i *ngIf="columnIndex === columnIndexSort && reverse" class="fa-solid fa-arrow-down-z-a"></i>
             </div>
           </th>
         </ng-container>
@@ -106,9 +66,7 @@
         <tr *ngIf="(loadedList$ | async) === false" class="fake-line">
           <td colspan="50">
             <ng-container *ngIf="config?.customLoaderComponent; else defaultLoader">
-              <cat-dynamic-component
-                [component]="config?.customLoaderComponent"
-              />
+              <cat-dynamic-component [component]="config?.customLoaderComponent" />
             </ng-container>
 
             <ng-template #defaultLoader>
@@ -124,9 +82,7 @@
             <tr class="fake-line">
               <td colspan="50">
                 <ng-container *ngIf="config?.customEmptyComponent; else defaultEmptyList">
-                  <cat-dynamic-component
-                    [component]="config?.customEmptyComponent"
-                  />
+                  <cat-dynamic-component [component]="config?.customEmptyComponent" />
                 </ng-container>
 
                 <ng-template #defaultEmptyList>
@@ -140,61 +96,41 @@
           </ng-container>
 
           <ng-container *ngIf="datatableList.length > 0 && loadedList$ | async">
-            <tr
-              *ngFor="
+            <tr *ngFor="
                 let rowData of datatableList
                   | orderBy : orderBy : reverse
                   | paginate : getPaginateProps();
                 let i = index">
               <td class="selection" *ngIf="config?.hasSelection">
                 <div class="checkbox">
-                  <input
-                    *ngIf="
+                  <input *ngIf="
                       (config?.disableSelectionItem &&
                         !(config?.disableSelectionItem(rowData) ?? false)) ||
-                      !config?.disableSelectionItem"
-                    class="form-check-input"
-                    [checked]="isChecked(i)"
-                    (change)="toggleItem(i, rowData)"
-                    type="checkbox"
-                  />
+                      !config?.disableSelectionItem" class="form-check-input" [checked]="isChecked(i)"
+                    (change)="toggleItem(i, rowData)" type="checkbox" />
                 </div>
               </td>
-              <td
-                class="option"
-                *ngIf="config?.hasAction"
-                [style.width]="
+              <td class="option" *ngIf="config?.hasAction" [style.width]="
                   42 * (config?.actionButtons?.length ?? 1) + 'px!important'">
                 <div class="options-content">
-                  <cat-icon-button
-                    *ngFor="let actionButton of getActionButtons(rowData)"
-                    [icon]="actionButton.iconName"
-                    [color]="actionButton.iconColor"
-                    [tooltip]="actionButton.tooltip"
-                    (click)="
+                  <cat-icon-button *ngFor="let actionButton of getActionButtons(rowData)" [icon]="actionButton.iconName"
+                    [color]="actionButton.iconColor" [tooltip]="actionButton.tooltip" (click)="
                       actionButton.fnAction
                         ? actionButton.fnAction(rowData)
                         : null
-                    "
-                  />
+                    " />
                 </div>
               </td>
 
               <ng-container *ngFor="let column of config?.columns; let columnIndex = index">
-                <td
-                  *ngIf="canShowColumn(columnIndex)"
-                  [ngClass]="{ sorted: columnIndex === columnIndexSort }"
+                <td *ngIf="canShowColumn(columnIndex)" [ngClass]="{ sorted: columnIndex === columnIndexSort }"
                   [style.width]="getItemLine(columnIndex).customWidthColumn">
-                  <cat-dynamic-component
-                    *ngIf="
+                  <cat-dynamic-component *ngIf="
                       getItemLineComponent(
                         columnIndex,
                         rowData
                       ) as dynamicComponent;
-                      else tableCellDateText
-                    "
-                    [component]="dynamicComponent"
-                  />
+                      else tableCellDateText" [component]="dynamicComponent" />
                   <ng-template #tableCellDateText>
                     {{ this.getItemLineText(columnIndex, rowData) }}
                   </ng-template>

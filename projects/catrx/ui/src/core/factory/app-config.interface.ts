@@ -4,7 +4,7 @@ import { BehaviorSubject } from 'rxjs/internal/BehaviorSubject';
 import { Observable } from 'rxjs/internal/Observable';
 import { CatOAuth2TokenInterface } from '../services/token/cat-token.service';
 
-export class CatLogotypeApp extends CatDynamicComponent {}
+export class CatLogotypeApp extends CatDynamicComponent { }
 
 export interface AppContainerConfig {
   config: AppConfig;
@@ -35,8 +35,10 @@ export interface AppAuthSettings {
   };
 }
 
+export type AppMenuState = 'closed' | 'collapsed';
+
 export interface AppOptions {
-  menuStartState?: 'closed' | 'collapsed';
+  menuStartState?: AppMenuState;
   disableCollapseMenuButton?: boolean;
 }
 

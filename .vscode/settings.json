@@ -1,9 +1,72 @@
 {
-  "files.eol": "\n",
-  "[typescript]": {
-    "editor.defaultFormatter": "dbaeumer.vscode-eslint"
+  "editor.fontFamily": "Fira Code",
+  "editor.fontSize": 15,
+  "editor.fontLigatures": true,
+  "emmet.syntaxProfiles": {
+    "javascript": "jsx"
   },
-  "[html]": {
-    "editor.defaultFormatter": "dbaeumer.vscode-eslint"
-  }
+  "workbench.startupEditor": "newUntitledFile",
+  "javascript.suggest.autoImports": true,
+  "javascript.updateImportsOnFileMove.enabled": "always",
+  "editor.rulers": [
+    80,
+    120
+  ],
+  "extensions.ignoreRecommendations": true,
+  "typescript.tsserver.log": "off",
+  "files.associations": {
+    ".sequelizerc": "javascript",
+    ".stylelintrc": "json",
+    "*.tsx": "typescriptreact",
+    ".env.*": "dotenv",
+    ".prettierrc": "json"
+  },
+  "screencastMode.onlyKeyboardShortcuts": true,
+  "editor.parameterHints.enabled": false,
+  "editor.renderLineHighlight": "gutter",
+  "editor.lineHeight": 26,
+  "editor.suggestSelection": "first",
+  "explorer.confirmDelete": false,
+  "gitlens.codeLens.recentChange.enabled": false,
+  "terminal.integrated.showExitAlert": false,
+  "[prisma]": {
+    "editor.formatOnSave": true
+  },
+  "typescript.suggest.autoImports": true,
+  "terminal.integrated.env.osx": {
+    "FIG_NEW_SESSION": "1"
+  },
+  "workbench.editor.labelFormat": "short",
+  "editor.acceptSuggestionOnCommitCharacter": false,
+  "explorer.compactFolders": false,
+  "git.enableSmartCommit": true,
+  "editor.accessibilitySupport": "off",
+  "explorer.confirmDragAndDrop": false,
+  "terminal.integrated.fontSize": 14,
+  "editor.semanticHighlighting.enabled": false,
+  "breadcrumbs.enabled": true,
+  "gitlens.codeLens.authors.enabled": false,
+  "editor.tabSize": 2,
+  "files.exclude": {
+    "**/CVS": true,
+    "**/.DS_Store": true,
+    "**/.hg": true,
+    "**/.svn": true,
+    "**/.git": true
+  },
+  "gitlens.codeLens.enabled": false,
+  "workbench.iconTheme": "material-icon-theme",
+  "editor.formatOnSave": true,
+  "editor.codeActionsOnSave": {
+    "source.fixAll.eslint": true
+  },
+  "terminal.integrated.defaultProfile.windows": "Command Prompt",
+  "git.confirmSync": false,
+  "files.eol": "\n",
+  "workbench.productIconTheme": "fluent-icons",
+  "npm.scriptExplorerAction": "run",
+  "npm.packageManager": "npm",
+  "window.zoomLevel": 1,
+  "editor.wordWrap": "on",
+  "editor.wrappingIndent": "indent",
 }

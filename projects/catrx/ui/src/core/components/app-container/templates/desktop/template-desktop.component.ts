@@ -9,6 +9,7 @@ import {
 } from '@angular/core';
 import {
   AppConfig,
+  AppMenuState,
   CatThemeType,
 } from '../../../../factory/app-config.interface';
 import { BehaviorSubject } from 'rxjs/internal/BehaviorSubject';
@@ -27,15 +28,26 @@ export class TemplateDesktopComponent implements OnInit {
   public menuCollapsed$ = new BehaviorSubject<boolean>(true);
 
   ngOnInit() {
-    if (this.appConfig.options?.menuStartState === 'closed') {
-      this.menuCollapsed$.next(false);
-    }
+    const savedMenuState = localStorage.getItem(
+      this.getLocalStorageMenuStateName()
+    ) as AppMenuState;
+    const isCollapsed = savedMenuState
+      ? savedMenuState === 'collapsed'
+      : this.appConfig.options?.menuStartState === 'collapsed'
+
+    this.menuCollapsed$.next(isCollapsed);
     this.menuCollapse.emit(this.menuCollapsed$.getValue());
   }
 
   public collapseMenu() {
     this.menuCollapsed$.next(!this.menuCollapsed$.getValue());
     this.menuCollapse.emit(this.menuCollapsed$.getValue());
+    localStorage.setItem(
+      this.getLocalStorageMenuStateName(),
+      this.menuCollapsed$.getValue()
+        ? 'collapsed'
+        : 'closed'
+    );
   }
 
   public getLogotype() {
@@ -67,5 +79,13 @@ export class TemplateDesktopComponent implements OnInit {
     }
 
     return null;
+  }
+
+  private getLocalStorageMenuStateName() {
+    return `${this.getDefaultAliasStorageName()}:menu-state`;
+  }
+
+  private getDefaultAliasStorageName() {
+    return `@${this.appConfig.appName.replace(/ /g, '-').toLocaleLowerCase()}`;
   }
 }
