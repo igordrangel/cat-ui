@@ -364,6 +364,8 @@ export class DatatableComponent implements OnInit, OnDestroy {
     const endItemOffset = this.config.limitItemPerPage * this.currentPage;
 
     return {
+      itemsPerPage: this.config?.limitItemPerPage ?? 30,
+      currentPage: this.currentPage ?? 0,
       totalItems,
       startItemOffset: startItemOffset > 0
         ? startItemOffset
