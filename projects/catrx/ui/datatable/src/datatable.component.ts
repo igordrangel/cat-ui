@@ -24,11 +24,12 @@ import {
 } from './cat-datatable.interface';
 
 @Component({
-  selector: 'cat-datatable[config]',
-  templateUrl: 'datatable.component.html'
+  selector: 'cat-datatable',
+  templateUrl: 'datatable.component.html',
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class DatatableComponent implements OnInit, OnDestroy {
-  @Input() config: DatatableConfig<any>;
+  @Input({ required: true }) config: DatatableConfig<any>;
 
   @ViewChild('list', { static: false }) private elList: ElementRef<HTMLDivElement>;
 
@@ -60,9 +61,14 @@ export class DatatableComponent implements OnInit, OnDestroy {
   }
 
   ngOnInit(): void {
+    if (this.config.typeDataList === 'onScroll') {
+      this.config.hidePaginator = true;
+    }
+
     this.watchFilter();
     this.observeAnEmitSelection();
     this.observeListScrollToPaginate();
+
     if (this.config?.reloadList) {
       this.config?.reloadList
         .pipe(takeUntil(this.destroySubscriptions$))
@@ -416,7 +422,9 @@ export class DatatableComponent implements OnInit, OnDestroy {
     const endItemOffset = this.config.limitItemPerPage * this.currentPage;
 
     return {
-      itemsPerPage: this.config?.limitItemPerPage ?? 30,
+      itemsPerPage: this.config.typeDataList === 'onScroll'
+        ? 0
+        : this.config?.limitItemPerPage ?? 30,
       currentPage: this.currentPage ?? 0,
       totalItems,
       startItemOffset: startItemOffset > 0
