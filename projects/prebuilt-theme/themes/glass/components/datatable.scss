@@ -8,14 +8,14 @@ cat-datatable {
   border: 1px solid var(--shadow-color);
 }
 
-cat-datatable .cat-datatable-menu:has(nav) > nav {
+cat-datatable .cat-datatable-menu:has(nav)>nav {
   display: flex;
   justify-content: flex-start;
   align-items: center;
   padding: 3px 8px;
 }
 
-cat-datatable .cat-datatable-menu:has(nav) > nav[list-checked-actions] {
+cat-datatable .cat-datatable-menu:has(nav)>nav[list-checked-actions] {
   border-radius: 4px;
   background-color: var(--shadow-color);
   margin-right: 0.5rem;
@@ -111,7 +111,7 @@ cat-datatable .table tr {
   transition: background 0.2s;
 }
 
-cat-datatable .table-hover tr:hover > * {
+cat-datatable .table-hover tr:hover>* {
   transition: 0.2s;
 }
 
@@ -210,6 +210,16 @@ cat-datatable .datatable-loader {
   box-sizing: border-box;
 }
 
+cat-datatable .datatable-scroll-loader {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: calc(100% - 1px);
+  padding: 2rem 0;
+  z-index: 1;
+  box-sizing: border-box;
+}
+
 cat-datatable .empty-list-container {
   display: flex;
   flex-direction: column;
@@ -227,7 +237,7 @@ cat-datatable .empty-list-container i {
 }
 
 @media (max-width: 980px) {
-  cat-datatable .cat-datatable-menu:has(nav) > nav {
+  cat-datatable .cat-datatable-menu:has(nav)>nav {
     gap: 0.6rem;
   }
 }

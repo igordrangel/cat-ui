@@ -139,6 +139,10 @@
             </tr>
           </ng-container>
         </ng-container>
+
+        <div *ngIf="scrollLoadingData()" class="datatable-scroll-loader">
+          <cat-loader></cat-loader>
+        </div>
       </tbody>
     </ng-container>
   </table>

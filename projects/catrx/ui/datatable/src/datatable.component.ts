@@ -6,6 +6,7 @@ import {
   OnDestroy,
   OnInit,
   ViewChild,
+  signal,
 } from '@angular/core';
 import { klArray } from '@koalarx/utils/operators/array';
 import { clone } from '@koalarx/utils/operators/object';
@@ -42,6 +43,7 @@ export class DatatableComponent implements OnInit, OnDestroy {
   public datatableBackupList$ = new BehaviorSubject<any[]>([]);
   public loadedList$ = new BehaviorSubject<boolean>(false);
   public destroySubscriptions$ = new Subject();
+  public scrollLoadingData = signal(false);
 
   public currentPage = 1;
   public totalItemsPage = 0;
@@ -52,7 +54,6 @@ export class DatatableComponent implements OnInit, OnDestroy {
 
   private textFilter?: string;
   private objectFilter?: any;
-  private loadingData = false;
 
   ngOnDestroy() {
     this.destroySubscriptions$.next(true);
@@ -148,7 +149,7 @@ export class DatatableComponent implements OnInit, OnDestroy {
     if (this.config?.service) {
       const onScroll = this.config?.typeDataList === 'onScroll';
 
-      this.loadingData = true;
+      this.scrollLoadingData.set(true);
       if (!onScroll) {
         if (!preserveCurrentPage) this.currentPage = 1;
         this.clearSelection();
@@ -175,12 +176,18 @@ export class DatatableComponent implements OnInit, OnDestroy {
 
             if (this.config?.getDatasource) this.config.getDatasource(listData);
 
-            if (!onScroll) this.loadedList$.next(true);
-            this.loadingData = false;
+            if (!onScroll || this.loadedList$.getValue()) {
+              this.loadedList$.next(true);
+            }
+
+            this.scrollLoadingData.set(false);
           },
           error: () => {
-            if (!onScroll) this.loadedList$.next(true);
-            this.loadingData = false;
+            if (!onScroll || this.loadedList$.getValue()) {
+              this.loadedList$.next(true);
+            }
+
+            this.scrollLoadingData.set(false);
           },
         });
     }
@@ -210,16 +217,18 @@ export class DatatableComponent implements OnInit, OnDestroy {
     if (this.config.typeDataList === 'onScroll') {
       const elList = this.elList?.nativeElement;
 
-      elList.onscroll = () => {
-        const scrollSize = elList.scrollHeight - elList.clientHeight;
-        const scrollPosition = elList.scrollTop;
-        const percentScrolled = (scrollPosition * 100) / scrollSize;
-        const paginate = percentScrolled >= 70;
+      if (elList) {
+        elList.onscroll = () => {
+          const scrollSize = elList.scrollHeight - elList.clientHeight;
+          const scrollPosition = elList.scrollTop;
+          const percentScrolled = (scrollPosition * 100) / scrollSize;
+          const paginate = percentScrolled >= 70;
 
-        if (paginate && !this.loadingData) {
-          this.loadData();
-        }
-      };
+          if (paginate && !this.scrollLoadingData) {
+            this.loadData();
+          }
+        };
+      }
     }
   }
 
