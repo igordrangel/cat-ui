@@ -31,7 +31,7 @@ import {
 export class DatatableComponent implements OnInit, OnDestroy {
   @Input() config: DatatableConfig<any>;
 
-  @ViewChild('list', { static: true }) private elList: ElementRef<HTMLDivElement>;
+  @ViewChild('list', { static: false }) private elList: ElementRef<HTMLDivElement>;
 
   public selection$ = new BehaviorSubject<CatDatatableSelection<any>>({
     data: [],
@@ -222,7 +222,8 @@ export class DatatableComponent implements OnInit, OnDestroy {
         const scrollSize = elList.scrollHeight - elList.clientHeight;
         const scrollPosition = elList.scrollTop;
         const percentScrolled = (scrollPosition * 100) / scrollSize;
-        const paginate = percentScrolled >= 70;
+        const endOfList = this.datatableBackupList$.getValue().length === this.getPaginateProps().totalItems;
+        const paginate = percentScrolled >= 70 && !endOfList;
 
         if (paginate && !this.scrollLoadingData()) {
           this.loadData();
@@ -232,7 +233,7 @@ export class DatatableComponent implements OnInit, OnDestroy {
   }
 
   private async getElementList() {
-    while (this.elList) {
+    while (!this.elList) {
       await klDelay(50);
     }
 

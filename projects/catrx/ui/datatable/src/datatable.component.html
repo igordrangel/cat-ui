@@ -139,11 +139,11 @@
             </tr>
           </ng-container>
         </ng-container>
-
-        <div *ngIf="scrollLoadingData()" class="datatable-scroll-loader">
-          <cat-loader></cat-loader>
-        </div>
       </tbody>
     </ng-container>
   </table>
+
+  <div *ngIf="scrollLoadingData() && (loadedList$ | async) === true" class="datatable-scroll-loader">
+    <cat-loader></cat-loader>
+  </div>
 </div>

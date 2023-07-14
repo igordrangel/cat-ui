@@ -19,9 +19,11 @@ import { Subject } from 'rxjs/internal/Subject';
       </nav>
     </cat-toolbar>
 
-    <div [catOnDemandFilterSelectedOptions]="filterConfig"></div>
+    <div class="list-container">
+      <div [catOnDemandFilterSelectedOptions]="filterConfig"></div>
 
-    <cat-datatable [config]="datatableConfig"></cat-datatable>
+      <cat-datatable [config]="datatableConfig"></cat-datatable>
+    </div>
   `,
 })
 export class PageDatatableExampleComponent extends CatComponentBase {
@@ -47,7 +49,7 @@ export class PageDatatableExampleComponent extends CatComponentBase {
     .build(
       this.datatableFilter$,
       (filter) => this.service.getDatatable(filter),
-      'onDemand'
+      'onScroll'
     )
     .setColumns(['Estado', 'Município'])
     .setActionButton({
