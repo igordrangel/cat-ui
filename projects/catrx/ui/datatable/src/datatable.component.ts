@@ -9,6 +9,7 @@ import {
   signal,
 } from '@angular/core';
 import { klArray } from '@koalarx/utils/operators/array';
+import { klDelay } from '@koalarx/utils/operators/delay';
 import { clone } from '@koalarx/utils/operators/object';
 import { Ng2SearchPipe } from 'ng2-search-filter';
 import { BehaviorSubject } from 'rxjs/internal/BehaviorSubject';
@@ -30,7 +31,7 @@ import {
 export class DatatableComponent implements OnInit, OnDestroy {
   @Input() config: DatatableConfig<any>;
 
-  @ViewChild('list') private elList: ElementRef<HTMLDivElement>;
+  @ViewChild('list', { static: true }) private elList: ElementRef<HTMLDivElement>;
 
   public selection$ = new BehaviorSubject<CatDatatableSelection<any>>({
     data: [],
@@ -213,23 +214,29 @@ export class DatatableComponent implements OnInit, OnDestroy {
     return filter;
   }
 
-  private observeListScrollToPaginate() {
+  private async observeListScrollToPaginate() {
     if (this.config.typeDataList === 'onScroll') {
-      const elList = this.elList?.nativeElement;
+      const elList = await this.getElementList();
 
-      if (elList) {
-        elList.onscroll = () => {
-          const scrollSize = elList.scrollHeight - elList.clientHeight;
-          const scrollPosition = elList.scrollTop;
-          const percentScrolled = (scrollPosition * 100) / scrollSize;
-          const paginate = percentScrolled >= 70;
+      elList.onscroll = () => {
+        const scrollSize = elList.scrollHeight - elList.clientHeight;
+        const scrollPosition = elList.scrollTop;
+        const percentScrolled = (scrollPosition * 100) / scrollSize;
+        const paginate = percentScrolled >= 70;
 
-          if (paginate && !this.scrollLoadingData) {
-            this.loadData();
-          }
-        };
-      }
+        if (paginate && !this.scrollLoadingData) {
+          this.loadData();
+        }
+      };
     }
+  }
+
+  private async getElementList() {
+    while (this.elList) {
+      await klDelay(50);
+    }
+
+    return this.elList.nativeElement;
   }
 
   //#endregion
