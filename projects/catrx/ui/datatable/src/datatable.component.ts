@@ -224,7 +224,7 @@ export class DatatableComponent implements OnInit, OnDestroy {
         const percentScrolled = (scrollPosition * 100) / scrollSize;
         const paginate = percentScrolled >= 70;
 
-        if (paginate && !this.scrollLoadingData) {
+        if (paginate && !this.scrollLoadingData()) {
           this.loadData();
         }
       };
