@@ -44,7 +44,7 @@ export class DatatableComponent implements OnInit, OnDestroy {
   public datatableBackupList$ = new BehaviorSubject<any[]>([]);
   public loadedList$ = new BehaviorSubject<boolean>(false);
   public destroySubscriptions$ = new Subject();
-  public scrollLoadingData = signal(false);
+  public scrollLoadingData = false;
 
   public currentPage = 1;
   public totalItemsPage = 0;
@@ -150,7 +150,7 @@ export class DatatableComponent implements OnInit, OnDestroy {
     if (this.config?.service) {
       const onScroll = this.config?.typeDataList === 'onScroll';
 
-      this.scrollLoadingData.set(true);
+      this.scrollLoadingData = true;
       if (!onScroll) {
         if (!preserveCurrentPage) this.currentPage = 1;
         this.clearSelection();
@@ -181,14 +181,14 @@ export class DatatableComponent implements OnInit, OnDestroy {
               this.loadedList$.next(true);
             }
 
-            this.scrollLoadingData.set(false);
+            this.scrollLoadingData = false;
           },
           error: () => {
             if (!onScroll || !this.loadedList$.getValue()) {
               this.loadedList$.next(true);
             }
 
-            this.scrollLoadingData.set(false);
+            this.scrollLoadingData = false;
           },
         });
     }
@@ -225,7 +225,8 @@ export class DatatableComponent implements OnInit, OnDestroy {
         const endOfList = this.datatableBackupList$.getValue().length === this.totalItemsBd;
         const paginate = percentScrolled >= 70 && !endOfList;
 
-        if (paginate && !this.scrollLoadingData()) {
+        if (paginate && !this.scrollLoadingData) {
+          this.scrollLoadingData = true;
           this.loadData();
         }
       };
