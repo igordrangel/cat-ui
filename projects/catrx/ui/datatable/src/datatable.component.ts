@@ -91,56 +91,53 @@ export class DatatableComponent implements OnInit, OnDestroy {
       (this.config.filter$ ?? new BehaviorSubject(null))
         .pipe(takeUntil(this.destroySubscriptions$))
         .subscribe((filter) => {
-          if (typeof filter === 'string') {
-            this.datatableList$.next(
-              Ng2SearchPipe.filter(this.datatableBackupList$.getValue(), filter)
-            );
-          } else if (typeof filter === 'object') {
-            this.objectFilter = filter;
-
-            let filteredList = this.datatableBackupList$.getValue();
-            filteredList = filteredList.filter((itemLine) => {
-              const dataFiltered = [];
-              Object.keys(filter).forEach((indexNameFilter) => {
-                if (filter[indexNameFilter] && indexNameFilter !== 'filter') {
-                  if (
-                    typeof itemLine[indexNameFilter] === 'string' &&
-                    typeof filter[indexNameFilter] === 'string'
-                  ) {
-                    dataFiltered.push(
-                      (itemLine[indexNameFilter] as string)
-                        .toLowerCase()
-                        .includes(
-                          (filter[indexNameFilter] as string).toLowerCase()
-                        )
-                    );
-                  } else {
-                    dataFiltered.push(
-                      JSON.stringify(itemLine[indexNameFilter]) ===
-                      JSON.stringify(filter[indexNameFilter]) ||
-                      (itemLine[indexNameFilter]?.['id'] ?? 0) ===
-                      (filter[indexNameFilter]?.['id'] ?? -1) ||
-                      (itemLine[indexNameFilter]?.['codigo'] ?? 0) ===
-                      (filter[indexNameFilter]?.['codigo'] ?? -1)
-                    );
-                  }
-                }
-              });
-
-              return dataFiltered.filter((d) => d === false).length === 0;
-            });
-            this.datatableList$.next(filteredList);
-          }
-
-          switch (this.config?.typeDataList) {
-            case 'all':
-              if (this.datatableBackupList$.getValue().length === 0)
-                this.loadData();
-              break;
-            case 'onDemand':
-            case 'onScroll':
+          if (this.config?.typeDataList === 'all') {
+            if (this.datatableBackupList$.getValue().length === 0) {
               this.loadData();
-              break;
+            } else {
+              if (typeof filter === 'string') {
+                this.datatableList$.next(
+                  Ng2SearchPipe.filter(this.datatableBackupList$.getValue(), filter)
+                );
+              } else if (typeof filter === 'object') {
+                this.objectFilter = filter;
+
+                let filteredList = this.datatableBackupList$.getValue();
+                filteredList = filteredList.filter((itemLine) => {
+                  const dataFiltered = [];
+                  Object.keys(filter).forEach((indexNameFilter) => {
+                    if (filter[indexNameFilter] && indexNameFilter !== 'filter') {
+                      if (
+                        typeof itemLine[indexNameFilter] === 'string' &&
+                        typeof filter[indexNameFilter] === 'string'
+                      ) {
+                        dataFiltered.push(
+                          (itemLine[indexNameFilter] as string)
+                            .toLowerCase()
+                            .includes(
+                              (filter[indexNameFilter] as string).toLowerCase()
+                            )
+                        );
+                      } else {
+                        dataFiltered.push(
+                          JSON.stringify(itemLine[indexNameFilter]) ===
+                          JSON.stringify(filter[indexNameFilter]) ||
+                          (itemLine[indexNameFilter]?.['id'] ?? 0) ===
+                          (filter[indexNameFilter]?.['id'] ?? -1) ||
+                          (itemLine[indexNameFilter]?.['codigo'] ?? 0) ===
+                          (filter[indexNameFilter]?.['codigo'] ?? -1)
+                        );
+                      }
+                    }
+                  });
+
+                  return dataFiltered.filter((d) => d === false).length === 0;
+                });
+                this.datatableList$.next(filteredList);
+              }
+            }
+          } else {
+            this.loadData();
           }
         });
     }
@@ -162,12 +159,13 @@ export class DatatableComponent implements OnInit, OnDestroy {
         .pipe(first())
         .subscribe({
           next: (response) => {
-            const listData = onScroll
+            const listData = (onScroll
               ? [
                 ...this.datatableBackupList$.getValue(),
                 ...response.items
               ]
-              : response.items;
+              : response.items);
+
             this.datatableList$.next(listData);
             this.datatableBackupList$.next(clone(listData));
             this.totalItemsBd = response.count;
