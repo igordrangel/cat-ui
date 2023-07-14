@@ -222,7 +222,7 @@ export class DatatableComponent implements OnInit, OnDestroy {
         const scrollSize = elList.scrollHeight - elList.clientHeight;
         const scrollPosition = elList.scrollTop;
         const percentScrolled = (scrollPosition * 100) / scrollSize;
-        const endOfList = this.datatableBackupList$.getValue().length === this.getPaginateProps().totalItems;
+        const endOfList = this.datatableBackupList$.getValue().length === this.totalItemsBd;
         const paginate = percentScrolled >= 70 && !endOfList;
 
         if (paginate && !this.scrollLoadingData()) {
