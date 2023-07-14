@@ -72,4 +72,4 @@ export interface CatDatatableDataHttpResponse<ListType> {
 }
 
 export type ColumOrderType = 'asc' | 'desc';
-export type DatatableTypeDataList = 'all' | 'onDemand';
+export type DatatableTypeDataList = 'all' | 'onDemand' | 'onScroll';

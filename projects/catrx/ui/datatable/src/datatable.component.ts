@@ -1,23 +1,25 @@
 import {
   ChangeDetectionStrategy,
   Component,
+  ElementRef,
   Input,
   OnDestroy,
   OnInit,
+  ViewChild,
 } from '@angular/core';
+import { klArray } from '@koalarx/utils/operators/array';
+import { clone } from '@koalarx/utils/operators/object';
+import { Ng2SearchPipe } from 'ng2-search-filter';
+import { BehaviorSubject } from 'rxjs/internal/BehaviorSubject';
+import { Subject } from 'rxjs/internal/Subject';
+import { first } from 'rxjs/internal/operators/first';
+import { takeUntil } from 'rxjs/internal/operators/takeUntil';
 import {
+  CatDatatableSelection,
   DatatableActionButtonConfig,
   DatatableConfig,
   DatatableFilterResponse,
-  CatDatatableSelection,
 } from './cat-datatable.interface';
-import { clone } from '@koalarx/utils/operators/object';
-import { Ng2SearchPipe } from 'ng2-search-filter';
-import { klArray } from '@koalarx/utils/operators/array';
-import { BehaviorSubject } from 'rxjs/internal/BehaviorSubject';
-import { Subject } from 'rxjs/internal/Subject';
-import { takeUntil } from 'rxjs/internal/operators/takeUntil';
-import { first } from 'rxjs/internal/operators/first';
 
 @Component({
   selector: 'cat-datatable[config]',
@@ -26,6 +28,8 @@ import { first } from 'rxjs/internal/operators/first';
 })
 export class DatatableComponent implements OnInit, OnDestroy {
   @Input() config: DatatableConfig<any>;
+
+  @ViewChild('list') private elList: ElementRef<HTMLDivElement>;
 
   public selection$ = new BehaviorSubject<CatDatatableSelection<any>>({
     data: [],
@@ -48,6 +52,7 @@ export class DatatableComponent implements OnInit, OnDestroy {
 
   private textFilter?: string;
   private objectFilter?: any;
+  private loadingData = false;
 
   ngOnDestroy() {
     this.destroySubscriptions$.next(true);
@@ -56,6 +61,7 @@ export class DatatableComponent implements OnInit, OnDestroy {
   ngOnInit(): void {
     this.watchFilter();
     this.observeAnEmitSelection();
+    this.observeListScrollToPaginate();
     if (this.config?.reloadList) {
       this.config?.reloadList
         .pipe(takeUntil(this.destroySubscriptions$))
@@ -130,6 +136,7 @@ export class DatatableComponent implements OnInit, OnDestroy {
                 this.loadData();
               break;
             case 'onDemand':
+            case 'onScroll':
               this.loadData();
               break;
           }
@@ -139,15 +146,26 @@ export class DatatableComponent implements OnInit, OnDestroy {
 
   private loadData(preserveCurrentPage = false) {
     if (this.config?.service) {
-      if (!preserveCurrentPage) this.currentPage = 1;
-      this.clearSelection();
-      this.loadedList$.next(false);
+      const onScroll = this.config?.typeDataList === 'onScroll';
+
+      this.loadingData = true;
+      if (!onScroll) {
+        if (!preserveCurrentPage) this.currentPage = 1;
+        this.clearSelection();
+        this.loadedList$.next(false);
+      }
+
       this.config
         .service(this.getFilter())
         .pipe(first())
         .subscribe({
           next: (response) => {
-            const listData = response.items;
+            const listData = onScroll
+              ? [
+                ...this.datatableBackupList$.getValue(),
+                ...response.items
+              ]
+              : response.items;
             this.datatableList$.next(listData);
             this.datatableBackupList$.next(clone(listData));
             this.totalItemsBd = response.count;
@@ -157,10 +175,12 @@ export class DatatableComponent implements OnInit, OnDestroy {
 
             if (this.config?.getDatasource) this.config.getDatasource(listData);
 
-            this.loadedList$.next(true);
+            if (!onScroll) this.loadedList$.next(true);
+            this.loadingData = false;
           },
           error: () => {
-            this.loadedList$.next(true);
+            if (!onScroll) this.loadedList$.next(true);
+            this.loadingData = false;
           },
         });
     }
@@ -184,6 +204,23 @@ export class DatatableComponent implements OnInit, OnDestroy {
     }
 
     return filter;
+  }
+
+  private observeListScrollToPaginate() {
+    if (this.config.typeDataList === 'onScroll') {
+      const elList = this.elList?.nativeElement;
+
+      elList.onscroll = () => {
+        const scrollSize = elList.scrollHeight - elList.clientHeight;
+        const scrollPosition = elList.scrollTop;
+        const percentScrolled = (scrollPosition * 100) / scrollSize;
+        const paginate = percentScrolled >= 70;
+
+        if (paginate && !this.loadingData) {
+          this.loadData();
+        }
+      };
+    }
   }
 
   //#endregion

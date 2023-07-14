@@ -28,7 +28,7 @@
       (pageChange)="handlePageChange($event)" />
   </div>
 </nav>
-<div class="table-responsive table-container" [ngClass]="{
+<div #list class="table-responsive table-container" [ngClass]="{
   'list-without-action': !config.hasAction && config.hasSelection,
   'list-without-selection': config.hasAction && !config.hasSelection,
   'list-without-selection-and-action': !config.hasAction && !config.hasSelection
