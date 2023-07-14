@@ -177,14 +177,14 @@ export class DatatableComponent implements OnInit, OnDestroy {
             if (this.config?.getDatasource) this.config.getDatasource(listData);
 
             if (!onScroll || this.loadedList$.getValue()) {
-              this.loadedList$.next(true);
+              this.loadedList$.next(false);
             }
 
             this.scrollLoadingData.set(false);
           },
           error: () => {
             if (!onScroll || this.loadedList$.getValue()) {
-              this.loadedList$.next(true);
+              this.loadedList$.next(false);
             }
 
             this.scrollLoadingData.set(false);
