@@ -25,8 +25,7 @@ import {
 
 @Component({
   selector: 'cat-datatable[config]',
-  templateUrl: 'datatable.component.html',
-  changeDetection: ChangeDetectionStrategy.OnPush,
+  templateUrl: 'datatable.component.html'
 })
 export class DatatableComponent implements OnInit, OnDestroy {
   @Input() config: DatatableConfig<any>;
