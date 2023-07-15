@@ -142,6 +142,12 @@ export class DatatableComponent implements OnInit, OnDestroy {
               }
             }
           } else {
+            if (typeof filter === 'string') {
+              this.textFilter = filter;
+            } else if (typeof filter === 'object') {
+              this.objectFilter = filter;
+            }
+
             this.loadData();
           }
         });
