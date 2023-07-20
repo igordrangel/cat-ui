@@ -34,7 +34,7 @@ export class PageListItemComponent extends CatFormBase {
       (builder) =>
         builder
           .text('Telefone', 'phone', (builder) =>
-            builder.setMask('(00)00000000?0').setRequired().generate()
+            builder.setMask({ mask: '(00)00000000?0' }).setRequired().generate()
           )
           .listsItem(
             'Emails',
