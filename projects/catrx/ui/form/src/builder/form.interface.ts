@@ -77,6 +77,7 @@ export interface CatFormTextMaskConfig {
   allowNegativeNumbers?: boolean;
   placeHolderCharacter?: string;
   thousandSeparator?: string;
+  decimalMarker?: ',' | '.';
   leadZero?: boolean;
   separatorLimit?: string;
   leadZeroDateTime?: boolean;
