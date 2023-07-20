@@ -38,7 +38,7 @@ export class CatButtonDirective implements OnInit, OnChanges {
     private appRef: ApplicationRef,
     private componentFactoryResolver: ComponentFactoryResolver,
     private injector: Injector
-  ) {}
+  ) { }
 
   ngOnChanges(changes: SimpleChanges): void {
     if (changes['showLoader']) {
@@ -47,6 +47,10 @@ export class CatButtonDirective implements OnInit, OnChanges {
   }
 
   ngOnInit(): void {
+    if (this.showLoader) {
+      this.showLoaderOnButton();
+    }
+
     if (this.componentRef === null) {
       const componentFactory =
         this.componentFactoryResolver.resolveComponentFactory(
