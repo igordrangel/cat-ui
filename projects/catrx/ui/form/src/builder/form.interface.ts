@@ -80,7 +80,6 @@ export interface CatFormTextMaskConfig {
   decimalMarker?: ',' | '.';
   leadZero?: boolean;
   separatorLimit?: string;
-  leadZeroDateTime?: boolean;
   hiddenInput?: boolean;
   mask: string;
 }
