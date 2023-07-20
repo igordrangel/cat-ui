@@ -69,8 +69,23 @@ export interface CatFormBehaviorAsyncValidator {
   asyncValidators: AsyncValidatorFn[];
 }
 
+export interface CatFormTextMaskConfig {
+  prefix?: string;
+  sufix?: string;
+  dropSpecialCharacters?: boolean;
+  showMaskTyped?: boolean;
+  allowNegativeNumbers?: boolean;
+  placeHolderCharacter?: string;
+  thousandSeparator?: string;
+  leadZero?: boolean;
+  separatorLimit?: string;
+  leadZeroDateTime?: boolean;
+  hiddenInput?: boolean;
+  mask: string;
+}
+
 export interface CatFormTextOptions extends CatFormFieldOptions {
-  mask?: string;
+  mask?: CatFormTextMaskConfig;
 }
 export type CatFormPasswordOptions = CatFormFieldOptions;
 export interface CatFormTextareaOptions extends CatFormFieldOptions {
@@ -94,8 +109,8 @@ export interface CatFormSelectOptions extends CatFormFieldOptions {
 }
 export interface CatFormAutocompleteOptions extends CatFormFieldOptions {
   options?:
-    | ((filter?: any) => Observable<CatFormListOptions[]>)
-    | Observable<CatFormListOptions[]>;
+  | ((filter?: any) => Observable<CatFormListOptions[]>)
+  | Observable<CatFormListOptions[]>;
   multiple?: boolean;
   add?: boolean;
   addOption?: CatFormAutocompleteAddOption;

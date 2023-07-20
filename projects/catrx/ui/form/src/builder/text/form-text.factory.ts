@@ -1,9 +1,9 @@
-import { CatFormTextOptions } from '../form.interface';
+import { CatFormTextMaskConfig, CatFormTextOptions } from '../form.interface';
 import { Validators } from '@angular/forms';
 import { FormFieldInputBase } from '../form-field-input.base';
 
 export class FormTextFactory extends FormFieldInputBase<CatFormTextOptions> {
-  public setMask(mask: string) {
+  public setMask(mask: CatFormTextMaskConfig) {
     this.config.mask = mask;
     return this;
   }
