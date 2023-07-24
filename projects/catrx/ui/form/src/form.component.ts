@@ -48,7 +48,7 @@ export class FormComponent implements OnInit {
 
   private autofillValues: CatFormBehaviorSetValue[] = [];
 
-  constructor(private fb: FormBuilder) {}
+  constructor(private fb: FormBuilder) { }
 
   ngOnInit(): void {
     this.dynamicForm = this.fb.group({});
@@ -209,7 +209,7 @@ export class FormComponent implements OnInit {
       }
     } else {
       clone(Object.keys(data)).map((index) => {
-        if (Array.isArray(data[index])) {
+        if (data[index] && Array.isArray(data[index])) {
           const isObjectArray = !!data[index].find(
             (item) => typeof item === 'object'
           );
@@ -232,7 +232,7 @@ export class FormComponent implements OnInit {
               value: data[index],
             });
           }
-        } else if (typeof data[index] === 'object') {
+        } else if (data[index] && typeof data[index] === 'object') {
           clone(Object.keys(data[index])).forEach((objIndex) => {
             name = this.generateAutofillDataTree(
               data[index],
