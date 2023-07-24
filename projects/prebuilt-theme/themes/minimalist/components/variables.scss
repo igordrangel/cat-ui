@@ -133,7 +133,7 @@ main {
   --btn-primary-color-alpha-hover: rgba(33, 33, 33, 0.2);
   --btn-primary-color-alpha-active: rgba(33, 33, 33, 0.4);
 
-  --fieldset-border-color: rgba(0, 0, 0, 0.1);
+  --fieldset-border-color: var(--shadow-color);
   --fieldset-legend-color: rgba(0, 0, 0, 0.8);
 
   --bg-select-option-hover-active: rgba(0, 0, 0, 0.1);
@@ -288,7 +288,7 @@ main.dark {
   --btn-primary-color-alpha-hover: rgba(255, 255, 255, 0.2);
   --btn-primary-color-alpha-active: rgba(255, 255, 255, 0.4);
 
-  --fieldset-border-color: rgba(255, 255, 255, 0.4);
+  --fieldset-border-color: var(--shadow-color);
   --fieldset-legend-color: rgba(255, 255, 255, 0.6);
 
   --bg-select-option-hover-active: rgba(0, 0, 0, 0.2);
