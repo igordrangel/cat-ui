@@ -201,7 +201,11 @@ export class CatDropdownDirective implements OnDestroy {
       case 'left':
         if (!isMobile) {
           leftPosition = left - dropdownWidth - 5;
-          if (leftPosition < 0) leftPosition = 5;
+          if (leftPosition < 0) {
+            leftPosition = 5;
+          } else if (absoluteVerticalPosition > bodyHeigth) {
+            topPosition -= dropdownHeigth / 2;
+          }
         }
 
         topPosition = top;
@@ -216,7 +220,11 @@ export class CatDropdownDirective implements OnDestroy {
         topPosition = top;
 
         absolutePosition = topPosition + dropdownHeigth + height;
-        if (absolutePosition >= absoluteVerticalPosition) topPosition = 5;
+        if (topPosition < 0) {
+          topPosition = 5;
+        } else if (absoluteVerticalPosition > bodyHeigth) {
+          topPosition -= dropdownHeigth / 2;
+        }
         break;
     }
 

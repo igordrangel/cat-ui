@@ -234,18 +234,47 @@ cat-form .cat-field-container {
 }
 
 cat-form .cat-field-container label {
-  position: relative;
+  position: absolute;
+  top: -7px;
+  left: 8px;
   font-size: 0.668rem;
   margin: 0;
   font-weight: bold;
   color: var(--font-color);
-  padding: 0;
+  padding: 0 5px;
   text-transform: uppercase;
+  border-radius: 5px;
   z-index: 1002;
   white-space: nowrap;
   text-overflow: ellipsis;
   max-width: calc(100% - 15px);
   overflow: hidden;
+}
+
+cat-form .cat-field-container label::after {
+  top: calc(50% - 1px);
+  left: 0;
+  content: "";
+  position: absolute;
+  background-color: var(--bg-body);
+  width: 100%;
+  height: 2px;
+  z-index: -1;
+}
+
+cat-dialog cat-form .cat-field-container label::after {
+  background-color: var(--bg-dialog);
+}
+
+@media (max-width: 980px) {
+  cat-form .cat-field-container label {
+    top: -9px;
+  }
+}
+
+cat-form .cat-field-container label::after {
+  top: calc(50% - 2px);
+  height: 3px;
 }
 
 cat-form .hint {
