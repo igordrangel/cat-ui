@@ -44,11 +44,12 @@ export class CatDropdownDirective implements OnDestroy {
     private appRef: ApplicationRef,
     private componentFactoryResolver: ComponentFactoryResolver,
     private injector: Injector
-  ) {}
+  ) { }
 
   @HostListener('click')
   onClick(): void {
     if (!this.catDropdown.disabled) {
+      this.validateWasTrigger();
       this.initializeDropdown();
       setTimeout(() => (this.wasTrigged = true), 1);
     }
@@ -215,11 +216,16 @@ export class CatDropdownDirective implements OnDestroy {
         topPosition = top;
 
         absolutePosition = topPosition + dropdownHeigth + height;
-        if (absolutePosition >= absoluteVerticalPosition)
-          topPosition -= dropdownHeigth - height;
+        if (absolutePosition >= absoluteVerticalPosition) topPosition = 5;
         break;
     }
 
     return { topPosition, leftPosition };
+  }
+
+  private validateWasTrigger() {
+    if (this.wasTrigged && !this.componentRef) {
+      this.wasTrigged = false;
+    }
   }
 }

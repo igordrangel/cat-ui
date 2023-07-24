@@ -71,28 +71,13 @@ export class AppService {
       observe.next({
         modules: [
           {
-            icon: 'fa-solid fa-database',
-            name: 'Exibição de Dados',
-            tools: [
-              {
-                name: 'Datatable',
-                routerLink: '/components/datatable',
-              },
-              {
-                name: 'Componentes Dinâmicos',
-                routerLink: '/components/dynamic-components',
-              },
-              {
-                name: 'Chip',
-                routerLink: '/components/chip',
-              },
-            ],
-          },
-          {
             icon: 'fa-brands fa-wpforms',
             name: 'Formulário',
-            routerLink: '/components/form',
             tools: [
+              {
+                name: 'Formulário Reativo',
+                routerLink: '/components/form',
+              },
               {
                 name: 'Lista de Itens',
                 routerLink: '/components/form/list-item',
@@ -112,6 +97,24 @@ export class AppService {
               {
                 name: 'Filtro por Demanda',
                 routerLink: '/components/on-demand-filter',
+              },
+            ],
+          },
+          {
+            icon: 'fa-solid fa-database',
+            name: 'Exibição de Dados',
+            tools: [
+              {
+                name: 'Datatable',
+                routerLink: '/components/datatable',
+              },
+              {
+                name: 'Componentes Dinâmicos',
+                routerLink: '/components/dynamic-components',
+              },
+              {
+                name: 'Chip',
+                routerLink: '/components/chip',
               },
             ],
           },
