@@ -41,12 +41,11 @@ import { CatButtonModule } from '@catrx/ui/button';
 })
 export class LoginComponent
   extends CatFormBase
-  implements CatDynamicComponentDataInterface
-{
+  implements CatDynamicComponentDataInterface {
   data: CatLogotypeApp;
 
   loginFormConfig = this.formService
-    .build()
+    .build<any>()
     .text('Usuário', 'login', (builder) =>
       builder.focus().setRequired().generate()
     )
@@ -57,7 +56,13 @@ export class LoginComponent
       (data) =>
         new Observable((observe) => {
           setTimeout(() => {
-            this.tokenService.setDecodedToken(data, 'demo');
+            this.tokenService.setDecodedToken(
+              {
+                ...data,
+                exp: Date.now(),
+              },
+              'demo'
+            );
             observe.next();
             observe.complete();
           }, 1000);

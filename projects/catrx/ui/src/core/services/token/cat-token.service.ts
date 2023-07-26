@@ -38,8 +38,8 @@ export class CatTokenService implements OnDestroy {
 
   public setToken(token: string) {
     if (TokenFactory.hasToken()) {
-      this.token$.next(token);
     }
+    this.token$.next(token);
     TokenFactory.setToken(token);
   }
 
@@ -71,6 +71,7 @@ export class CatTokenService implements OnDestroy {
   private verifySession() {
     TokenFactory.init();
     this.token$.next(TokenFactory.getToken());
+    this.intervalToken?.unsubscribe();
     this.intervalToken = interval(300).subscribe(() => {
       if (!TokenFactory.hasToken() && this.token$.getValue()) {
         this.token$.next(null);
