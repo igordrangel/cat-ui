@@ -2,9 +2,10 @@
   *ngIf="updateComponent$ | async"
   [control]="control"
   [config]="fieldConfig"
-  [elInput]="elInput"
->
-  <ng-container *ngIf="control && fieldConfig" field>
+  [elInput]="elInput">
+  <ng-container
+    *ngIf="control && fieldConfig"
+    field>
     <ng-select
       *ngIf="fieldConfig.options | async as options; else showLoader"
       #inputElement
@@ -13,22 +14,24 @@
       [required]="fieldConfig.required ?? false"
       [ngClass]="{
         'is-invalid': control.invalid && !control.untouched && !control.disabled
-      }"
-      [searchable]="false"
+      }" [searchable]="false"
       [multiple]="fieldConfig.multiple"
       [appendTo]="'main'"
-      appearance="outline"
-    >
-      <ng-container *ngFor="let option of options">
+      [placeholder]="fieldConfig.placeholder ?? ''"
+      appearance="outline">
+      <ng-container
+        *ngFor="let option of options">
         <ng-option
           *ngIf="optionIsComponent(option); else textOption"
-          [value]="option.value"
-        >
-          <cat-dynamic-component [component]="getCompomentOption(option)" />
+          [value]="option.value">
+          <cat-dynamic-component
+            [component]="getCompomentOption(option)" />
         </ng-option>
 
         <ng-template #textOption>
-          <ng-option [value]="option.value" [innerHTML]="option.name" />
+          <ng-option
+            [value]="option.value"
+            [innerHTML]="option.name" />
         </ng-template>
       </ng-container>
     </ng-select>
@@ -38,8 +41,6 @@
 <ng-template #showLoader>
   <input
     class="form-control form-control-sm"
-    disabled
-    type="text"
-    placeholder="CARREGANDO..."
-  />
+    disabled type="text"
+    placeholder="CARREGANDO..." />
 </ng-template>
