@@ -44,7 +44,7 @@ export interface CatFormFieldOptions {
   maxLength?: number;
   validators?: ValidatorFn[];
   asyncValidators?: AsyncValidatorFn[];
-  onChange?: (value: any, behavior: CatFormBehavior, baseTree: string) => void;
+  onChange?: (value: any, behavior: CatFormBehavior, baseTree?: string) => void;
 }
 
 export interface CatFormBehaviorOptions {
