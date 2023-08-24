@@ -11,6 +11,7 @@ export class FormAutocompleteFactory extends FormFieldInputBase<CatFormAutocompl
     options:
       | Observable<CatFormListOptions[]>
       | ((filter: any) => Observable<CatFormListOptions[]>)
+      | Array<CatFormListOptions>
   ) {
     this.config.options = options;
     return this;

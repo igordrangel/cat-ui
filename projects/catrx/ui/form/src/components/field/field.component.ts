@@ -139,6 +139,7 @@ export class FieldComponent implements OnInit, OnDestroy, OnChanges {
       (field) => field.name === this.getFullFieldName()
     );
     if (field) {
+      this.options$.next(null)
       field.options
         .pipe(first())
         .subscribe(options => this.options$.next(options))

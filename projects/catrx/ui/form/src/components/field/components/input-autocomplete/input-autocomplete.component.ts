@@ -23,7 +23,7 @@ export class InputAutocompleteComponent extends FieldBase<
 > {
   loaderText = 'Carregando...';
   loading$ = new BehaviorSubject<boolean>(true);
-  @Input() options$ = new BehaviorSubject<CatFormListOptions[]>([]);
+  @Input() options$ = new BehaviorSubject<CatFormListOptions[]>(null);
 
   private search$ = new Subject<string>();
 
@@ -80,15 +80,22 @@ export class InputAutocompleteComponent extends FieldBase<
   }
 
   protected override customInit() {
-    if (this.fieldConfig.options instanceof Observable) {
-      this.updateList(this.fieldConfig.options);
+    const options = this.fieldConfig.options ?? this.options$;
+
+    if (options instanceof Observable) {
+      this.updateList(options);
+    } else if (typeof options === 'function') {
+      this.updateList(options());
     } else {
-      this.updateList(this.fieldConfig.options());
+      this.updateList(new Observable(observe => {
+        observe.next(options ?? []);
+        observe.complete();
+      }));
     }
 
     this.search$.pipe(debounceTime(300)).subscribe((text) => {
-      if (!(this.fieldConfig.options instanceof Observable)) {
-        this.updateList(this.fieldConfig.options(text));
+      if (typeof options === 'function') {
+        this.updateList(options(text));
       }
     });
   }
@@ -96,8 +103,8 @@ export class InputAutocompleteComponent extends FieldBase<
   private updateList(requester: Observable<CatFormListOptions[]>) {
     requester.pipe(takeUntil(this.destroySubscriptions$)).subscribe({
       next: (response) => {
-        this.options$.next(response);
-        this.loading$.next(false);
+        this.options$.next(response ?? []);
+        this.loading$.next(!response);
         this.updateComponent$.next(true);
       },
       error: () => {

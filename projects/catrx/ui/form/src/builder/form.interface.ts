@@ -115,7 +115,8 @@ export interface CatFormSelectOptions extends CatFormFieldOptions {
 export interface CatFormAutocompleteOptions extends CatFormFieldOptions {
   options?:
   | ((filter?: any) => Observable<CatFormListOptions[]>)
-  | Observable<CatFormListOptions[]>;
+  | Observable<CatFormListOptions[]>
+  | Array<CatFormListOptions>;
   multiple?: boolean;
   add?: boolean;
   addOption?: CatFormAutocompleteAddOption;
