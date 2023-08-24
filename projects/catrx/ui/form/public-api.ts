@@ -15,4 +15,5 @@ export * from './src/validators/cat-url.validator';
 export * from './src/cat-form-validator-response.factory';
 export * from './src/cat-form.service';
 export * from './src/form.component';
+export * from './src/form.service';
 export * from './src/cat-form.module';
