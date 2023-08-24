@@ -9,6 +9,13 @@ import {
   Output,
   SimpleChanges,
 } from '@angular/core';
+import { FormBuilder, FormControl } from '@angular/forms';
+import { BehaviorSubject } from 'rxjs/internal/BehaviorSubject';
+import { Subject } from 'rxjs/internal/Subject';
+import { debounceTime } from 'rxjs/internal/operators/debounceTime';
+import { first } from 'rxjs/internal/operators/first';
+import { skipWhile } from 'rxjs/internal/operators/skipWhile';
+import { takeUntil } from 'rxjs/internal/operators/takeUntil';
 import {
   CatFormBehaviorAsyncValidator,
   CatFormBehaviorSetOptions,
@@ -17,14 +24,6 @@ import {
   CatFormFieldConfig,
   CatFormListOptions,
 } from '../../builder/form.interface';
-import { FormBuilder, FormControl } from '@angular/forms';
-import { BehaviorSubject } from 'rxjs/internal/BehaviorSubject';
-import { Subject } from 'rxjs/internal/Subject';
-import { skipWhile } from 'rxjs/internal/operators/skipWhile';
-import { takeUntil } from 'rxjs/internal/operators/takeUntil';
-import { debounceTime } from 'rxjs/internal/operators/debounceTime';
-import { Observable } from 'rxjs/internal/Observable';
-import { first } from 'rxjs/internal/operators/first';
 
 @Component({
   selector: 'cat-form-field[fieldConfig]',
@@ -40,7 +39,7 @@ export class FieldComponent implements OnInit, OnDestroy, OnChanges {
 
   public control?: FormControl;
   public hidden$ = new BehaviorSubject<boolean>(false);
-  public options$ = new BehaviorSubject<CatFormListOptions[]>([]);
+  public options$ = new BehaviorSubject<CatFormListOptions[]>(null);
 
   private destroySubscriptions$ = new Subject();
 

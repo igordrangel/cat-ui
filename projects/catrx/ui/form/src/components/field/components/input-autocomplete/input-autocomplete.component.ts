@@ -82,7 +82,10 @@ export class InputAutocompleteComponent extends FieldBase<
   protected override customInit() {
     const options = this.fieldConfig.options ?? this.options$;
 
-    if (options instanceof Observable) {
+    if (
+      options instanceof Observable ||
+      options instanceof BehaviorSubject
+    ) {
       this.updateList(options);
     } else if (typeof options === 'function') {
       this.updateList(options());
@@ -103,7 +106,7 @@ export class InputAutocompleteComponent extends FieldBase<
   private updateList(requester: Observable<CatFormListOptions[]>) {
     requester.pipe(takeUntil(this.destroySubscriptions$)).subscribe({
       next: (response) => {
-        this.options$.next(response ?? []);
+        this.options$.next(response);
         this.loading$.next(!response);
         this.updateComponent$.next(true);
       },
