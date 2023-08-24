@@ -7,7 +7,7 @@
     *ngIf="control && fieldConfig"
     field>
     <ng-select
-      *ngIf="fieldConfig.options | async as options; else showLoader"
+      *ngIf="options$ | async as options; else showLoader"
       #inputElement
       [formControl]="control"
       [labelForId]="fieldConfig.label"

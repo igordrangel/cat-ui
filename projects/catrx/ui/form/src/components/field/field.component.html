@@ -1,114 +1,98 @@
 <ng-container *ngIf="fieldConfig">
-  <ng-container *ngIf="(hidden$ | async) === false">
+  <ng-container
+    *ngIf="(hidden$ | async) === false">
     <cat-field-text
       *ngIf="fieldConfig.type === 'text'"
       [control]="control"
-      [fieldConfig]="fieldConfig"
-    />
+      [fieldConfig]="fieldConfig" />
 
     <cat-field-search
       *ngIf="fieldConfig.type === 'search'"
       [control]="control"
-      [fieldConfig]="fieldConfig"
-    />
+      [fieldConfig]="fieldConfig" />
 
     <cat-field-password
       *ngIf="fieldConfig.type === 'password'"
       [control]="control"
-      [fieldConfig]="fieldConfig"
-    />
+      [fieldConfig]="fieldConfig" />
 
     <cat-field-email
       *ngIf="fieldConfig.type === 'email'"
       [control]="control"
-      [fieldConfig]="fieldConfig"
-    />
+      [fieldConfig]="fieldConfig" />
 
     <cat-field-url
       *ngIf="fieldConfig.type === 'url'"
       [control]="control"
-      [fieldConfig]="fieldConfig"
-    />
+      [fieldConfig]="fieldConfig" />
 
     <cat-field-range
       *ngIf="fieldConfig.type === 'range'"
       [control]="control"
-      [fieldConfig]="fieldConfig"
-    />
+      [fieldConfig]="fieldConfig" />
 
     <cat-field-number
       *ngIf="fieldConfig.type === 'number'"
       [control]="control"
-      [fieldConfig]="fieldConfig"
-    />
+      [fieldConfig]="fieldConfig" />
 
-    <cat-field-datetime
-      *ngIf="
+    <cat-field-datetime *ngIf="
         fieldConfig.type === 'date' ||
         fieldConfig.type === 'datetime-local' ||
         fieldConfig.type === 'time'"
       [control]="control"
-      [fieldConfig]="fieldConfig"
-    />
+      [fieldConfig]="fieldConfig" />
 
     <cat-field-textarea
       *ngIf="fieldConfig.type === 'textarea'"
       [control]="control"
-      [fieldConfig]="fieldConfig"
-    />
+      [fieldConfig]="fieldConfig" />
 
     <cat-field-cpf
       *ngIf="fieldConfig.type === 'cpf'"
       [control]="control"
-      [fieldConfig]="fieldConfig"
-    />
+      [fieldConfig]="fieldConfig" />
 
     <cat-field-cnpj
       *ngIf="fieldConfig.type === 'cnpj'"
       [control]="control"
-      [fieldConfig]="fieldConfig"
-    />
+      [fieldConfig]="fieldConfig" />
 
     <cat-field-switcher
       *ngIf="fieldConfig.type === 'switcher'"
       [control]="control"
-      [fieldConfig]="fieldConfig"
-    />
+      [fieldConfig]="fieldConfig" />
 
     <cat-field-checkbox
       *ngIf="fieldConfig.type === 'checkbox'"
       [control]="control"
-      [fieldConfig]="fieldConfig"
-    />
+      [fieldConfig]="fieldConfig" />
 
     <cat-field-radio
       *ngIf="fieldConfig.type === 'radio'"
       [control]="control"
-      [fieldConfig]="fieldConfig"
-    />
+      [fieldConfig]="fieldConfig" />
 
     <cat-field-file
       *ngIf="fieldConfig.type === 'file' || fieldConfig.type === 'csv'"
       [control]="control"
-      [fieldConfig]="fieldConfig"
-    />
+      [fieldConfig]="fieldConfig" />
 
     <cat-field-select
       *ngIf="fieldConfig.type === 'select'"
       [control]="control"
       [fieldConfig]="fieldConfig"
-    />
+      [options$]="options$" />
 
     <cat-field-autocomplete
       *ngIf="fieldConfig.type === 'autocomplete'"
       [control]="control"
       [fieldConfig]="fieldConfig"
-    />
+      [options$]="options$" />
 
     <cat-field-custom
       *ngIf="fieldConfig.type === 'customField'"
       [control]="control"
-      [fieldConfig]="fieldConfig"
-    />
+      [fieldConfig]="fieldConfig" />
   </ng-container>
 </ng-container>

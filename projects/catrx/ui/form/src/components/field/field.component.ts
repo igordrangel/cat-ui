@@ -11,9 +11,11 @@ import {
 } from '@angular/core';
 import {
   CatFormBehaviorAsyncValidator,
+  CatFormBehaviorSetOptions,
   CatFormBehaviorSetValue,
   CatFormBehaviorValidator,
   CatFormFieldConfig,
+  CatFormListOptions,
 } from '../../builder/form.interface';
 import { FormBuilder, FormControl } from '@angular/forms';
 import { BehaviorSubject } from 'rxjs/internal/BehaviorSubject';
@@ -21,6 +23,8 @@ import { Subject } from 'rxjs/internal/Subject';
 import { skipWhile } from 'rxjs/internal/operators/skipWhile';
 import { takeUntil } from 'rxjs/internal/operators/takeUntil';
 import { debounceTime } from 'rxjs/internal/operators/debounceTime';
+import { Observable } from 'rxjs/internal/Observable';
+import { first } from 'rxjs/internal/operators/first';
 
 @Component({
   selector: 'cat-form-field[fieldConfig]',
@@ -36,6 +40,7 @@ export class FieldComponent implements OnInit, OnDestroy, OnChanges {
 
   public control?: FormControl;
   public hidden$ = new BehaviorSubject<boolean>(false);
+  public options$ = new BehaviorSubject<CatFormListOptions[]>([]);
 
   private destroySubscriptions$ = new Subject();
 
@@ -91,6 +96,8 @@ export class FieldComponent implements OnInit, OnDestroy, OnChanges {
 
             if (options.setValues) this.setValue(options.setValues);
 
+            if (options.setOptions) this.setOptions(options.setOptions);
+
             if (options.replaceValidators)
               this.changeValidators(options.replaceValidators);
             if (options.replaceAsyncValidators)
@@ -124,6 +131,17 @@ export class FieldComponent implements OnInit, OnDestroy, OnChanges {
     );
     if (field && field.value !== this.control.value) {
       this.control?.setValue(field.value);
+    }
+  }
+
+  private setOptions(options: CatFormBehaviorSetOptions[]) {
+    const field = options.find(
+      (field) => field.name === this.getFullFieldName()
+    );
+    if (field) {
+      field.options
+        .pipe(first())
+        .subscribe(options => this.options$.next(options))
     }
   }
 

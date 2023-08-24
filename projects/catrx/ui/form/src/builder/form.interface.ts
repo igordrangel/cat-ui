@@ -55,6 +55,11 @@ export interface CatFormBehaviorOptions {
   replaceValidators?: CatFormBehaviorValidator[];
   replaceAsyncValidators?: CatFormBehaviorAsyncValidator[];
   setValues?: CatFormBehaviorSetValue[];
+  setOptions?: CatFormBehaviorSetOptions[];
+}
+export interface CatFormBehaviorSetOptions {
+  name: string;
+  options: Observable<CatFormListOptions[]>;
 }
 export interface CatFormBehaviorSetValue {
   name: string;

@@ -1,14 +1,15 @@
+import { Subject } from 'rxjs/internal/Subject';
 import {
   CatFormBehaviorAsyncValidator,
   CatFormBehaviorOptions,
+  CatFormBehaviorSetOptions,
   CatFormBehaviorSetValue,
-  CatFormBehaviorValidator,
+  CatFormBehaviorValidator
 } from '../builder/form.interface';
-import { Subject } from 'rxjs/internal/Subject';
 export class CatFormBehavior {
   private options: CatFormBehaviorOptions = {};
 
-  constructor(public subject: Subject<CatFormBehaviorOptions>) {}
+  constructor(public subject: Subject<CatFormBehaviorOptions>) { }
 
   public enableFields(fields: string[]) {
     this.options.enableFields = fields;
@@ -44,6 +45,11 @@ export class CatFormBehavior {
 
   public setValues(values: CatFormBehaviorSetValue[]) {
     this.options.setValues = values;
+    return this;
+  }
+
+  public setOptions(options: CatFormBehaviorSetOptions[]) {
+    this.options.setOptions = options;
     return this;
   }
 

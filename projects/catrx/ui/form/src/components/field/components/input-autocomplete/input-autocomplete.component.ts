@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, Input } from '@angular/core';
 import { CatDynamicComponent } from '@catrx/ui/dynamic-component';
 import { BehaviorSubject } from 'rxjs/internal/BehaviorSubject';
 import { Observable } from 'rxjs/internal/Observable';
@@ -23,7 +23,7 @@ export class InputAutocompleteComponent extends FieldBase<
 > {
   loaderText = 'Carregando...';
   loading$ = new BehaviorSubject<boolean>(true);
-  options$ = new BehaviorSubject<CatFormListOptions[]>([]);
+  @Input() options$ = new BehaviorSubject<CatFormListOptions[]>([]);
 
   private search$ = new Subject<string>();
 
