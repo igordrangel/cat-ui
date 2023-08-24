@@ -71,7 +71,7 @@ export class FieldComponent implements OnInit, OnDestroy, OnChanges {
           .subscribe((value) => {
             if (this.fieldConfig?.onChange) {
               this.fieldConfig?.behavior?.clear();
-              this.fieldConfig?.onChange(value, this.fieldConfig?.behavior);
+              this.fieldConfig?.onChange(value, this.fieldConfig?.behavior, this.variableTree);
             }
           });
       }
