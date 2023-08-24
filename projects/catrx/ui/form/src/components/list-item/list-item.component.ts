@@ -15,6 +15,7 @@ import { getValueByTree } from '../../common/cat-object.helper';
 import { BehaviorSubject } from 'rxjs/internal/BehaviorSubject';
 import { skipWhile } from 'rxjs/internal/operators/skipWhile';
 import { takeUntil } from 'rxjs/internal/operators/takeUntil';
+import { FormService } from '../../form.service';
 
 @Component({
   selector: 'cat-form-list-item[listItemConfig]',
@@ -34,15 +35,16 @@ export class ListItemComponent implements OnInit, OnDestroy {
 
   private destroySubscriptions$ = new Subject<boolean>();
 
-  constructor(private fb: FormBuilder) {}
+  constructor(
+    private fb: FormBuilder,
+    private formService: FormService
+  ) { }
 
   ngOnDestroy(): void {
     this.destroySubscriptions$.next(true);
   }
 
   ngOnInit() {
-    this.hidden$.next(this.listItemConfig.config.hidden ?? false);
-
     if (this.listItemConfig.config.behavior) {
       this.listItemConfig.config.behavior.subject
         .pipe(
@@ -60,29 +62,22 @@ export class ListItemComponent implements OnInit, OnDestroy {
       .pipe(takeUntil(this.destroySubscriptions$))
       .subscribe((hidden) => {
         this.isHiddenList.emit(hidden);
-        if (!hidden) this.startList();
+        if (!hidden) {
+          this.isVisible([this.getTree()], false);
+        } else {
+          this.isHidden([this.getTree()], false);
+        }
       });
 
-    if (this.listItemConfig.config.autofill) {
-      const value = getValueByTree(
-        this.listItemConfig.config.autofill,
-        this.getTree()
-      );
-      if (Array.isArray(value)) {
-        value.forEach((item, index) => {
-          if (!this.getItemList()?.controls?.[index]) {
-            this.addItem();
-          }
-        });
-      }
-    }
+    this.autoAddItemByPayload();
+    this.autofill();
   }
 
   public addItem() {
     if (
       (this.listItemConfig.options?.maxItems &&
         this.getItemList().controls.length + 1 <=
-          this.listItemConfig.options?.maxItems) ||
+        this.listItemConfig.options?.maxItems) ||
       !this.listItemConfig.options?.maxItems
     )
       this.getItemList().push(this.fb.group({}));
@@ -92,7 +87,7 @@ export class ListItemComponent implements OnInit, OnDestroy {
     if (
       (this.listItemConfig.options?.minItems &&
         this.getItemList().controls.length - 1 >=
-          this.listItemConfig.options?.minItems) ||
+        this.listItemConfig.options?.minItems) ||
       !this.listItemConfig.options?.minItems
     )
       this.getItemList().removeAt(index);
@@ -103,17 +98,30 @@ export class ListItemComponent implements OnInit, OnDestroy {
     name: string,
     formGroup: FormGroup | FormArray
   ) {
-    (this.getItemList()?.controls?.[index] as FormGroup)?.addControl(
-      name,
-      formGroup
-    );
+    const form = (this.getItemList()?.controls?.[index] as FormGroup)
+    if (form) {
+      const controlName = toCamelCase(name);
+
+      if (form.controls[controlName]) {
+        form.removeControl(controlName)
+      }
+
+      form.addControl(controlName, formGroup);
+    }
   }
 
   public addFormControl(index: number, name: string, formControl: FormControl) {
-    (this.getItemList()?.controls?.[index] as FormGroup).addControl(
-      toCamelCase(name),
-      formControl
-    );
+    const form = (this.getItemList()?.controls?.[index] as FormGroup)
+
+    if (form) {
+      const controlName = toCamelCase(name);
+
+      if (form.controls[controlName]) {
+        form.removeControl(controlName)
+      }
+
+      form.addControl(controlName, formControl);
+    }
   }
 
   public removeChildFormGroup(groupName: string) {
@@ -148,53 +156,47 @@ export class ListItemComponent implements OnInit, OnDestroy {
   }
 
   public getItemList() {
-    return this.formListItem.get(this.listItemConfig.name) as FormArray;
+    return this.formListItem?.get(this.listItemConfig.name) as FormArray;
   }
 
   private getTree() {
-    return `${this.variableTree ? this.variableTree + '.' : ''}${
-      this.listItemConfig.name
-    }`;
+    return `${this.variableTree ? this.variableTree + '.' : ''}${this.listItemConfig.name
+      }`;
   }
 
-  private getIndexItemByTree(fieldPath: string) {
-    const tree = this.getTree();
-
-    if (fieldPath.indexOf(tree) >= 0) {
-      const partThree = fieldPath.replace(tree, '');
-      return parseInt(
-        partThree.substring(partThree.indexOf('[') + 1, partThree.indexOf(']'))
-      );
-    }
-    return -1;
-  }
-
-  private isVisible(fields: string[]) {
+  private isVisible(fields: string[], propagate = true) {
     if (fields.indexOf(this.getTree()) >= 0) {
-      this.hidden$.next(false);
+      if (propagate) this.hidden$.next(false);
       this.startList();
     }
   }
 
-  private isHidden(fields: string[]) {
+  private isHidden(fields: string[], propagate = true) {
     if (fields.indexOf(this.getTree()) >= 0) {
-      this.hidden$.next(true);
+      if (propagate) this.hidden$.next(true);
       this.clearList();
     }
   }
 
   private startList() {
+    const isFirstLoad = !!this.formListItem;
+
     this.formListItem = this.fb.group({
       [this.listItemConfig.name]: this.fb.array([]),
     });
+
     this.emitFormGroup.emit(this.getItemList());
 
-    if (
-      this.listItemConfig.options?.minItems > 0 &&
-      this.getItemList().length < this.listItemConfig.options?.minItems
-    ) {
-      for (let i = 1; i <= this.listItemConfig.options?.minItems; i++) {
-        this.addItem();
+    if (isFirstLoad) {
+      this.autoAddItemByPayload();
+    } else {
+      if (
+        this.listItemConfig.options?.minItems > 0 &&
+        this.getItemList().length < this.listItemConfig.options?.minItems
+      ) {
+        for (let i = 1; i <= this.listItemConfig.options?.minItems; i++) {
+          this.addItem();
+        }
       }
     }
   }
@@ -202,5 +204,28 @@ export class ListItemComponent implements OnInit, OnDestroy {
   private clearList() {
     this.formListItem = null;
     this.removeFormGroup.emit(this.getTree());
+  }
+
+  private autoAddItemByPayload() {
+    if (!this.hidden$.getValue()) {
+      const value = getValueByTree(
+        this.listItemConfig.config.autofill,
+        this.getTree()
+      );
+
+      if (Array.isArray(value)) {
+        value.forEach((item, index) => {
+          if (!this.getItemList()?.controls?.[index]) {
+            this.addItem();
+          }
+        });
+      }
+    }
+  }
+
+  private autofill() {
+    this.listItemConfig.config.behavior.setValues(
+      this.formService.getAutofillDataTree(this.listItemConfig.config)
+    ).send();
   }
 }

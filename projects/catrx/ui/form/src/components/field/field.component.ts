@@ -39,7 +39,7 @@ export class FieldComponent implements OnInit, OnDestroy, OnChanges {
 
   private destroySubscriptions$ = new Subject();
 
-  constructor(private fb: FormBuilder) {}
+  constructor(private fb: FormBuilder) { }
 
   ngOnChanges(changes: SimpleChanges) {
     if (changes['highlightInvalidFields']) {
@@ -71,6 +71,7 @@ export class FieldComponent implements OnInit, OnDestroy, OnChanges {
             }
           });
       }
+
       if (this.fieldConfig.hidden || this.fieldConfig.disabled) {
         this.removeValidators();
       }
@@ -121,7 +122,7 @@ export class FieldComponent implements OnInit, OnDestroy, OnChanges {
     const field = values.find(
       (field) => field.name === this.getFullFieldName()
     );
-    if (field) {
+    if (field && field.value !== this.control.value) {
       this.control?.setValue(field.value);
     }
   }

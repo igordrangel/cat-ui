@@ -14,6 +14,7 @@ import { BehaviorSubject } from 'rxjs/internal/BehaviorSubject';
 import { skipWhile } from 'rxjs/internal/operators/skipWhile';
 import { takeUntil } from 'rxjs/internal/operators/takeUntil';
 import { Subject } from 'rxjs/internal/Subject';
+import { FormService } from '../../form.service';
 
 @Component({
   selector: 'cat-form-fieldset',
@@ -33,7 +34,10 @@ export class FieldsetComponent implements OnInit, OnDestroy {
 
   private destroySubscriptions$ = new Subject<boolean>();
 
-  constructor(private fb: FormBuilder) {}
+  constructor(
+    private fb: FormBuilder,
+    private formService: FormService
+  ) { }
 
   ngOnDestroy(): void {
     this.destroySubscriptions$.next(true);
@@ -61,11 +65,27 @@ export class FieldsetComponent implements OnInit, OnDestroy {
   }
 
   public addFormGroup(name: string, formGroup: FormGroup | FormArray) {
-    this.formFieldset?.addControl(name, formGroup);
+    if (this.formFieldset) {
+      const controlName = toCamelCase(name);
+
+      if (this.formFieldset.controls[controlName]) {
+        this.formFieldset.removeControl(controlName)
+      }
+
+      this.formFieldset.addControl(controlName, formGroup);
+    }
   }
 
   public addFormControl(name: string, formControl: FormControl) {
-    this.formFieldset?.addControl(toCamelCase(name), formControl);
+    if (this.formFieldset) {
+      const controlName = toCamelCase(name);
+
+      if (this.formFieldset.controls[controlName]) {
+        this.formFieldset.removeControl(controlName)
+      }
+
+      this.formFieldset.addControl(controlName, formControl);
+    }
   }
 
   public removeChildFormGroup(groupName: string) {

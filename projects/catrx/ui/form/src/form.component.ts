@@ -9,25 +9,22 @@ import {
   ViewChild,
 } from '@angular/core';
 import {
-  CatFormBehaviorSetValue,
-  CatFormConfig,
-  CatFormElementConfig,
-} from './builder/form.interface';
-import {
+  FormArray,
   FormBuilder,
   FormControl,
   FormGroup,
   UntypedFormGroup,
 } from '@angular/forms';
-import { klString, toCamelCase } from '@koalarx/utils/operators/string';
-import { clone } from '@koalarx/utils/operators/object';
-import { FormArray } from '@angular/forms';
+import { toCamelCase } from '@koalarx/utils/operators/string';
 import { BehaviorSubject } from 'rxjs/internal/BehaviorSubject';
 import { Subject } from 'rxjs/internal/Subject';
-import { takeUntil } from 'rxjs/internal/operators/takeUntil';
 import { debounceTime } from 'rxjs/internal/operators/debounceTime';
 import { first } from 'rxjs/internal/operators/first';
-import { getValueByTree } from './common/cat-object.helper';
+import { takeUntil } from 'rxjs/internal/operators/takeUntil';
+import {
+  CatFormConfig
+} from './builder/form.interface';
+import { FormService } from './form.service';
 
 @Component({
   selector: 'cat-form[config]',
@@ -46,9 +43,10 @@ export class FormComponent implements OnInit {
   @ViewChild('formElement') private elForm?: ElementRef<HTMLFormElement>;
   private destroySubscriptions$ = new Subject();
 
-  private autofillValues: CatFormBehaviorSetValue[] = [];
-
-  constructor(private fb: FormBuilder) { }
+  constructor(
+    private fb: FormBuilder,
+    private formService: FormService
+  ) { }
 
   ngOnInit(): void {
     this.dynamicForm = this.fb.group({});
@@ -66,8 +64,9 @@ export class FormComponent implements OnInit {
 
     if (this.config.autofill) {
       setTimeout(() => {
-        this.generateAutofillDataTree(this.config.autofill);
-        this.config.behavior.setValues(this.autofillValues).send();
+        this.config.behavior.setValues(
+          this.formService.getAutofillDataTree(this.config)
+        ).send();
       }, 1);
     }
   }
@@ -115,11 +114,27 @@ export class FormComponent implements OnInit {
   }
 
   public addFormGroup(legend: string, formGroup: FormGroup | FormArray) {
-    this.dynamicForm?.addControl(toCamelCase(legend), formGroup);
+    if (this.dynamicForm) {
+      const controlName = toCamelCase(legend);
+
+      if (this.dynamicForm.controls[controlName]) {
+        this.dynamicForm.removeControl(controlName)
+      }
+
+      this.dynamicForm.addControl(controlName, formGroup);
+    }
   }
 
   public addFormControl(name: string, formControl: FormControl) {
-    this.dynamicForm?.addControl(toCamelCase(name), formControl);
+    if (this.dynamicForm) {
+      const controlName = toCamelCase(name);
+
+      if (this.dynamicForm.controls[controlName]) {
+        this.dynamicForm.removeControl(controlName)
+      }
+
+      this.dynamicForm.addControl(controlName, formControl);
+    }
   }
 
   public removeFormGroup(groupName: string) {
@@ -138,165 +153,5 @@ export class FormComponent implements OnInit {
 
   private getFormData() {
     return this.dynamicForm?.getRawValue();
-  }
-
-  private generateAutofillDataTree(
-    data: { [key: string | number]: any },
-    name?: string
-  ) {
-    if (name) {
-      const valueDataByTree = getValueByTree(this.config.autofill, name) as {
-        [key: string | number]: any;
-      };
-
-      if (Array.isArray(valueDataByTree)) {
-        const isObjectArray = !!valueDataByTree.find(
-          (item) => typeof item === 'object'
-        );
-        const isListItem = this.isListItemByName(
-          name,
-          this.config.formElements
-        );
-
-        if (isObjectArray && isListItem) {
-          valueDataByTree.forEach((item, indexItem) => {
-            clone(Object.keys(item)).forEach((propItem) => {
-              const prefix = name.substring(0, name.length - 3);
-              let suffix = name.substring(name.length - 3);
-              if (suffix === `[${indexItem > 0 ? indexItem - 1 : indexItem}]`) {
-                suffix = suffix.replace(`[${indexItem - 1}]`, `[${indexItem}]`);
-              } else {
-                suffix += `[${indexItem}]`;
-              }
-
-              name = this.generateAutofillDataTree(
-                item[propItem],
-                `${prefix}${suffix}.${propItem}`
-              );
-            });
-          });
-        } else {
-          this.autofillValues.push({
-            name,
-            value: valueDataByTree,
-          });
-        }
-      } else if (
-        valueDataByTree &&
-        typeof valueDataByTree === 'object' &&
-        !this.isFileByName(name, this.config.formElements)
-      ) {
-        clone(Object.keys(valueDataByTree)).forEach((index) => {
-          name = this.generateAutofillDataTree(
-            valueDataByTree[index],
-            `${name}.${index}`
-          );
-        });
-      } else {
-        this.autofillValues.push({
-          name,
-          value: valueDataByTree,
-        });
-        name = klString(name)
-          .split('.')
-          .pipe((KlName) => {
-            const arrName = KlName.getValue();
-            arrName.splice(arrName.length - 1, 1);
-            return arrName;
-          })
-          .toString('.')
-          .getValue();
-      }
-    } else {
-      clone(Object.keys(data)).map((index) => {
-        if (data[index] && Array.isArray(data[index])) {
-          const isObjectArray = !!data[index].find(
-            (item) => typeof item === 'object'
-          );
-          const isListItem = this.isListItemByName(
-            index,
-            this.config.formElements
-          );
-          if (isObjectArray && isListItem) {
-            data[index].forEach((item, indexItem) => {
-              clone(Object.keys(item)).forEach((propItem) => {
-                name = this.generateAutofillDataTree(
-                  item,
-                  `${index}[${indexItem}].${propItem}`
-                );
-              });
-            });
-          } else {
-            this.autofillValues.push({
-              name: index,
-              value: data[index],
-            });
-          }
-        } else if (data[index] && typeof data[index] === 'object') {
-          clone(Object.keys(data[index])).forEach((objIndex) => {
-            name = this.generateAutofillDataTree(
-              data[index],
-              `${index}.${objIndex}`
-            );
-          });
-        } else {
-          this.autofillValues.push({
-            name: index,
-            value: data[index],
-          });
-        }
-      });
-    }
-
-    return name;
-  }
-
-  private isListItemByName(
-    name: string,
-    formElement: CatFormElementConfig[]
-  ): boolean {
-    return !!formElement.find((formElement) => {
-      if (formElement.listItem) {
-        const splitedName = name.split('.');
-        if (
-          splitedName[splitedName.length - 1] === formElement.listItem.name ||
-          this.isListItemByName(name, formElement.listItem.config.formElements)
-        ) {
-          return true;
-        }
-      }
-      return false;
-    });
-  }
-
-  private isFileByName(
-    name: string,
-    formElement: CatFormElementConfig[]
-  ): boolean {
-    return !!formElement.find((formElement) => {
-      if (formElement.field) {
-        const splitedName = name.split('.');
-        if (
-          splitedName[splitedName.length - 1] === formElement.field.name &&
-          formElement.field.type === 'file'
-        ) {
-          return true;
-        }
-      }
-
-      if (formElement.fieldset) {
-        if (this.isFileByName(name, formElement.fieldset.config.formElements)) {
-          return true;
-        }
-      }
-
-      if (formElement.listItem) {
-        if (this.isFileByName(name, formElement.listItem.config.formElements)) {
-          return true;
-        }
-      }
-
-      return false;
-    });
   }
 }

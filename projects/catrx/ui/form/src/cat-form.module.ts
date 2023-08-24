@@ -5,6 +5,7 @@ import { ReactiveFormsModule } from '@angular/forms';
 import { CatFieldsetModule } from './components/fieldset/cat-fieldset.module';
 import { FieldModule } from './components/field/field.module';
 import { CatListItemModule } from './components/list-item/cat-list-item.module';
+import { FormService } from './form.service';
 
 @NgModule({
   declarations: [FormComponent],
@@ -16,5 +17,6 @@ import { CatListItemModule } from './components/list-item/cat-list-item.module';
     CatListItemModule,
     FieldModule,
   ],
+  providers: [FormService]
 })
-export class CatFormModule {}
+export class CatFormModule { }
