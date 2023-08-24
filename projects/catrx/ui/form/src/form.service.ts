@@ -1,8 +1,8 @@
 import { Injectable } from "@angular/core";
 import { clone } from "@koalarx/utils/operators/object";
 import { klString } from "@koalarx/utils/operators/string";
-import { CatFormBehaviorSetValue, CatFormConfig, CatFormElementConfig } from "..";
 import { getValueByTree } from './common/cat-object.helper';
+import { CatFormBehaviorSetValue, CatFormConfig, CatFormElementConfig } from "./builder/form.interface";
 
 @Injectable()
 export class FormService {

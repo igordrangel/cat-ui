@@ -7,14 +7,13 @@ import {
   OnInit,
   Output,
 } from '@angular/core';
-import { CatFormFieldsetConfig } from '../../builder/form.interface';
-import { FormBuilder, FormControl, FormGroup, FormArray } from '@angular/forms';
+import { FormArray, FormBuilder, FormControl, FormGroup } from '@angular/forms';
 import { toCamelCase } from '@koalarx/utils/operators/string';
 import { BehaviorSubject } from 'rxjs/internal/BehaviorSubject';
+import { Subject } from 'rxjs/internal/Subject';
 import { skipWhile } from 'rxjs/internal/operators/skipWhile';
 import { takeUntil } from 'rxjs/internal/operators/takeUntil';
-import { Subject } from 'rxjs/internal/Subject';
-import { FormService } from '../../form.service';
+import { CatFormFieldsetConfig } from '../../builder/form.interface';
 
 @Component({
   selector: 'cat-form-fieldset',
@@ -34,10 +33,7 @@ export class FieldsetComponent implements OnInit, OnDestroy {
 
   private destroySubscriptions$ = new Subject<boolean>();
 
-  constructor(
-    private fb: FormBuilder,
-    private formService: FormService
-  ) { }
+  constructor(private fb: FormBuilder) { }
 
   ngOnDestroy(): void {
     this.destroySubscriptions$.next(true);

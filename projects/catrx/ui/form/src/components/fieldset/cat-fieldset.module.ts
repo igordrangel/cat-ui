@@ -10,4 +10,4 @@ import { CatListItemModule } from '../list-item/cat-list-item.module';
   exports: [FieldsetComponent],
   imports: [CommonModule, ReactiveFormsModule, CatListItemModule, FieldModule],
 })
-export class CatFieldsetModule {}
+export class CatFieldsetModule { }

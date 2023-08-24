@@ -1,11 +1,10 @@
-import { NgModule } from '@angular/core';
-import { FormComponent } from './form.component';
 import { CommonModule } from '@angular/common';
+import { NgModule } from '@angular/core';
 import { ReactiveFormsModule } from '@angular/forms';
-import { CatFieldsetModule } from './components/fieldset/cat-fieldset.module';
 import { FieldModule } from './components/field/field.module';
+import { CatFieldsetModule } from './components/fieldset/cat-fieldset.module';
 import { CatListItemModule } from './components/list-item/cat-list-item.module';
-import { FormService } from './form.service';
+import { FormComponent } from './form.component';
 
 @NgModule({
   declarations: [FormComponent],
@@ -16,7 +15,6 @@ import { FormService } from './form.service';
     CatFieldsetModule,
     CatListItemModule,
     FieldModule,
-  ],
-  providers: [FormService]
+  ]
 })
 export class CatFormModule { }
