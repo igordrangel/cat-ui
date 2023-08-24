@@ -27,7 +27,7 @@ export abstract class FormFieldBase<ConfigType extends CatFormFieldOptions> {
     return this;
   }
 
-  public onChange(onChange: (value: any, behavior: CatFormBehavior) => void) {
+  public onChange(onChange: (value: any, behavior: CatFormBehavior, baseTree?: string) => void) {
     this.config.onChange = onChange;
     return this;
   }
