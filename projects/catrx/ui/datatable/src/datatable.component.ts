@@ -148,7 +148,7 @@ export class DatatableComponent implements OnInit, OnDestroy {
               break;
             case 'onDemand':
             case 'onScroll':
-              this.loadData();
+              this.loadData(false, true);
               break;
           }
         });
