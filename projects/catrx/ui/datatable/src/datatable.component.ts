@@ -73,7 +73,9 @@ export class DatatableComponent implements OnInit, OnDestroy {
       this.config?.reloadList
         .pipe(takeUntil(this.destroySubscriptions$))
         .subscribe((reloadlist) => {
-          if (reloadlist.reload) this.loadData(reloadlist.preservePagination);
+          if (reloadlist.reload) {
+            this.loadData(reloadlist.preservePagination, true);
+          }
         });
     }
   }
@@ -153,9 +155,9 @@ export class DatatableComponent implements OnInit, OnDestroy {
     }
   }
 
-  private loadData(preserveCurrentPage = false) {
+  private loadData(preserveCurrentPage = false, reloadList = false) {
     if (this.config?.service) {
-      const onScroll = this.config?.typeDataList === 'onScroll';
+      const onScroll = this.config?.typeDataList === 'onScroll' && !reloadList;
 
       this.scrollLoadingData = true;
       if (!onScroll) {
