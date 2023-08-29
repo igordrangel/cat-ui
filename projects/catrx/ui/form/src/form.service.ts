@@ -13,7 +13,9 @@ export class FormService {
     name?: string
   ) {
     this.generateAutofillDataTree(config, config.autofill, name);
-    return this.autofillValues;
+    const autofillValues = this.autofillValues;
+    this.autofillValues = [];
+    return autofillValues;
   }
 
   private generateAutofillDataTree(
