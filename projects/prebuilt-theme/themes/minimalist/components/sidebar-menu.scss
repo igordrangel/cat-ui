@@ -53,12 +53,12 @@ cat-menu cat-menu-module ul li {
 }
 
 cat-menu cat-menu-module ul li:hover {
-  background-color: var(--bg-menu-hover);
+  background: var(--bg-menu-hover);
   color: var(--c-menu-hover);
 }
 
 cat-menu cat-menu-module ul li:active {
-  background-color: var(--bg-menu-active);
+  background: var(--bg-menu-active);
   color: var(--c-menu-active);
 }
 
@@ -161,17 +161,17 @@ cat-menu cat-menu-tool ul li {
 }
 
 cat-menu cat-menu-tool ul li:hover {
-  background-color: var(--bg-menu-hover);
+  background: var(--bg-menu-hover);
   color: var(--c-menu-hover);
 }
 
 cat-menu cat-menu-tool ul li:active {
-  background-color: var(--bg-menu-active);
+  background: var(--bg-menu-active);
   color: var(--c-menu-active);
 }
 
 cat-menu cat-menu-tool ul li.tool {
-  background-color: transparent;
+  background: transparent;
 }
 
 cat-menu cat-menu-tool ul li.tool a {

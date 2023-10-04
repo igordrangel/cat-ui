@@ -172,6 +172,8 @@ main {
 
   --switcher-bg: rgba(0, 0, 0, .2);
   --switcher-bg-active: rgba(0, 0, 0, .8);
+
+  --sidebar-menu-bg: transparent
 }
 
 main.dark {
@@ -326,4 +328,6 @@ main.dark {
 
   --switcher-bg: rgba(255, 255, 255, .2);
   --switcher-bg-active: rgba(255, 255, 255, .8);
+
+  --sidebar-menu-bg: transparent
 }
