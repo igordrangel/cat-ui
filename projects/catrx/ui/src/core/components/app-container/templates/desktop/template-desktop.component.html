@@ -1,38 +1,38 @@
 <div class="template-content">
   <ng-container>
     <ng-container>
-      <aside #asideElement [ngClass]="{ show: menuCollapsed$ | async }">
+      <aside
+        *ngIf="appConfig.options?.hideSideMenu !== true"
+        #asideElement
+        [ngClass]="{ show: menuCollapsed$ | async }">
         <button
           *ngIf="!(appConfig.options?.disableCollapseMenuButton ?? false)"
           type="button"
           class="btn-menu-collapse"
-          (click)="collapseMenu()"
-        >
-          <i
-            *ngIf="(menuCollapsed$ | async) === false"
-            class="fa-solid fa-chevron-right"
-          ></i>
-          <i
-            *ngIf="menuCollapsed$ | async"
-            class="fa-solid fa-chevron-left"
-          ></i>
+          (click)="collapseMenu()">
+          <i *ngIf="(menuCollapsed$ | async) === false"
+            class="fa-solid fa-chevron-right"></i>
+          <i *ngIf="menuCollapsed$ | async"
+            class="fa-solid fa-chevron-left"></i>
         </button>
 
-        <img
-          #logotypeImage
+        <img #logotypeImage
           class="logotype"
           [src]="getLogotype()"
-          alt="Logotipo"
-        />
+          alt="Logotipo" />
 
-        <ng-content select="[menu-content]"></ng-content>
+        <ng-content
+          select="[menu-content]"></ng-content>
         <div class="space"></div>
-        <div #menuToolbar class="btn-group">
-          <ng-content select="[menu-toolbar]"></ng-content>
+        <div #menuToolbar
+          class="btn-group">
+          <ng-content
+            select="[menu-toolbar]"></ng-content>
         </div>
       </aside>
       <section id="cat-content-app">
-        <ng-content select="[router-container]"></ng-content>
+        <ng-content
+          select="[router-container]"></ng-content>
       </section>
     </ng-container>
   </ng-container>

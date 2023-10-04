@@ -6,6 +6,11 @@ import { CatOAuth2TokenInterface } from '../services/token/cat-token.service';
 
 export class CatLogotypeApp extends CatDynamicComponent { }
 
+export class CatLogoutResponse {
+  isLogged: boolean
+  clearToken: boolean
+}
+
 export interface AppContainerConfig {
   config: AppConfig;
   themeActive$: BehaviorSubject<CatThemeType>;
@@ -25,6 +30,7 @@ export interface AppConfig {
 export interface AppAuthSettings {
   autoAuth: boolean;
   onAuth: (decodedToken: CatAppDecodedToken) => Observable<AppConfigMenu>;
+  onLogout?: (expiredToken: boolean) => CatLogoutResponse;
   startedPage?: () => string;
   openId?: {
     service: string;
@@ -38,6 +44,7 @@ export interface AppAuthSettings {
 export type AppMenuState = 'closed' | 'collapsed';
 
 export interface AppOptions {
+  hideSideMenu?: boolean;
   menuStartState?: AppMenuState;
   disableCollapseMenuButton?: boolean;
 }

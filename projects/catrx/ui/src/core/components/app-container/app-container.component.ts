@@ -70,7 +70,7 @@ export class AppContainerComponent implements OnInit {
     private oauth2Service: CatOAuth2Service,
     private tokenService: CatTokenService,
     private notificationService: NotificationService
-  ) {}
+  ) { }
 
   ngOnInit() {
     if (window.matchMedia && this.config.darkMode) {
@@ -120,9 +120,22 @@ export class AppContainerComponent implements OnInit {
   }
 
   public logout(clearToken = false) {
-    this.destroyLoggedSubscriptions$.next(true);
-    this.intervalNotifications?.unsubscribe();
-    this.logged$.next(false);
+    let isLogged = false
+
+    if (this.config.authSettings.onLogout) {
+      const logoutResponse = this.config.authSettings.onLogout(
+        this.verifyTokenIsExpired()
+      )
+      isLogged = logoutResponse.isLogged
+      clearToken = logoutResponse.clearToken
+    }
+
+    if (!isLogged) {
+      this.destroyLoggedSubscriptions$.next(true);
+      this.intervalNotifications?.unsubscribe();
+      this.logged$.next(isLogged);
+    }
+
     if (clearToken) {
       this.tokenService.removeToken();
       this.oauth2Service.logout();
