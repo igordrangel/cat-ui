@@ -18,6 +18,7 @@ cat-template-desktop .template-content aside {
   flex-direction: column;
   box-sizing: border-box;
   border-right: 1px solid var(--shadow-color);
+  background: var(--sidebar-menu-bg);
 }
 
 cat-template-desktop .template-content aside.show {
