@@ -18,7 +18,7 @@ class CatServiceMockup {
       CatDatabaseMockup.database[resourceName] = [];
   }
 
-  getById<EntityType = any>(id: number) {
+  getById<EntityType = any>(id: number | string) {
     return new Observable<EntityType>((observe) => {
       setTimeout(() => {
         const index = klArray(this.getDatabase()).getIndex('id', id);
@@ -43,7 +43,7 @@ class CatServiceMockup {
     }).pipe(first());
   }
 
-  save<ListType = any>(item: ListType, id?: number) {
+  save<ListType = any>(item: ListType, id?: number | string) {
     return new Observable((observe) => {
       setTimeout(() => {
         if (id) {
@@ -60,7 +60,7 @@ class CatServiceMockup {
     }).pipe(first());
   }
 
-  delete(id: number) {
+  delete(id: number | string) {
     return new Observable((observe) => {
       setTimeout(() => {
         const index = klArray(this.getDatabase()).getIndex('id', id);
@@ -110,11 +110,11 @@ export abstract class CatServiceBase<
     }
   }
 
-  public deleteMany(ids: number[]) {
+  public deleteMany(ids: (number | string)[]) {
     return forkJoin(ids.map((id) => this.delete(id))).pipe(first());
   }
 
-  public delete(id: number) {
+  public delete(id: number | string) {
     if (this.options?.useMockup) {
       return new CatServiceMockup(this.mainResource).delete(id);
     } else {
@@ -124,7 +124,7 @@ export abstract class CatServiceBase<
     }
   }
 
-  public save(data: EntityType, id?: number) {
+  public save(data: EntityType, id?: number | string) {
     if (this.options?.useMockup) {
       return new CatServiceMockup(this.mainResource).save(data, id);
     } else {
@@ -151,7 +151,7 @@ export abstract class CatServiceBase<
     }
   }
 
-  public getById(id: number) {
+  public getById(id: number | string) {
     if (this.options?.useMockup) {
       return new CatServiceMockup(this.mainResource)
         .getById<EntityType>(id)
