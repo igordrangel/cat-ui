@@ -53,13 +53,13 @@ cat-form .ng-input input {
 }
 
 .ng-dropdown-panel .ng-dropdown-panel-items .ng-option {
-  background-color: var(--bg-body);
-  color: var(--font-color);
+  background: var(--bg-body) !important;
+  color: var(--font-color) !important;
 }
 
 .ng-dropdown-panel .ng-dropdown-panel-items .ng-option.ng-option-marked,
 .ng-dropdown-panel .ng-dropdown-panel-items .ng-option.ng-option-selected {
-  background-color: var(--bg-select-option-hover-active) !important;
+  background: var(--bg-select-option-hover-active) !important;
   color: var(--font-color) !important;
 }
 
@@ -83,8 +83,8 @@ cat-form .ng-input input {
 
 .ng-select.ng-select-multiple .ng-select-container .ng-value-container .ng-value {
   border-radius: 5px;
-  color: var(--c-tag);
-  background-color: var(--bg-tag);
+  color: var(--c-tag) !important;
+  background: var(--bg-tag) !important;
   margin-top: 7px;
   min-height: 20px;
   height: auto;
@@ -105,7 +105,7 @@ cat-form .ng-select.ng-select-disabled .ng-select-container,
 cat-form input:disabled,
 cat-form select:disabled {
   border-style: dashed;
-  background-color: var(--disable-color) !important;
+  background: var(--disable-color) !important;
 }
 
 cat-form div:not(:has(.isCheckboxGroup))>.form-check.form-switch {
@@ -134,11 +134,11 @@ cat-form .form-check-label {
 .form-check.form-switch .form-check-input {
   margin-left: 0 !important;
   border-color: var(--primary-color);
-  background-color: var(--switcher-bg) !important;
+  background: var(--switcher-bg) !important;
 }
 
 .form-check.form-switch .form-check-input:checked {
-  background-color: var(--switcher-bg-active) !important;
+  background: var(--switcher-bg-active) !important;
 }
 
 .form-check:not(.form-switch) .form-check-input,
@@ -159,7 +159,7 @@ cat-datatable .form-check-input {
 .form-check:not(.form-switch) .form-check-input:checked,
 cat-datatable .form-check-input[type="checkbox"]:indeterminate,
 cat-datatable .form-check-input:checked {
-  background-color: var(--primary-color) !important;
+  background: var(--primary-color) !important;
   border-color: var(--primary-color) !important;
 }
 
@@ -257,7 +257,7 @@ cat-form .cat-field-container label::after {
   left: 0;
   content: "";
   position: absolute;
-  background-color: var(--bg-body);
+  background: var(--bg-body);
   width: 100%;
   height: 2px;
   z-index: -1;
@@ -396,7 +396,7 @@ cat-form .file-drag-drop-area .files-content .file-content {
   border-radius: 5px;
   padding: 2px 10px;
   color: var(--c-form-valid-field);
-  background-color: var(--primary-color-alpha);
+  background: var(--primary-color-alpha);
   margin: 5px;
 }
 
@@ -413,12 +413,12 @@ cat-form .file-drag-drop-area .files-content .file-content .btn-remove {
 
 cat-form .file-drag-drop-area .files-content .file-content .btn-remove:hover {
   color: var(--btn-icon-bg-danger);
-  background-color: var(--btn-icon-c-danger);
+  background: var(--btn-icon-c-danger);
 }
 
 cat-form .file-drag-drop-area .files-content .file-content.invalid {
   color: var(--c-form-invalid-field);
-  background-color: var(--bg-form-invalid-field);
+  background: var(--bg-form-invalid-field);
 }
 
 cat-form .file-drag-drop-area .btn-group {
