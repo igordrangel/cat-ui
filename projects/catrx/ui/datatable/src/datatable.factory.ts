@@ -5,6 +5,7 @@ import {
   CatDatatableDataHttpResponse,
   CatDatatableSelection,
   DatatableTypeDataList,
+  ColumOrderType,
 } from './cat-datatable.interface';
 import { CatDynamicComponent } from '@catrx/ui/dynamic-component';
 import { BehaviorSubject } from 'rxjs/internal/BehaviorSubject';
@@ -79,6 +80,12 @@ export class DatatableFactory<FilterType = any, DataType = any> {
 
   setCustomLoaderComponent(component: CatDynamicComponent) {
     this.config.customLoaderComponent = component;
+    return this;
+  }
+
+  setOrder(columnIndex: number, direction: ColumOrderType = 'asc') {
+    this.config.defaultColumSortIndex = columnIndex;
+    this.config.defaultColumOrder = direction;
     return this;
   }
 
