@@ -65,6 +65,14 @@ export class DatatableComponent implements OnInit, OnDestroy {
       this.config.hidePaginator = true;
     }
 
+    if (this.config.defaultColumSortIndex > -1) {
+      this.orderBy = this.getItemLine(this.config.defaultColumSortIndex)?.sortColumn ?? ''
+    }
+
+    if (this.config.defaultColumOrder) {
+      this.reverse = this.config.defaultColumOrder === 'desc';
+    }
+
     this.watchFilter();
     this.observeAnEmitSelection();
     this.observeListScrollToPaginate();
