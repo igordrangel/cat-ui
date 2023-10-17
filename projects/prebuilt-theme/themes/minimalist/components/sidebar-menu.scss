@@ -95,7 +95,7 @@ cat-menu cat-menu-module ul:not(.collapsed) li.module a {
   align-items: center;
 }
 
-cat-menu cat-menu-module ul:not(.collapsed) li.module a.active {
+cat-menu cat-menu-module ul li.module a.active {
   color: var(--c-menu-active);
 }
 
