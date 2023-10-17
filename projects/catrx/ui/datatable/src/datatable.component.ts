@@ -66,6 +66,7 @@ export class DatatableComponent implements OnInit, OnDestroy {
     }
 
     if (this.config.defaultColumSortIndex > -1) {
+      this.columnIndexSort = this.config.defaultColumSortIndex;
       this.orderBy = this.getItemLine(this.config.defaultColumSortIndex)?.sortColumn ?? ''
     }
 
