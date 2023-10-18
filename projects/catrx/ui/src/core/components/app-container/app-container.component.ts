@@ -124,7 +124,9 @@ export class AppContainerComponent implements OnInit {
 
     if (this.config.authSettings.onLogout) {
       const logoutResponse = this.config.authSettings.onLogout(
-        this.verifyTokenIsExpired()
+        !!this.tokenService.getDecodedToken()
+          ? this.verifyTokenIsExpired()
+          : false
       )
       isLogged = logoutResponse.isLogged
       clearToken = logoutResponse.clearToken
@@ -401,7 +403,7 @@ export class AppContainerComponent implements OnInit {
       }
     }
 
-    return false;
+    return true;
   }
 
   private observeNotifications() {
