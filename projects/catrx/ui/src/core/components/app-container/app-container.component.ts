@@ -401,7 +401,7 @@ export class AppContainerComponent implements OnInit {
       }
     }
 
-    return true;
+    return false;
   }
 
   private observeNotifications() {
