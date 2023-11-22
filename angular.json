@@ -105,10 +105,10 @@
           "builder": "@angular-devkit/build-angular:dev-server",
           "configurations": {
             "production": {
-              "browserTarget": "cat-ui:build:production"
+              "buildTarget": "cat-ui:build:production"
             },
             "development": {
-              "browserTarget": "cat-ui:build:development"
+              "buildTarget": "cat-ui:build:development"
             }
           },
           "defaultConfiguration": "development"
@@ -116,7 +116,7 @@
         "extract-i18n": {
           "builder": "@angular-devkit/build-angular:extract-i18n",
           "options": {
-            "browserTarget": "cat-ui:build"
+            "buildTarget": "cat-ui:build"
           }
         },
         "test": {
